@@ -2,13 +2,15 @@ package vue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import java.awt.*;
+import java.awt.event.*;
 
 import controleur.Controleur;
 
 public class FenetrePrincipale extends JFrame {
 	
-	JPanel panelCourant;
-	Controleur controleur;
+	private JPanel panelCourant;
+	private Controleur controleur;
 	
 	
 	/**
@@ -27,12 +29,16 @@ public class FenetrePrincipale extends JFrame {
 		setSize(1024,640);
 		setLocationRelativeTo(null);
 		//setResizable(false);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		addWindowListener(new WindowAdapter(){
+		    public void windowClosing(WindowEvent evt) {
+		    	controleur.rqtQuitter();
+		   }
+		});
 		
 		
 		// On définie la vue courante sur la quelel on veut qu'on arrive au lancement
 		panelCourant = new MenuPrincipal(controleur);
 		setContentPane(panelCourant);
 	}
-
 }
