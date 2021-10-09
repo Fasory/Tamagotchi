@@ -1,5 +1,8 @@
 package vue;
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
 import javax.swing.JFrame;
 
 import controleur.Controleur;
@@ -17,6 +20,12 @@ public class FenetreDeConfirmation extends JFrame {
 		setSize(400, 250);
 		setLocationRelativeTo(null);
 		setResizable(false);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setContentPane(new MenuDeConfirmation(controleur));
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		addWindowListener(new WindowAdapter(){
+		    public void windowClosing(WindowEvent evt) {
+		    	controleur.rqtFermer(false);
+		   }
+		});
 	}
 }

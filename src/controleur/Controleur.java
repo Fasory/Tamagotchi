@@ -78,4 +78,15 @@ public class Controleur {
 		// ET MEDITER SI LE VISIBLE ET LA MODIFICATION DE FENETRE CE FAIT ICI OU
 		// AVEC UNE REDIRECTION DANS LA VUE CONCERNEE
 	}
+	
+	/**
+	 * Demande d'exécution de fermeture de l'application si confirmation
+	 * 
+	 * @param confirmation
+	 */
+	public void rqtFermer(boolean confirmation) {
+		if (confirmation) {
+			System.exit(1);
+		}
+	}
 }
