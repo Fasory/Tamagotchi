@@ -78,7 +78,7 @@ public class MenuPrincipal extends JPanel {
 		
 		add(panelBtn);
 	}
-	
+
 	
 	////////////////////////////////////////
 	//           COMMANDES LIEES          //

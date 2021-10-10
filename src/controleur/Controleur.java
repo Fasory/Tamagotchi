@@ -42,7 +42,7 @@ public class Controleur {
 	* Demande de changement de menu : MenuCreerPartie
 	*/
 	public void rqtMenuCreerPartie() {
-		
+		System.out.println("Clic");
 	}
 	
 	/**
@@ -74,9 +74,7 @@ public class Controleur {
 		if (fenetreDeConfirmation.getState() == JFrame.ICONIFIED) {
 			fenetreDeConfirmation.setState(JFrame.NORMAL);
 		}
-		// -> AJOUTER UN EFFET POUR DESACTIVER LA FENETRE PRINCIPALE <-
-		// ET MEDITER SI LE VISIBLE ET LA MODIFICATION DE FENETRE CE FAIT ICI OU
-		// AVEC UNE REDIRECTION DANS LA VUE CONCERNEE
+		fenetrePrincipale.setActivite(false);
 	}
 	
 	/**
@@ -87,6 +85,10 @@ public class Controleur {
 	public void rqtFermer(boolean confirmation) {
 		if (confirmation) {
 			System.exit(1);
+		} else {
+			fenetreDeConfirmation.setVisible(false);
+			fenetrePrincipale.setActivite(!confirmation);
+			fenetrePrincipale.setVisible(true); // redonne le focus à la fenêtre principale
 		}
 	}
 }

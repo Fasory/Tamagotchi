@@ -31,14 +31,19 @@ public class FenetrePrincipale extends JFrame {
 		//setResizable(false);
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		addWindowListener(new WindowAdapter(){
+			@Override
 		    public void windowClosing(WindowEvent evt) {
 		    	controleur.rqtQuitter();
 		   }
 		});
-		
-		
+
 		// On définie la vue courante sur la quelel on veut qu'on arrive au lancement
 		panelCourant = new MenuPrincipal(controleur);
 		setContentPane(panelCourant);
+	}
+	
+	
+	public void setActivite(boolean enActivite) {
+		setEnabled(enActivite);
 	}
 }

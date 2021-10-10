@@ -2,11 +2,14 @@ package vue;
 
 import java.awt.Dimension;
 import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
 import java.awt.GridLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import controleur.Controleur;
@@ -26,9 +29,15 @@ public class MenuDeConfirmation  extends JPanel {
 		this.controleur = controleur;
 		
 		// Partie Affichage
-		setLayout(new GridBagLayout());
+		GridBagLayout gridBag = new GridBagLayout();
+		setLayout(gridBag);
 		
-		JPanel panelBtn = new JPanel(new GridLayout(2, 2, 10, 40)) {
+		
+		JLabel indication = new JLabel("Êtes-vous sûr de vouloir fermer l'application ?");
+		add(indication);
+		
+		
+		JPanel panelBtn = new JPanel(new GridLayout(1, 2, 40, 0)) {
 			@Override
 			public Dimension getPreferredSize() {
 				return new Dimension(200, 350);
@@ -52,6 +61,14 @@ public class MenuDeConfirmation  extends JPanel {
 			}
 		});
 		panelBtn.add(btnAnnuler);
+		
+		
+		GridBagConstraints gridBagC = new GridBagConstraints();
+		gridBagC.gridx = 1;
+		gridBagC.insets = new Insets(20,0,30,0);  //top padding
+		gridBag.setConstraints(indication, gridBagC);
+		gridBag.setConstraints(panelBtn, gridBagC);
+		
 		
 		add(panelBtn);
 	}

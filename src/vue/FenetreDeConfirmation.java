@@ -23,6 +23,7 @@ public class FenetreDeConfirmation extends JFrame {
 		setContentPane(new MenuDeConfirmation(controleur));
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		addWindowListener(new WindowAdapter(){
+			@Override
 		    public void windowClosing(WindowEvent evt) {
 		    	controleur.rqtFermer(false);
 		   }
