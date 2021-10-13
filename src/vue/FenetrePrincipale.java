@@ -20,10 +20,11 @@ public class FenetrePrincipale extends JFrame {
 	 * 
 	 * @param controleur
 	 */
-	public FenetrePrincipale(Controleur controleur) {
+	public FenetrePrincipale(Controleur controleur, JPanel panelCourant) {
 		super();
 		
 		this.controleur = controleur;
+		this.panelCourant = panelCourant;
 		
 		setTitle("Tamagotchi");
 		setSize(1024,640);
@@ -38,12 +39,13 @@ public class FenetrePrincipale extends JFrame {
 		});
 
 		// On définie la vue courante sur la quelle on veut qu'on arrive au lancement
-		panelCourant = new MenuPrincipal(controleur);
-		setContentPane(panelCourant);
+		setContentPane(this.panelCourant);
+		setVisible(true);
 	}
 	
 	
 	public void setActivite(boolean enActivite) {
 		setEnabled(enActivite);
 	}
+	
 }

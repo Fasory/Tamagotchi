@@ -4,11 +4,15 @@ import javax.swing.JFrame;
 
 import vue.FenetreDeConfirmation;
 import vue.FenetrePrincipale;
+import vue.MenuDeConfirmation;
+import vue.MenuPrincipal;
 
 public class Controleur {
 
 	private FenetrePrincipale fenetrePrincipale;
 	private FenetreDeConfirmation fenetreDeConfirmation;
+	private MenuPrincipal menuPrincipal;
+	private MenuDeConfirmation menuDeConfirmation;
 
 	/**
 	 * Racine de l'application Tamagotchi
@@ -26,10 +30,12 @@ public class Controleur {
 	 * Initialisation de l'application
 	 */
 	public Controleur() {
-		fenetrePrincipale = new FenetrePrincipale(this);
-		fenetreDeConfirmation = new FenetreDeConfirmation(this);
-		fenetrePrincipale.setVisible(true);
-		
+		// Création des menus primaires
+		menuPrincipal = new MenuPrincipal(this);
+		menuDeConfirmation = new MenuDeConfirmation(this);
+		// Création des fenêtres primaires
+		fenetrePrincipale = new FenetrePrincipale(this, menuPrincipal);
+		fenetreDeConfirmation = new FenetreDeConfirmation(this, menuDeConfirmation);
 	}
 	
 	
