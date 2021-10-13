@@ -78,7 +78,7 @@ public class Controleur {
 	}
 	
 	/**
-	 * Demande d'exécution de fermeture de l'application si confirmation
+	 * Demande d'exÃ©cution de fermeture de l'application si confirmation
 	 * 
 	 * @param confirmation
 	 */
@@ -88,7 +88,7 @@ public class Controleur {
 		} else {
 			fenetreDeConfirmation.setVisible(false);
 			fenetrePrincipale.setActivite(!confirmation);
-			fenetrePrincipale.setVisible(true); // redonne le focus à la fenêtre principale
+			fenetrePrincipale.setVisible(true); // redonne le focus Ã  la fenï¿½tre principale
 		}
 	}
 }

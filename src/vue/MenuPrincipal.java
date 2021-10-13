@@ -31,7 +31,7 @@ public class MenuPrincipal extends JPanel {
 		};
 		
 		
-		JButton btnCreerPartie = new JButton("Créer une nouvelle partie");
+		JButton btnCreerPartie = new JButton("CrÃ©er une nouvelle partie");
 		btnCreerPartie.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				cmdMenuCreerPartie();
@@ -40,7 +40,7 @@ public class MenuPrincipal extends JPanel {
 		panelBtn.add(btnCreerPartie);
 		
 		
-		JButton btnSelectionnerPartie = new JButton("Sélectionner une partie");
+		JButton btnSelectionnerPartie = new JButton("SÃ©lectionner une partie");
 		btnSelectionnerPartie.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				cmdMenuSelecPartie();

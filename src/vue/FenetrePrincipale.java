@@ -16,7 +16,7 @@ public class FenetrePrincipale extends JFrame {
 	/**
 	 * Constructeur
 	 * 
-	 * Initialisation de la fenêtre principale
+	 * Initialisation de la fenÃªtre principale
 	 * 
 	 * @param controleur
 	 */
@@ -37,7 +37,7 @@ public class FenetrePrincipale extends JFrame {
 		   }
 		});
 
-		// On définie la vue courante sur la quelel on veut qu'on arrive au lancement
+		// On dÃ©finie la vue courante sur la quelle on veut qu'on arrive au lancement
 		panelCourant = new MenuPrincipal(controleur);
 		setContentPane(panelCourant);
 	}

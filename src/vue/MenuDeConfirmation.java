@@ -33,7 +33,7 @@ public class MenuDeConfirmation  extends JPanel {
 		setLayout(gridBag);
 		
 		
-		JLabel indication = new JLabel("Êtes-vous sûr de vouloir fermer l'application ?");
+		JLabel indication = new JLabel("ÃŠtes-vous sÃ»r de vouloir fermer l'application ?");
 		add(indication);
 		
 		
@@ -80,7 +80,7 @@ public class MenuDeConfirmation  extends JPanel {
 	////////////////////////////////////////
 	
 	/*
-	 * Demande de fermeture de l'application après confirmation
+	 * Demande de fermeture de l'application aprÃ¨s confirmation
 	 */
 	public void cmdFermer(boolean confirmation) {
 		controleur.rqtFermer(confirmation);

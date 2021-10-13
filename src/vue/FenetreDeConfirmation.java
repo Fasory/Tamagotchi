@@ -9,7 +9,7 @@ import controleur.Controleur;
 
 public class FenetreDeConfirmation extends JFrame {
 	
-	private Controleur controleur;
+	private Controleur controleur; 
 	
 	public FenetreDeConfirmation(Controleur controleur) {
 		super();
