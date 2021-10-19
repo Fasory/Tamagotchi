@@ -8,6 +8,8 @@ import vue.MenuDeConfirmation;
 import vue.MenuPrincipal;
 
 public class Controleur {
+	
+	private ControleurDeFichier ctrlDeFichier;
 
 	private FenetrePrincipale fenetrePrincipale;
 	private FenetreDeConfirmation fenetreDeConfirmation;
@@ -30,12 +32,19 @@ public class Controleur {
 	 * Initialisation de l'application
 	 */
 	public Controleur() {
+		// Création des controleurs assistants
+		ctrlDeFichier = new ControleurDeFichier();
+		ctrlDeFichier.addLogs("Satut	-	Lancement de l'application");
 		// Création des menus primaires
+		ctrlDeFichier.addLogs("		-	Création des menus");
 		menuPrincipal = new MenuPrincipal(this);
 		menuDeConfirmation = new MenuDeConfirmation(this);
+		ctrlDeFichier.addLogs("		-	Création des fenêtres");
 		// Création des fenêtres primaires
 		fenetrePrincipale = new FenetrePrincipale(this, menuPrincipal);
 		fenetreDeConfirmation = new FenetreDeConfirmation(this, menuDeConfirmation);
+		// Fin de la construction de l'application
+		ctrlDeFichier.addLogs("Satut	-	Application opérationnelle");
 	}
 	
 	

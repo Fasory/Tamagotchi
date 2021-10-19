@@ -1,0 +1,12 @@
+***************************************
+		-	23:21:08 - 19/10/2021
+Satut	-	Lancement de l'application
+		-	Création des menus
+		-	Création des fenêtres
+Satut	-	Application opérationnelle
+***************************************
+		-	23:21:23 - 19/10/2021
+Satut	-	Lancement de l'application
+		-	Création des menus
+		-	Création des fenêtres
+Satut	-	Application opérationnelle
