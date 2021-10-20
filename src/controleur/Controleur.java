@@ -99,6 +99,7 @@ public class Controleur {
 	 */
 	public void rqtFermer(boolean confirmation) {
 		if (confirmation) {
+			ctrlDeFichier.delControleurDeFichier();
 			System.exit(1);
 		} else {
 			fenetreDeConfirmation.setVisible(false);
