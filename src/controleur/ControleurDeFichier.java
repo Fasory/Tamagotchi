@@ -4,6 +4,14 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.util.Calendar; 
 
+/**
+ * Contrôle la persistence des données de		<br/>
+ * l'application 								<br/>
+ * 												<br/>
+ * Intègre un système de logs afin de faciliter	<br/>
+ * le débuggage et la maintenant liés à la		<br/>
+ * persistence des données						<br/>
+ */
 public class ControleurDeFichier {
 	
 	private File logs;								// Fichier logs du jour courant
@@ -13,9 +21,9 @@ public class ControleurDeFichier {
 	private File dirData;							// Répertoire contenant les données sauvegardées
 	
 	/**
-	 * Constructeur
-	 * 
-	 * Initialisation du controleur des fichiers de l'application
+	 * Constructeur													<br/>
+	 * 																<br/>
+	 * Initialisation du controleur des fichiers de l'application	<br/>
 	 */
 	public ControleurDeFichier() {
 		init_logs();
@@ -23,10 +31,10 @@ public class ControleurDeFichier {
 	}
 	
 	/**
-	 * Pré-Destructeur manuel
-	 * 
-	 * Supprime le fichier logs associé à l'utilisation en cours
-	 * si aucune erreur n'a été rapporté
+	 * Pré-Destructeur manuel										<br/>
+	 * 																<br/>
+	 * Supprime le fichier logs associé à l'utilisation en cours	<br/>
+	 * si aucune erreur n'a été rapporté							<br/>
 	 */
 	public void delControleurDeFichier() {
 		if (!erreurLogs) {
@@ -39,7 +47,7 @@ public class ControleurDeFichier {
 	}
 	
 	/**
-	 * Initalisation de logs
+	 * Initalisation de logs	<br/>
 	 */
 	private void init_logs() {
 		dirLogs = new File("logs");
@@ -64,7 +72,7 @@ public class ControleurDeFichier {
 	}
 	
 	/**
-	 * Initialisation de data
+	 * Initialisation de data		<br/>
 	 */
 	private void init_data() {
 		dirData = new File("data");
@@ -72,25 +80,28 @@ public class ControleurDeFichier {
 	}
 	
 	/**
-	 * Teste l'existence du dossier dir
-	 * 
-	 * @return bool - existence du dossier dir
+	 * Teste l'existence du dossier dir								<br/>
+	 * 																<br/>
+	 * @param dir - répertoire dont il faut vérifier l'existence	<br/>
+	 * @return bool - existence du dossier dir						<br/>
 	 */
 	private boolean dirExiste(File dir) {
 		return dir.exists() && dir.isDirectory();
 	}
 	
 	/**
-	 * Teste l'existence du fichier logs du jour
-	 * 
-	 * @return bool - existence du fichier logs
+	 * Teste l'existence du fichier logs du jour		<br/>
+	 * 													<br/>
+	 * @return bool - existence du fichier logs			<br/>
 	 */
 	public boolean logsExiste() {
 		return logs.exists() && logs.isFile();
 	}
 	
 	/**
-	 * Créer le dossier dir
+	 * Créer le dossier dir						<br/>
+	 * 											<br/>
+	 * @param dir - créé le répertoire dir		<br/>
 	 */
 	private void creeDir(File dir) {
 		if (!dir.mkdir()) {
@@ -100,7 +111,7 @@ public class ControleurDeFichier {
 	}
 	
 	/**
-	 * Créer un fichier le fichier log du jour
+	 * Créer un fichier le fichier log du jour		<br/>
 	 */
 	private void creeLogs() {
 		if (!(dirLogs.exists() && dirLogs.isDirectory())) if (!dirLogs.mkdir()) System.err.println("Erreur - échec de la création du répertoire logs");
@@ -113,22 +124,22 @@ public class ControleurDeFichier {
 	}
 	
 	/**
-	 * Ajoute une ligne de rapport dans le fichier logs
-	 * qui n'est pas une erreur
-	 * 
-	 * @param rapport - String contenant le rapport à ajouter aux logs
+	 * Ajoute une ligne de rapport dans le fichier logs						<br/>
+	 * qui n'est pas une erreur												<br/>
+	 * 																		<br/>
+	 * @param rapport - String contenant le rapport à ajouter aux logs		<br/>
 	 */
 	public void addLogs(String rapport) {
 		addLogs(rapport, false);
 	}
 	
 	/**
-	 * Ajoute une ligne de rapport dans le fichier logs
-	 * Possibilité de préciser si la ligne est une erreur ou non
-	 * auquel cas les logs ne seront pas supprimés
-	 * 
-	 * @param rapport - String contenant le rapport à ajouter aux logs
-	 * @param typeErreur - vrai si le rapport est une erreur
+	 * Ajoute une ligne de rapport dans le fichier logs						<br/>
+	 * Possibilité de préciser si la ligne est une erreur ou non			<br/>
+	 * auquel cas les logs ne seront pas supprimés							<br/>
+	 * 																		<br/>
+	 * @param rapport - String contenant le rapport à ajouter aux logs		<br/>
+	 * @param typeErreur - vrai si le rapport est une erreur				<br/>
 	 */
 	public void addLogs(String rapport, boolean typeErreur) {
 		if (typeErreur) erreurLogs = true;

@@ -2,10 +2,10 @@ package controleur;
 
 import javax.swing.JFrame;
 
-import vue.FenetreDeConfirmation;
-import vue.FenetrePrincipale;
-import vue.MenuDeConfirmation;
-import vue.MenuPrincipal;
+import fenetre.FenetreDeConfirmation;
+import fenetre.FenetrePrincipale;
+import menu.MenuDeConfirmation;
+import menu.MenuPrincipal;
 
 public class Controleur {
 	
@@ -15,11 +15,13 @@ public class Controleur {
 	private FenetreDeConfirmation fenetreDeConfirmation;
 	private MenuPrincipal menuPrincipal;
 	private MenuDeConfirmation menuDeConfirmation;
+	
+	private short statutConfirmation;
 
 	/**
-	 * Racine de l'application Tamagotchi
-	 * 
-	 * @param args
+	 * Racine de l'application Tamagotchi									<br/>
+	 * 																		<br/>
+	 * @param args - liste de paramètres au lancement de l'application 		<br/>
 	 */
 	public static void main(String[] args) {
 		new Controleur();
@@ -27,9 +29,9 @@ public class Controleur {
 	
 	
 	/**
-	 * Constructeur
-	 * 
-	 * Initialisation de l'application
+	 * Constructeur							<br/>
+	 * 										<br/>
+	 * Initialisation de l'application		<br/>
 	 */
 	public Controleur() {
 		// Création des controleurs assistants
@@ -54,57 +56,43 @@ public class Controleur {
 	////////////////////////////////////////
 	
 	/**
-	* Demande de changement de menu : MenuCreerPartie
+	* Demande de changement de menu : MenuCreerPartie		<br/>
 	*/
 	public void rqtMenuCreerPartie() {
 		System.out.println("Clic");
 	}
 	
 	/**
-	* Demande de changement de menu : MenuSelecPartie
+	* Demande de changement de menu : MenuSelecPartie		<br/>
 	*/
 	public void rqtMenuSelecPartie() {
 	
 	}
 	
 	/**
-	* Demande de changement de menu : MenuOption
+	* Demande de changement de menu : MenuOption			<br/>
 	*/
 	public void rqtMenuOption() {
 	
 	}
 	
 	/**
-	* Demande de changement de menu : MenuScore
+	* Demande de changement de menu : MenuScore				<br/>
 	*/
 	public void rqtMenuScore() {
 	
 	}
 	
 	/**
-	* Demande de fermeture de l'application
+	* Demande de fermeture de l'application					<br/>
 	*/
 	public void rqtQuitter() {
-		fenetreDeConfirmation.setVisible(true);
-		if (fenetreDeConfirmation.getState() == JFrame.ICONIFIED) {
-			fenetreDeConfirmation.setState(JFrame.NORMAL);
-		}
 		fenetrePrincipale.setActivite(false);
+		fenetreDeConfirmation.setAffiche(true);
 	}
 	
-	/**
-	 * Demande d'exécution de fermeture de l'application si confirmation
-	 * 
-	 * @param confirmation
-	 */
-	public void rqtFermer(boolean confirmation) {
-		if (confirmation) {
-			ctrlDeFichier.delControleurDeFichier();
-			System.exit(1);
-		} else {
-			fenetreDeConfirmation.setVisible(false);
-			fenetrePrincipale.setActivite(!confirmation);
-			fenetrePrincipale.setVisible(true); // redonne le focus à la fen�tre principale
-		}
+	public void rqtStatutConfirmation(short confirmation) {
+		statutConfirmation = confirmation;
+		statutConfirmation = null;
 	}
 }

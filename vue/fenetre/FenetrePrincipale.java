@@ -1,4 +1,4 @@
-package vue;
+package fenetre;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -7,10 +7,9 @@ import java.awt.event.*;
 
 import controleur.Controleur;
 
-public class FenetrePrincipale extends JFrame {
+public class FenetrePrincipale extends Fenetre {
 	
 	private JPanel panelCourant;
-	private Controleur controleur;
 	
 	
 	/**
@@ -21,9 +20,8 @@ public class FenetrePrincipale extends JFrame {
 	 * @param controleur
 	 */
 	public FenetrePrincipale(Controleur controleur, JPanel panelCourant) {
-		super();
+		super(controleur);
 		
-		this.controleur = controleur;
 		this.panelCourant = panelCourant;
 		
 		setTitle("Tamagotchi");
@@ -41,11 +39,6 @@ public class FenetrePrincipale extends JFrame {
 		// On définie la vue courante sur la quelle on veut qu'on arrive au lancement
 		setContentPane(this.panelCourant);
 		setVisible(true);
-	}
-	
-	
-	public void setActivite(boolean enActivite) {
-		setEnabled(enActivite);
 	}
 	
 }

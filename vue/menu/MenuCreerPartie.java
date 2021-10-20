@@ -1,4 +1,4 @@
-package vue;
+package menu;
 
 public class MenuCreerPartie {
 

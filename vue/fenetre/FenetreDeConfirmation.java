@@ -1,4 +1,4 @@
-package vue;
+package fenetre;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -8,12 +8,10 @@ import javax.swing.JPanel;
 
 import controleur.Controleur;
 
-public class FenetreDeConfirmation extends JFrame {
-	
-	private Controleur controleur; 
+public class FenetreDeConfirmation extends Fenetre {
 	
 	public FenetreDeConfirmation(Controleur controleur, JPanel menuCourant) {
-		super();
+		super(controleur);
 		
 		this.controleur = controleur;
 		
@@ -26,8 +24,10 @@ public class FenetreDeConfirmation extends JFrame {
 		addWindowListener(new WindowAdapter(){
 			@Override
 		    public void windowClosing(WindowEvent evt) {
-		    	controleur.rqtFermer(false);
+				controleur.rqtRetourDeConfirmation(false);
 		   }
 		});
 	}
+	
+	
 }
