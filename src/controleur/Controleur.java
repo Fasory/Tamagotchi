@@ -25,6 +25,7 @@ public class Controleur {
 	 */
 	public static void main(String[] args) {
 		new Controleur();
+		System.out.println("cc");
 	}
 	
 	
