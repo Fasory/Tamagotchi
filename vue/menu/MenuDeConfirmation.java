@@ -18,9 +18,7 @@ import controleur.Controleur;
  * Menu mettant à disposition un choix binaire		<br/>
  * retournant vrai ou faux au contrôleur			<br/>
  */
-public class MenuDeConfirmation  extends JPanel {
-	
-	private Controleur controleur;
+public abstract class MenuDeConfirmation extends Menu {
 	
 	/**
 	 * Constructeur																					<br/>
@@ -59,9 +57,7 @@ public class MenuDeConfirmation  extends JPanel {
 	 * @param indicationFaux - String afficher sur le bouton de retour faux							<br/>
 	 */
 	public MenuDeConfirmation(Controleur controleur, String message, String indicationVrai, String indicationFaux) {
-		super();
-		
-		this.controleur = controleur;
+		super(controleur);
 		
 		// Partie Affichage
 		GridBagLayout gridBag = new GridBagLayout();
@@ -83,7 +79,7 @@ public class MenuDeConfirmation  extends JPanel {
 		JButton btnVrai = new JButton(indicationVrai);
 		btnVrai.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				cmdRetourDeConfirmation(true);
+				cmdConfirmation();
 			}
 		});
 		panelBtn.add(btnVrai);
@@ -92,7 +88,7 @@ public class MenuDeConfirmation  extends JPanel {
 		JButton btnFaux = new JButton(indicationFaux);
 		btnFaux.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				cmdRetourDeConfirmation(false);
+				cmdRetour();
 			}
 		});
 		panelBtn.add(btnFaux);
@@ -115,10 +111,14 @@ public class MenuDeConfirmation  extends JPanel {
 	////////////////////////////////////////
 	
 	/*
-	 * Demande de fermeture de l'application après confirmation		<br/>
+	 * Demande d'une requête liée au bouton btnVrai		<br/>
 	 */
-	public void cmdRetourDeConfirmation(boolean confirmation) {
-		controleur.rqtStatutConfirmation(confirmation);
-	}
+	public abstract void cmdConfirmation();
 	
+	/*
+	 * Demande d'annulation de confirmation				<br/>
+	 */
+	public void cmdRetour() {
+		controleur.rqtAnnuleConfirmation();
+	}
 }

@@ -6,9 +6,7 @@ import java.awt.event.*;
 
 import controleur.Controleur;
 
-public class MenuPrincipal extends JPanel {
-	
-	private Controleur controleur;
+public class MenuPrincipal extends Menu {
 	
 	/**
 	 * Constructeur
@@ -16,9 +14,7 @@ public class MenuPrincipal extends JPanel {
 	 * @param controleur
 	 */
 	public MenuPrincipal(Controleur controleur) {
-		super();
-		this.controleur = controleur;
-		
+		super(controleur);
 		
 		// Partie Affichage
 		setLayout(new GridBagLayout());
@@ -117,7 +113,7 @@ public class MenuPrincipal extends JPanel {
 	* Demande de fermeture de l'application
 	*/
 	public void cmdQuitter() {
-		controleur.rqtQuitter();
+		controleur.rqtDemandeQuitter();
 	}
 	
 	

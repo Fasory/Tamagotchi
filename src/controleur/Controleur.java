@@ -1,22 +1,18 @@
 package controleur;
 
-import javax.swing.JFrame;
+
 
 import fenetre.FenetreDeConfirmation;
 import fenetre.FenetrePrincipale;
-import menu.MenuDeConfirmation;
 import menu.MenuPrincipal;
+import menu.Quitter;
 
 public class Controleur {
 	
-	private ControleurDeFichier ctrlDeFichier;
+	public ControleurDeFichier ctrlDeFichier;
 
 	private FenetrePrincipale fenetrePrincipale;
 	private FenetreDeConfirmation fenetreDeConfirmation;
-	private MenuPrincipal menuPrincipal;
-	private MenuDeConfirmation menuDeConfirmation;
-	
-	private short statutConfirmation;
 
 	/**
 	 * Racine de l'application Tamagotchi									<br/>
@@ -25,7 +21,6 @@ public class Controleur {
 	 */
 	public static void main(String[] args) {
 		new Controleur();
-		System.out.println("cc");
 	}
 	
 	
@@ -38,14 +33,12 @@ public class Controleur {
 		// Création des controleurs assistants
 		ctrlDeFichier = new ControleurDeFichier();
 		ctrlDeFichier.addLogs("Satut	-	Lancement de l'application");
-		// Création des menus primaires
-		ctrlDeFichier.addLogs("		-	Création des menus");
-		menuPrincipal = new MenuPrincipal(this);
-		menuDeConfirmation = new MenuDeConfirmation(this);
-		ctrlDeFichier.addLogs("		-	Création des fenêtres");
 		// Création des fenêtres primaires
-		fenetrePrincipale = new FenetrePrincipale(this, menuPrincipal);
-		fenetreDeConfirmation = new FenetreDeConfirmation(this, menuDeConfirmation);
+		ctrlDeFichier.addLogs("		-	Création des fenêtres");
+		fenetrePrincipale = new FenetrePrincipale(this, new MenuPrincipal(this));
+		fenetreDeConfirmation = new FenetreDeConfirmation(this);
+		// Initialisation des attributs complémentaires
+		// ...
 		// Fin de la construction de l'application
 		ctrlDeFichier.addLogs("Satut	-	Application opérationnelle");
 	}
@@ -85,15 +78,35 @@ public class Controleur {
 	}
 	
 	/**
-	* Demande de fermeture de l'application					<br/>
+	* Demande une confirmation pour fermer l'application					<br/>
 	*/
-	public void rqtQuitter() {
-		fenetrePrincipale.setActivite(false);
-		fenetreDeConfirmation.setAffiche(true);
+	public void rqtDemandeQuitter() {
+		fenetrePrincipale.mettreEnPause(true);
+		fenetreDeConfirmation.changePanel(new Quitter(this));
+		fenetreDeConfirmation.mettreEnPause(false);
+		fenetreDeConfirmation.mettreEnAvant(true);
 	}
 	
-	public void rqtStatutConfirmation(short confirmation) {
-		statutConfirmation = confirmation;
-		statutConfirmation = null;
+	/**
+	* Ferme l'application													<br/>
+	*/
+	public void rqtQuitter() {
+		fenetrePrincipale.mettreEnPause(true);
+		fenetrePrincipale.mettreEnAvant(false);
+		fenetrePrincipale.dispose();
+		fenetreDeConfirmation.dispose();
+		ctrlDeFichier.delControleurDeFichier();
+		System.exit(0);
+	}
+	
+	/**
+	 * Recentre l'activité de l'application sur le fenêtre principale		<br/>
+	 * dans l'état qu'elle été restée avant la demande de confirmation		<br/>
+	 */
+	public void rqtAnnuleConfirmation() {
+		fenetreDeConfirmation.mettreEnPause(true);
+		fenetreDeConfirmation.mettreEnAvant(false);
+		fenetrePrincipale.mettreEnPause(false);
+		fenetrePrincipale.mettreEnAvant(true);
 	}
 }

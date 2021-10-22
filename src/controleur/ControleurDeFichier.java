@@ -2,6 +2,7 @@ package controleur;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.nio.file.Files;
 import java.util.Calendar; 
 
 /**
@@ -39,9 +40,10 @@ public class ControleurDeFichier {
 	public void delControleurDeFichier() {
 		if (!erreurLogs) {
 			try {
-				logs.delete();
+				logsOutStream.close();
+				Files.delete(logs.toPath());
 			} catch (Exception err) {
-				System.err.println(err);
+				addLogs(err.toString(), true);
 			}
 		}
 	}
@@ -66,7 +68,7 @@ public class ControleurDeFichier {
 		} catch (Exception err) {
 			System.err.println(err);
 		}
-		addLogs("***************************************");
+		addLogs("****************************************");
 		addLogs("		-	" + ((date.get(Calendar.HOUR_OF_DAY)<10) ? "0" : "") + date.get(Calendar.HOUR_OF_DAY) + ":" + ((date.get(Calendar.MINUTE)<10) ? "0" : "") + date.get(Calendar.MINUTE) + ":" + ((date.get(Calendar.SECOND)<10) ? "0" : "") + date.get(Calendar.SECOND)
 				+ " - " + ((date.get(Calendar.DAY_OF_MONTH)<10) ? "0" : "") + date.get(Calendar.DAY_OF_MONTH) + "/" + (((date.get(Calendar.MONTH)+1)<10) ? "0" : "") + (date.get(Calendar.MONTH)+1) + "/" + date.get(Calendar.YEAR));
 	}
@@ -144,6 +146,7 @@ public class ControleurDeFichier {
 	public void addLogs(String rapport, boolean typeErreur) {
 		if (typeErreur) erreurLogs = true;
 		try {
+			if (typeErreur) logsOutStream.write(">>>>>>>>>>>>>>   ERREUR   <<<<<<<<<<<<<<".getBytes());
 			logsOutStream.write((rapport + "\n").getBytes());
 		} catch (Exception err) {
 			System.err.println(err);

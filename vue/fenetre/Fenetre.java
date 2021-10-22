@@ -1,6 +1,10 @@
 package fenetre;
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 import controleur.Controleur;
 
@@ -15,36 +19,80 @@ import controleur.Controleur;
 public abstract class Fenetre extends JFrame {
 	
 	protected Controleur controleur;
+	private JPanel panelCourant;
 	
 	/**
-	 * Constructeur
-	 * 
-	 * @param controleur - Contoleur de l'application
+	 * Constructeur										<br/>
+	 * 													<br/>
+	 * @param controleur - Contoleur de l'application	<br/>
+	 * @param panelCourant - JPanel à afficher dans		<br/>
+	 * la fenêtre										<br/>
+	 */
+	protected Fenetre(Controleur controleur, JPanel panelCourant) {
+		this(controleur);
+		
+		this.panelCourant = panelCourant;
+		
+		setContentPane(this.panelCourant);
+	}
+	
+	/**
+	 * Constructeur										<br/>
+	 * 													<br/>
+	 * @param controleur - Contoleur de l'application	<br/>
 	 */
 	protected Fenetre(Controleur controleur) {
 		super();
 		
 		this.controleur = controleur;
+		
+		setLocationRelativeTo(null);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		addWindowListener(new WindowAdapter(){
+			@Override
+		    public void windowClosing(WindowEvent evt) {
+				cmdQuitter();
+		   }
+		});
 	}
 	
 	/**
-	 * Affiche la fenêtre en premier plan, par défaut, quand on rend visible			<br/>
-	 * une fenêtre, on la rend active													<br/>
+	 * Affiche la fenêtre en premier plan												<br/>
 	 * 																					<br/>
 	 * @param visible - boolean qui affecte directement la visibilité de la fenêtre		<br/>
 	 */
-	public void setAffiche(boolean visible) {
-		if (visible) setActivite(true);
+	public void mettreEnAvant(boolean visible) {
 		setVisible(visible);
+		if (visible) setLocationRelativeTo(null);	// recentre la fenêtre
 	}
 	
 	/**
 	 * Change l'activité de la fenêtre, rendant ainsi possible ou impossible			<br/>
 	 * les interactions liées à cette fenêtre											<br/>
 	 * 																					<br/>
-	 * @param enActivite - boolean qui affecte directement l'activit de la fenêtre		<br/>
+	 * @param enActivite - boolean qui affecte directement l'activite de la fenêtre		<br/>
 	 */
-	public void setActivite(boolean enActivite) {
-		setEnabled(enActivite);
+	public void mettreEnPause(boolean interruption) {
+		setEnabled(!interruption);
 	}
+	
+	/**
+	 * Change le contenu de la fenêtre par le nouveauPanel								<br/>
+	 * 																					<br/>
+	 * @param nouveauPanel - JPanel a affecté à la fenêtre								<br/>
+	 */
+	public void changePanel(JPanel nouveauPanel) {
+		this.panelCourant = nouveauPanel;
+		setContentPane(panelCourant);
+	}
+	
+	////////////////////////////////////////
+	//           COMMANDES LIEES          //
+	//            A LA  FENETRE           //        
+	////////////////////////////////////////
+	
+	/**
+	 * Demande une requête liée au bouton de fermeture de la fenêtre					<br/>
+	 */
+	public abstract void cmdQuitter();
 }
