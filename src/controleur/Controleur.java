@@ -4,15 +4,14 @@ package controleur;
 
 import fenetre.FenetreDeConfirmation;
 import fenetre.FenetrePrincipale;
-import menu.MenuPrincipal;
+import menu.Connexion;
 import menu.Quitter;
 
 public class Controleur {
 	
-	public ControleurDeFichier ctrlDeFichier;
-
-	private FenetrePrincipale fenetrePrincipale;
-	private FenetreDeConfirmation fenetreDeConfirmation;
+	public ControleurDeFichier ctrlDeFichier;								// Controleur assistant pour la gestion de fichiers
+	private FenetrePrincipale fenetrePrincipale;							// Fenêtre principale qui contient les menus et le jeu
+	private FenetreDeConfirmation fenetreDeConfirmation;					// Fenêtre destinée à demander la confirmation d'une action
 
 	/**
 	 * Racine de l'application Tamagotchi									<br/>
@@ -35,7 +34,7 @@ public class Controleur {
 		ctrlDeFichier.addLogs("Satut	-	Lancement de l'application");
 		// Création des fenêtres primaires
 		ctrlDeFichier.addLogs("		-	Création des fenêtres");
-		fenetrePrincipale = new FenetrePrincipale(this, new MenuPrincipal(this));
+		fenetrePrincipale = new FenetrePrincipale(this, new Connexion(this));
 		fenetreDeConfirmation = new FenetreDeConfirmation(this);
 		// Initialisation des attributs complémentaires
 		// ...
