@@ -5,6 +5,7 @@ package controleur;
 import fenetre.FenetreDeConfirmation;
 import fenetre.FenetrePrincipale;
 import menu.Connexion;
+import menu.Menu;
 import menu.Quitter;
 
 public class Controleur {
@@ -12,6 +13,7 @@ public class Controleur {
 	public ControleurDeFichier ctrlDeFichier;								// Controleur assistant pour la gestion de fichiers
 	private FenetrePrincipale fenetrePrincipale;							// Fenêtre principale qui contient les menus et le jeu
 	private FenetreDeConfirmation fenetreDeConfirmation;					// Fenêtre destinée à demander la confirmation d'une action
+	private Menu panelCourrant;
 
 	/**
 	 * Racine de l'application Tamagotchi									<br/>
@@ -32,9 +34,13 @@ public class Controleur {
 		// Création des controleurs assistants
 		ctrlDeFichier = new ControleurDeFichier();
 		ctrlDeFichier.addLogs("Satut	-	Lancement de l'application");
+		// Création du menu courrant
+		panelCourrant = new Connexion(this);
+		// Ajustement secondaire
+		// ...
 		// Création des fenêtres primaires
 		ctrlDeFichier.addLogs("		-	Création des fenêtres");
-		fenetrePrincipale = new FenetrePrincipale(this, new Connexion(this));
+		fenetrePrincipale = new FenetrePrincipale(this, panelCourrant);
 		fenetreDeConfirmation = new FenetreDeConfirmation(this);
 		// Initialisation des attributs complémentaires
 		// ...
@@ -107,5 +113,35 @@ public class Controleur {
 		fenetreDeConfirmation.mettreEnAvant(false);
 		fenetrePrincipale.mettreEnPause(false);
 		fenetrePrincipale.mettreEnAvant(true);
+	}
+	
+	/**
+	 * Change le curseur de l'application									<br/>
+	 * 																		<br/>
+	 * @param type - String corespondant au nom de fichier du curseur		<br/>
+	 * sans l'extension (chemin du fichier : 'assets/cursor/')				<br/>
+	 */
+	public void rqtChangeCurseur(String type) {
+		if (type.equals("default")) panelCourrant.curseurDefault();
+		else if (type.equals("hand")) panelCourrant.curseurHand();
+		else ctrlDeFichier.addLogs("Erreur		- le curseur de type '" + type + "' n'existe pas", true);
+	}
+	
+	/**
+	 * Change la couleur du texte d'oublie de mot de passe					<br/>
+	 * 																		<br/>
+	 * @param menu - Connexion du menu actuel pour changer					<br/>
+	 * les couleurs															<br/>
+	 */
+	public void rqtCouleurOublieMdp(Connexion menu) {
+		if (menu.getCouleurTxtOublieMdp().equals(menu.couleurEnSelec)) menu.setCouleurTxtOublieMdp(menu.couleurEnNonSelec);
+		else menu.setCouleurTxtOublieMdp(menu.couleurEnSelec);
+	}
+	
+	/**
+	 * 
+	 */
+	public void rqtOublieDeMdp() {
+		
 	}
 }

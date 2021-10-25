@@ -92,6 +92,17 @@ public class ControleurDeFichier {
 	}
 	
 	/**
+	 * Vérifier l'existence d'un fichier							<br/>
+	 * 																<br/>
+	 * @param chemin - String représentant le chemin du fichier		<br/>
+	 * @return bool - existence du fichier							<br/>
+	 */
+	public boolean fichierExiste(String chemin) {
+		File fichier = new File(chemin);
+		return fichier.exists() && fichier.isFile();
+	}
+	
+	/**
 	 * Teste l'existence du fichier logs du jour		<br/>
 	 * 													<br/>
 	 * @return bool - existence du fichier logs			<br/>
@@ -146,7 +157,6 @@ public class ControleurDeFichier {
 	public void addLogs(String rapport, boolean typeErreur) {
 		if (typeErreur) erreurLogs = true;
 		try {
-			if (typeErreur) logsOutStream.write(">>>>>>>>>>>>>>   ERREUR   <<<<<<<<<<<<<<".getBytes());
 			logsOutStream.write((rapport + "\n").getBytes());
 		} catch (Exception err) {
 			System.err.println(err);

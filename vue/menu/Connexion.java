@@ -6,6 +6,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseAdapter;
+import java.awt.Color;
 
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
@@ -14,9 +15,24 @@ import javax.swing.JTextField;
 import controleur.Controleur;
 
 public class Connexion extends Menu {
-
+	
+	// Constantes publics
+	public final Color couleurEnSelec;
+	public final Color couleurEnNonSelec;
+	// Autres attributs
+	private JLabel lbOublieMdp;
+	
+	/**
+	 * Constructeur											<br/>
+	 * 														<br/>
+	 * @param controleur - Controleur de l'application		<br/>
+	 */
 	public Connexion(Controleur controleur) {
 		super(controleur);
+		
+		// Initialisation des attributs
+		couleurEnSelec = Color.RED;
+		couleurEnNonSelec = Color.BLUE;
 		
 		// Partie Affichage
 		setLayout(new GridBagLayout());
@@ -57,21 +73,22 @@ public class Connexion extends Menu {
 		add(txtMdp, gbc);
 		
 		
-		JLabel lbOublieMdp = new JLabel("Mot de passe oublié ?");
+		lbOublieMdp = new JLabel("Mot de passe oublié ?");
+		lbOublieMdp.setForeground(couleurEnNonSelec);
 		lbOublieMdp.addMouseListener(new MouseAdapter() {
 		    @Override
 		    public void mouseClicked(MouseEvent e) {
-		        // the user clicks on the label
+		    	cmdMdpOublier();
 		    }
 		 
 		    @Override
 		    public void mouseEntered(MouseEvent e) {
-		        // the mouse has entered the label
+		        cmdChangeCurseur("hand");
 		    }
 		 
 		    @Override
 		    public void mouseExited(MouseEvent e) {
-		        // the mouse has exited the label
+		    	cmdChangeCurseur("default");
 		    }
 		});
 		gbc.gridx = 1;
@@ -80,5 +97,52 @@ public class Connexion extends Menu {
 		gbc.insets = new Insets(0, 0, 0, 0);
 		add(lbOublieMdp, gbc);
 	}
-
+	
+	////////////////////////////////////////
+	//           COMMANDES LIEES          //
+	//             AUX BOUTTONS           //        
+	////////////////////////////////////////
+	
+	/**
+	 * Demande à changer le comportement du texte lbOublieMdp	<br/>
+	 * 															<br/>
+	 * @param type - String qui représente le type de curseur	<br/>
+	 * à changer												<br/>
+	 */
+	public void cmdChangeCurseur(String type) {
+		controleur.rqtChangeCurseur(type);
+		controleur.rqtCouleurOublieMdp(this);
+	}
+	
+	/**
+	 * Demande de changement de mot de passe suite à un oublie	<br/>
+	 */
+	public void cmdMdpOublier() {
+		controleur.rqtOublieDeMdp();
+	}
+	
+	////////////////////////////////////////
+	//         GETTEURS ET SETTEURS       //     
+	////////////////////////////////////////
+	
+	/**
+	 * Getteur													<br/>
+	 * 															<br/>
+	 * @return Color - couleur du texte d'oublie de mot			<br/>
+	 * de passe													<br/>
+	 */
+	public Color getCouleurTxtOublieMdp() {
+		return lbOublieMdp.getForeground();
+	}
+	
+	/**
+	 * Setteur													<br/>
+	 * 															<br/>
+	 * @param couleur - Color à affecter au texte d'oublie de	<br/>
+	 * mot de passe												<br/>
+	 */
+	public void setCouleurTxtOublieMdp(Color couleur) {
+		lbOublieMdp.setForeground(couleur);
+	}
+	
 }

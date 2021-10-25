@@ -11,7 +11,7 @@ public class MenuPrincipal extends Menu {
 	/**
 	 * Constructeur
 	 * 
-	 * @param controleur
+	 * @param controleur - Controleur de l'application
 	 */
 	public MenuPrincipal(Controleur controleur) {
 		super(controleur);
