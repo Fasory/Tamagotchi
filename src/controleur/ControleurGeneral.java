@@ -15,7 +15,8 @@ public class ControleurGeneral extends Controleur {
 	public static ControleurDeBouton ctrlDeBouton;									// Controleur assistant pour la gestion des boutons
 	protected static FenetrePrincipale fenetrePrincipale;					// Fenêtre principale qui contient les menus et le jeu
 	protected static FenetreDeConfirmation fenetreDeConfirmation;			// Fenêtre destinée à demander la confirmation d'une action
-	protected static Menu panelCourrant;
+	protected static Menu panelCourant;
+	protected static Menu panelPrecedent;
 	
 	/**
 	 * Constructeur							<br/>
@@ -31,12 +32,12 @@ public class ControleurGeneral extends Controleur {
 		ctrlDeBouton = new ControleurDeBouton();
 		ctrlDeFichier.addLogs("Satut	-	Lancement de l'application");
 		// Création du menu courrant
-		panelCourrant = new Connexion(this);
+		panelCourant = new Connexion(this);
 		// Ajustement secondaire
 		// ...
 		// Création des fenêtres primaires
 		ctrlDeFichier.addLogs("		-	Création des fenêtres");
-		fenetrePrincipale = new FenetrePrincipale(this, panelCourrant);
+		fenetrePrincipale = new FenetrePrincipale(this, panelCourant);
 		fenetreDeConfirmation = new FenetreDeConfirmation(this);
 		// Initialisation des attributs complémentaires
 		// ...
@@ -85,8 +86,8 @@ public class ControleurGeneral extends Controleur {
 	 * sans l'extension (chemin du fichier : 'assets/cursor/')				<br/>
 	 */
 	public void rqtChangeCurseur(String type) {
-		if (type.equals("default")) panelCourrant.curseurDefault();
-		else if (type.equals("hand")) panelCourrant.curseurHand();
+		if (type.equals("default")) panelCourant.curseurDefault();
+		else if (type.equals("hand")) panelCourant.curseurHand();
 		else ctrlDeFichier.addLogs("Erreur		- le curseur de type '" + type + "' n'existe pas", true);
 	}
 	

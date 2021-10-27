@@ -1,5 +1,6 @@
 package controleur;
 
+import menu.OublieDeMdp;
 import menu.Quitter;
 
 /**
@@ -96,6 +97,9 @@ public class ControleurDeBouton extends ControleurGeneral {
 	 * Redirige l'utilisateur vers le menu d'oublie de mot de passe			<br/>
 	 */
 	public void rqtOublieDeMdp() {
-		
+		panelPrecedent = panelCourant;
+		panelCourant = new OublieDeMdp(this);
+		fenetrePrincipale.changePanel(panelCourant);
 	}
+	
 }
