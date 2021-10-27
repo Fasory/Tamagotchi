@@ -16,16 +16,6 @@ public class ControleurGeneral extends Controleur {
 	protected static FenetrePrincipale fenetrePrincipale;					// Fenêtre principale qui contient les menus et le jeu
 	protected static FenetreDeConfirmation fenetreDeConfirmation;			// Fenêtre destinée à demander la confirmation d'une action
 	protected static Menu panelCourrant;
-
-	/**
-	 * Racine de l'application Tamagotchi									<br/>
-	 * 																		<br/>
-	 * @param args - liste de paramètres au lancement de l'application 		<br/>
-	 */
-	public static void main(String[] args) {
-		new ControleurGeneral();
-	}
-	
 	
 	/**
 	 * Constructeur							<br/>
@@ -73,6 +63,14 @@ public class ControleurGeneral extends Controleur {
 	//         CONTROLEUR GENERAL         //
 	////////////////////////////////////////
 	
+	/**
+	 * Racine de l'application Tamagotchi									<br/>
+	 * 																		<br/>
+	 * @param args - liste de paramètres au lancement de l'application 		<br/>
+	 */
+	public static void main(String[] args) {
+		new ControleurGeneral();
+	}
 	
 	
 	////////////////////////////////////////
