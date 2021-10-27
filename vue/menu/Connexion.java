@@ -12,7 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import controleur.Controleur;
+import controleur.ControleurGeneral;
 
 public class Connexion extends Menu {
 	
@@ -27,7 +27,7 @@ public class Connexion extends Menu {
 	 * 														<br/>
 	 * @param controleur - Controleur de l'application		<br/>
 	 */
-	public Connexion(Controleur controleur) {
+	public Connexion(ControleurGeneral controleur) {
 		super(controleur);
 		
 		// Initialisation des attributs
@@ -118,7 +118,7 @@ public class Connexion extends Menu {
 	 * Demande de changement de mot de passe suite à un oublie	<br/>
 	 */
 	public void cmdMdpOublier() {
-		controleur.rqtOublieDeMdp();
+		controleur.ctrlDeBouton.rqtOublieDeMdp();
 	}
 	
 	////////////////////////////////////////

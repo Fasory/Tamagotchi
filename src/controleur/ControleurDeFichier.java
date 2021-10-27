@@ -6,14 +6,16 @@ import java.nio.file.Files;
 import java.util.Calendar; 
 
 /**
- * Contrôle la persistence des données de		<br/>
- * l'application 								<br/>
+ * Sous contrôleur qui a pour but de gérer la	<br/>
+ * persistence des données de l'application		<br/>
  * 												<br/>
  * Intègre un système de logs afin de faciliter	<br/>
  * le débuggage et la maintenant liés à la		<br/>
  * persistence des données						<br/>
  */
-public class ControleurDeFichier {
+public class ControleurDeFichier extends ControleurGeneral {
+	
+	private static int estCree = 0;					// Repère de création d'une unique instance par type de controleur
 	
 	private File logs;								// Fichier logs du jour courant
 	private FileOutputStream logsOutStream;			// Flux de sortie pour écrire dans le fichier logs du jour courant
@@ -27,7 +29,12 @@ public class ControleurDeFichier {
 	 * Initialisation du controleur des fichiers de l'application	<br/>
 	 */
 	public ControleurDeFichier() {
+		super(estCree);
+		estCree++;
+		
+		// Initialisation des logs
 		init_logs();
+		// Initialisation du chemin des datas
 		init_data();
 	}
 	

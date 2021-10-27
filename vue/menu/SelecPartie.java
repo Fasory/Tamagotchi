@@ -1,10 +1,10 @@
 package menu;
 
-import controleur.Controleur;
+import controleur.ControleurGeneral;
 
 public class SelecPartie extends Menu {
 
-	public SelecPartie(Controleur controleur) {
+	public SelecPartie(ControleurGeneral controleur) {
 		super(controleur);
 		// TODO Auto-generated constructor stub
 	}

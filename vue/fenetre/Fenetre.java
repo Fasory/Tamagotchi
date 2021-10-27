@@ -6,7 +6,7 @@ import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import controleur.Controleur;
+import controleur.ControleurGeneral;
 
 /**
  * Fenêtre modèle représentant la structure globale		<br/>
@@ -18,7 +18,7 @@ import controleur.Controleur;
  */
 public abstract class Fenetre extends JFrame {
 	
-	protected Controleur controleur;
+	protected ControleurGeneral controleur;
 	private JPanel panelCourant;
 	
 	/**
@@ -28,7 +28,7 @@ public abstract class Fenetre extends JFrame {
 	 * @param panelCourant - JPanel à afficher dans		<br/>
 	 * la fenêtre										<br/>
 	 */
-	protected Fenetre(Controleur controleur, JPanel panelCourant) {
+	protected Fenetre(ControleurGeneral controleur, JPanel panelCourant) {
 		this(controleur);
 		
 		this.panelCourant = panelCourant;
@@ -41,7 +41,7 @@ public abstract class Fenetre extends JFrame {
 	 * 													<br/>
 	 * @param controleur - Contoleur de l'application	<br/>
 	 */
-	protected Fenetre(Controleur controleur) {
+	protected Fenetre(ControleurGeneral controleur) {
 		super();
 		
 		this.controleur = controleur;

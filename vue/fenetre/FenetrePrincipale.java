@@ -2,7 +2,7 @@ package fenetre;
 
 import javax.swing.JPanel;
 
-import controleur.Controleur;
+import controleur.ControleurGeneral;
 
 public class FenetrePrincipale extends Fenetre {
 	
@@ -13,7 +13,7 @@ public class FenetrePrincipale extends Fenetre {
 	 * 													<br/>
 	 * @param controleur - Contoleur de l'application	<br/>
 	 */
-	public FenetrePrincipale(Controleur controleur, JPanel panelCourant) {
+	public FenetrePrincipale(ControleurGeneral controleur, JPanel panelCourant) {
 		super(controleur, panelCourant);
 		setLocationRelativeTo(null);
 		setTitle("Tamagotchi");
@@ -33,7 +33,7 @@ public class FenetrePrincipale extends Fenetre {
 	 */
 	@Override
 	public void cmdQuitter() {
-		controleur.rqtDemandeQuitter();
+		controleur.ctrlDeBouton.rqtDemandeQuitter();
 	}
 	
 }

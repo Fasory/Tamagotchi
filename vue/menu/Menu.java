@@ -3,13 +3,13 @@ package menu;
 import javax.swing.JPanel;
 import java.awt.Cursor;
 
-import controleur.Controleur;
+import controleur.ControleurGeneral;
 
 public abstract class Menu extends JPanel {
 	
-	protected Controleur controleur;
+	protected ControleurGeneral controleur;
 	
-	protected Menu(Controleur controleur) {
+	protected Menu(ControleurGeneral controleur) {
 		super();
 		
 		this.controleur = controleur;

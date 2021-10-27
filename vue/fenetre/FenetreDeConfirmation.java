@@ -1,6 +1,6 @@
 package fenetre;
 
-import controleur.Controleur;
+import controleur.ControleurGeneral;
 
 public class FenetreDeConfirmation extends Fenetre {
 	
@@ -12,7 +12,7 @@ public class FenetreDeConfirmation extends Fenetre {
 	 * 													<br/>
 	 * @param controleur - Contoleur de l'application	<br/>
 	 */
-	public FenetreDeConfirmation(Controleur controleur) {
+	public FenetreDeConfirmation(ControleurGeneral controleur) {
 		super(controleur);
 		
 		setTitle("Confirmation");
@@ -30,7 +30,7 @@ public class FenetreDeConfirmation extends Fenetre {
 	*/
 	@Override
 	public void cmdQuitter() {
-		controleur.rqtAnnuleConfirmation();
+		controleur.ctrlDeBouton.rqtAnnuleConfirmation();
 	}
 	
 	

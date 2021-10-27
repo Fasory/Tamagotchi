@@ -1,6 +1,6 @@
 package menu;
 
-import controleur.Controleur;
+import controleur.ControleurGeneral;
 
 public class Quitter extends MenuDeConfirmation {
 	
@@ -9,7 +9,7 @@ public class Quitter extends MenuDeConfirmation {
 	 * 
 	 * @param controleur - Contoleur de l'application	<br/>
 	 */
-	public Quitter(Controleur controleur) {
+	public Quitter(ControleurGeneral controleur) {
 		this(controleur, "Êtes-vous sûr de vouloir fermer l'application ?");
 	}
 	
@@ -20,7 +20,7 @@ public class Quitter extends MenuDeConfirmation {
 	 * @param msg - String afficher pour demander la	<br/>
 	 * confirmation de quitter							<br/>
 	 */
-	public Quitter(Controleur controleur, String msg) {
+	public Quitter(ControleurGeneral controleur, String msg) {
 		super(controleur, msg, "Oui", "Annuler");
 	}
 	
@@ -29,6 +29,6 @@ public class Quitter extends MenuDeConfirmation {
 	 */
 	@Override
 	public void cmdConfirmation() {
-		controleur.rqtQuitter();
+		controleur.ctrlDeBouton.rqtQuitter();
 	}
 }

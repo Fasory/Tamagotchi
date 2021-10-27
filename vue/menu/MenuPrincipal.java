@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-import controleur.Controleur;
+import controleur.ControleurGeneral;
 
 public class MenuPrincipal extends Menu {
 	
@@ -13,7 +13,7 @@ public class MenuPrincipal extends Menu {
 	 * 
 	 * @param controleur - Controleur de l'application
 	 */
-	public MenuPrincipal(Controleur controleur) {
+	public MenuPrincipal(ControleurGeneral controleur) {
 		super(controleur);
 		
 		// Partie Affichage
@@ -85,35 +85,35 @@ public class MenuPrincipal extends Menu {
 	* Demande de changement de menu : MenuCreerPartie
 	*/
 	public void cmdMenuCreerPartie() {
-		controleur.rqtMenuCreerPartie();
+		controleur.ctrlDeBouton.rqtMenuCreerPartie();
 	}
 	
 	/**
 	* Demande de changement de menu : MenuSelecPartie
 	*/
 	public void cmdMenuSelecPartie() {
-		controleur.rqtMenuSelecPartie();
+		controleur.ctrlDeBouton.rqtMenuSelecPartie();
 	}
 	
 	/**
 	* Demande de changement de menu : MenuOption
 	*/
 	public void cmdMenuOption() {
-		controleur.rqtMenuOption();
+		controleur.ctrlDeBouton.rqtMenuOption();
 	}
 	
 	/**
 	* Demande de changement de menu : MenuScore
 	*/
 	public void cmdMenuScore() {
-		controleur.rqtMenuScore();
+		controleur.ctrlDeBouton.rqtMenuScore();
 	}
 	
 	/**
 	* Demande de fermeture de l'application
 	*/
 	public void cmdQuitter() {
-		controleur.rqtDemandeQuitter();
+		controleur.ctrlDeBouton.rqtDemandeQuitter();
 	}
 	
 	

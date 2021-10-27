@@ -1,10 +1,10 @@
 package menu;
 
-import controleur.Controleur;
+import controleur.ControleurGeneral;
 
 public class Score extends Menu{
 
-	public Score(Controleur controleur) {
+	public Score(ControleurGeneral controleur) {
 		super(controleur);
 		// TODO Auto-generated constructor stub
 	}

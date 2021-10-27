@@ -12,7 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import controleur.Controleur;
+import controleur.ControleurGeneral;
 
 /**
  * Menu mettant à disposition un choix binaire		<br/>
@@ -28,7 +28,7 @@ public abstract class MenuDeConfirmation extends Menu {
 	 * 																								<br/>
 	 * @param controleur - Contoleur de l'application												<br/>
 	 */
-	public MenuDeConfirmation(Controleur controleur) {
+	public MenuDeConfirmation(ControleurGeneral controleur) {
 		// Appel du modèle général de constructeur
 		this(controleur, "", "Oui", "Non");
 	}
@@ -41,7 +41,7 @@ public abstract class MenuDeConfirmation extends Menu {
 	 * @param controleur - Contoleur de l'application												<br/>
 	 * @param message - String contenant le message à afficher dans la fenêtre de confirmation		<br/>
 	 */
-	public MenuDeConfirmation(Controleur controleur, String message) {
+	public MenuDeConfirmation(ControleurGeneral controleur, String message) {
 		// Appel du modèle général de constructeur
 		this(controleur, message, "Oui", "Non");
 	}
@@ -56,7 +56,7 @@ public abstract class MenuDeConfirmation extends Menu {
 	 * @param indicationVrai - String afficher sur le bouton de retour vrai							<br/>
 	 * @param indicationFaux - String afficher sur le bouton de retour faux							<br/>
 	 */
-	public MenuDeConfirmation(Controleur controleur, String message, String indicationVrai, String indicationFaux) {
+	public MenuDeConfirmation(ControleurGeneral controleur, String message, String indicationVrai, String indicationFaux) {
 		super(controleur);
 		
 		// Partie Affichage
@@ -119,6 +119,6 @@ public abstract class MenuDeConfirmation extends Menu {
 	 * Demande d'annulation de confirmation				<br/>
 	 */
 	public void cmdRetour() {
-		controleur.rqtAnnuleConfirmation();
+		controleur.ctrlDeBouton.rqtAnnuleConfirmation();
 	}
 }
