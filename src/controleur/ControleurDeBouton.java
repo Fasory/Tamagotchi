@@ -1,5 +1,11 @@
 package controleur;
 
+import javax.swing.JPanel;
+
+import menu.Credits;
+import menu.Menu;
+import menu.MenuPrincipal;
+import menu.Option;
 import menu.OublieDeMdp;
 import menu.Quitter;
 
@@ -50,7 +56,10 @@ public class ControleurDeBouton extends ControleurGeneral {
 	* Demande de changement de menu : MenuOption			<br/>
 	*/
 	public void rqtMenuOption() {
-	
+		panelPrecedent = panelCourant;
+		panelCourant = new Option(this);
+		fenetrePrincipale.changePanel(panelCourant);
+		fenetrePrincipale.mettreEnAvant(true);
 	}
 	
 	/**
@@ -100,6 +109,32 @@ public class ControleurDeBouton extends ControleurGeneral {
 		panelPrecedent = panelCourant;
 		panelCourant = new OublieDeMdp(this);
 		fenetrePrincipale.changePanel(panelCourant);
+	}
+	
+	/**
+	 * Redirige l'utilisateur vers le menu des crédits
+	 */
+	public void rqtAffichageCredits() {
+		panelPrecedent = panelCourant;
+		panelCourant = new Credits(this);
+		fenetrePrincipale.changePanel(panelCourant);
+		fenetrePrincipale.mettreEnAvant(true);
+	}
+	
+	/**
+	 * Redirige l'utilisateur vers le menu principal
+	 */
+	public void rqtQuitterOptions() {
+		panelPrecedent = panelCourant;
+		panelCourant = new MenuPrincipal(this);
+		fenetrePrincipale.changePanel(panelCourant);
+		fenetrePrincipale.mettreEnAvant(true);
+	}
+	
+	public void rqtRetourOptions() {
+		panelCourant = panelPrecedent;
+		fenetrePrincipale.changePanel(panelCourant);
+		fenetrePrincipale.mettreEnAvant(true);
 	}
 	
 }

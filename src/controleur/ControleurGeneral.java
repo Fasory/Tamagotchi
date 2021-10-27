@@ -6,6 +6,7 @@ import fenetre.FenetreDeConfirmation;
 import fenetre.FenetrePrincipale;
 import menu.Connexion;
 import menu.Menu;
+import menu.MenuPrincipal;
 
 public class ControleurGeneral extends Controleur {
 	
@@ -32,7 +33,7 @@ public class ControleurGeneral extends Controleur {
 		ctrlDeBouton = new ControleurDeBouton();
 		ctrlDeFichier.addLogs("Satut	-	Lancement de l'application");
 		// Création du menu courrant
-		panelCourant = new Connexion(this);
+		panelCourant = new MenuPrincipal(this);
 		// Ajustement secondaire
 		// ...
 		// Création des fenêtres primaires
