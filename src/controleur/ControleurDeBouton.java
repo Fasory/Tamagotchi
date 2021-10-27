@@ -109,6 +109,7 @@ public class ControleurDeBouton extends ControleurGeneral {
 		panelPrecedent = panelCourant;
 		panelCourant = new OublieDeMdp(this);
 		fenetrePrincipale.changePanel(panelCourant);
+		fenetrePrincipale.mettreEnAvant(true);
 	}
 	
 	/**
