@@ -51,7 +51,7 @@ public class Credits extends Menu {
 	 * Demande de changement de menu : Menu option
 	 */
 	public void cmdRetourOptions() {
-		controleur.ctrlDeBouton.rqtRetourOptions();
+		ControleurGeneral.ctrlBouton.rqtRetour();
 	}
 
 }

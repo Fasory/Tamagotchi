@@ -55,10 +55,10 @@ public class Option extends Menu {
 	 * Demande de changement de menu : Menu des crédits
 	 */
 	public void cmdAfficheCredits() {
-		controleur.ctrlDeBouton.rqtAffichageCredits();
+		ControleurGeneral.ctrlBouton.rqtAffichageCredits();
 	}
 	
 	public void cmdQuitterOptions() {
-		controleur.ctrlDeBouton.rqtQuitterOptions();
+		ControleurGeneral.ctrlBouton.rqtRetour();
 	}
 }

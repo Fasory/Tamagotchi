@@ -2,22 +2,23 @@ package controleur;
 
 
 
-import fenetre.FenetreDeConfirmation;
+import java.util.Stack;
+
+import fenetre.FenetreConfirmation;
 import fenetre.FenetrePrincipale;
 import menu.Connexion;
 import menu.Menu;
-import menu.MenuPrincipal;
 
 public class ControleurGeneral extends Controleur {
 	
-	private static int estCree = 0;											// Repère de création d'une unique instance par type de controleur
+	private static int estCree = 0;														// Repère de création d'une unique instance par type de controleur
 	
-	public static ControleurDeFichier ctrlDeFichier;								// Controleur assistant pour la gestion de fichiers
-	public static ControleurDeBouton ctrlDeBouton;									// Controleur assistant pour la gestion des boutons
-	protected static FenetrePrincipale fenetrePrincipale;					// Fenêtre principale qui contient les menus et le jeu
-	protected static FenetreDeConfirmation fenetreDeConfirmation;			// Fenêtre destinée à demander la confirmation d'une action
-	protected static Menu panelCourant;
-	protected static Menu panelPrecedent;
+	public static ControleurFichier ctrlFichier = new ControleurFichier();				// Controleur assistant pour la gestion de fichiers
+	public static ControleurBouton ctrlBouton = new ControleurBouton();					// Controleur assistant pour la gestion des boutons
+	public static ControleurAudio ctrlAudio = new ControleurAudio();					// Controleur assistant pour la gestion de l'audio
+	protected static FenetrePrincipale fenetrePrincipale;								// Fenêtre principale qui contient les menus et le jeu
+	protected static FenetreConfirmation fenetreDeConfirmation;							// Fenêtre destinée à demander la confirmation d'une action
+	protected static Stack<Menu> pileMenu;												// Pile des menus ouverts
 	
 	/**
 	 * Constructeur							<br/>
@@ -28,22 +29,20 @@ public class ControleurGeneral extends Controleur {
 		super(estCree);
 		estCree++;
 		
-		// Création des controleurs assistants
-		ctrlDeFichier = new ControleurDeFichier();
-		ctrlDeBouton = new ControleurDeBouton();
-		ctrlDeFichier.addLogs("Satut	-	Lancement de l'application");
+		ctrlFichier.addLogs("Satut	-	Lancement de l'application");
 		// Création du menu courrant
-		panelCourant = new MenuPrincipal(this);
+		pileMenu = new Stack<Menu>();
+		pileMenu.push(new Connexion(this));
 		// Ajustement secondaire
 		// ...
 		// Création des fenêtres primaires
-		ctrlDeFichier.addLogs("		-	Création des fenêtres");
-		fenetrePrincipale = new FenetrePrincipale(this, panelCourant);
-		fenetreDeConfirmation = new FenetreDeConfirmation(this);
+		ctrlFichier.addLogs("		-	Création des fenêtres");
+		fenetrePrincipale = new FenetrePrincipale(this, pileMenu.peek());
+		fenetreDeConfirmation = new FenetreConfirmation(this);
 		// Initialisation des attributs complémentaires
 		// ...
 		// Fin de la construction de l'application
-		ctrlDeFichier.addLogs("Satut	-	Application opérationnelle");
+		ctrlFichier.addLogs("Satut	-	Application opérationnelle");
 	}
 	
 	/**
@@ -87,9 +86,9 @@ public class ControleurGeneral extends Controleur {
 	 * sans l'extension (chemin du fichier : 'assets/cursor/')				<br/>
 	 */
 	public void rqtChangeCurseur(String type) {
-		if (type.equals("default")) panelCourant.curseurDefault();
-		else if (type.equals("hand")) panelCourant.curseurHand();
-		else ctrlDeFichier.addLogs("Erreur		- le curseur de type '" + type + "' n'existe pas", true);
+		if (type.equals("default")) pileMenu.peek().curseurDefault();
+		else if (type.equals("hand")) pileMenu.peek().curseurHand();
+		else ctrlFichier.addLogs("Erreur		- le curseur de type '" + type + "' n'existe pas", true);
 	}
 	
 	/**

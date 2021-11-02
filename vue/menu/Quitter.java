@@ -2,7 +2,7 @@ package menu;
 
 import controleur.ControleurGeneral;
 
-public class Quitter extends MenuDeConfirmation {
+public class Quitter extends MenuConfirmation {
 	
 	/**
 	 * Contructeur
@@ -29,6 +29,6 @@ public class Quitter extends MenuDeConfirmation {
 	 */
 	@Override
 	public void cmdConfirmation() {
-		controleur.ctrlDeBouton.rqtQuitter();
+		ControleurGeneral.ctrlBouton.rqtQuitter();
 	}
 }

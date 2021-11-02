@@ -33,7 +33,7 @@ public class FenetrePrincipale extends Fenetre {
 	 */
 	@Override
 	public void cmdQuitter() {
-		controleur.ctrlDeBouton.rqtDemandeQuitter();
+		ControleurGeneral.ctrlBouton.rqtDemandeQuitter();
 	}
 	
 }

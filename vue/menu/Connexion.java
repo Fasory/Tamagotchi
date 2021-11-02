@@ -39,19 +39,19 @@ public class Connexion extends Menu {
 		GridBagConstraints gbc = new GridBagConstraints();
 		
 		
-		JLabel lbId = new JLabel("Identifiant :");
+		JLabel lbId = new JLabel("Identifiant");
 		gbc.gridx = 0;
 		gbc.gridy = 0;
-		gbc.anchor = GridBagConstraints.BASELINE_LEADING;
-		gbc.insets = new Insets(0, 0, 10, 30);
+		gbc.anchor = GridBagConstraints.BASELINE_TRAILING;
+		gbc.insets = new Insets(0, 0, 10, 10);
 		add(lbId, gbc);
 		
 		
-		JLabel lbMdp = new JLabel("Mot de passe :");
+		JLabel lbMdp = new JLabel("Mot de passe");
 		gbc.gridx = 0;
 		gbc.gridy = 1;
-		gbc.anchor = GridBagConstraints.BASELINE_LEADING;
-		gbc.insets = new Insets(0, 0, 5, 30);
+		gbc.anchor = GridBagConstraints.BASELINE_TRAILING;
+		gbc.insets = new Insets(0, 0, 5, 10);
 		add(lbMdp, gbc);
 		
 		
@@ -118,7 +118,7 @@ public class Connexion extends Menu {
 	 * Demande de changement de mot de passe suite à un oublie	<br/>
 	 */
 	public void cmdMdpOublier() {
-		controleur.ctrlDeBouton.rqtOublieDeMdp();
+		ControleurGeneral.ctrlBouton.rqtOublieDeMdp();
 	}
 	
 	////////////////////////////////////////

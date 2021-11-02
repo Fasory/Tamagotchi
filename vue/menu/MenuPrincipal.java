@@ -85,35 +85,35 @@ public class MenuPrincipal extends Menu {
 	* Demande de changement de menu : MenuCreerPartie
 	*/
 	public void cmdMenuCreerPartie() {
-		controleur.ctrlDeBouton.rqtMenuCreerPartie();
+		ControleurGeneral.ctrlBouton.rqtMenuCreerPartie();
 	}
 	
 	/**
 	* Demande de changement de menu : MenuSelecPartie
 	*/
 	public void cmdMenuSelecPartie() {
-		controleur.ctrlDeBouton.rqtMenuSelecPartie();
+		ControleurGeneral.ctrlBouton.rqtMenuSelecPartie();
 	}
 	
 	/**
 	* Demande de changement de menu : MenuOption
 	*/
 	public void cmdMenuOption() {
-		controleur.ctrlDeBouton.rqtMenuOption();
+		ControleurGeneral.ctrlBouton.rqtMenuOption();
 	}
 	
 	/**
 	* Demande de changement de menu : MenuScore
 	*/
 	public void cmdMenuScore() {
-		controleur.ctrlDeBouton.rqtMenuScore();
+		ControleurGeneral.ctrlBouton.rqtMenuScore();
 	}
 	
 	/**
 	* Demande de fermeture de l'application
 	*/
 	public void cmdQuitter() {
-		controleur.ctrlDeBouton.rqtDemandeQuitter();
+		ControleurGeneral.ctrlBouton.rqtDemandeQuitter();
 	}
 	
 	
