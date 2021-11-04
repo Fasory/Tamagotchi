@@ -119,6 +119,6 @@ public abstract class MenuConfirmation extends Menu {
 	 * Demande d'annulation de confirmation				<br/>
 	 */
 	public void cmdRetour() {
-		ControleurGeneral.ctrlBouton.rqtAnnuleConfirmation();
+		ControleurGeneral.ctrlBouton.rqtRetourConfirmation();
 	}
 }

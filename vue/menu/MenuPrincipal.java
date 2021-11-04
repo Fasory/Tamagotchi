@@ -63,13 +63,13 @@ public class MenuPrincipal extends Menu {
 		panelBtn.add(btnScore);
 		
 		
-		JButton btnQuitter = new JButton("Quitter");
-		btnQuitter.addActionListener(new ActionListener() {
+		JButton btnDeconnexion = new JButton("Déconnexion");
+		btnDeconnexion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				cmdQuitter();
+				cmdDeconnexion();
 			}
 		});
-		panelBtn.add(btnQuitter);
+		panelBtn.add(btnDeconnexion);
 		
 		
 		add(panelBtn);
@@ -110,10 +110,10 @@ public class MenuPrincipal extends Menu {
 	}
 	
 	/**
-	* Demande de fermeture de l'application
+	* Demande de déconnexion
 	*/
-	public void cmdQuitter() {
-		ControleurGeneral.ctrlBouton.rqtDemandeQuitter();
+	public void cmdDeconnexion() {
+		ControleurGeneral.ctrlBouton.rqtDemandeDeconnexion();
 	}
 	
 	

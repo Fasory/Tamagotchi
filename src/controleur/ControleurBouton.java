@@ -1,6 +1,8 @@
 package controleur;
 
 import menu.Credits;
+import menu.Deconnexion;
+import menu.Inscription;
 import menu.Option;
 import menu.OubliMdp;
 import menu.Quitter;
@@ -34,11 +36,17 @@ public class ControleurBouton extends ControleurGeneral {
 	//               BOUTON               //
 	////////////////////////////////////////
 	
+	
+	////////////////////////////////////////
+	//         REQUETES CHANGEMENT        //
+	//               DE MENU              //
+	////////////////////////////////////////
+	
 	/**
 	* Demande de changement de menu : MenuCreerPartie		<br/>
 	*/
 	public void rqtMenuCreerPartie() {
-		System.out.println("Clic");
+		
 	}
 	
 	/**
@@ -52,9 +60,8 @@ public class ControleurBouton extends ControleurGeneral {
 	* Demande de changement de menu : MenuOption			<br/>
 	*/
 	public void rqtMenuOption() {
-		pileMenu.push(new Option(this));
-		fenetrePrincipale.changePanel(pileMenu.peek());
-		fenetrePrincipale.mettreEnAvant(true);
+		ctrlAffichage.ouvrirMenu(new Option(this));
+		
 	}
 	
 	/**
@@ -68,59 +75,97 @@ public class ControleurBouton extends ControleurGeneral {
 	* Demande une confirmation pour fermer l'application					<br/>
 	*/
 	public void rqtDemandeQuitter() {
-		fenetrePrincipale.mettreEnPause(true);
-		fenetreDeConfirmation.changePanel(new Quitter(this));
-		fenetreDeConfirmation.mettreEnPause(false);
-		fenetreDeConfirmation.mettreEnAvant(true);
-	}
-	
-	/**
-	* Ferme l'application													<br/>
-	*/
-	public void rqtQuitter() {
-		fenetrePrincipale.mettreEnPause(true);
-		fenetrePrincipale.mettreEnAvant(false);
-		fenetrePrincipale.dispose();
-		fenetreDeConfirmation.dispose();
-		ctrlFichier.delControleurDeFichier();
-		System.exit(0);
-	}
-	
-	/**
-	 * Recentre l'activité de l'application sur le fenêtre principale		<br/>
-	 * dans l'état qu'elle été restée avant la demande de confirmation		<br/>
-	 */
-	public void rqtAnnuleConfirmation() {
-		fenetreDeConfirmation.mettreEnPause(true);
-		fenetreDeConfirmation.mettreEnAvant(false);
-		fenetrePrincipale.mettreEnPause(false);
-		fenetrePrincipale.mettreEnAvant(true);
+		ctrlAffichage.ouvrirMenuConfirmation(new Quitter(this));
 	}
 	
 	/**
 	 * Redirige l'utilisateur vers le menu d'oublie de mot de passe			<br/>
 	 */
 	public void rqtOublieDeMdp() {
-		pileMenu.push(new OubliMdp(this));
-		fenetrePrincipale.changePanel(pileMenu.peek());
-		fenetrePrincipale.mettreEnAvant(true);
+		ctrlAffichage.ouvrirMenu(new OubliMdp(this));
 	}
 	
 	/**
-	 * Redirige l'utilisateur vers le menu des crédits
+	 * Redirige l'utilisateur vers le menu des crédits						<br/>
 	 */
 	public void rqtAffichageCredits() {
-		pileMenu.push(new Credits(this));
-		fenetrePrincipale.changePanel(pileMenu.peek());
-		fenetrePrincipale.mettreEnAvant(true);
+		ctrlAffichage.ouvrirMenu(new Credits(this));
 	}
 	
 	/**
-	 * Redirige l'utilisateur vers le menu précédent
+	 * Redirige l'utilisateur vers le menu d'inscription					<br/>
+	 */
+	public void rqtInscription() {
+		ctrlAffichage.ouvrirMenu(new Inscription(this));
+	}
+	
+	/**
+	 * Redirige l'utilisateur vers le menu précédent						<br/>
 	 */
 	public void rqtRetour() {
-		pileMenu.pop();
-		fenetrePrincipale.changePanel(pileMenu.peek());
-		fenetrePrincipale.mettreEnAvant(true);
+		ctrlAffichage.menuPrecedent();
 	}
+	
+	
+	////////////////////////////////////////
+	//           REQUETES DEMANDE         //
+	//             CONFIRMATION           //
+	////////////////////////////////////////
+	
+	/**
+	* Demande une confirmation pour déconnecte l'utilisateur				<br/>
+	*/
+	public void rqtDemandeDeconnexion() {
+		ctrlAffichage.ouvrirMenuConfirmation(new Deconnexion(this));
+	}
+	
+	/**
+	 * Recentre l'activité de l'application sur le fenêtre principale		<br/>
+	 * dans l'état qu'elle été restée avant la demande de confirmation		<br/>
+	 */
+	public void rqtRetourConfirmation() {
+		ctrlAffichage.fermerMenuConfirmation();
+	}
+	
+	
+	////////////////////////////////////////
+	//         REQUETES CONNEXION         //
+	//           / INSCRIPTION            //
+	////////////////////////////////////////
+	
+	/**
+	* Déconnecte l'utilisateur												<br/>
+	*/
+	public void rqtDeconnexion() {
+		ctrlConnexion.deconnexion();
+		ctrlAffichage.menuPrecedent();
+	}
+	
+	/**
+	 * Tentative de connexion												<br/>
+	 * 																		<br/>
+	 * @param utilisateur - String représentant le nom du joueur			<br/>
+	 * @param mdp - char[] représentant le mot de passe						<br/>
+	 */
+	public void rqtConnexion(String utilisateur, char[] mdp) {
+		String strMdp = new String(mdp);
+		if (utilisateur.equals("")) {
+			if (strMdp.equals("")) ctrlAffichage.afficherAlerte("Veuillez saisir votre identifiant et votre mot de passe.");
+			else ctrlAffichage.afficherAlerte("Veuillez saisir votre identifiant.");
+		} else if (strMdp.equals("") && !utilisateur.equals(NOM_ANONYME)) ctrlAffichage.afficherAlerte("Veuillez saisir votre mot de passe.");
+		else if (!ctrlConnexion.connexion(utilisateur, strMdp)) ctrlAffichage.afficherAlerte("Votre identifiant ou votre mot de passe est incorret.");
+	}
+	
+	
+	////////////////////////////////////////
+	//          REQUETES AUTRES           //
+	////////////////////////////////////////
+	
+	/**
+	* Ferme l'application													<br/>
+	*/
+	public void rqtQuitter() {
+		quitter();
+	}
+	
 }

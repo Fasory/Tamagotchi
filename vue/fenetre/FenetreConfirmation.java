@@ -30,7 +30,7 @@ public class FenetreConfirmation extends Fenetre {
 	*/
 	@Override
 	public void cmdQuitter() {
-		ControleurGeneral.ctrlBouton.rqtAnnuleConfirmation();
+		ControleurGeneral.ctrlBouton.rqtRetourConfirmation();
 	}
 	
 	

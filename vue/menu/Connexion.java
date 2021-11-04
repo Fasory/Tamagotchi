@@ -5,11 +5,16 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.MouseEvent;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.Color;
 
+import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JPasswordField;
+import javax.swing.JSeparator;
 import javax.swing.JTextField;
 
 import controleur.ControleurGeneral;
@@ -17,10 +22,13 @@ import controleur.ControleurGeneral;
 public class Connexion extends Menu {
 	
 	// Constantes publics
-	public final Color couleurEnSelec;
-	public final Color couleurEnNonSelec;
+	public final Color COULEUR_EN_SELEC;
+	public final Color COULEUR_EN_NON_SELEC;
 	// Autres attributs
 	private JLabel lbOublieMdp;
+	private JTextField txtId;
+	private JPasswordField txtMdp;
+	private JLabel lbAlerte;
 	
 	/**
 	 * Constructeur											<br/>
@@ -31,50 +39,61 @@ public class Connexion extends Menu {
 		super(controleur);
 		
 		// Initialisation des attributs
-		couleurEnSelec = Color.RED;
-		couleurEnNonSelec = Color.BLUE;
+		COULEUR_EN_SELEC = Color.RED;
+		COULEUR_EN_NON_SELEC = Color.BLUE;
 		
 		// Partie Affichage
 		setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
 		
+		// Formulaire ID / Mail
+		JPanel formulaire = new JPanel(new GridBagLayout());
+		
 		
 		JLabel lbId = new JLabel("Identifiant");
+		gbc.fill = GridBagConstraints.NONE;
 		gbc.gridx = 0;
 		gbc.gridy = 0;
+		gbc.gridwidth = 1;
 		gbc.anchor = GridBagConstraints.BASELINE_TRAILING;
 		gbc.insets = new Insets(0, 0, 10, 10);
-		add(lbId, gbc);
+		formulaire.add(lbId, gbc);
 		
 		
 		JLabel lbMdp = new JLabel("Mot de passe");
+		gbc.fill = GridBagConstraints.NONE;
 		gbc.gridx = 0;
 		gbc.gridy = 1;
+		gbc.gridwidth = 1;
 		gbc.anchor = GridBagConstraints.BASELINE_TRAILING;
 		gbc.insets = new Insets(0, 0, 5, 10);
-		add(lbMdp, gbc);
+		formulaire.add(lbMdp, gbc);
 		
 		
-		JTextField txtId = new JTextField();
+		txtId = new JTextField();
 		txtId.setPreferredSize(new Dimension(200, 25));
+		gbc.fill = GridBagConstraints.NONE;
 		gbc.gridx = 1;
 		gbc.gridy = 0;
+		gbc.gridwidth = 1;
 		gbc.anchor = GridBagConstraints.BASELINE;
 		gbc.insets = new Insets(0, 0, 0, 0);
-		add(txtId, gbc);
+		formulaire.add(txtId, gbc);
 		
 		
-		JPasswordField txtMdp = new JPasswordField();
+		txtMdp = new JPasswordField();
 		txtMdp.setPreferredSize(new Dimension(200, 25));
+		gbc.fill = GridBagConstraints.NONE;
 		gbc.gridx = 1;
 		gbc.gridy = 1;
+		gbc.gridwidth = 1;
 		gbc.anchor = GridBagConstraints.BASELINE;
 		gbc.insets = new Insets(0, 0, 0, 0);
-		add(txtMdp, gbc);
+		formulaire.add(txtMdp, gbc);
 		
 		
 		lbOublieMdp = new JLabel("Mot de passe oublié ?");
-		lbOublieMdp.setForeground(couleurEnNonSelec);
+		lbOublieMdp.setForeground(COULEUR_EN_NON_SELEC);
 		lbOublieMdp.addMouseListener(new MouseAdapter() {
 		    @Override
 		    public void mouseClicked(MouseEvent e) {
@@ -91,12 +110,151 @@ public class Connexion extends Menu {
 		    	cmdChangeCurseur("default");
 		    }
 		});
+		gbc.fill = GridBagConstraints.NONE;
 		gbc.gridx = 1;
 		gbc.gridy = 2;
+		gbc.gridwidth = 1;
 		gbc.anchor = GridBagConstraints.BASELINE_TRAILING;
 		gbc.insets = new Insets(0, 0, 0, 0);
-		add(lbOublieMdp, gbc);
+		formulaire.add(lbOublieMdp, gbc);
+		
+		
+		JButton btnConnexion = new JButton("Connexion");
+		btnConnexion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				cmdConnexion();
+			}
+		});
+		gbc.fill = GridBagConstraints.HORIZONTAL;
+		gbc.gridx = 0;
+		gbc.gridy++;
+		gbc.gridwidth = 2;
+		gbc.anchor = GridBagConstraints.BASELINE_TRAILING;
+		gbc.insets = new Insets(10, 0, 0, 0);
+		formulaire.add(btnConnexion, gbc);
+		
+		
+		JLabel lbOu = new JLabel("OU");
+		gbc.fill = GridBagConstraints.NONE;
+		gbc.gridx = 0;
+		gbc.gridy++;
+		gbc.gridwidth = 2;
+		gbc.anchor = GridBagConstraints.CENTER;
+		gbc.insets = new Insets(5, 0, 0, 0);
+		formulaire.add(lbOu, gbc);
+		
+		
+		JButton btnInscription = new JButton("Inscription");
+		btnInscription.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				cmdInscription();
+			}
+		});
+		gbc.fill = GridBagConstraints.HORIZONTAL;
+		gbc.gridx = 0;
+		gbc.gridy++;
+		gbc.gridwidth = 2;
+		gbc.anchor = GridBagConstraints.BASELINE_TRAILING;
+		gbc.insets = new Insets(5, 0, 0, 0);
+		formulaire.add(btnInscription, gbc);
+		
+		// Construction du menu
+		JLabel lbInfo_p1 = new JLabel("Veuillez entrer votre identifiant et votre mot de passe pour vous connecter.");
+		gbc.fill = GridBagConstraints.NONE;
+		gbc.gridx = 0;
+		gbc.gridy = 0;
+		gbc.gridwidth = 1;
+		gbc.anchor = GridBagConstraints.BASELINE;
+		gbc.insets = new Insets(0, 0, 0, 0);
+		add(lbInfo_p1, gbc);
+		
+		
+		JLabel lbInfo_p2 = new JLabel("Si vous n'avez encore pas de compte, vous pouvez également vous inscrire.");
+		gbc.fill = GridBagConstraints.NONE;
+		gbc.gridx = 0;
+		gbc.gridy++;
+		gbc.gridwidth = 1;
+		gbc.anchor = GridBagConstraints.BASELINE;
+		gbc.insets = new Insets(0, 0, 0, 0);
+		add(lbInfo_p2, gbc);
+		
+		
+		lbAlerte = new JLabel(" ");
+		lbAlerte.setForeground(COULEUR_EN_SELEC);
+		gbc.fill = GridBagConstraints.NONE;
+		gbc.gridx = 0;
+		gbc.gridy++;
+		gbc.gridwidth = 1;
+		gbc.anchor = GridBagConstraints.BASELINE;
+		gbc.insets = new Insets(5, 0, 0, 0);
+		add(lbAlerte, gbc);
+		
+		
+		gbc.fill = GridBagConstraints.HORIZONTAL;
+		gbc.gridx = 0;
+		gbc.gridy++;
+		gbc.gridwidth = 2;
+		gbc.anchor = GridBagConstraints.BASELINE;
+		gbc.insets = new Insets(5, 0, 0, 0);
+		add(formulaire, gbc);
+		
+		
+		JSeparator sepAnonyme = new JSeparator();
+		gbc.fill = GridBagConstraints.HORIZONTAL;
+		gbc.gridx = 0;
+		gbc.gridy++;
+		gbc.gridwidth = 2;
+		gbc.anchor = GridBagConstraints.BASELINE;
+		gbc.insets = new Insets(25, 30, 25, 30);
+		add(sepAnonyme, gbc);
+		
+		// Construction du menu
+		JLabel lbInfoAnonyme_p1 = new JLabel("Jouer en connexion anonyme permet de créer et de jouer à des parties sans");
+		gbc.fill = GridBagConstraints.NONE;
+		gbc.gridx = 0;
+		gbc.gridy++;
+		gbc.gridwidth = 1;
+		gbc.anchor = GridBagConstraints.BASELINE;
+		gbc.insets = new Insets(0, 0, 0, 0);
+		add(lbInfoAnonyme_p1, gbc);
+		
+		
+		JLabel lbInfoAnonyme_p2 = new JLabel("utiliser un compte. Cela veut également dire que toutes les parties sont visibles");
+		gbc.fill = GridBagConstraints.NONE;
+		gbc.gridx = 0;
+		gbc.gridy++;
+		gbc.gridwidth = 1;
+		gbc.anchor = GridBagConstraints.BASELINE;
+		gbc.insets = new Insets(0, 0, 0, 0);
+		add(lbInfoAnonyme_p2, gbc);
+		
+		
+		JLabel lbInfoAnonyme_p3 = new JLabel("et accessibles par les autres utilisateurs en connexion anonyme.");
+		gbc.fill = GridBagConstraints.NONE;
+		gbc.gridx = 0;
+		gbc.gridy++;
+		gbc.gridwidth = 1;
+		gbc.anchor = GridBagConstraints.BASELINE;
+		gbc.insets = new Insets(0, 0, 0, 0);
+		add(lbInfoAnonyme_p3, gbc);
+		
+		
+		JButton btnConnexionAnonyme = new JButton("Connexion anonyme");
+		btnConnexionAnonyme.setPreferredSize(new Dimension(formulaire.getPreferredSize().width, 25));
+		btnConnexionAnonyme.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				cmdConnexionAnonyme();
+			}
+		});
+		gbc.fill = GridBagConstraints.NONE;
+		gbc.gridx = 0;
+		gbc.gridy++;
+		gbc.gridwidth = 2;
+		gbc.anchor = GridBagConstraints.BASELINE;
+		gbc.insets = new Insets(25, 0, 0, 0);
+		add(btnConnexionAnonyme, gbc);
 	}
+	
 	
 	////////////////////////////////////////
 	//           COMMANDES LIEES          //
@@ -110,8 +268,8 @@ public class Connexion extends Menu {
 	 * à changer												<br/>
 	 */
 	public void cmdChangeCurseur(String type) {
-		controleur.rqtChangeCurseur(type);
-		controleur.rqtCouleurOublieMdp(this);
+		ControleurGeneral.ctrlAffichage.rqtChangeCurseur(type);
+		ControleurGeneral.ctrlAffichage.rqtCouleurOublieMdp(this);
 	}
 	
 	/**
@@ -120,6 +278,28 @@ public class Connexion extends Menu {
 	public void cmdMdpOublier() {
 		ControleurGeneral.ctrlBouton.rqtOublieDeMdp();
 	}
+	
+	/**
+	 * Demande l'ouverture d'une session à partir d'un identifiant et d'un mot de passe
+	 */
+	public void cmdConnexion() {
+		ControleurGeneral.ctrlBouton.rqtConnexion(txtId.getText(), txtMdp.getPassword());
+	}
+	
+	/**
+	 * Demande l'ouverture d'une session anonyme
+	 */
+	public void cmdConnexionAnonyme() {
+		ControleurGeneral.ctrlBouton.rqtConnexion("Anonyme", new char[0]);
+	}
+	
+	/**
+	 * Demande d'insciprtion
+	 */
+	public void cmdInscription() {
+		ControleurGeneral.ctrlBouton.rqtInscription();
+	}
+	
 	
 	////////////////////////////////////////
 	//         GETTEURS ET SETTEURS       //     
@@ -145,4 +325,28 @@ public class Connexion extends Menu {
 		lbOublieMdp.setForeground(couleur);
 	}
 	
+	/**
+	 * Setteur													<br/>
+	 * 															<br/>
+	 * @param alerte - String d'alerte en cas de formulaire 	<br/>
+	 * invalide 												<br/>
+	 */
+	public void setAlerte(String alerte) {
+		lbAlerte.setText(alerte);
+	}
+	
+	
+	////////////////////////////////////////
+	//            METHODES DU             //
+	//         CONTROLEUR GENERAL         //
+	////////////////////////////////////////
+	
+	@Override
+	public void renitialiser() {
+		lbOublieMdp.setForeground(COULEUR_EN_NON_SELEC);
+		ControleurGeneral.ctrlAffichage.rqtChangeCurseur("default");
+		txtId.setText("");
+		txtMdp.setText("");
+		lbAlerte.setText(" ");
+	}
 }

@@ -22,4 +22,8 @@ public abstract class Menu extends JPanel {
 	public void curseurHand() {
         setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 	}
+	
+	public void renitialiser() {
+		
+	}
 }
