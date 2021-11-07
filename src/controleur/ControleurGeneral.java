@@ -2,6 +2,16 @@ package controleur;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Properties;
+
+import javax.mail.Authenticator;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 import menu.Connexion;
 import modele.Compte;
@@ -16,6 +26,7 @@ public class ControleurGeneral extends Controleur {
 	protected final static String STR_UUID_ANONYME = "00000000-0000-0000-0000-000000000000";
 	
 	public static ControleurFichier ctrlFichier;			// Controleur assistant pour la gestion de fichiers
+	public static ControleurTemps ctrlTemps;				// Controleur assistant pour la gestion du temps
 	public static ControleurAffichage ctrlAffichage;		// Controleur assistant pour la gestion de l'affichage
 	public static ControleurBouton ctrlBouton;				// Controleur assistant pour la gestion des boutons
 	public static ControleurAudio ctrlAudio;				// Controleur assistant pour la gestion de l'audio
@@ -34,14 +45,15 @@ public class ControleurGeneral extends Controleur {
 		
 		// Lancement de l'application
 		ctrlFichier = new ControleurFichier();
+		ctrlTemps = new ControleurTemps();
 		ctrlFichier.addLogs("Satut	-	Lancement de l'application");
-		// Initialisation de l'affichage
-		ctrlAffichage = new ControleurAffichage(new Connexion(this));
-		ctrlFichier.addLogs("		-	Création des fenêtres");
 		// Chargement des données de connexion de l'applicaton
 		ctrlConnexion = new ControleurConnexion();
 		ctrlFichier.addLogs("		-	Récupération des données de connexion");
-		// Initialisation des attributs complémentaires
+		// Initialisation de l'affichage
+		ctrlAffichage = new ControleurAffichage(new Connexion(this));
+		ctrlFichier.addLogs("		-	Création des fenêtres");
+		// Initialisation des controleurs complémentaires
 		ctrlBouton = new ControleurBouton();
 		//ctrlAudio = new ControleurAudio();
 		ctrlFichier.addLogs("		-	Initialisation des contrôleurs complémentaires");
@@ -93,6 +105,40 @@ public class ControleurGeneral extends Controleur {
 			ctrlFichier.addLogs(err.toString(), true);
 		}
 		return new String(md.digest(msg.getBytes()));
+	}
+	
+	/**
+	 * Permet d'envoyer un mail à partir de l'adresse :			<br/>
+	 * tamagotchi.univ.ubs@gmail.com							<br/>
+	 * 															<br/>
+	 * @param sujet - String object du mail						<br/>
+	 * @param contenu - String corps du mail					<br/>
+	 * @param destinataire - String destinataire du mail		<br/>
+	 */
+	public void envoyerMail(String sujet, String contenu, String destinataire) {
+		// Configuration de la session d'envoie
+	    Properties config = new Properties();
+	    config.put("mail.smtp.host", "smtp.gmail.com");
+	    config.put("mail.smtp.port", "587");
+	    config.put("mail.smtp.auth", "true");
+	    config.put("mail.smtp.starttls.enable", "true"); //TLS
+	    Session session = Session.getDefaultInstance(config, new Authenticator() {
+	    	@Override
+	    	protected PasswordAuthentication getPasswordAuthentication() {
+	    		return new PasswordAuthentication("tamagotchi.univ.ubs@gmail.com", "@bcd3fgh");
+	    	}
+	    });
+	    // Création du message
+	    try {
+	    	MimeMessage mail = new MimeMessage(session);
+		  	mail.addRecipient(Message.RecipientType.TO, new InternetAddress(destinataire));
+			mail.setSubject(sujet);
+			mail.setText(contenu);
+			Transport.send(mail);
+	    } catch (MessagingException err) {
+	    	ctrlFichier.addLogs("Erreur - échec de l'envoie d'un mail", true);
+	    	ctrlFichier.addLogs(err.toString(), true);
+	    }
 	}
 	
 	/**

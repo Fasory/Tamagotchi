@@ -1,6 +1,7 @@
 package fenetre;
 
 import controleur.ControleurGeneral;
+import menu.MenuConfirmation;
 
 public class FenetreConfirmation extends Fenetre {
 	
@@ -34,4 +35,18 @@ public class FenetreConfirmation extends Fenetre {
 	}
 	
 	
+	////////////////////////////////////////
+	//         GETTEURS ET SETTEURS       //     
+	////////////////////////////////////////
+	
+	/**
+	 * Getteur											<br/>
+	 * 													<br/>
+	 * @return MenuConfirmation - renvoie le menu		<br/>
+	 * courant											<br/>
+	 */
+	public MenuConfirmation getMenuConfirmation() {
+		// Seul des MenuConfirmation sont dans le ContentPane de la fenêtre
+		return (MenuConfirmation) getContentPane();
+	}
 }

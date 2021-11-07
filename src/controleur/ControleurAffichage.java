@@ -59,9 +59,26 @@ public class ControleurAffichage extends ControleurGeneral {
 	/**
 	 * Ouvre dans la fenêtre le nouveau menu								<br/>
 	 * 																		<br/>
+	 * Par défaut, on ne supprime aucun menu avant							<br/>
+	 * d'ouvrir le menu demander											<br/>
+	 * 																		<br/>
 	 * @param menu - Menu que l'on souhaite afficher						<br/>
 	 */
 	public void ouvrirMenu(Menu menu) {
+		ouvrirMenu(menu, 0);
+	}
+	
+	/**
+	 * Ouvre dans la fenêtre le nouveau menu								<br/>
+	 * 																		<br/>
+	 * @param menu - Menu que l'on souhaite afficher						<br/>
+	 * @param retour - int représentant le nombre de						<br/>
+	 * menu qu'on supprime avant d'ouvrir le nouveau						<br/>
+	 * menu																	<br/>
+	 */
+	public void ouvrirMenu(Menu menu, int retour) {
+		for (int i = 0; i < retour; i++) pileMenu.pop();
+		renitialiserMenu();
 		pileMenu.push(menu);
 		fenetrePrincipale.changePanel(pileMenu.peek());
 		fenetrePrincipale.mettreEnAvant(true);
@@ -105,18 +122,31 @@ public class ControleurAffichage extends ControleurGeneral {
 	 */	
 	public void menuPrecedent() {
 		pileMenu.pop();
-		pileMenu.peek().renitialiser();
+		renitialiserMenu();
 		fenetrePrincipale.changePanel(pileMenu.peek());
 		fenetrePrincipale.mettreEnAvant(true);
 	}
 	
 	/**
-	 * Affiche une alerte dans le menu Connexion							<br/>
+	 * Rénitialise l'affichage du menu										<br/>
+	 */
+	public void renitialiserMenu() {
+		pileMenu.peek().renitialiser();
+	}
+	
+	/**
+	 * Affiche une alerte dans le menu										<br/>
 	 * 																		<br/>
 	 * @param msg - String à afficher										<br/>
 	 */
-	public void afficherAlerte(String msg) {
-		Connexion menu = (Connexion) pileMenu.peek();
-		menu.setAlerte(msg);
+	public void afficherAlerte(String alerteCible, String msg) {
+		Menu tempMenu = pileMenu.peek();
+		if (tempMenu.getClefLsAlerte().contains(alerteCible)) tempMenu.setAlerte(alerteCible, msg);
+		else ctrlFichier.addLogs("Erreur		- échec d'écrire dans un menu qui ne contient pas l'alerte cible voulu : " + alerteCible, true);
+	}
+	
+	
+	public void afficherAlerteConfirmation(String msg) {
+		fenetreDeConfirmation.getMenuConfirmation().setAlerte("saisie", msg);
 	}
 }

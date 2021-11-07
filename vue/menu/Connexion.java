@@ -22,13 +22,12 @@ import controleur.ControleurGeneral;
 public class Connexion extends Menu {
 	
 	// Constantes publics
-	public final Color COULEUR_EN_SELEC;
-	public final Color COULEUR_EN_NON_SELEC;
+	public final Color COULEUR_EN_SELEC = COULEUR_ALERTE;
+	public final Color COULEUR_EN_NON_SELEC = Color.BLUE;
 	// Autres attributs
 	private JLabel lbOublieMdp;
 	private JTextField txtId;
 	private JPasswordField txtMdp;
-	private JLabel lbAlerte;
 	
 	/**
 	 * Constructeur											<br/>
@@ -37,10 +36,6 @@ public class Connexion extends Menu {
 	 */
 	public Connexion(ControleurGeneral controleur) {
 		super(controleur);
-		
-		// Initialisation des attributs
-		COULEUR_EN_SELEC = Color.RED;
-		COULEUR_EN_NON_SELEC = Color.BLUE;
 		
 		// Partie Affichage
 		setLayout(new GridBagLayout());
@@ -179,14 +174,15 @@ public class Connexion extends Menu {
 		add(lbInfo_p2, gbc);
 		
 		
-		lbAlerte = new JLabel(" ");
-		lbAlerte.setForeground(COULEUR_EN_SELEC);
+		JLabel lbAlerte = new JLabel(" ");
+		lbAlerte.setForeground(COULEUR_ALERTE);
 		gbc.fill = GridBagConstraints.NONE;
 		gbc.gridx = 0;
 		gbc.gridy++;
 		gbc.gridwidth = 1;
 		gbc.anchor = GridBagConstraints.BASELINE;
 		gbc.insets = new Insets(5, 0, 0, 0);
+		lsAlerte.put("general", lbAlerte);
 		add(lbAlerte, gbc);
 		
 		
@@ -325,20 +321,9 @@ public class Connexion extends Menu {
 		lbOublieMdp.setForeground(couleur);
 	}
 	
-	/**
-	 * Setteur													<br/>
-	 * 															<br/>
-	 * @param alerte - String d'alerte en cas de formulaire 	<br/>
-	 * invalide 												<br/>
-	 */
-	public void setAlerte(String alerte) {
-		lbAlerte.setText(alerte);
-	}
-	
 	
 	////////////////////////////////////////
-	//            METHODES DU             //
-	//         CONTROLEUR GENERAL         //
+	//          METHODES INTERNES         //
 	////////////////////////////////////////
 	
 	@Override
@@ -347,6 +332,6 @@ public class Connexion extends Menu {
 		ControleurGeneral.ctrlAffichage.rqtChangeCurseur("default");
 		txtId.setText("");
 		txtMdp.setText("");
-		lbAlerte.setText(" ");
+		ControleurGeneral.ctrlAffichage.afficherAlerte("general", " ");
 	}
 }

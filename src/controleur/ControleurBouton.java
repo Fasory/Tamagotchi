@@ -1,11 +1,11 @@
 package controleur;
 
 import menu.Credits;
-import menu.Deconnexion;
+import menu.DeconnexionConfirm;
 import menu.Inscription;
 import menu.Option;
 import menu.OubliMdp;
-import menu.Quitter;
+import menu.QuitterConfirm;
 
 /**
  * Sous contrôleur qui a pour objectif de gérer les		<br/>
@@ -75,7 +75,7 @@ public class ControleurBouton extends ControleurGeneral {
 	* Demande une confirmation pour fermer l'application					<br/>
 	*/
 	public void rqtDemandeQuitter() {
-		ctrlAffichage.ouvrirMenuConfirmation(new Quitter(this));
+		ctrlAffichage.ouvrirMenuConfirmation(new QuitterConfirm(this));
 	}
 	
 	/**
@@ -116,7 +116,7 @@ public class ControleurBouton extends ControleurGeneral {
 	* Demande une confirmation pour déconnecte l'utilisateur				<br/>
 	*/
 	public void rqtDemandeDeconnexion() {
-		ctrlAffichage.ouvrirMenuConfirmation(new Deconnexion(this));
+		ctrlAffichage.ouvrirMenuConfirmation(new DeconnexionConfirm(this));
 	}
 	
 	/**
@@ -138,7 +138,6 @@ public class ControleurBouton extends ControleurGeneral {
 	*/
 	public void rqtDeconnexion() {
 		ctrlConnexion.deconnexion();
-		ctrlAffichage.menuPrecedent();
 	}
 	
 	/**
@@ -148,12 +147,29 @@ public class ControleurBouton extends ControleurGeneral {
 	 * @param mdp - char[] représentant le mot de passe						<br/>
 	 */
 	public void rqtConnexion(String utilisateur, char[] mdp) {
-		String strMdp = new String(mdp);
-		if (utilisateur.equals("")) {
-			if (strMdp.equals("")) ctrlAffichage.afficherAlerte("Veuillez saisir votre identifiant et votre mot de passe.");
-			else ctrlAffichage.afficherAlerte("Veuillez saisir votre identifiant.");
-		} else if (strMdp.equals("") && !utilisateur.equals(NOM_ANONYME)) ctrlAffichage.afficherAlerte("Veuillez saisir votre mot de passe.");
-		else if (!ctrlConnexion.connexion(utilisateur, strMdp)) ctrlAffichage.afficherAlerte("Votre identifiant ou votre mot de passe est incorret.");
+		ctrlConnexion.connexion(utilisateur, new String(mdp));
+	}
+	
+	/**
+	 * Tentative d'inscription												<br/>
+	 * 																		<br/>
+	 * @param utilisateur - String représentant le nom du joueur			<br/>
+	 * @param mail - String représentant l'adresse mail du joueur			<br/>
+	 * @param mdp - char[] représentant le mot de passe						<br/>
+	 * @param mdpConfirme - char[] représentant la confirmation du			<br/>
+	 * mot de passe															<br/>
+	 */
+	public void rqtTentativeInscription(String utilisateur, String mail, char[] mdp, char[] mdpConfirme) {
+		ctrlConnexion.inscription(utilisateur, mail, new String(mdp), new String(mdpConfirme));
+	}
+	
+	/**
+	 * Vérification du code pour valider l'inscription						<br/>
+	 * 																		<br/>
+	 * @param code - String représentant le code à vérifier					<br/>
+	 */
+	public void rqtConfirmeCode(String code) {
+		ctrlConnexion.verificationCode(code);
 	}
 	
 	

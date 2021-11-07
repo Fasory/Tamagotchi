@@ -2,15 +2,15 @@ package menu;
 
 import controleur.ControleurGeneral;
 
-public class Deconnexion extends MenuConfirmation {
+public class QuitterConfirm extends MenuConfirmation {
 	
 	/**
 	 * Contructeur
 	 * 
 	 * @param controleur - Contoleur de l'application	<br/>
 	 */
-	public Deconnexion(ControleurGeneral controleur) {
-		this(controleur, "Êtes-vous sûr de vouloir vous déconnecter ?");
+	public QuitterConfirm(ControleurGeneral controleur) {
+		this(controleur, "Êtes-vous sûr de vouloir fermer l'application ?");
 	}
 	
 	/**
@@ -20,7 +20,7 @@ public class Deconnexion extends MenuConfirmation {
 	 * @param msg - String afficher pour demander la	<br/>
 	 * confirmation de quitter							<br/>
 	 */
-	public Deconnexion(ControleurGeneral controleur, String msg) {
+	public QuitterConfirm(ControleurGeneral controleur, String msg) {
 		super(controleur, msg, "Oui", "Annuler");
 	}
 	
@@ -29,7 +29,6 @@ public class Deconnexion extends MenuConfirmation {
 	 */
 	@Override
 	public void cmdConfirmation() {
-		ControleurGeneral.ctrlBouton.rqtDeconnexion();
-		ControleurGeneral.ctrlBouton.rqtRetourConfirmation();
+		ControleurGeneral.ctrlBouton.rqtQuitter();
 	}
 }
