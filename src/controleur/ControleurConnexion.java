@@ -147,7 +147,7 @@ public class ControleurConnexion extends ControleurGeneral {
 		String sujet = "Confirmation de création de compte";
 		String contenu = "Bienvenue " + compteInscription.getUtilisateur() + ",\r\n"
 				       + "\r\n"
-				       + "Le monde des Tamagotchis n'est plus très loin !"
+				       + "Le monde des Tamagotchis n'est plus très loin !\r\n"
 				       + "Veuillez saisir le code suivant pour finaliser votre inscription : " + code + "\r\n"
 				       + "\r\n"
 				       + "Bon jeu !";
