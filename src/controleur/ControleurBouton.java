@@ -1,6 +1,7 @@
 package controleur;
 
 import menu.Credits;
+import menu.CreerPartie;
 import menu.DeconnexionConfirm;
 import menu.Inscription;
 import menu.Option;
@@ -46,7 +47,7 @@ public class ControleurBouton extends ControleurGeneral {
 	* Demande de changement de menu : MenuCreerPartie		<br/>
 	*/
 	public void rqtMenuCreerPartie() {
-		
+		ctrlAffichage.ouvrirMenu(new CreerPartie(this));
 	}
 	
 	/**
