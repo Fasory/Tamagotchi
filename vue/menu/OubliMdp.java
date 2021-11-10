@@ -23,7 +23,7 @@ public class OubliMdp extends Menu {
 	/**
 	 * Constructeur										<br/>
 	 * 													<br/>
-	 * @param controleur- Contoleur de l'application	<br/>	
+	 * @param controleur- Controleur de l'application	<br/>	
 	 */
 	public OubliMdp(ControleurGeneral controleur) {
 		super(controleur);
@@ -74,7 +74,7 @@ public class OubliMdp extends Menu {
 		formulaire.add(txtMail, gbc);
 		
 		// Construction du menu
-		JLabel lbInfo_p1 = new JLabel("Veuillez entrer votre identifiant et votre adresse mail afin de rénitialiser");
+		JLabel lbInfo_p1 = new JLabel("Veuillez entrer votre identifiant et votre adresse mail afin de réinitialiser");
 		gbc.gridx = 0;
 		gbc.gridy = 0;
 		gbc.gridwidth = 1;
@@ -92,7 +92,7 @@ public class OubliMdp extends Menu {
 		add(lbInfo_p2, gbc);
 		
 		
-		JLabel lbConsigne_p1 = new JLabel("Une fois la demande effectuer, entrez le code qui vous a été envoyé");
+		JLabel lbConsigne_p1 = new JLabel("Une fois la demande effectuée, entrez le code qui vous a été envoyé");
 		gbc.gridx = 0;
 		gbc.gridy++;
 		gbc.gridwidth = 1;
@@ -127,7 +127,7 @@ public class OubliMdp extends Menu {
 		add(lbInfoConfirmation, gbc);
 		
 		
-		JButton btnRenitialisation = new JButton("Rénitialiser");
+		JButton btnRenitialisation = new JButton("Réinitialiser");
 		btnRenitialisation.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				cmdRenitialisation();
