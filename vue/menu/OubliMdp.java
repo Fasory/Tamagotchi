@@ -80,7 +80,7 @@ public class OubliMdp extends Menu {
 		gbc.gridwidth = 1;
 		gbc.anchor = GridBagConstraints.BASELINE_LEADING;
 		gbc.insets = new Insets(0, 0, 0, 0);
-		add(lbInfo_p1, gbc);
+		add(lbInfo_p1, gbc);	
 		
 		
 		JLabel lbInfo_p2 = new JLabel("votre mot de passe.");

@@ -1,0 +1,46 @@
+****************************************
+		-	16:32:19 - 10/11/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+Erreur - échec de l'envoie d'un mail
+javax.mail.MessagingException: Could not connect to SMTP host: smtp.gmail.com, port: 587;
+  nested exception is:
+	java.net.NoRouteToHostException: Aucun chemin d'accès pour atteindre l'hôte cible
+****************************************
+		-	16:35:15 - 10/11/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	16:37:15 - 10/11/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	16:42:00 - 10/11/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	16:42:05 - 10/11/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	16:43:22 - 10/11/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
