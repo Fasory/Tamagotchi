@@ -3,16 +3,13 @@ package menu;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JSlider;
-import javax.swing.JTextField;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
@@ -31,7 +28,6 @@ public class Option extends Menu {
 		
 		
 		JLabel txtVolume = new JLabel("Volume");
-		txtVolume.setPreferredSize(new Dimension(95, 25));
 		gbc.gridx = 0;
 		gbc.gridy = 0;
 		gbc.gridwidth = 1;
@@ -54,7 +50,6 @@ public class Option extends Menu {
 		add(barreVolume, gbc);
 		
 		JLabel txtMusique = new JLabel("Musique");
-		txtMusique.setPreferredSize(new Dimension(95, 25));
 		gbc.gridx = 0;
 		gbc.gridy = 2;
 		gbc.gridwidth = 1;

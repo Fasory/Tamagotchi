@@ -7,6 +7,8 @@ import menu.Inscription;
 import menu.Option;
 import menu.OubliMdp;
 import menu.QuitterConfirm;
+import menu.Score;
+import menu.SelecPartie;
 
 /**
  * Sous contrôleur qui a pour objectif de gérer les		<br/>
@@ -54,7 +56,7 @@ public class ControleurBouton extends ControleurGeneral {
 	* Demande de changement de menu : MenuSelecPartie		<br/>
 	*/
 	public void rqtMenuSelecPartie() {
-	
+		ctrlAffichage.ouvrirMenu(new SelecPartie(this));
 	}
 	
 	/**
@@ -69,7 +71,7 @@ public class ControleurBouton extends ControleurGeneral {
 	* Demande de changement de menu : MenuScore				<br/>
 	*/
 	public void rqtMenuScore() {
-	
+		ctrlAffichage.ouvrirMenu(new Score(this));
 	}
 	
 	/**
@@ -171,6 +173,19 @@ public class ControleurBouton extends ControleurGeneral {
 	 */
 	public void rqtConfirmeCode(String code) {
 		ctrlConnexion.verificationCode(code);
+	}
+	
+	
+	////////////////////////////////////////
+	//              REQUETES              //
+	//               OPTION               //
+	////////////////////////////////////////
+	
+	/**
+	 * Change le voulume de l'application									<br/>
+	 */
+	public void rqtChangeVolume() {
+		
 	}
 	
 	

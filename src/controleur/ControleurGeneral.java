@@ -1,9 +1,6 @@
 package controleur;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.Properties;
-
 import javax.mail.Authenticator;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -31,6 +28,7 @@ public class ControleurGeneral extends Controleur {
 	public static ControleurBouton ctrlBouton;				// Controleur assistant pour la gestion des boutons
 	public static ControleurAudio ctrlAudio;				// Controleur assistant pour la gestion de l'audio
 	public static ControleurConnexion ctrlConnexion;		// Controleur assistant pour la gestion de l'utilisateur
+	public static ControleurSecurite ctrlSecurite;			// Controleur assistant pour la gestion de la sécurité des données
 	
 	protected static Compte compte;							// Compte de l'utilisateur
 	
@@ -45,6 +43,7 @@ public class ControleurGeneral extends Controleur {
 		
 		// Lancement de l'application
 		ctrlFichier = new ControleurFichier();
+		ctrlSecurite = new ControleurSecurite();
 		ctrlTemps = new ControleurTemps();
 		ctrlFichier.addLogs("Satut	-	Lancement de l'application");
 		// Chargement des données de connexion de l'applicaton
@@ -88,23 +87,6 @@ public class ControleurGeneral extends Controleur {
 	 */
 	public static void main(String[] args) {
 		new ControleurGeneral();
-	}
-	
-	/**
-	 * Permet de hasher une chaîne de caractères				<br/>
-	 * 															<br/>
-	 * @param msg - String dont on souhaite obtenir le hash		<br/>
-	 * @return String - hash du msg								<br/>
-	 */
-	public String hash(String msg) {
-		MessageDigest md = null;
-		try {
-			md = MessageDigest.getInstance("SHA-256");
-		} catch (NoSuchAlgorithmException err) {
-			ctrlFichier.addLogs("Erreur - échec de chargement de l'agorithme de hashage (SHA-256)", true);
-			ctrlFichier.addLogs(err.toString(), true);
-		}
-		return new String(md.digest(msg.getBytes()));
 	}
 	
 	/**

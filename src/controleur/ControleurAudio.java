@@ -17,7 +17,7 @@ public class ControleurAudio extends ControleurGeneral {
 	/**
 	 * Constructeur													<br/>
 	 * 																<br/>
-	 * Initialisation du controleur des boutons de l'application	<br/>
+	 * Initialisation du controleur audio							<br/>
 	 */
 	public ControleurAudio() {
 		super(estCree);

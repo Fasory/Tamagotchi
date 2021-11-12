@@ -259,7 +259,7 @@ public class ControleurFichier extends ControleurGeneral {
 				return false;
 			}
 			// Vériifcaion de l'adresse mail si l'utilisateur est anonyme
-			if (ln.equals(NOM_ANONYME) && !hash("").equals(scanne.nextLine())) {
+			if (ln.equals(NOM_ANONYME) && !ctrlSecurite.hash("").equals(scanne.nextLine())) {
 				addLogs("Warning - le fichier " + fichier.getPath() + " a été modifié, il contient des lignes supplémentaires indésirables", true);
 				scanne.close();
 				return false;

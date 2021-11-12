@@ -28,7 +28,7 @@ public class ControleurConnexion extends ControleurGeneral {
 		// Compte null tant qu'aucune connexion est effectué
 		compte = null;
 		lsCompte = ctrlFichier.getListeCompte();
-		if (lsCompte.get(NOM_ANONYME) == null) lsCompte.put(NOM_ANONYME, new Compte(NOM_ANONYME, hash(""), hash(""), UUID.fromString(STR_UUID_ANONYME), new HashMap<UUID, Partie>(NB_MAX_PARTIE)));
+		if (lsCompte.get(NOM_ANONYME) == null) lsCompte.put(NOM_ANONYME, new Compte(NOM_ANONYME, ctrlSecurite.hash(""), ctrlSecurite.hash(""), UUID.fromString(STR_UUID_ANONYME), new HashMap<UUID, Partie>(NB_MAX_PARTIE)));
 	}
 	
 	/**
@@ -50,7 +50,7 @@ public class ControleurConnexion extends ControleurGeneral {
 			ctrlAffichage.afficherAlerte("general", "Veuillez saisir votre mot de passe.");
 		} else {
 			Compte compteTemp = lsCompte.get(utilisateur);
-			if (compteTemp != null && hash(mdp).equals(compteTemp.getMdp())) {
+			if (compteTemp != null && ctrlSecurite.hash(mdp).equals(compteTemp.getMdp())) {
 				compte = compteTemp;
 				ControleurGeneral.ctrlAffichage.ouvrirMenu(new MenuPrincipal(this));
 			} else {
@@ -132,7 +132,7 @@ public class ControleurConnexion extends ControleurGeneral {
 		// Si conformtité des champs
 		// Vérification de l'adresse mail
 		if (possibleInscription) {
-			compteInscription = new Compte(utilisateur, hash(mdp), mail);
+			compteInscription = new Compte(utilisateur, ctrlSecurite.hash(mdp), mail);
 			code = null;
 			ctrlAffichage.ouvrirMenuConfirmation(new InscriptionConfirm(this));
 			confirmationInscription();
@@ -157,7 +157,7 @@ public class ControleurConnexion extends ControleurGeneral {
 	
 	public void verificationCode(String codeSaisie) {
 		if (codeSaisie.equals(code)) {
-			compte = new Compte(compteInscription.getUtilisateur(), compteInscription.getMdp(), hash(compteInscription.getMail()), compteInscription.getId(), compteInscription.getParties());
+			compte = new Compte(compteInscription.getUtilisateur(), compteInscription.getMdp(), ctrlSecurite.hash(compteInscription.getMail()), compteInscription.getId(), compteInscription.getParties());
 			lsCompte.put(compte.getUtilisateur(), compte);
 			compteInscription = null;
 			ctrlAffichage.fermerMenuConfirmation();
