@@ -1,4 +1,4 @@
-package menu;
+package vue.menu;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;

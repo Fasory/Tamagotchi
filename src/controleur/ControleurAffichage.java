@@ -4,9 +4,9 @@ import java.util.Stack;
 
 import fenetre.FenetreConfirmation;
 import fenetre.FenetrePrincipale;
-import menu.Connexion;
-import menu.Menu;
-import menu.MenuConfirmation;
+import vue.menu.Connexion;
+import vue.menu.Menu;
+import vue.menu.MenuConfirmation;
 
 public class ControleurAffichage extends ControleurGeneral {
 	

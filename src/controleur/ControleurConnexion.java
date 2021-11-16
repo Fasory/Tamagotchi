@@ -4,10 +4,10 @@ import java.util.HashMap;
 import java.util.Random;
 import java.util.UUID;
 
-import menu.InscriptionConfirm;
-import menu.MenuPrincipal;
-import modele.Compte;
-import modele.Partie;
+import vue.menu.InscriptionConfirm;
+import vue.menu.MenuPrincipal;
+import vue.modele.Compte;
+import vue.modele.Partie;
 
 public class ControleurConnexion extends ControleurGeneral {
 	
@@ -49,9 +49,8 @@ public class ControleurConnexion extends ControleurGeneral {
 		} else if (mdp.equals("") && !utilisateur.equals(NOM_ANONYME)) {
 			ctrlAffichage.afficherAlerte("general", "Veuillez saisir votre mot de passe.");
 		} else {
-			Compte compteTemp = lsCompte.get(utilisateur);
-			if (compteTemp != null && ctrlSecurite.hash(mdp).equals(compteTemp.getMdp())) {
-				compte = compteTemp;
+			compte = lsCompte.get(utilisateur);
+			if (compte != null && ctrlSecurite.hash(mdp).equals(compte.getMdp())) {
 				ControleurGeneral.ctrlAffichage.ouvrirMenu(new MenuPrincipal(this));
 			} else {
 				ctrlAffichage.afficherAlerte("general", "Votre identifiant ou votre mot de passe est incorret.");
@@ -63,6 +62,7 @@ public class ControleurConnexion extends ControleurGeneral {
 	 * Perd le focus du compte ouvert
 	 */
 	public void deconnexion() {
+		ctrlFichier.enregistreCompte(compte);
 		compte = null;
 		ctrlAffichage.menuPrecedent();
 	}
@@ -134,8 +134,9 @@ public class ControleurConnexion extends ControleurGeneral {
 		if (possibleInscription) {
 			compteInscription = new Compte(utilisateur, ctrlSecurite.hash(mdp), mail);
 			code = null;
-			ctrlAffichage.ouvrirMenuConfirmation(new InscriptionConfirm(this));
 			confirmationInscription();
+			if (BY_PASS) verificationCode(this.code);
+			else ctrlAffichage.ouvrirMenuConfirmation(new InscriptionConfirm(this));
 		}
 	}
 	
@@ -144,14 +145,16 @@ public class ControleurConnexion extends ControleurGeneral {
 		Random rng = new Random();
 		code = "";
 		for (int i = 0; i < TAILLE_CODE; i++) code += rng.nextInt(10);
-		String sujet = "Confirmation de création de compte";
-		String contenu = "Bienvenue " + compteInscription.getUtilisateur() + ",\r\n"
-				       + "\r\n"
-				       + "Le monde des Tamagotchis n'est plus très loin !\r\n"
-				       + "Veuillez saisir le code suivant pour finaliser votre inscription : " + code + "\r\n"
-				       + "\r\n"
-				       + "Bon jeu !";
-		envoyerMail(sujet, contenu, compteInscription.getMail());
+		if (!BY_PASS) {
+			String sujet = "Confirmation de création de compte";
+			String contenu = "Bienvenue " + compteInscription.getUtilisateur() + ",\r\n"
+					       + "\r\n"
+					       + "Le monde des Tamagotchis n'est plus très loin !\r\n"
+					       + "Veuillez saisir le code suivant pour finaliser votre inscription : " + code + "\r\n"
+					       + "\r\n"
+					       + "Bon jeu !";
+			envoyerMail(sujet, contenu, compteInscription.getMail());
+		}
 	}
 	
 	

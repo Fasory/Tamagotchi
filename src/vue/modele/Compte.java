@@ -1,4 +1,4 @@
-package modele;
+package vue.modele;
 
 import java.util.HashMap;
 import java.util.UUID;
@@ -68,6 +68,14 @@ public class Compte {
 	
 	public UUID getId() {
 		return id;
+	}
+	
+	public String getStrIdParties() {
+		String strIdParties = "";
+		for (UUID id :  parties.keySet().toArray(new UUID[parties.keySet().size()])) {
+			strIdParties += id.toString() + " ";
+		}
+		return strIdParties;
 	}
 	
 	public HashMap<UUID, Partie> getParties() {

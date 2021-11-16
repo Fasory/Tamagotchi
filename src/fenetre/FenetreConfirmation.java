@@ -1,7 +1,7 @@
 package fenetre;
 
 import controleur.ControleurGeneral;
-import menu.MenuConfirmation;
+import vue.menu.MenuConfirmation;
 
 public class FenetreConfirmation extends Fenetre {
 	

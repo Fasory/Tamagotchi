@@ -1,4 +1,4 @@
-package menu;
+package vue.menu;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;

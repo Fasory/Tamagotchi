@@ -3,14 +3,15 @@ package controleur;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Scanner;
 import java.util.UUID;
 
-import modele.Compte;
-import modele.Partie; 
+import vue.modele.Compte;
+import vue.modele.Partie; 
 
 /**
  * Sous contrôleur qui a pour but de gérer la	<br/>
@@ -26,11 +27,11 @@ public class ControleurFichier extends ControleurGeneral {
 	
 	private File logs;												// Fichier logs du jour courant
 	private FileOutputStream logsOutStream;							// Flux de sortie pour écrire dans le fichier logs du jour courant
-	private File dirLogs;											// Répertoire contenant tous les logs
+	private File repLogs;											// Répertoire contenant tous les logs
 	private boolean erreurLogs;										// Repère binaire si les logs du jour courant contiennent une erreur
 	private final File dirData = new File("data");					// Répertoire contenant les données sauvegardées
-	private final File dirJoueur = new File(dirData, "user");		// Répertoire contenant les fichiers de données de chaque utilisateur
-	private final File dirSauvegarde = new File(dirData, "save");	// Répertoire contenant les sauvegardes des parties
+	private final File repJoueur = new File(dirData, "user");		// Répertoire contenant les fichiers de données de chaque utilisateur
+	private final File repSauvegarde = new File(dirData, "save");	// Répertoire contenant les sauvegardes des parties
 	
 	/**
 	 * Constructeur													<br/>
@@ -79,11 +80,11 @@ public class ControleurFichier extends ControleurGeneral {
 	 * Initalisation de logs	<br/>
 	 */
 	private void init_logs() {
-		dirLogs = new File("logs");
+		repLogs = new File("logs");
 		Calendar date = Calendar.getInstance();
 		// Affichage par deux digit (exemple : 9-1-2021 -> 09-01-2021)
-		logs = new File(dirLogs, "logs-" + date.get(Calendar.YEAR) + "-" + (((date.get(Calendar.MONTH)+1)<10) ? "0" : "") + (date.get(Calendar.MONTH)+1) + "-" + ((date.get(Calendar.DAY_OF_MONTH)<10) ? "0" : "") + date.get(Calendar.DAY_OF_MONTH) + ".txt");
-		if (!dirExiste(dirLogs)) creeDir(dirLogs);
+		logs = new File(repLogs, "logs-" + date.get(Calendar.YEAR) + "-" + (((date.get(Calendar.MONTH)+1)<10) ? "0" : "") + (date.get(Calendar.MONTH)+1) + "-" + ((date.get(Calendar.DAY_OF_MONTH)<10) ? "0" : "") + date.get(Calendar.DAY_OF_MONTH) + ".txt");
+		if (!repExiste(repLogs)) creeRep(repLogs);
 		if (!logsExiste()) {
 			erreurLogs = false;
 			creeLogs();
@@ -104,7 +105,7 @@ public class ControleurFichier extends ControleurGeneral {
 	 * Initialisation de data		<br/>
 	 */
 	private void init_data() {
-		if (!dirExiste(dirData)) creeDir(dirData);
+		if (!repExiste(dirData)) creeRep(dirData);
 	}
 	
 	/**
@@ -113,8 +114,8 @@ public class ControleurFichier extends ControleurGeneral {
 	 * @param dir - répertoire dont il faut vérifier l'existence	<br/>
 	 * @return bool - existence du dossier dir						<br/>
 	 */
-	private static boolean dirExiste(File dir) {
-		return dir.exists() && dir.isDirectory();
+	private static boolean repExiste(File rep) {
+		return rep.exists() && rep.isDirectory();
 	}
 	
 	/**
@@ -125,6 +126,16 @@ public class ControleurFichier extends ControleurGeneral {
 	 */
 	public static boolean fichierExiste(String chemin) {
 		File fichier = new File(chemin);
+		return fichier.exists() && fichier.isFile();
+	}
+	
+	/**
+	 * Vérifier l'existence d'un fichier							<br/>
+	 * 																<br/>
+	 * @param ficiher - File représentant le fichier				<br/>
+	 * @return bool - existence du fichier							<br/>
+	 */
+	public static boolean fichierExiste(File fichier) {
 		return fichier.exists() && fichier.isFile();
 	}
 	
@@ -142,10 +153,10 @@ public class ControleurFichier extends ControleurGeneral {
 	 * 											<br/>
 	 * @param dir - créé le répertoire dir		<br/>
 	 */
-	private void creeDir(File dir) {
-		if (!dir.mkdir()) {
-			if (dir.getName() != "logs") addLogs("Erreur		- échec de la création du dossier " + dir.getName(), true);
-			else System.err.println("Erreur - échec de la création du fichier " + dir.getName());
+	private void creeRep(File rep) {
+		if (!rep.mkdir()) {
+			if (rep.getName() != "logs") addLogs("Erreur	- échec de la création du dossier " + rep.getName(), true);
+			else System.err.println("Erreur - échec de la création du fichier " + rep.getName());
 		}
 	}
 	
@@ -153,12 +164,12 @@ public class ControleurFichier extends ControleurGeneral {
 	 * Créer un fichier le fichier log du jour		<br/>
 	 */
 	private void creeLogs() {
-		if (!(dirLogs.exists() && dirLogs.isDirectory())) if (!dirLogs.mkdir()) System.err.println("Erreur - échec de la création du répertoire logs");
+		if (!(repLogs.exists() && repLogs.isDirectory())) if (!repLogs.mkdir()) System.err.println("Erreur - échec de la création du répertoire logs");
 		// Fichier logs du jour
 		try {
 			logs.createNewFile();
 		} catch (Exception err) {
-			System.err.println("Erreur - échec de la création du fichier " + logs.getName());
+			System.err.println("Erreur	- échec de la création du fichier " + logs.getName());
 		}
 	}
 	
@@ -184,6 +195,10 @@ public class ControleurFichier extends ControleurGeneral {
 		if (typeErreur) erreurLogs = true;
 		try {
 			logsOutStream.write((rapport + "\n").getBytes());
+			if (DEBUG) {
+				if (typeErreur) System.err.println(rapport);
+				else System.out.println(rapport);
+			}
 		} catch (Exception err) {
 			System.err.println(err);
 		}
@@ -195,8 +210,8 @@ public class ControleurFichier extends ControleurGeneral {
 	 */
 	public HashMap<String, Compte> getListeCompte() {
 		HashMap<String, Compte> lsCompte = new HashMap<String, Compte>();
-		if (dirExiste(dirJoueur)) {
-			for (File objet : dirJoueur.listFiles()) {
+		if (repExiste(repJoueur)) {
+			for (File objet : repJoueur.listFiles()) {
 				if (objet.isFile() && fichierUtilisateurIntegre(objet)) {
 					try {
 						Scanner scanne = new Scanner(objet);
@@ -212,7 +227,7 @@ public class ControleurFichier extends ControleurGeneral {
 						lsCompte.put(utilisateur, new Compte(utilisateur, mdp, mail, id, partie));
 						scanne.close();
 					} catch (FileNotFoundException err) {
-						addLogs("Erreur - échec de lecture de fichier d'utilisateur " + objet.getName(), true);
+						addLogs("Erreur	- échec de lecture de fichier d'utilisateur " + objet.getName(), true);
 						addLogs(err.toString(), true);
 					}
 				}
@@ -245,7 +260,7 @@ public class ControleurFichier extends ControleurGeneral {
 			// Vérification entre nom du fichier qui est l'UUID de l'utilisateur et l'UUID dans le fichier (1er ligne)
 			String ln = scanne.nextLine();
 			if (!fichier.getName().equals(ln)) {
-				addLogs("Warning - un fichier n'est pas reconnu dans le répertoire " + dirJoueur.getPath() + " : " + fichier.getName(), true);
+				addLogs("Warning	-	Un fichier n'est pas reconnu dans le répertoire " + repJoueur.getPath() + " : " + fichier.getName(), true);
 				scanne.close();
 				return false;
 			}
@@ -254,13 +269,13 @@ public class ControleurFichier extends ControleurGeneral {
 			ln = scanne.nextLine();
 			// Vérification de l'UUID si le compte est anonyme
 			if (ln.equals(NOM_ANONYME) && !temp.equals(STR_UUID_ANONYME)) {
-				addLogs("Warning - le fichier " + fichier.getPath() + " a été modifié, l'UUID est différent de celui attendu", true);
+				addLogs("Warning	-	Le fichier " + fichier.getPath() + " a été modifié, l'UUID est différent de celui attendu", true);
 				scanne.close();
 				return false;
 			}
 			// Vériifcaion de l'adresse mail si l'utilisateur est anonyme
 			if (ln.equals(NOM_ANONYME) && !ctrlSecurite.hash("").equals(scanne.nextLine())) {
-				addLogs("Warning - le fichier " + fichier.getPath() + " a été modifié, il contient des lignes supplémentaires indésirables", true);
+				addLogs("Warning	-	Le fichier " + fichier.getPath() + " a été modifié, il contient des lignes supplémentaires indésirables", true);
 				scanne.close();
 				return false;
 			}
@@ -272,24 +287,24 @@ public class ControleurFichier extends ControleurGeneral {
 			for (String strUUID : ln.split(" ")) {
 				cpt++;
 				if (cpt > NB_MAX_PARTIE) {
-					addLogs("Warning - le fichier " + fichier.getPath() + " a été modifié, il contient de " + NB_MAX_PARTIE + " références à des parties", true);
+					addLogs("Warning	-	Le fichier " + fichier.getPath() + " a été modifié, il contient de " + NB_MAX_PARTIE + " références à des parties", true);
 					scanne.close();
 					return false;
 				}
-				if (!fichierExiste(dirSauvegarde.getName() + "/" + strUUID)) {
+				if (!fichierExiste(repSauvegarde.getName() + "/" + strUUID)) {
 					// On se contente juste d'informer la disparition d'une sauvegarde
-					addLogs("Warning - une sauvegarde n'existe plus : " + strUUID, true);
+					addLogs("Warning -	Une sauvegarde n'existe plus : " + strUUID, true);
 				}
 			}
 			// Vérification de l'inexistence des lignes suivantes
 			if (scanne.hasNextLine()) {
-				addLogs("Warning - le fichier " + fichier.getPath() + " a été modifié, il contient des lignes supplémentaires indésirables", true);
+				addLogs("Warning	-	Le fichier " + fichier.getPath() + " a été modifié, il contient des lignes supplémentaires indésirables", true);
 				scanne.close();
 				return false;
 			}
 			scanne.close();
-		} catch (FileNotFoundException err) {
-			addLogs("Erreur - échec de lecture de fichier d'utilisateur " + fichier.getName(), true);
+		} catch (Exception err) {
+			addLogs("Erreur	- échec de lecture de fichier d'utilisateur " + fichier.getName(), true);
 			addLogs(err.toString(), true);
 			return false;
 		}
@@ -297,5 +312,37 @@ public class ControleurFichier extends ControleurGeneral {
 	}
 	
 	
-	
+	public void enregistreCompte(Compte compte) {
+		File fichierCompte = new File(repJoueur, compte.getId().toString());
+		// Vérification de l'existence du fichier associé compte
+		if (!fichierExiste(fichierCompte)) {
+			try {
+				if (!repExiste(fichierCompte.getParentFile())) creeRep(fichierCompte.getParentFile());
+				fichierCompte.createNewFile();
+			} catch (Exception err) {
+				addLogs("Erreur	- échec de la création du fichier du compte " + compte.getId().toString(), true);
+				addLogs(err.toString(), true);
+			}
+		}
+		try {
+			// Structuration des données
+			String contenu = compte.getId().toString() + "\n"
+						   + compte.getUtilisateur() + "\n"
+						   + compte.getMail() + "\n"
+						   + compte.getMdp() + "\n"
+						   + compte.getStrIdParties();
+			if (DEBUG) System.out.println("\n[-- CONTENU DU FICHIER " + fichierCompte.getName() + " --]\n"+ contenu + "\n[-- ------------------------------------------------------- --]\n");
+			// Cryptage des données
+			////////////////////////////////////////////////////////////////contenu = ctrlSecurite.crypter(contenu);
+			if (DEBUG) System.out.println("\n[-- CONTENU DU FICHIER " + fichierCompte.getName() + " --]\n"+ contenu + "\n[-- ------------------------------------------------------- --]\n");
+			// Ecriture des données
+			PrintWriter ecrireFichier = new PrintWriter(fichierCompte);
+			ecrireFichier.println(contenu);
+			ecrireFichier.close();
+		} catch (Exception err) {
+			addLogs("Erreur	- échec de l'écriture du compte " + compte.getId().toString(), true);
+			addLogs(err.toString(), true);
+		}
+		
+	}
 }

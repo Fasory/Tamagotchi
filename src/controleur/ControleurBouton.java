@@ -1,14 +1,14 @@
 package controleur;
 
-import menu.Credits;
-import menu.CreerPartie;
-import menu.DeconnexionConfirm;
-import menu.Inscription;
-import menu.Option;
-import menu.OubliMdp;
-import menu.QuitterConfirm;
-import menu.Score;
-import menu.SelecPartie;
+import vue.menu.Credits;
+import vue.menu.CreerPartie;
+import vue.menu.DeconnexionConfirm;
+import vue.menu.Inscription;
+import vue.menu.Option;
+import vue.menu.OubliMdp;
+import vue.menu.QuitterConfirm;
+import vue.menu.Score;
+import vue.menu.SelecPartie;
 
 /**
  * Sous contrôleur qui a pour objectif de gérer les		<br/>
@@ -78,7 +78,8 @@ public class ControleurBouton extends ControleurGeneral {
 	* Demande une confirmation pour fermer l'application					<br/>
 	*/
 	public void rqtDemandeQuitter() {
-		ctrlAffichage.ouvrirMenuConfirmation(new QuitterConfirm(this));
+		if (BY_PASS) rqtQuitter();
+		else ctrlAffichage.ouvrirMenuConfirmation(new QuitterConfirm(this));
 	}
 	
 	/**
@@ -119,7 +120,8 @@ public class ControleurBouton extends ControleurGeneral {
 	* Demande une confirmation pour déconnecte l'utilisateur				<br/>
 	*/
 	public void rqtDemandeDeconnexion() {
-		ctrlAffichage.ouvrirMenuConfirmation(new DeconnexionConfirm(this));
+		if (BY_PASS) rqtDeconnexion();
+		else ctrlAffichage.ouvrirMenuConfirmation(new DeconnexionConfirm(this));
 	}
 	
 	/**
@@ -197,6 +199,7 @@ public class ControleurBouton extends ControleurGeneral {
 	* Ferme l'application													<br/>
 	*/
 	public void rqtQuitter() {
+		if (compte != null) ctrlConnexion.deconnexion();
 		quitter();
 	}
 	

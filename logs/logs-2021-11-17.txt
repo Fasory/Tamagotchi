@@ -1,0 +1,8 @@
+****************************************
+		-	00:24:25 - 17/11/2021
+Satut	-	Lancement de l'application
+Warning	-	Un fichier n'est pas reconnu dans le répertoire data\user : 00000000-0000-0000-0000-000000000000
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle

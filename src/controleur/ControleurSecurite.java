@@ -10,12 +10,13 @@ import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.SecretKeySpec;
 
-public class ControleurSecurite extends ControleurGeneral {
+public class ControleurSecurite extends Controleur {
 	
 	private static int estCree = 0;					// Repère de création d'une unique instance par type de controleur
 	
 	// Constantes
-	private final String CHAINE_CLEF = "myYh6TdAAmWNsrn23kuKbdpXiYJRMLbE8uiWsk7gn0XiHnYmF97qAsNZBYKEw5n4FxPpgbmGFXxwddqLFiyhQdlY7hgCnk1e8rn9OkEMWYkpXxAyY8cirlKc8XTNsLht";
+	private final String CHAINE_CLEF = "myYh6TdAAmWNsrn23kuKbdpXiYJRMLbE";
+	private final String HEX = "0123456789abcdef";
 	
 	private SecretKeySpec clef;						// Clef secrète AES-128
 	private Cipher chiffrement;						// Algorithme de chiffrmeent AES-128
@@ -29,22 +30,29 @@ public class ControleurSecurite extends ControleurGeneral {
 	public ControleurSecurite() {
 		super(estCree);
 		estCree++;
-		
 		// Initialisation de l'agorithme de chiffrement
 		try {
 			clef = new SecretKeySpec(CHAINE_CLEF.getBytes(), "AES");
 			chiffrement = Cipher.getInstance("AES");
 		} catch (NoSuchAlgorithmException | NoSuchPaddingException err) {
-			ctrlFichier.addLogs("Erreur - échec de chargement de l'agorithme de chiffrement (AES-128)", true);
-			ctrlFichier.addLogs(err.toString(), true);
+			ControleurGeneral.ctrlFichier.addLogs("Erreur - échec de chargement de l'agorithme de chiffrement (AES-128)", true);
+			ControleurGeneral.ctrlFichier.addLogs(err.toString(), true);
 		}
 		// Initialisation de l'agorithme de hachage
 		try {
 			hachage = MessageDigest.getInstance("SHA-256");
 		} catch (NoSuchAlgorithmException err) {
-			ctrlFichier.addLogs("Erreur - échec de chargement de l'agorithme de hachage (SHA-256)", true);
-			ctrlFichier.addLogs(err.toString(), true);
+			ControleurGeneral.ctrlFichier.addLogs("Erreur	-	échec de chargement de l'agorithme de hachage (SHA-256)", true);
+			ControleurGeneral.ctrlFichier.addLogs(err.toString(), true);
 		}
+	}
+	
+	public void delControleurSecurite() {
+		clef = null;
+		chiffrement = null;
+		hachage = null;
+		
+		estCree--;
 	}
 	
 	/**
@@ -54,7 +62,8 @@ public class ControleurSecurite extends ControleurGeneral {
 	 * @return String - hash du msg								<br/>
 	 */
 	public String hash(String msg) {
-		return new String(hachage.digest(msg.getBytes()));
+		hachage.reset();
+		return conversionVersStr(hachage.digest(msg.getBytes()));
 	}
 	
 	/**
@@ -67,10 +76,16 @@ public class ControleurSecurite extends ControleurGeneral {
 	 * @throws IllegalBlockSizeException
 	 * @throws BadPaddingException
 	 */
-	public String crypter(String data) throws InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
-		chiffrement.init(Cipher.ENCRYPT_MODE, clef);
-        byte[] dataCryptee = chiffrement.doFinal(data.getBytes());
-        return new String(dataCryptee);
+	public byte[] crypter(byte[] dataDecryptee) {
+		byte[] dataCryptee = new byte[0];
+		try {
+			chiffrement.init(Cipher.ENCRYPT_MODE, clef);
+	        dataCryptee = chiffrement.doFinal(dataDecryptee);
+		} catch (Exception err) {
+			ControleurGeneral.ctrlFichier.addLogs("Erreur	-	échec de chiffrement", true);
+			ControleurGeneral.ctrlFichier.addLogs(err.toString(), true);
+		}
+		return dataCryptee;
 	}
 	
 	/**
@@ -83,9 +98,34 @@ public class ControleurSecurite extends ControleurGeneral {
 	 * @throws IllegalBlockSizeException
 	 * @throws BadPaddingException
 	 */
-	public String decrypter(String data) throws InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
-		chiffrement.init(Cipher.DECRYPT_MODE, clef);
-        byte[] dataCryptee = chiffrement.doFinal(data.getBytes());
-        return new String(dataCryptee);
+	public byte[] decrypter(byte[] dataCryptee) {
+		byte[] dataDecryptee = new byte[0];
+		try {
+			chiffrement.init(Cipher.DECRYPT_MODE, clef);
+	        dataDecryptee = chiffrement.doFinal(dataCryptee);
+		} catch (Exception err) {
+			//ControleurGeneral.ctrlFichier.addLogs("Erreur	-	échec de déchiffrement", true);
+			//ControleurGeneral.ctrlFichier.addLogs(err.toString(), true);
+			System.err.println(err.toString());
+		}
+		return dataDecryptee;
+	}
+	
+	/**
+	 * Permet de convertir un tableau d'octets en une chaine de
+	 * caractères avec pour chaque octet, la chiffre hexadécimal
+	 * associé
+	 * 
+	 * @param lsOctet - Byte[] représentant le talbeau d'octet à
+	 * convertir en chaine de caractères
+	 * @return String - représentant le résultat de la conversion
+	 */
+	private String conversionVersStr(byte lsOctet[]) {
+		String resultat = "";
+		for (byte octet : lsOctet) {
+			resultat += HEX.charAt((0xF0 & octet) >> 4);		// On garde les 4 premiers bits de l'cotet et on les shift à droite pour avoir le nombre en hexa
+			resultat += HEX.charAt(0x0F & octet);				// On garde les 4 derniers bits de l'octet pour avoir le nombre en hexa
+		}
+		return resultat.toString();
 	}
 }

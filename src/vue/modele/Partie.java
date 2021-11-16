@@ -1,4 +1,4 @@
-package modele;
+package vue.modele;
 
 import java.util.UUID;
 
