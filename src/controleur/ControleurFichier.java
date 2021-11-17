@@ -23,7 +23,7 @@ import vue.modele.Partie;
  * le débuggage et la maintenant liés à la		<br/>
  * persistence des données						<br/>
  */
-public class ControleurFichier extends ControleurGeneral {
+public class ControleurFichier extends Controleur {
 	
 	private static int estCree = 0;									// Repère de création d'une unique instance par type de controleur
 	
@@ -56,7 +56,7 @@ public class ControleurFichier extends ControleurGeneral {
 	 * Supprime le fichier logs associé à l'utilisation en cours	<br/>
 	 * si aucune erreur n'a été rapporté							<br/>
 	 */
-	public void delControleurDeFichier() {
+	public void delControleurFichier() {
 		if (!erreurLogs) {
 			try {
 				logsOutStream.close();
@@ -65,6 +65,8 @@ public class ControleurFichier extends ControleurGeneral {
 				addLogs(err.toString(), true);
 			}
 		}
+		
+		estCree--;
 	}
 	
 	/**
@@ -197,7 +199,7 @@ public class ControleurFichier extends ControleurGeneral {
 		if (typeErreur) erreurLogs = true;
 		try {
 			logsOutStream.write((rapport + "\n").getBytes());
-			if (DEBUG) {
+			if (ControleurGeneral.DEBUG) {
 				if (typeErreur) System.err.println(rapport);
 				else System.out.println(rapport);
 			}
@@ -206,16 +208,33 @@ public class ControleurFichier extends ControleurGeneral {
 		}
 	}
 	
-	
-	public byte[] contenuFichier(File fichier) throws IOException {
+	/**
+	 * Permet de lire tous les octets d'un fcihier
+	 * 
+	 * @param fichier - File représentant le fichier à lire
+	 * @return byte[] - représentant les octets lu du fichier
+ 	 * @throws IOException
+	 */
+	public byte[] lireFichier(File fichier) throws IOException {
 		FileInputStream fluxEntree = new FileInputStream(fichier);
-		int nbOctet = (int) fichier.length();
-		byte contenu[] = new byte[nbOctet];
-		fluxEntree.read(contenu, 0, nbOctet);
+		byte contenu[] = new byte[(int) fichier.length()];		// Création du stockage
+		fluxEntree.read(contenu);	// Lecture du fichier
 		fluxEntree.close();
 		return contenu;
 	}
 	
+	/**
+	 * Permet d'écrire des octets dans un fichier
+	 * 
+	 * @param fichier - File représentant le fichier où il faut écrire
+	 * @param contenu - byte[] représentant les octets à écrire
+	 * @throws IOException
+	 */
+	public void ecrireFichier(File fichier, byte[] contenu) throws IOException {
+		FileOutputStream fluxSortie = new FileOutputStream(fichier);
+		fluxSortie.write(contenu);
+		fluxSortie.close();
+	}
 	
 	/**
 	 * 

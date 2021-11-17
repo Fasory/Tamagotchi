@@ -42,6 +42,7 @@ class TestControleurSecurite {
 		for (int i = 0; i < 16; i++) {
 			t[i] = (byte)chiffrementStr.charAt(i);
 		}
+		
 		Assertions.assertEquals(motAttendu, new String(ctrlSecurite.decrypter(chiffrementStr.getBytes(StandardCharsets.UTF_8))));
 	}
 }

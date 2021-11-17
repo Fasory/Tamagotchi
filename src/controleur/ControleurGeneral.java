@@ -18,11 +18,11 @@ public class ControleurGeneral extends Controleur {
 	private static int estCree = 0;							// Repère de création d'une unique instance par type de controleur
 	
 	// Constantes
-	protected final static int NB_MAX_PARTIE = 3;
-	protected final static String NOM_ANONYME = "Anonyme";					  
-	protected final static String STR_UUID_ANONYME = "00000000-0000-0000-0000-000000000000";
-	protected final static boolean BY_PASS = true;			// Valable que pour la version de développement, il permet de passé oûtre les confirmations
-	protected final static boolean DEBUG = true;			// Valable que pour la version de développement, permet d'afficher dans la console les actions effectuées
+	public final static int NB_MAX_PARTIE = 3;
+	public final static String NOM_ANONYME = "Anonyme";					  
+	public final static String STR_UUID_ANONYME = "00000000-0000-0000-0000-000000000000";
+	public final static boolean BY_PASS = true;			// Valable que pour la version de développement, il permet de passé oûtre les confirmations
+	public final static boolean DEBUG = true;			// Valable que pour la version de développement, permet d'afficher dans la console les actions effectuées
 	
 	public static ControleurFichier ctrlFichier;			// Controleur assistant pour la gestion de fichiers
 	public static ControleurTemps ctrlTemps;				// Controleur assistant pour la gestion du temps
@@ -130,7 +130,7 @@ public class ControleurGeneral extends Controleur {
 	*/
 	public void quitter() {
 		ctrlAffichage.fermetureApplication();
-		ctrlFichier.delControleurDeFichier();
+		ctrlFichier.delControleurFichier();
 		System.exit(0);
 	}
 }
