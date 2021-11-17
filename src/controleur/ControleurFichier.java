@@ -1,8 +1,10 @@
 package controleur;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.util.Calendar;
@@ -204,10 +206,22 @@ public class ControleurFichier extends ControleurGeneral {
 		}
 	}
 	
+	
+	public byte[] contenuFichier(File fichier) throws IOException {
+		FileInputStream fluxEntree = new FileInputStream(fichier);
+		int nbOctet = (int) fichier.length();
+		byte contenu[] = new byte[nbOctet];
+		fluxEntree.read(contenu, 0, nbOctet);
+		fluxEntree.close();
+		return contenu;
+	}
+	
+	
 	/**
 	 * 
 	 * @return
-	 */
+	 */	
+	/*
 	public HashMap<String, Compte> getListeCompte() {
 		HashMap<String, Compte> lsCompte = new HashMap<String, Compte>();
 		if (repExiste(repJoueur)) {
@@ -216,13 +230,14 @@ public class ControleurFichier extends ControleurGeneral {
 					try {
 						Scanner scanne = new Scanner(objet);
 						scanne.nextLine();
+						System.out.println("No time !");
 						UUID id = UUID.fromString(objet.getName());
 						String utilisateur = scanne.nextLine();
 						String mail = scanne.nextLine();
 						String mdp = scanne.nextLine();
 						HashMap<UUID, Partie> partie = new HashMap<UUID, Partie>(NB_MAX_PARTIE);
 						for (String strUUID : scanne.nextLine().split(" ")) {
-							partie.put(UUID.fromString(strUUID), new Partie(UUID.fromString(strUUID)));
+							//partie.put(UUID.fromString(strUUID), new Partie(UUID.fromString(strUUID)));
 						}
 						lsCompte.put(utilisateur, new Compte(utilisateur, mdp, mail, id, partie));
 						scanne.close();
@@ -235,6 +250,7 @@ public class ControleurFichier extends ControleurGeneral {
 		}
 		return lsCompte;
 	}
+	*/
 	
 	/**
 	 * Permet de se rassurer si le fichier qu'on va traiter contient
@@ -254,6 +270,7 @@ public class ControleurFichier extends ControleurGeneral {
 	 * @param fichier - File qu'on cherche à vérifier l'intégrité
 	 * @return boolean - vrai si l'intégrité du fichier est vérifiée
 	 */
+	/*
 	public boolean fichierUtilisateurIntegre(File fichier) {
 		try {
 			Scanner scanne = new Scanner(fichier);
@@ -310,8 +327,9 @@ public class ControleurFichier extends ControleurGeneral {
 		}
 		return true;
 	}
+	*/
 	
-	
+	/*
 	public void enregistreCompte(Compte compte) {
 		File fichierCompte = new File(repJoueur, compte.getId().toString());
 		// Vérification de l'existence du fichier associé compte
@@ -345,4 +363,5 @@ public class ControleurFichier extends ControleurGeneral {
 		}
 		
 	}
+	*/
 }
