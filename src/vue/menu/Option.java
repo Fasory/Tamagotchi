@@ -24,7 +24,7 @@ public class Option extends Menu {
 		setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
 		Dimension dmBouton = new Dimension(200,50);
-		Dimension dmSlider = new Dimension(500, 25);
+		Dimension dmSlider = new Dimension(500, 50);
 		
 		
 		JLabel txtVolume = new JLabel("Volume");
@@ -35,11 +35,17 @@ public class Option extends Menu {
 		gbc.insets = new Insets(0, 0, 0, 0);
 		add(txtVolume, gbc);
 		
-		JSlider barreVolume = new JSlider(0,100,20);
+		JSlider barreVolume = new JSlider(0,100, ControleurGeneral.ctrlAudio.getVolume());
 		barreVolume.setPreferredSize(dmSlider);
+		barreVolume.setMinorTickSpacing(5);
+		barreVolume.setMajorTickSpacing(20);
+		barreVolume.setMinimum(0);
+		barreVolume.setMaximum(100);
+		barreVolume.setPaintTicks(true);
+		barreVolume.setPaintLabels(true);
 		barreVolume.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent evt) {
-				cmdChangeVolume();
+				cmdChangeVolume(barreVolume.getValue());
 			}
 		});
 		gbc.gridx = 0;
@@ -57,8 +63,19 @@ public class Option extends Menu {
 		gbc.insets = new Insets(20, 0, 0, 0);
 		add(txtMusique, gbc);
 		
-		JSlider barreMusique = new JSlider(0,100,20);
+		JSlider barreMusique = new JSlider(0,100,ControleurGeneral.ctrlAudio.getMusique());
 		barreMusique.setPreferredSize(dmSlider);
+		barreMusique.setMinorTickSpacing(5);
+		barreMusique.setMajorTickSpacing(20);
+		barreMusique.setMinimum(0);
+		barreMusique.setMaximum(100);
+		barreMusique.setPaintTicks(true);
+		barreMusique.setPaintLabels(true);
+		barreMusique.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent evt) {
+				cmdChangeMusique(barreMusique.getValue());
+			}
+		});
 		gbc.gridx = 0;
 		gbc.gridy = 3;
 		gbc.gridwidth = 1;
@@ -68,8 +85,7 @@ public class Option extends Menu {
 		
 		JButton btnCredits = new JButton("Crédits");
 		btnCredits.setPreferredSize(dmBouton);
-		btnCredits.addActionListener(new ActionListener() {
-			
+		btnCredits.addActionListener(new ActionListener() {	
 			public void actionPerformed(ActionEvent evt) {
 				cmdAfficheCredits();
 			}
@@ -119,8 +135,17 @@ public class Option extends Menu {
 	
 	/**
 	 * Demande de changement de Volume
+	 * @param volume
 	 */
-	public void cmdChangeVolume() {
-		ControleurGeneral.ctrlBouton.rqtChangeVolume();
+	public void cmdChangeVolume(int volume) {
+		ControleurGeneral.ctrlBouton.rqtChangeVolume(volume);
+	}
+	
+	/**
+	 * Demande de changement de Musique
+	 * @param musique
+	 */
+	public void cmdChangeMusique(int musique) {
+		ControleurGeneral.ctrlBouton.rqtChangeMusique(musique);
 	}
 }

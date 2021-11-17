@@ -56,7 +56,7 @@ public class ControleurGeneral extends Controleur {
 		ctrlFichier.addLogs("		-	Création des fenêtres");
 		// Initialisation des controleurs complémentaires
 		ctrlBouton = new ControleurBouton();
-		//ctrlAudio = new ControleurAudio();
+		ctrlAudio = new ControleurAudio();
 		ctrlFichier.addLogs("		-	Initialisation des contrôleurs complémentaires");
 		// Fin de la construction de l'application
 		ctrlFichier.addLogs("Satut	-	Application opérationnelle");

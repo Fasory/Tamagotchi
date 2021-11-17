@@ -184,10 +184,19 @@ public class ControleurBouton extends ControleurGeneral {
 	////////////////////////////////////////
 	
 	/**
-	 * Change le voulume de l'application									<br/>
+	 * Demande de changement de volume au controleur Audio
+	 * @param volume
 	 */
-	public void rqtChangeVolume() {
-		
+	public void rqtChangeVolume(int volume) {
+		ControleurGeneral.ctrlAudio.changeVolume(volume);
+	}
+	
+	/**
+	 * Demande de changement du volume de la musique au controleur audio
+	 * @param musique
+	 */
+	public void rqtChangeMusique(int musique) {
+		ControleurGeneral.ctrlAudio.changeMusique(musique);
 	}
 	
 	
