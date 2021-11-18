@@ -1,6 +1,9 @@
 package controleur;
 
-import java.nio.charset.StandardCharsets;
+import java.security.InvalidKeyException;
+
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
@@ -30,19 +33,23 @@ class TestControleurSecurite {
 	}
 	
 	@Test
-	void testChiffrement() {
+	void testChiffrement() throws InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
 		String motAttendu = "Hello world!";
-		byte[] chiffrement = ctrlSecurite.crypter(motAttendu.getBytes());
-		String chiffrementStr = new String(chiffrement, StandardCharsets.UTF_8);
-		System.out.println(chiffrement.length);
-		System.out.println(chiffrementStr.getBytes().length);
-		System.out.println(chiffrementStr);
-		System.out.println(chiffrementStr.length());
-		byte[] t = new byte[16];
-		for (int i = 0; i < 16; i++) {
-			t[i] = (byte)chiffrementStr.charAt(i);
-		}
+		byte[] motOctet = motAttendu.getBytes();
+		byte[] chiffrement = ctrlSecurite.crypter(motOctet);
+		byte[] dechiffrement = ctrlSecurite.decrypter(chiffrement);
 		
-		Assertions.assertEquals(motAttendu, new String(ctrlSecurite.decrypter(chiffrementStr.getBytes(StandardCharsets.UTF_8))));
+		Assertions.assertArrayEquals(motOctet, dechiffrement);
+	}
+	
+	@Test
+	void testLimiteDecrypter() {
+		// Erreur pour tous tableaux d'octets qui ne sont pas un multiple de 16
+		Assertions.assertAll(() -> {
+			for (int i = 1; i < 16; i++) {
+				byte randomOctet[] = new byte[i];
+				Assertions.assertThrows(IllegalBlockSizeException.class, () -> ctrlSecurite.decrypter(randomOctet));
+			}
+		});
 	}
 }
