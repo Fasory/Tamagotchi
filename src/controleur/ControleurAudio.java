@@ -1,10 +1,12 @@
 package controleur;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+import javax.sound.sampled.FloatControl;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
@@ -15,7 +17,7 @@ public class ControleurAudio extends ControleurGeneral {
 	private int musique;
 	
 	private Clip fondAmbiant;
-	
+	private HashMap<String,Clip> bruitage;
 	/**
 	 * Constructeur													<br/>
 	 * 																<br/>
@@ -30,11 +32,13 @@ public class ControleurAudio extends ControleurGeneral {
 			AudioInputStream fluxFondAmbiant = AudioSystem.getAudioInputStream(ControleurFichier.getFichier("assets/sound/ambient/Myuu-TenderRemains.wav"));
 			fondAmbiant = AudioSystem.getClip();
 			fondAmbiant.open(fluxFondAmbiant);
+			changeMusique(musique);
 			fondAmbiant.loop(Clip.LOOP_CONTINUOUSLY);
 			fondAmbiant.start();
 		} catch (IOException | UnsupportedAudioFileException | LineUnavailableException err) {
 			System.err.println(err);
 		}
+		bruitage = new HashMap<String,Clip>();
 	}
 	
 	/**
@@ -61,7 +65,16 @@ public class ControleurAudio extends ControleurGeneral {
 	 * @param vol - int représentant le volume du jeu
 	 */
 	public void changeVolume(int vol) {
+		if (vol<0) vol=0;
+		if (vol>100) vol=100;
 		volume = vol;
+		for (Clip son: bruitage.values()) {
+			FloatControl gainControl = (FloatControl) son.getControl(FloatControl.Type.MASTER_GAIN);
+			float max = gainControl.getMaximum();
+			float min = gainControl.getMinimum();
+			gainControl.setValue(((max-min)/100)*volume+min);
+		}
+		
 	}
 	
 	/**
@@ -70,7 +83,12 @@ public class ControleurAudio extends ControleurGeneral {
 	 * @param mus - int représentant le volume de la musique du jeu
 	 */
 	public void changeMusique(int mus) {
+		if (mus<0) mus=0;
+		if (mus>100) mus=100;
 		musique = mus;
+		FloatControl gainControl = (FloatControl) fondAmbiant.getControl(FloatControl.Type.MASTER_GAIN);
+		float max = gainControl.getMaximum();
+		float min = gainControl.getMinimum();
+		gainControl.setValue(((max-min)/100)*musique+min);
 	}
-
 }
