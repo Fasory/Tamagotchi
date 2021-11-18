@@ -67,14 +67,14 @@ public class ControleurSecurite extends Controleur {
 	}
 	
 	/**
-	 * Permet de crypter des données
-	 * 
-	 * @param data - String représentant les données à crypter
-	 * @return String - données crpytées
-	 * 
-	 * @throws InvalidKeyException
-	 * @throws IllegalBlockSizeException
-	 * @throws BadPaddingException
+	 * Permet de crypter des données							<br/>
+	 * 															<br/>
+	 * @param data - String représentant les données à crypter	<br/>
+	 * @return String - données crpytées						<br/>
+	 * 															<br/>
+	 * @throws InvalidKeyException								<br/>
+	 * @throws IllegalBlockSizeException						<br/>
+	 * @throws BadPaddingException								<br/>
 	 */
 	public byte[] crypter(byte[] dataDecryptee) {
 		byte[] dataCryptee = new byte[0];
@@ -89,36 +89,30 @@ public class ControleurSecurite extends Controleur {
 	}
 	
 	/**
-	 * Permet de décrypter des données
-	 * 
-	 * @param data - String représentant les données à décrypter
-	 * @return String - données décyptées
-	 * 
-	 * @throws InvalidKeyException
-	 * @throws IllegalBlockSizeException
-	 * @throws BadPaddingException
+	 * Permet de décrypter des données							<br/>
+	 * 															<br/>
+	 * @param data - String représentant les données à			<br/>
+	 * décrypter												<br/>
+	 * @return String - données décyptées						<br/>
+	 * 															<br/>
+	 * @throws InvalidKeyException								<br/>
+	 * @throws IllegalBlockSizeException						<br/>
+	 * @throws BadPaddingException								<br/>
 	 */
-	public byte[] decrypter(byte[] dataCryptee) {
-		byte[] dataDecryptee = new byte[0];
-		try {
-			chiffrement.init(Cipher.DECRYPT_MODE, clef);
-	        dataDecryptee = chiffrement.doFinal(dataCryptee);
-		} catch (Exception err) {
-			//ControleurGeneral.ctrlFichier.addLogs("Erreur	-	échec de déchiffrement", true);
-			//ControleurGeneral.ctrlFichier.addLogs(err.toString(), true);
-			System.err.println(err.toString());
-		}
-		return dataDecryptee;
+	public byte[] decrypter(byte[] dataCryptee) throws IllegalBlockSizeException, BadPaddingException, InvalidKeyException {
+		chiffrement.init(Cipher.DECRYPT_MODE, clef);
+	    return chiffrement.doFinal(dataCryptee);
 	}
 	
 	/**
-	 * Permet de convertir un tableau d'octets en une chaine de
-	 * caractères avec pour chaque octet, la chiffre hexadécimal
-	 * associé
-	 * 
-	 * @param lsOctet - Byte[] représentant le talbeau d'octet à
-	 * convertir en chaine de caractères
-	 * @return String - représentant le résultat de la conversion
+	 * Permet de convertir un tableau d'octets en une chaine	<br/>
+	 * de caractères avec pour chaque octet, la chiffre			<br/>
+	 * hexadécimal associé										<br/>
+	 * 															<br/>
+	 * @param lsOctet - Byte[] représentant le talbeau d'octet	<br/>
+	 * à convertir en chaine de caractères						<br/>
+	 * @return String - représentant le résultat de la			<br/>
+	 * conversion												<br/>
 	 */
 	private String conversionVersStr(byte lsOctet[]) {
 		String resultat = "";

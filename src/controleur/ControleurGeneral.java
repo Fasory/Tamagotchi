@@ -10,8 +10,8 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import modele.Compte;
 import vue.menu.Connexion;
-import vue.modele.Compte;
 
 public class ControleurGeneral extends Controleur {
 	

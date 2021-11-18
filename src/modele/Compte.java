@@ -84,10 +84,15 @@ public class Compte {
 	
 	@Override
 	public String toString() {
-		String apparence = id().toString() + "\n"
-						 + utilisateur() + "\n"
-						 + mail() + "\n"
-						 + mdp() + "\n";
-		return ;
+		String apparence = id.toString() + "\n"
+						 + utilisateur + "\n"
+						 + mail + "\n"
+						 + mdp + "\n";
+		String strPartiesId = "";
+		for (UUID partieId : partiesId) {
+			if (!strPartiesId.equals("")) strPartiesId += " ";
+			strPartiesId += partieId.toString();
+		}
+		return apparence+strPartiesId;
 	}
 }

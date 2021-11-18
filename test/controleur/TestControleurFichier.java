@@ -2,7 +2,6 @@ package controleur;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.UUID;
 
 import org.junit.jupiter.api.AfterEach;
@@ -10,8 +9,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import vue.modele.Compte;
-import vue.modele.Partie;
+import modele.Compte;
 
 class TestControleurFichier {
 	
@@ -52,12 +50,8 @@ class TestControleurFichier {
 	@Test
 	void testLectureEcritureCompte() throws IOException {
 		File fichierTest = new File("fichierTest");
-		Compte compte = new Compte("Test", "f4f263e439cf40925e6a412387a9472a6773c2580212a4fb50d224d3a817de17", "00d8d3f11739d2f3537099982b4674c29fc59a8fda350fca1379613adbb09119", UUID.fromString("00000000-0000-0000-0000-000000000000"), new HashMap<UUID, Partie>(ControleurGeneral.NB_MAX_PARTIE));
-		String attendu = compte.getId().toString() + "\n"
-					   + compte.getUtilisateur() + "\n"
-					   + compte.getMail() + "\n"
-					   + compte.getMdp() + "\n"
-					   + compte.getStrIdParties();
+		Compte compte = new Compte("Test", "f4f263e439cf40925e6a412387a9472a6773c2580212a4fb50d224d3a817de17", "00d8d3f11739d2f3537099982b4674c29fc59a8fda350fca1379613adbb09119", UUID.fromString("00000000-0000-0000-0000-000000000000"), new UUID[0]);
+		String attendu = compte.toString();
 		ctrlFichier.ecrireFichier(fichierTest, attendu.getBytes());
 		byte contenu[] = ctrlFichier.lireFichier(fichierTest);
 		

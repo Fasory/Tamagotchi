@@ -4,10 +4,10 @@ import java.util.HashMap;
 import java.util.Random;
 import java.util.UUID;
 
+import modele.Compte;
+import modele.Partie;
 import vue.menu.InscriptionConfirm;
 import vue.menu.MenuPrincipal;
-import vue.modele.Compte;
-import vue.modele.Partie;
 
 public class ControleurConnexion extends ControleurGeneral {
 	

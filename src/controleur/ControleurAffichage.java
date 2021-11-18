@@ -2,8 +2,8 @@ package controleur;
 
 import java.util.Stack;
 
-import fenetre.FenetreConfirmation;
-import fenetre.FenetrePrincipale;
+import vue.fenetre.FenetreConfirmation;
+import vue.fenetre.FenetrePrincipale;
 import vue.menu.Connexion;
 import vue.menu.Menu;
 import vue.menu.MenuConfirmation;
