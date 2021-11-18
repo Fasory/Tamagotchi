@@ -1,7 +1,9 @@
-package vue.modele;
+package modele;
 
 import java.util.HashMap;
 import java.util.UUID;
+
+import controleur.ControleurGeneral;
 
 public class Compte {
 	
@@ -9,7 +11,7 @@ public class Compte {
 	private String mdp;
 	private String mail;
 	private final UUID id;
-	private HashMap<UUID, Partie> parties;
+	private UUID[] partiesId;
 	
 	/**
 	 * Constructeur											<br/>
@@ -24,12 +26,18 @@ public class Compte {
 	 * @param partie - Partie[] représentant la liste		<br/>
 	 * des parties en cours de l'utilisateurs				<br/>
 	 */
-	public Compte(String utilisateur, String mdp, String mail, UUID id, HashMap<UUID, Partie> partie) {
+	public Compte(String utilisateur, String mdp, String mail, UUID id, UUID[] partiesId) {
+		if (partiesId.length > ControleurGeneral.NB_MAX_PARTIE) throw new IllegalArgumentException("UUID[] a une taille de " + partiesId.length + " alors qu'au maximum il doit être de " + ControleurGeneral.NB_MAX_PARTIE);
 		this.utilisateur = utilisateur;
 		this.mdp = mdp;
 		this.mail = mail;
 		this.id = id;
-		this.parties = partie;
+		this.partiesId = new UUID[ControleurGeneral.NB_MAX_PARTIE];
+		int i = 0;
+		for (UUID partieId : partiesId) {
+			this.partiesId[i] = partieId;
+			i++;
+		}
 	}
 	
 	/**
@@ -46,7 +54,7 @@ public class Compte {
 	 * mail de l'utilisateur								<br/>
 	 */
 	public Compte(String utilisateur, String mdp, String mail) {
-		this(utilisateur, mdp, mail, UUID.randomUUID(), new HashMap<UUID, Partie>(3));
+		this(utilisateur, mdp, mail, UUID.randomUUID(), new UUID[0]);
 	}
 	
 	
@@ -70,15 +78,16 @@ public class Compte {
 		return id;
 	}
 	
-	public String getStrIdParties() {
-		String strIdParties = "";
-		for (UUID id :  parties.keySet().toArray(new UUID[parties.keySet().size()])) {
-			strIdParties += id.toString() + " ";
-		}
-		return strIdParties;
+	public UUID[] getPartiesId() {
+		return partiesId;
 	}
 	
-	public HashMap<UUID, Partie> getParties() {
-		return parties;
+	@Override
+	public String toString() {
+		String apparence = id().toString() + "\n"
+						 + utilisateur() + "\n"
+						 + mail() + "\n"
+						 + mdp() + "\n";
+		return ;
 	}
 }

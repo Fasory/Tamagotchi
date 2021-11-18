@@ -12,8 +12,8 @@ import java.util.HashMap;
 import java.util.Scanner;
 import java.util.UUID;
 
-import vue.modele.Compte;
-import vue.modele.Partie; 
+import modele.Compte;
+import modele.Partie; 
 
 /**
  * Sous contrôleur qui a pour but de gérer la	<br/>
@@ -234,6 +234,11 @@ public class ControleurFichier extends Controleur {
 		FileOutputStream fluxSortie = new FileOutputStream(fichier);
 		fluxSortie.write(contenu);
 		fluxSortie.close();
+	}
+	
+	
+	public void enregistreCompte(Compte compte) {
+		
 	}
 	
 	/**
