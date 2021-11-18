@@ -236,9 +236,28 @@ public class ControleurFichier extends Controleur {
 		fluxSortie.close();
 	}
 	
+	/**
+	 * Permet de sauvegarder le compte dans un fichier crypté
+	 * 
+	 * @param compte - Compte à sauvegarder
+	 * @return boolean - Vrai si enregistré avec succès, faux sinon
+	 */
+	public boolean enregistreCompte(Compte compte) {
+		if (!repExiste(repJoueur)) creeRep(repJoueur);
+		File fichierCompte = new File(repJoueur, compte.getId().toString());
+		byte[] encodeCompte = ControleurGeneral.ctrlSecurite.crypter(compte.toString().getBytes());
+		try {
+			ecrireFichier(fichierCompte, encodeCompte);
+			return true;
+		} catch (IOException err) {
+			addLogs("Erreur	-	échec d'enregistrement de compte", true);
+			return false;
+		}
+	}
 	
-	public void enregistreCompte(Compte compte) {
-		
+	public Compte chargerCompte(UUID id) {
+		File fichierCompte = new File(repJoueur, id.toString());
+		return null;
 	}
 	
 	/**
