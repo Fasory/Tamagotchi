@@ -1,6 +1,5 @@
 package modele;
 
-import java.util.HashMap;
 import java.util.UUID;
 
 import controleur.ControleurGeneral;
@@ -90,6 +89,7 @@ public class Compte {
 						 + mdp + "\n";
 		String strPartiesId = "";
 		for (UUID partieId : partiesId) {
+			if (partieId == null) break;
 			if (!strPartiesId.equals("")) strPartiesId += " ";
 			strPartiesId += partieId.toString();
 		}

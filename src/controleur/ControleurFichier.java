@@ -1,19 +1,20 @@
 package controleur;
 
 import java.io.File;
+import java.io.FileFilter;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.nio.file.Files;
+import java.security.InvalidKeyException;
 import java.util.Calendar;
 import java.util.HashMap;
-import java.util.Scanner;
 import java.util.UUID;
 
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+
 import modele.Compte;
-import modele.Partie; 
 
 /**
  * Sous contrôleur qui a pour but de gérer la	<br/>
@@ -23,7 +24,7 @@ import modele.Partie;
  * le débuggage et la maintenant liés à la		<br/>
  * persistence des données						<br/>
  */
-public class ControleurFichier extends Controleur {
+public class ControleurFichier extends ControleurGeneral {
 	
 	private static int estCree = 0;									// Repère de création d'une unique instance par type de controleur
 	
@@ -238,6 +239,15 @@ public class ControleurFichier extends Controleur {
 	
 	/**
 	 * Permet de sauvegarder le compte dans un fichier crypté
+	 *  _______________________________ 
+	 * | File name : UUID USER_ID      |
+	 * |_______________________________|
+	 * | UUID USER_ID 			       |
+	 * | String USER_NAME			   |
+	 * | String USER_MAIL 		[HASH] |
+	 * | String MDP				[HASH] |
+	 * | UUID[] PARTIE_ID              |
+	 * |_______________________________|
 	 * 
 	 * @param compte - Compte à sauvegarder
 	 * @return boolean - Vrai si enregistré avec succès, faux sinon
@@ -255,52 +265,10 @@ public class ControleurFichier extends Controleur {
 		}
 	}
 	
-	public Compte chargerCompte(UUID id) {
-		File fichierCompte = new File(repJoueur, id.toString());
-		return null;
-	}
-	
 	/**
-	 * 
-	 * @return
-	 */	
-	/*
-	public HashMap<String, Compte> getListeCompte() {
-		HashMap<String, Compte> lsCompte = new HashMap<String, Compte>();
-		if (repExiste(repJoueur)) {
-			for (File objet : repJoueur.listFiles()) {
-				if (objet.isFile() && fichierUtilisateurIntegre(objet)) {
-					try {
-						Scanner scanne = new Scanner(objet);
-						scanne.nextLine();
-						System.out.println("No time !");
-						UUID id = UUID.fromString(objet.getName());
-						String utilisateur = scanne.nextLine();
-						String mail = scanne.nextLine();
-						String mdp = scanne.nextLine();
-						HashMap<UUID, Partie> partie = new HashMap<UUID, Partie>(NB_MAX_PARTIE);
-						for (String strUUID : scanne.nextLine().split(" ")) {
-							//partie.put(UUID.fromString(strUUID), new Partie(UUID.fromString(strUUID)));
-						}
-						lsCompte.put(utilisateur, new Compte(utilisateur, mdp, mail, id, partie));
-						scanne.close();
-					} catch (FileNotFoundException err) {
-						addLogs("Erreur	- échec de lecture de fichier d'utilisateur " + objet.getName(), true);
-						addLogs(err.toString(), true);
-					}
-				}
-			}
-		}
-		return lsCompte;
-	}
-	*/
-	
-	/**
-	 * Permet de se rassurer si le fichier qu'on va traiter contient
-	 * des données modifiées ou non
-	 * 
-	 * Structure théorique d'un fichier utilisateur :
-	 *  _______________________________
+	 * Permet de récupérer un compte enregistré dans un fichier crypté
+	 * par l'UUID du compte
+	 *  _______________________________ 
 	 * | File name : UUID USER_ID      |
 	 * |_______________________________|
 	 * | UUID USER_ID 			       |
@@ -310,101 +278,71 @@ public class ControleurFichier extends Controleur {
 	 * | UUID[] PARTIE_ID              |
 	 * |_______________________________|
 	 * 
-	 * @param fichier - File qu'on cherche à vérifier l'intégrité
-	 * @return boolean - vrai si l'intégrité du fichier est vérifiée
+	 * @param id - UUID représentant le compte à charger
+	 * @return Compte - compte de lié à l'UUID
 	 */
-	/*
-	public boolean fichierUtilisateurIntegre(File fichier) {
+	public Compte chargerCompte(UUID id) {
+		File fichierCompte = new File(repJoueur, id.toString());
+		String[] contenu;
 		try {
-			Scanner scanne = new Scanner(fichier);
-			// Vérification entre nom du fichier qui est l'UUID de l'utilisateur et l'UUID dans le fichier (1er ligne)
-			String ln = scanne.nextLine();
-			if (!fichier.getName().equals(ln)) {
-				addLogs("Warning	-	Un fichier n'est pas reconnu dans le répertoire " + repJoueur.getPath() + " : " + fichier.getName(), true);
-				scanne.close();
-				return false;
-			}
-			// Récupération du User_Name pour des vérifier du compte anonyme
-			String temp = ln;
-			ln = scanne.nextLine();
-			// Vérification de l'UUID si le compte est anonyme
-			if (ln.equals(NOM_ANONYME) && !temp.equals(STR_UUID_ANONYME)) {
-				addLogs("Warning	-	Le fichier " + fichier.getPath() + " a été modifié, l'UUID est différent de celui attendu", true);
-				scanne.close();
-				return false;
-			}
-			// Vériifcaion de l'adresse mail si l'utilisateur est anonyme
-			if (ln.equals(NOM_ANONYME) && !ctrlSecurite.hash("").equals(scanne.nextLine())) {
-				addLogs("Warning	-	Le fichier " + fichier.getPath() + " a été modifié, il contient des lignes supplémentaires indésirables", true);
-				scanne.close();
-				return false;
-			}
-			// Aucune vérification du mot de passe
-			scanne.nextLine();
-			// Vérification de l'existence des parties
-			ln = scanne.nextLine();
-			int cpt = 0;
-			for (String strUUID : ln.split(" ")) {
-				cpt++;
-				if (cpt > NB_MAX_PARTIE) {
-					addLogs("Warning	-	Le fichier " + fichier.getPath() + " a été modifié, il contient de " + NB_MAX_PARTIE + " références à des parties", true);
-					scanne.close();
-					return false;
-				}
-				if (!fichierExiste(repSauvegarde.getName() + "/" + strUUID)) {
-					// On se contente juste d'informer la disparition d'une sauvegarde
-					addLogs("Warning -	Une sauvegarde n'existe plus : " + strUUID, true);
-				}
-			}
-			// Vérification de l'inexistence des lignes suivantes
-			if (scanne.hasNextLine()) {
-				addLogs("Warning	-	Le fichier " + fichier.getPath() + " a été modifié, il contient des lignes supplémentaires indésirables", true);
-				scanne.close();
-				return false;
-			}
-			scanne.close();
-		} catch (Exception err) {
-			addLogs("Erreur	- échec de lecture de fichier d'utilisateur " + fichier.getName(), true);
+			contenu = new String(ControleurGeneral.ctrlSecurite.decrypter(lireFichier(fichierCompte))).split("\n");
+		} catch (InvalidKeyException | IllegalBlockSizeException | BadPaddingException | IOException err) {
+			addLogs("Erreur	-	échec de récupération du fichier " + fichierCompte.getPath(), true);
 			addLogs(err.toString(), true);
-			return false;
+			return null;
 		}
-		return true;
+		// Vérification de l'intégrité des données du fichier
+		// 4 lignes dû au split s'il n'y a pas au moins une partie de crée (sinon il y a 5 ligne)
+		if (contenu.length != 4 || !fichierCompte.getName().equals(contenu[0]) || (contenu.length == 5 && contenu[4].split(" ").length > ControleurGeneral.NB_MAX_PARTIE)) {
+			addLogs("Erreur	-	le fichier " + fichierCompte.getPath() + " est illisible", true);
+			return null;
+		}
+		String[] partiesStr;
+		UUID[] partiesId;
+		if (contenu.length == 5) {
+			partiesStr =  contenu[4].split(" ");
+			partiesId = new UUID[partiesStr.length];
+			for (int i = 0; i < partiesStr.length; i++) {
+				try {
+					partiesId[i] = UUID.fromString(partiesStr[i]);
+				} catch (Exception err) {
+					addLogs("Erreur	-	impossible de retrouver les parties liées au compte " + fichierCompte.getPath(), true);
+					addLogs(err.toString(), true);
+					return null;
+				}
+			}
+		} else {
+			partiesId = new UUID[0];
+		}
+		// Reconstruction du compte avec succès
+		return new Compte(contenu[1], contenu[3], contenu[2], id, partiesId);
 	}
-	*/
 	
-	/*
-	public void enregistreCompte(Compte compte) {
-		File fichierCompte = new File(repJoueur, compte.getId().toString());
-		// Vérification de l'existence du fichier associé compte
-		if (!fichierExiste(fichierCompte)) {
-			try {
-				if (!repExiste(fichierCompte.getParentFile())) creeRep(fichierCompte.getParentFile());
-				fichierCompte.createNewFile();
-			} catch (Exception err) {
-				addLogs("Erreur	- échec de la création du fichier du compte " + compte.getId().toString(), true);
-				addLogs(err.toString(), true);
+	/**
+	 * Permet de récupérer la liste des comptes présent
+	 * dans le répertoire prévu à cet effet
+	 * 
+	 * @return HashMap<String, Compte> - représentant la
+	 * collection des comptes récupérés et ordonnés par
+	 * le nom de l'utilisateur du compte
+	 */
+	public HashMap<String, Compte> getListeCompte() {
+		HashMap<String, Compte> lsCompte = new HashMap<String, Compte>();
+		if (repExiste(repJoueur)) {
+			// On crée un filtre qui accepte que les fichier qui ne sont pas des répertoires
+			FileFilter filtre = new FileFilter() {
+				@Override
+				public boolean accept(File fichier) {return fichier.isFile();}
+			};
+			for (File fichier : repJoueur.listFiles(filtre)) {
+				try {
+					Compte compteRecupere = chargerCompte(UUID.fromString(fichier.getName()));
+					if (compteRecupere != null) lsCompte.put(compteRecupere.getUtilisateur(), compteRecupere);
+				} catch (IllegalArgumentException err) {
+					addLogs("Warning	-	un fichier imposteur a été détecté : " + fichier.getPath(), true);
+				}
 			}
 		}
-		try {
-			// Structuration des données
-			String contenu = compte.getId().toString() + "\n"
-						   + compte.getUtilisateur() + "\n"
-						   + compte.getMail() + "\n"
-						   + compte.getMdp() + "\n"
-						   + compte.getStrIdParties();
-			if (DEBUG) System.out.println("\n[-- CONTENU DU FICHIER " + fichierCompte.getName() + " --]\n"+ contenu + "\n[-- ------------------------------------------------------- --]\n");
-			// Cryptage des données
-			////////////////////////////////////////////////////////////////contenu = ctrlSecurite.crypter(contenu);
-			if (DEBUG) System.out.println("\n[-- CONTENU DU FICHIER " + fichierCompte.getName() + " --]\n"+ contenu + "\n[-- ------------------------------------------------------- --]\n");
-			// Ecriture des données
-			PrintWriter ecrireFichier = new PrintWriter(fichierCompte);
-			ecrireFichier.println(contenu);
-			ecrireFichier.close();
-		} catch (Exception err) {
-			addLogs("Erreur	- échec de l'écriture du compte " + compte.getId().toString(), true);
-			addLogs(err.toString(), true);
-		}
-		
+		return lsCompte;
 	}
-	*/
 }

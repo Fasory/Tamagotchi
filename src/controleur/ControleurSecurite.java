@@ -10,7 +10,7 @@ import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.SecretKeySpec;
 
-public class ControleurSecurite extends Controleur {
+public class ControleurSecurite extends ControleurGeneral {
 	
 	private static int estCree = 0;					// Repère de création d'une unique instance par type de controleur
 	

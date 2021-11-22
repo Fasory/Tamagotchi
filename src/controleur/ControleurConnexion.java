@@ -5,7 +5,6 @@ import java.util.Random;
 import java.util.UUID;
 
 import modele.Compte;
-import modele.Partie;
 import vue.menu.InscriptionConfirm;
 import vue.menu.MenuPrincipal;
 
@@ -28,7 +27,7 @@ public class ControleurConnexion extends ControleurGeneral {
 		// Compte null tant qu'aucune connexion est effectué
 		compte = null;
 		lsCompte = ctrlFichier.getListeCompte();
-		if (lsCompte.get(NOM_ANONYME) == null) lsCompte.put(NOM_ANONYME, new Compte(NOM_ANONYME, ctrlSecurite.hash(""), ctrlSecurite.hash(""), UUID.fromString(STR_UUID_ANONYME), new HashMap<UUID, Partie>(NB_MAX_PARTIE)));
+		if (lsCompte.get(NOM_ANONYME) == null) lsCompte.put(NOM_ANONYME, new Compte(NOM_ANONYME, ctrlSecurite.hash(""), ctrlSecurite.hash(""), UUID.fromString(STR_UUID_ANONYME), new UUID[0]));
 	}
 	
 	/**
@@ -160,7 +159,7 @@ public class ControleurConnexion extends ControleurGeneral {
 	
 	public void verificationCode(String codeSaisie) {
 		if (codeSaisie.equals(code)) {
-			compte = new Compte(compteInscription.getUtilisateur(), compteInscription.getMdp(), ctrlSecurite.hash(compteInscription.getMail()), compteInscription.getId(), compteInscription.getParties());
+			compte = new Compte(compteInscription.getUtilisateur(), compteInscription.getMdp(), ctrlSecurite.hash(compteInscription.getMail()), compteInscription.getId(), compteInscription.getPartiesId());
 			lsCompte.put(compte.getUtilisateur(), compte);
 			compteInscription = null;
 			ctrlAffichage.fermerMenuConfirmation();
