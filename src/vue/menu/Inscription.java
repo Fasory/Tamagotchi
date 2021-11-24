@@ -6,8 +6,11 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
@@ -22,6 +25,7 @@ public class Inscription extends Menu {
 	private JTextField txtMail;
 	private JPasswordField txtMdp;
 	private JPasswordField txtMdpConfirme;
+	private JCheckBox cbVerifMail;
 	
 	
 	public Inscription(ControleurGeneral controleur) {
@@ -30,6 +34,78 @@ public class Inscription extends Menu {
 		// Partie Affichage
 		setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
+		
+		
+		// CheckBox Mail
+		JPanel checkBoxMail = new JPanel(new GridBagLayout());
+		
+		
+		cbVerifMail = new JCheckBox();
+		gbc.gridx = 0;
+		gbc.gridy = 0;
+		gbc.gridwidth = 1;
+		gbc.anchor = GridBagConstraints.LINE_START;
+		gbc.insets = new Insets(0, 0, 0, 0);
+		checkBoxMail.add(cbVerifMail, gbc);
+		
+		
+		JLabel lbCbMail = new JLabel("Ne pas vérifier l'adresse mail");
+		gbc.gridx = 1;
+		gbc.gridwidth = 1;
+		gbc.anchor = GridBagConstraints.CENTER;
+		gbc.insets = new Insets(0, 0, 0, 0);
+		checkBoxMail.add(lbCbMail, gbc);
+		
+		
+		// CheckBox Politique de Confidentialité
+		JPanel checkBoxPolitique = new JPanel(new GridBagLayout());
+		
+		
+		JCheckBox cbPolitique = new JCheckBox();
+		cbPolitique.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				cmdPolitique();
+			}
+		});
+		gbc.gridx = 0;
+		gbc.gridy = 0;
+		gbc.gridwidth = 1;
+		gbc.anchor = GridBagConstraints.LINE_START;
+		gbc.insets = new Insets(0, 0, 0, 0);
+		checkBoxPolitique.add(cbPolitique, gbc);
+		
+		
+		JLabel lbCbPolitique_1 = new JLabel("J'accepte la ");
+		gbc.gridx = 1;
+		gbc.gridwidth = 1;
+		gbc.anchor = GridBagConstraints.CENTER;
+		gbc.insets = new Insets(0, 0, 0, 0);
+		checkBoxPolitique.add(lbCbPolitique_1, gbc);
+		
+		
+		JLabel lbCbPolitique_2 = new JLabel("politique de confidentialité");
+		lbCbPolitique_2.addMouseListener(new MouseAdapter() {
+		    @Override
+		    public void mouseClicked(MouseEvent e) {
+		    	
+		    }
+		 
+		    @Override
+		    public void mouseEntered(MouseEvent e) {
+		        cmdChangeCurseur("hand");
+		    }
+		 
+		    @Override
+		    public void mouseExited(MouseEvent e) {
+		    	cmdChangeCurseur("default");
+		    }
+		});
+		gbc.gridx = 2;
+		gbc.gridwidth = 1;
+		gbc.anchor = GridBagConstraints.CENTER;
+		gbc.insets = new Insets(0, 0, 0, 0);
+		checkBoxPolitique.add(lbCbPolitique_2, gbc);
+		
 		
 		// Formulaire ID / Mail / MDP / Confirmation MDP
 		JPanel formulaire = new JPanel(new GridBagLayout());
@@ -87,10 +163,19 @@ public class Inscription extends Menu {
 		formulaire.add(lbAlerteId, gbc);
 		
 		
+		gbc.fill = GridBagConstraints.NONE;
+		gbc.gridx = 1;
+		gbc.gridwidth = 1;
+		gbc.anchor = GridBagConstraints.BASELINE_LEADING;
+		gbc.insets = new Insets(0, 0, 5, 0);
+		formulaire.add(checkBoxMail, gbc);
+		
+		
 		JLabel lbAlerteMail = new JLabel(" ");
 		lbAlerteMail.setForeground(COULEUR_ALERTE);
 		gbc.fill = GridBagConstraints.NONE;
 		gbc.gridx = 1;
+		gbc.gridy++;
 		gbc.gridwidth = 1;
 		gbc.anchor = GridBagConstraints.BASELINE_LEADING;
 		gbc.insets = new Insets(0, 0, 5, 0);
@@ -170,6 +255,15 @@ public class Inscription extends Menu {
 		add(formulaire, gbc);
 		
 		
+		gbc.fill = GridBagConstraints.NONE;
+		gbc.gridx = 0;
+		gbc.gridy++;
+		gbc.gridwidth = 1;
+		gbc.anchor = GridBagConstraints.BASELINE_LEADING;
+		gbc.insets = new Insets(10, 0, 0, 0);
+		add(checkBoxPolitique, gbc);
+		
+		
 		JButton btnInscription = new JButton("S'inscrire");
 		btnInscription.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
@@ -177,6 +271,7 @@ public class Inscription extends Menu {
 			}
 		});
 		btnInscription.setPreferredSize(new Dimension(110,25));
+		btnInscription.setEnabled(cbPolitique.isSelected());
 		gbc.fill = GridBagConstraints.NONE;
 		gbc.gridx = 0;
 		gbc.gridy++;
@@ -212,7 +307,7 @@ public class Inscription extends Menu {
 	 * 
 	 */
 	public void cmdInscrire() {
-		ControleurGeneral.ctrlBouton.rqtTentativeInscription(txtId.getText(), txtMail.getText(), txtMdp.getPassword(), txtMdpConfirme.getPassword());
+		ControleurGeneral.ctrlBouton.rqtTentativeInscription(txtId.getText(), txtMail.getText(), txtMdp.getPassword(), txtMdpConfirme.getPassword(), !cbVerifMail.isSelected());
 	}
 	
 	/**
@@ -220,6 +315,21 @@ public class Inscription extends Menu {
 	 */
 	private void cmdRetour() {
 		ControleurGeneral.ctrlBouton.rqtRetour();
+	}
+	
+	/**
+	 * 
+	 */
+	private void cmdPolitique() {
+		//ControleurGeneral.ctrlBouton.;
+	}
+	
+	/**
+	 * 
+	 * @param type
+	 */
+	public void cmdChangeCurseur(String type) {
+		ControleurGeneral.ctrlAffichage.rqtChangeCurseur(type);
 	}
 	
 	
@@ -235,26 +345,4 @@ public class Inscription extends Menu {
 		ControleurGeneral.ctrlAffichage.afficherAlerte("mdp", " ");
 		ControleurGeneral.ctrlAffichage.afficherAlerte("mdpConfirme", " ");
 	}
-	
-	
-	////////////////////////////////////////
-	//         GETTEURS ET SETTEURS       //     
-	////////////////////////////////////////
-	
-	/**
-	 * 
-	 * @return
-	 */
-	public String getIdentifiant() {
-		return txtId.getText();
-	}
-	
-	/**
-	 * 
-	 * @return
-	 */
-	public String getMail() {
-		return txtMail.getText();
-	}
-
 }

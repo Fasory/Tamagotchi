@@ -21,9 +21,6 @@ import controleur.ControleurGeneral;
 
 public class Connexion extends Menu {
 	
-	// Constantes publics
-	public final Color COULEUR_EN_SELEC = COULEUR_ALERTE;
-	public final Color COULEUR_EN_NON_SELEC = Color.BLUE;
 	// Autres attributs
 	private JLabel lbOublieMdp;
 	private JTextField txtId;

@@ -67,7 +67,7 @@ public class ControleurConnexion extends ControleurGeneral {
 	}
 	
 	
-	public void inscription(String utilisateur, String mail, String mdp, String mdpConfirme) {
+	public void inscription(String utilisateur, String mail, String mdp, String mdpConfirme, boolean verifMail) {
 		boolean possibleInscription = true;
 		// Vérification dque les champs soient remplis
 		ctrlAffichage.renitialiserMenu();
@@ -134,7 +134,7 @@ public class ControleurConnexion extends ControleurGeneral {
 			compteInscription = new Compte(utilisateur, ctrlSecurite.hash(mdp), mail);
 			code = null;
 			confirmationInscription();
-			if (BY_PASS) verificationCode(this.code);
+			if (!verifMail) verificationCode(this.code);
 			else ctrlAffichage.ouvrirMenuConfirmation(new InscriptionConfirm(this));
 		}
 	}
@@ -167,7 +167,6 @@ public class ControleurConnexion extends ControleurGeneral {
 		} else {
 			if (codeSaisie.equals("")) ctrlAffichage.afficherAlerteConfirmation("Veuillez saisir le code.");
 			else ctrlAffichage.afficherAlerteConfirmation("Le code est invalide");
-			System.out.println("msg");
 		}
 	}
 }

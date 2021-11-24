@@ -164,8 +164,8 @@ public class ControleurBouton extends ControleurGeneral {
 	 * @param mdpConfirme - char[] représentant la confirmation du			<br/>
 	 * mot de passe															<br/>
 	 */
-	public void rqtTentativeInscription(String utilisateur, String mail, char[] mdp, char[] mdpConfirme) {
-		ctrlConnexion.inscription(utilisateur, mail, new String(mdp), new String(mdpConfirme));
+	public void rqtTentativeInscription(String utilisateur, String mail, char[] mdp, char[] mdpConfirme, boolean verifMail) {
+		ctrlConnexion.inscription(utilisateur, mail, new String(mdp), new String(mdpConfirme), verifMail);
 	}
 	
 	/**
