@@ -8,6 +8,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.Color;
+
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -26,6 +28,9 @@ public class Inscription extends Menu {
 	private JPasswordField txtMdp;
 	private JPasswordField txtMdpConfirme;
 	private JCheckBox cbVerifMail;
+	private JCheckBox cbPolitique;
+	private JLabel lbCbPolitique_2;
+	private JButton btnInscription;
 	
 	
 	public Inscription(ControleurGeneral controleur) {
@@ -49,7 +54,7 @@ public class Inscription extends Menu {
 		checkBoxMail.add(cbVerifMail, gbc);
 		
 		
-		JLabel lbCbMail = new JLabel("Ne pas vérifier l'adresse mail");
+		JLabel lbCbMail = new JLabel("Ne pas vérifier l'adresse mail.");
 		gbc.gridx = 1;
 		gbc.gridwidth = 1;
 		gbc.anchor = GridBagConstraints.CENTER;
@@ -61,7 +66,7 @@ public class Inscription extends Menu {
 		JPanel checkBoxPolitique = new JPanel(new GridBagLayout());
 		
 		
-		JCheckBox cbPolitique = new JCheckBox();
+		cbPolitique = new JCheckBox();
 		cbPolitique.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				cmdPolitique();
@@ -75,7 +80,7 @@ public class Inscription extends Menu {
 		checkBoxPolitique.add(cbPolitique, gbc);
 		
 		
-		JLabel lbCbPolitique_1 = new JLabel("J'accepte la ");
+		JLabel lbCbPolitique_1 = new JLabel("J'ai lu et j'accepte la ");
 		gbc.gridx = 1;
 		gbc.gridwidth = 1;
 		gbc.anchor = GridBagConstraints.CENTER;
@@ -83,21 +88,22 @@ public class Inscription extends Menu {
 		checkBoxPolitique.add(lbCbPolitique_1, gbc);
 		
 		
-		JLabel lbCbPolitique_2 = new JLabel("politique de confidentialité");
+		lbCbPolitique_2 = new JLabel("politique de confidentialité");
+		lbCbPolitique_2.setForeground(COULEUR_EN_NON_SELEC);
 		lbCbPolitique_2.addMouseListener(new MouseAdapter() {
 		    @Override
 		    public void mouseClicked(MouseEvent e) {
-		    	
+		    	cmdVoirPolitique();
 		    }
 		 
 		    @Override
 		    public void mouseEntered(MouseEvent e) {
-		        cmdChangeCurseur("hand");
+		    	cmdSurvolePolitique("hand", COULEUR_EN_SELEC);
 		    }
 		 
 		    @Override
 		    public void mouseExited(MouseEvent e) {
-		    	cmdChangeCurseur("default");
+		    	cmdSurvolePolitique("default", COULEUR_EN_NON_SELEC);
 		    }
 		});
 		gbc.gridx = 2;
@@ -105,6 +111,14 @@ public class Inscription extends Menu {
 		gbc.anchor = GridBagConstraints.CENTER;
 		gbc.insets = new Insets(0, 0, 0, 0);
 		checkBoxPolitique.add(lbCbPolitique_2, gbc);
+		
+		
+		JLabel lbCbPolitique_3 = new JLabel(".");
+		gbc.gridx = 3;
+		gbc.gridwidth = 1;
+		gbc.anchor = GridBagConstraints.CENTER;
+		gbc.insets = new Insets(0, 0, 0, 0);
+		checkBoxPolitique.add(lbCbPolitique_3, gbc);
 		
 		
 		// Formulaire ID / Mail / MDP / Confirmation MDP
@@ -167,7 +181,7 @@ public class Inscription extends Menu {
 		gbc.gridx = 1;
 		gbc.gridwidth = 1;
 		gbc.anchor = GridBagConstraints.BASELINE_LEADING;
-		gbc.insets = new Insets(0, 0, 5, 0);
+		gbc.insets = new Insets(0, 0, 0, 0);
 		formulaire.add(checkBoxMail, gbc);
 		
 		
@@ -264,7 +278,7 @@ public class Inscription extends Menu {
 		add(checkBoxPolitique, gbc);
 		
 		
-		JButton btnInscription = new JButton("S'inscrire");
+		btnInscription = new JButton("S'inscrire");
 		btnInscription.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				cmdInscrire();
@@ -306,6 +320,13 @@ public class Inscription extends Menu {
 	/**
 	 * 
 	 */
+	public void cmdVoirPolitique() {
+		ControleurGeneral.ctrlBouton.rqtAffichagePolitique();
+	}
+	
+	/**
+	 * 
+	 */
 	public void cmdInscrire() {
 		ControleurGeneral.ctrlBouton.rqtTentativeInscription(txtId.getText(), txtMail.getText(), txtMdp.getPassword(), txtMdpConfirme.getPassword(), !cbVerifMail.isSelected());
 	}
@@ -321,15 +342,16 @@ public class Inscription extends Menu {
 	 * 
 	 */
 	private void cmdPolitique() {
-		//ControleurGeneral.ctrlBouton.;
+		ControleurGeneral.ctrlAffichage.rqtComposantActif(this, btnInscription, cbPolitique.isSelected());
 	}
 	
 	/**
 	 * 
 	 * @param type
 	 */
-	public void cmdChangeCurseur(String type) {
+	public void cmdSurvolePolitique(String type, Color couleur) {
 		ControleurGeneral.ctrlAffichage.rqtChangeCurseur(type);
+		ControleurGeneral.ctrlAffichage.rqtChangeCouleurLabel(this, lbCbPolitique_2, couleur);
 	}
 	
 	

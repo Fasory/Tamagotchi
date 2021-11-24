@@ -6,6 +6,7 @@ import vue.menu.DeconnexionConfirm;
 import vue.menu.Inscription;
 import vue.menu.Option;
 import vue.menu.OubliMdp;
+import vue.menu.Politique;
 import vue.menu.QuitterConfirm;
 import vue.menu.Score;
 import vue.menu.SelecPartie;
@@ -87,6 +88,14 @@ public class ControleurBouton extends ControleurGeneral {
 	 */
 	public void rqtOublieDeMdp() {
 		ctrlAffichage.ouvrirMenu(new OubliMdp(this));
+	}
+	
+	/**
+	 * Redirige l'utilisateur vers le menu de la  politique de				<br/>
+	 * confidentialité														<br/>
+	 */
+	public void rqtAffichagePolitique() {
+		ctrlAffichage.ouvrirMenu(new Politique(this));
 	}
 	
 	/**

@@ -2,9 +2,13 @@ package controleur;
 
 import java.util.Stack;
 
+import javax.swing.JComponent;
+import javax.swing.JLabel;
+
+import java.awt.Color;
+
 import vue.fenetre.FenetreConfirmation;
 import vue.fenetre.FenetrePrincipale;
-import vue.menu.Connexion;
 import vue.menu.Menu;
 import vue.menu.MenuConfirmation;
 
@@ -46,14 +50,25 @@ public class ControleurAffichage extends ControleurGeneral {
 	}
 	
 	/**
-	 * Change la couleur du texte d'oublie de mot de passe					<br/>
+	 * Change la couleur du texte											<br/>
 	 * 																		<br/>
-	 * @param menu - Connexion du menu actuel pour changer					<br/>
-	 * les couleurs															<br/>
+	 * @param menu - Menu sur lequel on effectue le changement				<br/>
+	 * @param label - JLabel dont on veut changer la couleur				<br/>
+	 * @param couleur - Color final que va prendre notre JLabel				<br/>
 	 */
-	public void rqtCouleurOublieMdp(Connexion menu) {
-		if (menu.getCouleurTxtOublieMdp().equals(menu.COULEUR_EN_SELEC)) menu.setCouleurTxtOublieMdp(menu.COULEUR_EN_NON_SELEC);
-		else menu.setCouleurTxtOublieMdp(menu.COULEUR_EN_SELEC);
+	public void rqtChangeCouleurLabel(Menu menu, JLabel label, Color couleur) {
+		menu.changeCouleurLabel(label, couleur);
+	}
+	
+	/**
+	 * Change un JComponent en actif / inactif								<br/>
+	 * 																		<br/>
+	 * @param menu - Menu sur lequel on effectue le changement				<br/>
+	 * @param composant - JComponent dont on veut modifier l'activité		<br/>
+	 * @param actif - boolean représentant l'activité à appliquer			<br/>
+	 */
+	public void rqtComposantActif(Menu menu, JComponent composant, boolean actif) {
+		menu.setActive(composant, actif);
 	}
 	
 	/**

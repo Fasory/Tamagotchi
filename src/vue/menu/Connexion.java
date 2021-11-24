@@ -94,12 +94,12 @@ public class Connexion extends Menu {
 		 
 		    @Override
 		    public void mouseEntered(MouseEvent e) {
-		        cmdChangeCurseur("hand");
+		        cmdSurvoleMdp("hand", COULEUR_EN_SELEC);
 		    }
 		 
 		    @Override
 		    public void mouseExited(MouseEvent e) {
-		    	cmdChangeCurseur("default");
+		    	cmdSurvoleMdp("default", COULEUR_EN_NON_SELEC);
 		    }
 		});
 		gbc.fill = GridBagConstraints.NONE;
@@ -260,9 +260,9 @@ public class Connexion extends Menu {
 	 * @param type - String qui représente le type de curseur	<br/>
 	 * à changer												<br/>
 	 */
-	public void cmdChangeCurseur(String type) {
+	public void cmdSurvoleMdp(String type, Color couleur) {
 		ControleurGeneral.ctrlAffichage.rqtChangeCurseur(type);
-		ControleurGeneral.ctrlAffichage.rqtCouleurOublieMdp(this);
+		ControleurGeneral.ctrlAffichage.rqtChangeCouleurLabel(this, lbOublieMdp, couleur);
 	}
 	
 	/**

@@ -1,5 +1,6 @@
 package vue.menu;
 
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -45,5 +46,13 @@ public abstract class Menu extends JPanel {
 	
 	public void setAlerte(String alerteCible, String message) {
 		lsAlerte.get(alerteCible).setText(message);
+	}
+	
+	public void changeCouleurLabel(JLabel label, Color couleur) {
+		label.setForeground(couleur);
+	}
+	
+	public void setActive(JComponent composant, boolean actif) {
+		composant.setEnabled(actif);
 	}
 }
