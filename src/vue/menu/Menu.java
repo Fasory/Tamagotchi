@@ -9,22 +9,18 @@ import java.awt.Cursor;
 import java.util.HashMap;
 import java.util.Set;
 
-import controleur.ControleurGeneral;
-
 public abstract class Menu extends JPanel {
 	
-	protected final static Color COULEUR_ALERTE = Color.RED;
+	protected final Color COULEUR_ALERTE = Color.RED;
 	// Constantes publics
-	public final Color COULEUR_EN_SELEC = COULEUR_ALERTE;
-	public final Color COULEUR_EN_NON_SELEC = Color.BLUE;
+	protected final Color COULEUR_EN_SELEC = COULEUR_ALERTE;
+	protected final Color COULEUR_EN_NON_SELEC = Color.BLUE;
 	
-	protected ControleurGeneral controleur;
 	protected HashMap<String, JLabel> lsAlerte;
 	
-	protected Menu(ControleurGeneral controleur) {
+	protected Menu() {
 		super();
 		
-		this.controleur = controleur;
 		lsAlerte = new HashMap<String, JLabel>();
 	}
 	

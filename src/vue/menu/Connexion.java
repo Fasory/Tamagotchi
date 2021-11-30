@@ -31,8 +31,8 @@ public class Connexion extends Menu {
 	 * 														<br/>
 	 * @param controleur - Controleur de l'application		<br/>
 	 */
-	public Connexion(ControleurGeneral controleur) {
-		super(controleur);
+	public Connexion() {
+		super();
 		
 		// Partie Affichage
 		setLayout(new GridBagLayout());
@@ -260,7 +260,7 @@ public class Connexion extends Menu {
 	 * @param type - String qui représente le type de curseur	<br/>
 	 * à changer												<br/>
 	 */
-	public void cmdSurvoleMdp(String type, Color couleur) {
+	private void cmdSurvoleMdp(String type, Color couleur) {
 		ControleurGeneral.ctrlAffichage.rqtChangeCurseur(type);
 		ControleurGeneral.ctrlAffichage.rqtChangeCouleurLabel(this, lbOublieMdp, couleur);
 	}
@@ -268,28 +268,28 @@ public class Connexion extends Menu {
 	/**
 	 * Demande de changement de mot de passe suite à un oublie	<br/>
 	 */
-	public void cmdMdpOublier() {
+	private void cmdMdpOublier() {
 		ControleurGeneral.ctrlBouton.rqtOublieDeMdp();
 	}
 	
 	/**
 	 * Demande l'ouverture d'une session à partir d'un identifiant et d'un mot de passe
 	 */
-	public void cmdConnexion() {
+	private void cmdConnexion() {
 		ControleurGeneral.ctrlBouton.rqtConnexion(txtId.getText(), txtMdp.getPassword());
 	}
 	
 	/**
 	 * Demande l'ouverture d'une session anonyme
 	 */
-	public void cmdConnexionAnonyme() {
+	private void cmdConnexionAnonyme() {
 		ControleurGeneral.ctrlBouton.rqtConnexion("Anonyme", new char[0]);
 	}
 	
 	/**
 	 * Demande d'insciprtion
 	 */
-	public void cmdInscription() {
+	private void cmdInscription() {
 		ControleurGeneral.ctrlBouton.rqtInscription();
 	}
 	

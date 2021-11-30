@@ -12,9 +12,9 @@ import vue.fenetre.FenetrePrincipale;
 import vue.menu.Menu;
 import vue.menu.MenuConfirmation;
 
-public class ControleurAffichage extends ControleurGeneral {
+public class ControleurAffichage extends Controleur {
 	
-	private static int estCree = 0;							// Repère de création d'une unique instance par type de controleur
+	private static boolean estCree = false;							// Repère de création d'une unique instance par type de controleur
 	
 	private FenetrePrincipale fenetrePrincipale;			// Fenêtre principale qui contient les menus et le jeu
 	private FenetreConfirmation fenetreDeConfirmation;		// Fenêtre destinée à demander la confirmation d'une action
@@ -29,12 +29,26 @@ public class ControleurAffichage extends ControleurGeneral {
 	 */
 	public ControleurAffichage(Menu menuInitial) {
 		super(estCree);
-		estCree++;
+		estCree = true;
 		
 		pileMenu = new Stack<Menu>();
 		pileMenu.push(menuInitial);
-		fenetrePrincipale = new FenetrePrincipale(this, pileMenu.peek());
-		fenetreDeConfirmation = new FenetreConfirmation(this);
+		fenetrePrincipale = new FenetrePrincipale(pileMenu.peek());
+		fenetreDeConfirmation = new FenetreConfirmation();
+	}
+	
+	/**
+	 * Ferme les fenêtres de l'application									<br/>
+	 */
+	@Override
+	public void delControleur() {
+		if (estCree) {
+			fenetrePrincipale.mettreEnPause(true);
+			fenetrePrincipale.mettreEnAvant(false);
+			fenetrePrincipale.dispose();
+			fenetreDeConfirmation.dispose();
+			estCree = false;
+		}
 	}
 	
 	/**
@@ -46,7 +60,7 @@ public class ControleurAffichage extends ControleurGeneral {
 	public void rqtChangeCurseur(String type) {
 		if (type.equals("default")) pileMenu.peek().curseurDefault();
 		else if (type.equals("hand")) pileMenu.peek().curseurHand();
-		else ctrlFichier.addLogs("Erreur		- le curseur de type '" + type + "' n'existe pas", true);
+		else ControleurGeneral.ctrlFichier.addLogs("Erreur		- le curseur de type '" + type + "' n'existe pas", true);
 	}
 	
 	/**
@@ -123,16 +137,6 @@ public class ControleurAffichage extends ControleurGeneral {
 	}
 	
 	/**
-	 * Ferme les fenêtres de l'application									<br/>
-	 */
-	public void fermetureApplication() {
-		fenetrePrincipale.mettreEnPause(true);
-		fenetrePrincipale.mettreEnAvant(false);
-		fenetrePrincipale.dispose();
-		fenetreDeConfirmation.dispose();
-	}
-	
-	/**
 	 * Affiche le précédent précédent										<br/>
 	 */	
 	public void menuPrecedent() {
@@ -157,7 +161,7 @@ public class ControleurAffichage extends ControleurGeneral {
 	public void afficherAlerte(String alerteCible, String msg) {
 		Menu tempMenu = pileMenu.peek();
 		if (tempMenu.getClefLsAlerte().contains(alerteCible)) tempMenu.setAlerte(alerteCible, msg);
-		else ctrlFichier.addLogs("Erreur		- échec d'écrire dans un menu qui ne contient pas l'alerte cible voulu : " + alerteCible, true);
+		else ControleurGeneral.ctrlFichier.addLogs("Erreur		- échec d'écrire dans un menu qui ne contient pas l'alerte cible voulu : " + alerteCible, true);
 	}
 	
 	

@@ -13,8 +13,8 @@ public class FenetreConfirmation extends Fenetre {
 	 * 													<br/>
 	 * @param controleur - Contoleur de l'application	<br/>
 	 */
-	public FenetreConfirmation(ControleurGeneral controleur) {
-		super(controleur);
+	public FenetreConfirmation() {
+		super();
 		
 		setTitle("Confirmation");
 		setSize(400, 250);
@@ -30,7 +30,7 @@ public class FenetreConfirmation extends Fenetre {
 	* Demande d'annulation de la confirmation			<br/>
 	*/
 	@Override
-	public void cmdQuitter() {
+	protected void cmdQuitter() {
 		ControleurGeneral.ctrlBouton.rqtRetourConfirmation();
 	}
 	
@@ -47,6 +47,6 @@ public class FenetreConfirmation extends Fenetre {
 	 */
 	public MenuConfirmation getMenuConfirmation() {
 		// Seul des MenuConfirmation sont dans le ContentPane de la fenêtre
-		return (MenuConfirmation) getContentPane();
+		return (MenuConfirmation) panelCourant;
 	}
 }

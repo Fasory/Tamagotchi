@@ -9,8 +9,8 @@ public class DeconnexionConfirm extends MenuConfirmation {
 	 * 
 	 * @param controleur - Contoleur de l'application	<br/>
 	 */
-	public DeconnexionConfirm(ControleurGeneral controleur) {
-		this(controleur, "Êtes-vous sûr de vouloir vous déconnecter ?");
+	public DeconnexionConfirm() {
+		this("Êtes-vous sûr de vouloir vous déconnecter ?");
 	}
 	
 	/**
@@ -20,15 +20,15 @@ public class DeconnexionConfirm extends MenuConfirmation {
 	 * @param msg - String afficher pour demander la	<br/>
 	 * confirmation de quitter							<br/>
 	 */
-	public DeconnexionConfirm(ControleurGeneral controleur, String msg) {
-		super(controleur, msg, "Oui", "Annuler");
+	public DeconnexionConfirm(String msg) {
+		super(msg, "Oui", "Annuler");
 	}
 	
 	/**
 	 * Demande de fermeture de l'application			<br/>
 	 */
 	@Override
-	public void cmdConfirmation() {
+	protected void cmdConfirmation() {
 		ControleurGeneral.ctrlBouton.rqtDeconnexion();
 		ControleurGeneral.ctrlBouton.rqtRetourConfirmation();
 	}

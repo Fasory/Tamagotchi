@@ -33,8 +33,8 @@ public class Inscription extends Menu {
 	private JButton btnInscription;
 	
 	
-	public Inscription(ControleurGeneral controleur) {
-		super(controleur);
+	public Inscription() {
+		super();
 		
 		// Partie Affichage
 		setLayout(new GridBagLayout());
@@ -320,14 +320,14 @@ public class Inscription extends Menu {
 	/**
 	 * 
 	 */
-	public void cmdVoirPolitique() {
+	private void cmdVoirPolitique() {
 		ControleurGeneral.ctrlBouton.rqtAffichagePolitique();
 	}
 	
 	/**
 	 * 
 	 */
-	public void cmdInscrire() {
+	private void cmdInscrire() {
 		ControleurGeneral.ctrlBouton.rqtTentativeInscription(txtId.getText(), txtMail.getText(), txtMdp.getPassword(), txtMdpConfirme.getPassword(), !cbVerifMail.isSelected());
 	}
 	
@@ -349,7 +349,7 @@ public class Inscription extends Menu {
 	 * 
 	 * @param type
 	 */
-	public void cmdSurvolePolitique(String type, Color couleur) {
+	private void cmdSurvolePolitique(String type, Color couleur) {
 		ControleurGeneral.ctrlAffichage.rqtChangeCurseur(type);
 		ControleurGeneral.ctrlAffichage.rqtChangeCouleurLabel(this, lbCbPolitique_2, couleur);
 	}
@@ -366,5 +366,6 @@ public class Inscription extends Menu {
 		ControleurGeneral.ctrlAffichage.afficherAlerte("mail", " ");
 		ControleurGeneral.ctrlAffichage.afficherAlerte("mdp", " ");
 		ControleurGeneral.ctrlAffichage.afficherAlerte("mdpConfirme", " ");
+		lbCbPolitique_2.setForeground(COULEUR_EN_NON_SELEC);
 	}
 }

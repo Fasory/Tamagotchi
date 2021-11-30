@@ -17,12 +17,14 @@ public abstract class Controleur {
 	 * 																				<br/>
 	 * @param estCree - int désignant le repère de création du controleur fils		<br/>
 	 */
-	protected Controleur(int estCree) {
+	protected Controleur(boolean estCree) {
 		try {
-			if (estCree > 0) throw new Exception("Erreur - tentative d'instentiation d'un controleur déjà existant");
+			if (estCree) throw new Exception("Erreur - tentative d'instentiation d'un controleur déjà existant");
 		} catch (Exception err) {
 			System.err.println(err);
 			System.exit(1);
 		}
 	}
+	
+	abstract public void delControleur();
 }

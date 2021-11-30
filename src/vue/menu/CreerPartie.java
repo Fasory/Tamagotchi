@@ -16,8 +16,8 @@ import controleur.ControleurGeneral;
 
 public class CreerPartie extends Menu {
 
-	public CreerPartie(ControleurGeneral controleur) {
-		super(controleur);
+	public CreerPartie() {
+		super();
 		// TODO Auto-generated constructor stub
 		// partie affichage
 		setLayout(new GridBagLayout()); // nouvelle grille

@@ -1,11 +1,9 @@
 package vue.menu;
 
-import controleur.ControleurGeneral;
-
 public class SelecPartie extends Menu {
 
-	public SelecPartie(ControleurGeneral controleur) {
-		super(controleur);
+	public SelecPartie() {
+		super();
 		// TODO Auto-generated constructor stub
 	}
 

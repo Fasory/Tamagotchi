@@ -1,8 +1,8 @@
 package vue.fenetre;
 
-import javax.swing.JPanel;
 
 import controleur.ControleurGeneral;
+import vue.menu.Menu;
 
 public class FenetrePrincipale extends Fenetre {
 	
@@ -13,8 +13,8 @@ public class FenetrePrincipale extends Fenetre {
 	 * 													<br/>
 	 * @param controleur - Contoleur de l'application	<br/>
 	 */
-	public FenetrePrincipale(ControleurGeneral controleur, JPanel panelCourant) {
-		super(controleur, panelCourant);
+	public FenetrePrincipale(Menu panelCourant) {
+		super(panelCourant);
 		setLocationRelativeTo(null);
 		setTitle("Tamagotchi");
 		setSize(1024,640);
@@ -32,7 +32,7 @@ public class FenetrePrincipale extends Fenetre {
 	 * Demande de fermeture de l'application			<br/>
 	 */
 	@Override
-	public void cmdQuitter() {
+	protected void cmdQuitter() {
 		ControleurGeneral.ctrlBouton.rqtDemandeQuitter();
 	}
 	

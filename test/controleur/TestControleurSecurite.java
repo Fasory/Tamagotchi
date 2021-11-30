@@ -21,7 +21,7 @@ class TestControleurSecurite {
 	
 	@AfterEach
 	void apresTest() throws Exception {
-		ctrlSecurite.delControleurSecurite();
+		ctrlSecurite.delControleur();
 	}
 	
 	@Test

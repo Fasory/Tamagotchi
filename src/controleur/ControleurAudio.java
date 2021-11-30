@@ -10,9 +10,9 @@ import javax.sound.sampled.FloatControl;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
-public class ControleurAudio extends ControleurGeneral {
+public class ControleurAudio extends Controleur {
 	
-	private static int estCree = 0;					// Repère de création d'une unique instance par type de controleur
+	private static boolean estCree = false;					// Repère de création d'une unique instance par type de controleur
 	private int volume;
 	private int musique;
 	
@@ -25,7 +25,7 @@ public class ControleurAudio extends ControleurGeneral {
 	 */
 	public ControleurAudio() {
 		super(estCree);
-		estCree++;
+		estCree = true;
 		volume=50;
 		musique=50;
 		try {
@@ -39,6 +39,11 @@ public class ControleurAudio extends ControleurGeneral {
 			System.err.println(err);
 		}
 		bruitage = new HashMap<String,Clip>();
+	}
+	
+	@Override
+	public void delControleur() {
+		estCree = false;
 	}
 	
 	/**

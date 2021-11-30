@@ -10,12 +10,11 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-import modele.Compte;
 import vue.menu.Connexion;
 
 public class ControleurGeneral extends Controleur {
 	
-	private static int estCree = 0;							// Repère de création d'une unique instance par type de controleur
+	private static boolean estCree = false;							// Repère de création d'une unique instance par type de controleur
 	
 	// Constantes
 	public final static int NB_MAX_PARTIE = 3;
@@ -32,8 +31,6 @@ public class ControleurGeneral extends Controleur {
 	public static ControleurConnexion ctrlConnexion;		// Controleur assistant pour la gestion de l'utilisateur
 	public static ControleurSecurite ctrlSecurite;			// Controleur assistant pour la gestion de la sécurité des données
 	
-	protected static Compte compte;							// Compte de l'utilisateur
-	
 	/**
 	 * Constructeur							<br/>
 	 * 										<br/>
@@ -41,7 +38,7 @@ public class ControleurGeneral extends Controleur {
 	 */
 	private ControleurGeneral() {
 		super(estCree);
-		estCree++;
+		estCree = true;
 		
 		// Lancement de l'application
 		ctrlFichier = new ControleurFichier();
@@ -52,7 +49,7 @@ public class ControleurGeneral extends Controleur {
 		ctrlConnexion = new ControleurConnexion();
 		ctrlFichier.addLogs("		-	Récupération des données de connexion");
 		// Initialisation de l'affichage
-		ctrlAffichage = new ControleurAffichage(new Connexion(this));
+		ctrlAffichage = new ControleurAffichage(new Connexion());
 		ctrlFichier.addLogs("		-	Création des fenêtres");
 		// Initialisation des controleurs complémentaires
 		ctrlBouton = new ControleurBouton();
@@ -62,19 +59,12 @@ public class ControleurGeneral extends Controleur {
 		ctrlFichier.addLogs("Satut	-	Application opérationnelle");
 	}
 	
-	/**
-	 * Constructeur											<br/>
-	 * 														<br/>
-	 * Appelle dédier aux sous contrôleur qui hérite du		<br/>
-	 * contrôleur général									<br/>
-	 * 														<br/>
-	 * @param autreEstCree - int désignant le repère de		<br/>
-	 * création	 du sous controleur							<br/>
-	 */
-	public ControleurGeneral(int autreEstCree) {
-		super(autreEstCree);
+	@Override
+	public void delControleur() {
+		if (estCree) {
+			estCree = false;
+		}
 	}
-	
 	
 	////////////////////////////////////////
 	//            METHODES DU             //
@@ -88,7 +78,8 @@ public class ControleurGeneral extends Controleur {
 	 * l'application 											<br/>
 	 */
 	public static void main(String[] args) {
-		new ControleurGeneral();
+		ControleurGeneral ctrlGeneral = new ControleurGeneral();
+		ctrlGeneral.delControleur();
 	}
 	
 	/**
@@ -99,7 +90,7 @@ public class ControleurGeneral extends Controleur {
 	 * @param contenu - String corps du mail					<br/>
 	 * @param destinataire - String destinataire du mail		<br/>
 	 */
-	public void envoyerMail(String sujet, String contenu, String destinataire) {
+	public static void envoyerMail(String sujet, String contenu, String destinataire) {
 		// Configuration de la session d'envoie
 	    Properties config = new Properties();
 	    config.put("mail.smtp.host", "smtp.gmail.com");
@@ -128,9 +119,14 @@ public class ControleurGeneral extends Controleur {
 	/**
 	* Ferme l'application										<br/>
 	*/
-	public void quitter() {
-		ctrlAffichage.fermetureApplication();
-		ctrlFichier.delControleurFichier();
+	public static void quitter() {
+		ctrlAudio.delControleur();
+		ctrlBouton.delControleur();
+		ctrlAffichage.delControleur();
+		ctrlConnexion.delControleur();
+		ctrlTemps.delControleur();
+		ctrlSecurite.delControleur();
+		ctrlFichier.delControleur();
 		System.exit(0);
 	}
 }

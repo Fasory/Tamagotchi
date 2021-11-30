@@ -14,8 +14,8 @@ import controleur.ControleurGeneral;
 
 public class Credits extends Menu {
 
-	public Credits(ControleurGeneral controleur) {
-		super(controleur);
+	public Credits() {
+		super();
 		
 		// partie affichage
 		
@@ -123,7 +123,7 @@ public class Credits extends Menu {
 	/**
 	 * Demande de changement de menu : Menu option
 	 */
-	public void cmdRetourOptions() {
+	private void cmdRetourOptions() {
 		ControleurGeneral.ctrlBouton.rqtRetour();
 	}
 

@@ -25,8 +25,8 @@ public class OubliMdp extends Menu {
 	 * 													<br/>
 	 * @param controleur- Controleur de l'application	<br/>	
 	 */
-	public OubliMdp(ControleurGeneral controleur) {
-		super(controleur);
+	public OubliMdp() {
+		super();
 		
 		// Partie Affichage
 		GridBagConstraints gbc = new GridBagConstraints();

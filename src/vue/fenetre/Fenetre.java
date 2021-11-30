@@ -4,9 +4,8 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
-import controleur.ControleurGeneral;
+import vue.menu.Menu;
 
 /**
  * Fenêtre modèle représentant la structure globale		<br/>
@@ -18,8 +17,7 @@ import controleur.ControleurGeneral;
  */
 public abstract class Fenetre extends JFrame {
 	
-	protected ControleurGeneral controleur;
-	private JPanel panelCourant;
+	protected Menu panelCourant;
 	
 	/**
 	 * Constructeur										<br/>
@@ -28,8 +26,8 @@ public abstract class Fenetre extends JFrame {
 	 * @param panelCourant - JPanel à afficher dans		<br/>
 	 * la fenêtre										<br/>
 	 */
-	protected Fenetre(ControleurGeneral controleur, JPanel panelCourant) {
-		this(controleur);
+	protected Fenetre(Menu panelCourant) {
+		this();
 		
 		this.panelCourant = panelCourant;
 		
@@ -41,10 +39,8 @@ public abstract class Fenetre extends JFrame {
 	 * 													<br/>
 	 * @param controleur - Contoleur de l'application	<br/>
 	 */
-	protected Fenetre(ControleurGeneral controleur) {
+	protected Fenetre() {
 		super();
-		
-		this.controleur = controleur;
 		
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -81,7 +77,7 @@ public abstract class Fenetre extends JFrame {
 	 * 																					<br/>
 	 * @param nouveauPanel - JPanel a affecté à la fenêtre								<br/>
 	 */
-	public void changePanel(JPanel nouveauPanel) {
+	public void changePanel(Menu nouveauPanel) {
 		this.panelCourant = nouveauPanel;
 		setContentPane(panelCourant);
 	}
@@ -94,5 +90,5 @@ public abstract class Fenetre extends JFrame {
 	/**
 	 * Demande une requête liée au bouton de fermeture de la fenêtre					<br/>
 	 */
-	public abstract void cmdQuitter();
+	protected abstract void cmdQuitter();
 }

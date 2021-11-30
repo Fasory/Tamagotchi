@@ -19,9 +19,9 @@ import vue.menu.SelecPartie;
  * Le bouton de fermeture de la fenêtre est				<br/>
  * également pris en charge ici							<br/>
  */
-public class ControleurBouton extends ControleurGeneral {
+public class ControleurBouton extends Controleur {
 	
-	private static int estCree = 0;					// Repère de création d'une unique instance par type de controleur
+	private static boolean estCree = false;					// Repère de création d'une unique instance par type de controleur
 	
 	/**
 	 * Constructeur													<br/>
@@ -30,7 +30,12 @@ public class ControleurBouton extends ControleurGeneral {
 	 */
 	public ControleurBouton() {
 		super(estCree);
-		estCree++;
+		estCree = true;
+	}
+	
+	@Override
+	public void delControleur() {
+		estCree = false;
 	}
 	
 	
@@ -50,21 +55,21 @@ public class ControleurBouton extends ControleurGeneral {
 	* Demande de changement de menu : MenuCreerPartie		<br/>
 	*/
 	public void rqtMenuCreerPartie() {
-		ctrlAffichage.ouvrirMenu(new CreerPartie(this));
+		ControleurGeneral.ctrlAffichage.ouvrirMenu(new CreerPartie());
 	}
 	
 	/**
 	* Demande de changement de menu : MenuSelecPartie		<br/>
 	*/
 	public void rqtMenuSelecPartie() {
-		ctrlAffichage.ouvrirMenu(new SelecPartie(this));
+		ControleurGeneral.ctrlAffichage.ouvrirMenu(new SelecPartie());
 	}
 	
 	/**
 	* Demande de changement de menu : MenuOption			<br/>
 	*/
 	public void rqtMenuOption() {
-		ctrlAffichage.ouvrirMenu(new Option(this));
+		ControleurGeneral.ctrlAffichage.ouvrirMenu(new Option());
 		
 	}
 	
@@ -72,22 +77,22 @@ public class ControleurBouton extends ControleurGeneral {
 	* Demande de changement de menu : MenuScore				<br/>
 	*/
 	public void rqtMenuScore() {
-		ctrlAffichage.ouvrirMenu(new Score(this));
+		ControleurGeneral.ctrlAffichage.ouvrirMenu(new Score());
 	}
 	
 	/**
 	* Demande une confirmation pour fermer l'application					<br/>
 	*/
 	public void rqtDemandeQuitter() {
-		if (BY_PASS) rqtQuitter();
-		else ctrlAffichage.ouvrirMenuConfirmation(new QuitterConfirm(this));
+		if (ControleurGeneral.BY_PASS) rqtQuitter();
+		else ControleurGeneral.ctrlAffichage.ouvrirMenuConfirmation(new QuitterConfirm());
 	}
 	
 	/**
 	 * Redirige l'utilisateur vers le menu d'oublie de mot de passe			<br/>
 	 */
 	public void rqtOublieDeMdp() {
-		ctrlAffichage.ouvrirMenu(new OubliMdp(this));
+		ControleurGeneral.ctrlAffichage.ouvrirMenu(new OubliMdp());
 	}
 	
 	/**
@@ -95,28 +100,28 @@ public class ControleurBouton extends ControleurGeneral {
 	 * confidentialité														<br/>
 	 */
 	public void rqtAffichagePolitique() {
-		ctrlAffichage.ouvrirMenu(new Politique(this));
+		ControleurGeneral.ctrlAffichage.ouvrirMenu(new Politique());
 	}
 	
 	/**
 	 * Redirige l'utilisateur vers le menu des crédits						<br/>
 	 */
 	public void rqtAffichageCredits() {
-		ctrlAffichage.ouvrirMenu(new Credits(this));
+		ControleurGeneral.ctrlAffichage.ouvrirMenu(new Credits());
 	}
 	
 	/**
 	 * Redirige l'utilisateur vers le menu d'inscription					<br/>
 	 */
 	public void rqtInscription() {
-		ctrlAffichage.ouvrirMenu(new Inscription(this));
+		ControleurGeneral.ctrlAffichage.ouvrirMenu(new Inscription());
 	}
 	
 	/**
 	 * Redirige l'utilisateur vers le menu précédent						<br/>
 	 */
 	public void rqtRetour() {
-		ctrlAffichage.menuPrecedent();
+		ControleurGeneral.ctrlAffichage.menuPrecedent();
 	}
 	
 	
@@ -129,8 +134,8 @@ public class ControleurBouton extends ControleurGeneral {
 	* Demande une confirmation pour déconnecte l'utilisateur				<br/>
 	*/
 	public void rqtDemandeDeconnexion() {
-		if (BY_PASS) rqtDeconnexion();
-		else ctrlAffichage.ouvrirMenuConfirmation(new DeconnexionConfirm(this));
+		if (ControleurGeneral.BY_PASS) rqtDeconnexion();
+		else ControleurGeneral.ctrlAffichage.ouvrirMenuConfirmation(new DeconnexionConfirm());
 	}
 	
 	/**
@@ -138,7 +143,7 @@ public class ControleurBouton extends ControleurGeneral {
 	 * dans l'état qu'elle été restée avant la demande de confirmation		<br/>
 	 */
 	public void rqtRetourConfirmation() {
-		ctrlAffichage.fermerMenuConfirmation();
+		ControleurGeneral.ctrlAffichage.fermerMenuConfirmation();
 	}
 	
 	
@@ -151,7 +156,7 @@ public class ControleurBouton extends ControleurGeneral {
 	* Déconnecte l'utilisateur												<br/>
 	*/
 	public void rqtDeconnexion() {
-		ctrlConnexion.deconnexion();
+		ControleurGeneral.ctrlConnexion.deconnexion();
 	}
 	
 	/**
@@ -161,7 +166,7 @@ public class ControleurBouton extends ControleurGeneral {
 	 * @param mdp - char[] représentant le mot de passe						<br/>
 	 */
 	public void rqtConnexion(String utilisateur, char[] mdp) {
-		ctrlConnexion.connexion(utilisateur, new String(mdp));
+		ControleurGeneral.ctrlConnexion.connexion(utilisateur, new String(mdp));
 	}
 	
 	/**
@@ -174,7 +179,7 @@ public class ControleurBouton extends ControleurGeneral {
 	 * mot de passe															<br/>
 	 */
 	public void rqtTentativeInscription(String utilisateur, String mail, char[] mdp, char[] mdpConfirme, boolean verifMail) {
-		ctrlConnexion.inscription(utilisateur, mail, new String(mdp), new String(mdpConfirme), verifMail);
+		ControleurGeneral.ctrlConnexion.inscription(utilisateur, mail, new String(mdp), new String(mdpConfirme), verifMail);
 	}
 	
 	/**
@@ -183,7 +188,7 @@ public class ControleurBouton extends ControleurGeneral {
 	 * @param code - String représentant le code à vérifier					<br/>
 	 */
 	public void rqtConfirmeCode(String code) {
-		ctrlConnexion.verificationCode(code);
+		ControleurGeneral.ctrlConnexion.verificationCode(code);
 	}
 	
 	
@@ -217,8 +222,7 @@ public class ControleurBouton extends ControleurGeneral {
 	* Ferme l'application													<br/>
 	*/
 	public void rqtQuitter() {
-		if (compte != null) ctrlConnexion.deconnexion();
-		quitter();
+		ControleurGeneral.quitter();
 	}
 	
 }

@@ -13,8 +13,8 @@ public class MenuPrincipal extends Menu {
 	 * 
 	 * @param controleur - Controleur de l'application
 	 */
-	public MenuPrincipal(ControleurGeneral controleur) {
-		super(controleur);
+	public MenuPrincipal() {
+		super();
 		
 		// Partie Affichage
 		setLayout(new GridBagLayout());
@@ -84,35 +84,35 @@ public class MenuPrincipal extends Menu {
 	/**
 	* Demande de changement de menu : MenuCreerPartie
 	*/
-	public void cmdMenuCreerPartie() {
+	private void cmdMenuCreerPartie() {
 		ControleurGeneral.ctrlBouton.rqtMenuCreerPartie();
 	}
 	
 	/**
 	* Demande de changement de menu : MenuSelecPartie
 	*/
-	public void cmdMenuSelecPartie() {
+	private void cmdMenuSelecPartie() {
 		ControleurGeneral.ctrlBouton.rqtMenuSelecPartie();
 	}
 	
 	/**
 	* Demande de changement de menu : MenuOption
 	*/
-	public void cmdMenuOption() {
+	private void cmdMenuOption() {
 		ControleurGeneral.ctrlBouton.rqtMenuOption();
 	}
 	
 	/**
 	* Demande de changement de menu : MenuScore
 	*/
-	public void cmdMenuScore() {
+	private void cmdMenuScore() {
 		ControleurGeneral.ctrlBouton.rqtMenuScore();
 	}
 	
 	/**
 	* Demande de déconnexion
 	*/
-	public void cmdDeconnexion() {
+	private void cmdDeconnexion() {
 		ControleurGeneral.ctrlBouton.rqtDemandeDeconnexion();
 	}
 	

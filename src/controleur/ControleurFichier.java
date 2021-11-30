@@ -24,9 +24,9 @@ import modele.Compte;
  * le débuggage et la maintenant liés à la		<br/>
  * persistence des données						<br/>
  */
-public class ControleurFichier extends ControleurGeneral {
+public class ControleurFichier extends Controleur {
 	
-	private static int estCree = 0;									// Repère de création d'une unique instance par type de controleur
+	private static boolean estCree = false;									// Repère de création d'une unique instance par type de controleur
 	
 	private File logs;												// Fichier logs du jour courant
 	private FileOutputStream logsOutStream;							// Flux de sortie pour écrire dans le fichier logs du jour courant
@@ -43,7 +43,7 @@ public class ControleurFichier extends ControleurGeneral {
 	 */
 	public ControleurFichier() {
 		super(estCree);
-		estCree++;
+		estCree = true;
 		
 		// Initialisation des logs
 		init_logs();
@@ -57,17 +57,19 @@ public class ControleurFichier extends ControleurGeneral {
 	 * Supprime le fichier logs associé à l'utilisation en cours	<br/>
 	 * si aucune erreur n'a été rapporté							<br/>
 	 */
-	public void delControleurFichier() {
-		if (!erreurLogs) {
-			try {
-				logsOutStream.close();
-				Files.delete(logs.toPath());
-			} catch (Exception err) {
-				addLogs(err.toString(), true);
+	@Override
+	public void delControleur() {
+		if (estCree) {
+			if (!erreurLogs) {
+				try {
+					logsOutStream.close();
+					Files.delete(logs.toPath());
+				} catch (Exception err) {
+					addLogs(err.toString(), true);
+				}
 			}
+			estCree = false;
 		}
-		
-		estCree--;
 	}
 	
 	/**

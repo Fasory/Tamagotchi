@@ -10,9 +10,9 @@ import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.SecretKeySpec;
 
-public class ControleurSecurite extends ControleurGeneral {
+public class ControleurSecurite extends Controleur {
 	
-	private static int estCree = 0;					// Repère de création d'une unique instance par type de controleur
+	private static boolean estCree = false;					// Repère de création d'une unique instance par type de controleur
 	
 	// Constantes
 	private final String CHAINE_CLEF = "myYh6TdAAmWNsrn23kuKbdpXiYJRMLbE";
@@ -29,7 +29,7 @@ public class ControleurSecurite extends ControleurGeneral {
 	 */
 	public ControleurSecurite() {
 		super(estCree);
-		estCree++;
+		estCree = true;
 		// Initialisation de l'agorithme de chiffrement
 		try {
 			clef = new SecretKeySpec(CHAINE_CLEF.getBytes(), "AES");
@@ -47,12 +47,14 @@ public class ControleurSecurite extends ControleurGeneral {
 		}
 	}
 	
-	public void delControleurSecurite() {
-		clef = null;
-		chiffrement = null;
-		hachage = null;
-		
-		estCree--;
+	@Override
+	public void delControleur() {
+		if (estCree) {
+			clef = null;
+			chiffrement = null;
+			hachage = null;
+			estCree = false;
+		}
 	}
 	
 	/**
@@ -114,7 +116,7 @@ public class ControleurSecurite extends ControleurGeneral {
 	 * @return String - représentant le résultat de la			<br/>
 	 * conversion												<br/>
 	 */
-	private String conversionVersStr(byte lsOctet[]) {
+	private String conversionVersStr(byte[] lsOctet) {
 		String resultat = "";
 		for (byte octet : lsOctet) {
 			resultat += HEX.charAt((0xF0 & octet) >> 4);		// On garde les 4 premiers bits de l'cotet et on les shift à droite pour avoir le nombre en hexa

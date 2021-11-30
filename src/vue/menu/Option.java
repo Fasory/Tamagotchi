@@ -17,8 +17,8 @@ import controleur.ControleurGeneral;
 
 public class Option extends Menu {
 
-	public Option(ControleurGeneral controleur) {
-		super(controleur);
+	public Option() {
+		super();
 		
 		// partie affichage
 		setLayout(new GridBagLayout());
@@ -122,14 +122,14 @@ public class Option extends Menu {
 	/**
 	 * Demande de changement de menu : Menu des crédits
 	 */
-	public void cmdAfficheCredits() {
+	private void cmdAfficheCredits() {
 		ControleurGeneral.ctrlBouton.rqtAffichageCredits();
 	}
 	
 	/**
 	 * Demande de changement de menu : Retour vers l'ancien menu
 	 */
-	public void cmdQuitterOptions() {
+	private void cmdQuitterOptions() {
 		ControleurGeneral.ctrlBouton.rqtRetour();
 	}
 	
@@ -137,7 +137,7 @@ public class Option extends Menu {
 	 * Demande de changement de Volume
 	 * @param volume
 	 */
-	public void cmdChangeVolume(int volume) {
+	private void cmdChangeVolume(int volume) {
 		ControleurGeneral.ctrlBouton.rqtChangeVolume(volume);
 	}
 	
@@ -145,7 +145,7 @@ public class Option extends Menu {
 	 * Demande de changement de Musique
 	 * @param musique
 	 */
-	public void cmdChangeMusique(int musique) {
+	private void cmdChangeMusique(int musique) {
 		ControleurGeneral.ctrlBouton.rqtChangeMusique(musique);
 	}
 }

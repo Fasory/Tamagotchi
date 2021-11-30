@@ -8,26 +8,35 @@ import modele.Compte;
 import vue.menu.InscriptionConfirm;
 import vue.menu.MenuPrincipal;
 
-public class ControleurConnexion extends ControleurGeneral {
+public class ControleurConnexion extends Controleur {
 	
-	private static int estCree = 0;					// Repère de création d'une unique instance par type de controleur
+	private static boolean estCree = false;					// Repère de création d'une unique instance par type de controleur
 	
 	private final int TAILLE_CODE = 6;
 	
 	private HashMap<String, Compte> lsCompte;
 	private String code;
+	private Compte compte;							// Compte de l'utilisateur
 	private Compte compteInscription;
 
 	public ControleurConnexion() {
 		super(estCree);
-		estCree++;
+		estCree = true;
 		// Code null tant qu'il n'y a aucun code en cours d'utilisation
 		code = null;
 		compteInscription = null;
 		// Compte null tant qu'aucune connexion est effectué
 		compte = null;
-		lsCompte = ctrlFichier.getListeCompte();
-		if (lsCompte.get(NOM_ANONYME) == null) lsCompte.put(NOM_ANONYME, new Compte(NOM_ANONYME, ctrlSecurite.hash(""), ctrlSecurite.hash(""), UUID.fromString(STR_UUID_ANONYME), new UUID[0]));
+		lsCompte = ControleurGeneral.ctrlFichier.getListeCompte();
+		if (lsCompte.get(ControleurGeneral.NOM_ANONYME) == null) lsCompte.put(ControleurGeneral.NOM_ANONYME, new Compte(ControleurGeneral.NOM_ANONYME, ControleurGeneral.ctrlSecurite.hash(""), ControleurGeneral.ctrlSecurite.hash(""), UUID.fromString(ControleurGeneral.STR_UUID_ANONYME), new UUID[0]));
+	}
+	
+	@Override
+	public void delControleur() {
+		if (estCree) {
+			if (compte != null) deconnexion();
+			estCree = false;
+		}
 	}
 	
 	/**
@@ -41,18 +50,18 @@ public class ControleurConnexion extends ControleurGeneral {
 	public void connexion(String utilisateur, String mdp) {
 		if (utilisateur.equals("")) {
 			if (mdp.equals("")) {
-				ctrlAffichage.afficherAlerte("general", "Veuillez saisir votre identifiant et votre mot de passe.");
+				ControleurGeneral.ctrlAffichage.afficherAlerte("general", "Veuillez saisir votre identifiant et votre mot de passe.");
 			} else {
-				ctrlAffichage.afficherAlerte("general", "Veuillez saisir votre identifiant.");
+				ControleurGeneral.ctrlAffichage.afficherAlerte("general", "Veuillez saisir votre identifiant.");
 			}
-		} else if (mdp.equals("") && !utilisateur.equals(NOM_ANONYME)) {
-			ctrlAffichage.afficherAlerte("general", "Veuillez saisir votre mot de passe.");
+		} else if (mdp.equals("") && !utilisateur.equals(ControleurGeneral.NOM_ANONYME)) {
+			ControleurGeneral.ctrlAffichage.afficherAlerte("general", "Veuillez saisir votre mot de passe.");
 		} else {
 			compte = lsCompte.get(utilisateur);
-			if (compte != null && ctrlSecurite.hash(mdp).equals(compte.getMdp())) {
-				ControleurGeneral.ctrlAffichage.ouvrirMenu(new MenuPrincipal(this));
+			if (compte != null && ControleurGeneral.ctrlSecurite.hash(mdp).equals(compte.getMdp())) {
+				ControleurGeneral.ctrlAffichage.ouvrirMenu(new MenuPrincipal());
 			} else {
-				ctrlAffichage.afficherAlerte("general", "Votre identifiant ou votre mot de passe est incorret.");
+				ControleurGeneral.ctrlAffichage.afficherAlerte("general", "Votre identifiant ou votre mot de passe est incorret.");
 			}
 		}
 	}
@@ -61,34 +70,34 @@ public class ControleurConnexion extends ControleurGeneral {
 	 * Perd le focus du compte ouvert
 	 */
 	public void deconnexion() {
-		ctrlFichier.enregistreCompte(compte);
+		ControleurGeneral.ctrlFichier.enregistreCompte(compte);
 		compte = null;
-		ctrlAffichage.menuPrecedent();
+		ControleurGeneral.ctrlAffichage.menuPrecedent();
 	}
 	
 	
 	public void inscription(String utilisateur, String mail, String mdp, String mdpConfirme, boolean verifMail) {
 		boolean possibleInscription = true;
 		// Vérification dque les champs soient remplis
-		ctrlAffichage.renitialiserMenu();
+		ControleurGeneral.ctrlAffichage.renitialiserMenu();
 		// Identifiant
 		if (utilisateur.equals("")) {
-			ctrlAffichage.afficherAlerte("id", "Veuillez saisir un identifiant.");
+			ControleurGeneral.ctrlAffichage.afficherAlerte("id", "Veuillez saisir un identifiant.");
 			possibleInscription = false;
 		}
 		// Mail
 		if (mail.equals("")) {
-			ctrlAffichage.afficherAlerte("mail", "Veuillez saisir une adresse mail.");
+			ControleurGeneral.ctrlAffichage.afficherAlerte("mail", "Veuillez saisir une adresse mail.");
 			possibleInscription = false;
 		}
 		// Mot de passe
 		if (mdp.equals("")) {
-			ctrlAffichage.afficherAlerte("mdp", "Veuillez saisir un mot de passe.");
+			ControleurGeneral.ctrlAffichage.afficherAlerte("mdp", "Veuillez saisir un mot de passe.");
 			possibleInscription = false;
 		}
 		// Confirmation du mot de passe
 		else if (mdpConfirme.equals("")) {
-			ctrlAffichage.afficherAlerte("mdpConfirme", "Veuillez confirmer le mot de passe.");
+			ControleurGeneral.ctrlAffichage.afficherAlerte("mdpConfirme", "Veuillez confirmer le mot de passe.");
 			possibleInscription = false;
 		}
 		// Si remplis
@@ -96,15 +105,15 @@ public class ControleurConnexion extends ControleurGeneral {
 		if (possibleInscription) {
 			// Identifiant
 			if (utilisateur.equals("Anonyme")) {
-				ctrlAffichage.afficherAlerte("id", "Cet identifiant est réservé.");
+				ControleurGeneral.ctrlAffichage.afficherAlerte("id", "Cet identifiant est réservé.");
 				possibleInscription = false;
 			} else if (lsCompte.get(utilisateur) != null) {
-				ctrlAffichage.afficherAlerte("id", "Identifiant déjà utilisé.");
+				ControleurGeneral.ctrlAffichage.afficherAlerte("id", "Identifiant déjà utilisé.");
 				possibleInscription = false;
 			}
 			// Mail
 			if (mail.contains(".@") || mail.contains("@.") || mail.contains("..")) {
-				ctrlAffichage.afficherAlerte("mail", "Adresse mail invalide.");
+				ControleurGeneral.ctrlAffichage.afficherAlerte("mail", "Adresse mail invalide.");
 				possibleInscription = false;
 			} else {
 				byte cpt = 0;
@@ -113,29 +122,29 @@ public class ControleurConnexion extends ControleurGeneral {
 			 		if (cpt > 1) break;
 			 	}
 			 	if (cpt != 1) {
-			 		ctrlAffichage.afficherAlerte("mail", "Adresse mail invalide.");
+			 		ControleurGeneral.ctrlAffichage.afficherAlerte("mail", "Adresse mail invalide.");
 					possibleInscription = false;
 			 	}
 			}
 			// Mot de passe
 			if (mdp.length() < 6) {
-				ctrlAffichage.afficherAlerte("mdp", "Au moins 6 caractères.");
+				ControleurGeneral.ctrlAffichage.afficherAlerte("mdp", "Au moins 6 caractères.");
 				possibleInscription = false;
 			}
 			// Confirmation du mot de passe
 			if (!mdpConfirme.equals(mdp)) {
-				ctrlAffichage.afficherAlerte("mdpConfirme", "Vérification invalide.");
+				ControleurGeneral.ctrlAffichage.afficherAlerte("mdpConfirme", "Vérification invalide.");
 				possibleInscription = false;
 			}
 		}
 		// Si conformtité des champs
 		// Vérification de l'adresse mail
 		if (possibleInscription) {
-			compteInscription = new Compte(utilisateur, ctrlSecurite.hash(mdp), mail);
+			compteInscription = new Compte(utilisateur, ControleurGeneral.ctrlSecurite.hash(mdp), mail);
 			code = null;
 			confirmationInscription();
 			if (!verifMail) verificationCode(this.code);
-			else ctrlAffichage.ouvrirMenuConfirmation(new InscriptionConfirm(this));
+			else ControleurGeneral.ctrlAffichage.ouvrirMenuConfirmation(new InscriptionConfirm());
 		}
 	}
 	
@@ -144,7 +153,7 @@ public class ControleurConnexion extends ControleurGeneral {
 		Random rng = new Random();
 		code = "";
 		for (int i = 0; i < TAILLE_CODE; i++) code += rng.nextInt(10);
-		if (!BY_PASS) {
+		if (!ControleurGeneral.BY_PASS) {
 			String sujet = "Confirmation de création de compte";
 			String contenu = "Bienvenue " + compteInscription.getUtilisateur() + ",\r\n"
 					       + "\r\n"
@@ -152,21 +161,21 @@ public class ControleurConnexion extends ControleurGeneral {
 					       + "Veuillez saisir le code suivant pour finaliser votre inscription : " + code + "\r\n"
 					       + "\r\n"
 					       + "Bon jeu !";
-			envoyerMail(sujet, contenu, compteInscription.getMail());
+			ControleurGeneral.envoyerMail(sujet, contenu, compteInscription.getMail());
 		}
 	}
 	
 	
 	public void verificationCode(String codeSaisie) {
 		if (codeSaisie.equals(code)) {
-			compte = new Compte(compteInscription.getUtilisateur(), compteInscription.getMdp(), ctrlSecurite.hash(compteInscription.getMail()), compteInscription.getId(), compteInscription.getPartiesId());
+			compte = new Compte(compteInscription.getUtilisateur(), compteInscription.getMdp(), ControleurGeneral.ctrlSecurite.hash(compteInscription.getMail()), compteInscription.getId(), compteInscription.getPartiesId());
 			lsCompte.put(compte.getUtilisateur(), compte);
 			compteInscription = null;
-			ctrlAffichage.fermerMenuConfirmation();
-			ctrlAffichage.ouvrirMenu(new MenuPrincipal(this), 1);
+			ControleurGeneral.ctrlAffichage.fermerMenuConfirmation();
+			ControleurGeneral.ctrlAffichage.ouvrirMenu(new MenuPrincipal(), 1);
 		} else {
-			if (codeSaisie.equals("")) ctrlAffichage.afficherAlerteConfirmation("Veuillez saisir le code.");
-			else ctrlAffichage.afficherAlerteConfirmation("Le code est invalide");
+			if (codeSaisie.equals("")) ControleurGeneral.ctrlAffichage.afficherAlerteConfirmation("Veuillez saisir le code.");
+			else ControleurGeneral.ctrlAffichage.afficherAlerteConfirmation("Le code est invalide");
 		}
 	}
 }

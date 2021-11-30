@@ -6,27 +6,25 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.Color;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.JProgressBar;
 
 import controleur.ControleurGeneral;
 
-import controleur.ControleurGeneral;
 
-
-public class MenuDeJeu extends Menu{
+public class MenuDeJeu extends Menu {
 	protected ControleurGeneral controleurG;
 	
 	//on initialise certains attributs (qui pourront être modifiés plus tard) hors du constructeur
-	JProgressBar barreVie;
-	JLabel labelHumeur;
-	JLabel labelLieu;
-	JLabel labelAction;
-	JLabel labelAge;
+	private JProgressBar barreVie;
+	private JLabel labelHumeur;
+	private JLabel labelLieu;
+	private JLabel labelAction;
+	private JLabel labelAge;
 	
 	/**
 	 * Constructeur
@@ -34,51 +32,230 @@ public class MenuDeJeu extends Menu{
 	 * @param controleur - Controleur de l'application
 	 */
 	
-	public MenuDeJeu(ControleurGeneral controleur) {
-		super(controleur);
+	public MenuDeJeu() {
+		super();
 		
 		setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
+//
+//		
+//		//JPanel contenant labelVie, la barre de vie, et labelAction
+//		JPanel panelCara2 = new JPanel(new GridBagLayout());
+//
+//		
+//		//label contenant le texte "Points de vie : "		
+//		final JLabel labelVie = new JLabel("Points de vie : ");
+//
+//		
+//		/*
+//		//JProgressBar contenant la valeur des points de vie restants
+//		// @0 - valeur minimale / @100 - valeur maximale
+//		barreVie = new JProgressbar(int 0, int 100);
+//		//ajoute du texte dans la barre
+//		barreVie.setStringPainted(true);
+//		barreVie.setValue(vie);
+//		// @vie - variable importée depuis la classe personnage
+//		*/
+//		
+//		//label contenant l'action en cours qu'effectue le Tamagotchi		
+//		labelAction = new JLabel(/*action*/"action");
+//		// @action - variable importée depuis la classe personnage
+//
+//		
+//		//label contenant l'âge actuel du Tamagotchi		
+//		labelAge = new JLabel(/*age*/"age");
+//		// @age - variable importée depuis la classe personnage
+//
+//		
+//		//JPanel contenant labelEnergie, la barre d'énergie, labelHygiene, la barre d'hygène, labelMoral, la barre de moral, labelNourriture, la barre de nourriture, labelToilettes, et la barre d'envie d'aller aux toilettes
+//		JPanel panelCara3 = new JPanel(new GridBagLayout());
+//
+//		
+//		//label contenant l'énergie actuelle du Tamagotchi		
+//		final JLabel labelEnergie = new JLabel(/*energie*/"energie");
+//		// @energie - variable importée depuis la classe personnage
+//
+//		
+//		//label contenant le niveau d'hygiène actuel du Tamagotchi		
+//		final JLabel labelHygiene = new JLabel(/*hygiene*/"hygiene");
+//		// @hygiene - variable importée depuis la classe personnage
+//
+//		
+//		//label contenant le niveau de moral actuel du Tamagotchi		
+//		final JLabel labelMoral = new JLabel(/*moral*/"moral");
+//		// @hygiene - variable importée depuis la classe personnage
+//
+//		
+//		//label contenant le niveau de nourriture actuel du Tamagotchi		
+//		final JLabel labelNourriture = new JLabel(/*nourriture*/"nourriture");
+//		// @nourriture - variable importée depuis la classe personnage
+//
+//		
+//		//label contenant le niveau d'envie d'aller aux toilettes actuel du Tamagotchi		
+//		final JLabel labelToilettes = new JLabel(/*toilettes*/"toilettes");
+//		// @toilettes - variable importée depuis la classe personnage
+
+//		
+//		gbc.gridx = 1;
+//		gbc.gridy = 0;
+//		add(panelDroit,gbc);
+//		
+//		gbc.gridx = 0;
+//		gbc.gridy = 0;
+//		panelDroit.add(panelCara2,gbc);
+//		
+//		gbc.gridx = 0;
+//		gbc.gridy = 0;
+//		panelCara2.add(labelVie,gbc);
+//		
+//		//gbc.gridx = 0;
+//		//gbc.gridy = 1;
+//		//panelCara2.add(barreDeVie,gbc);
+//		
+//		gbc.gridx = 0;
+//		gbc.gridy = 2;
+//		panelCara2.add(labelAction,gbc);
+//		
+//		gbc.gridx = 1;
+//		gbc.gridy = 0;
+//		panelDroit.add(labelAge,gbc);
+//		
+//		gbc.gridx = 0;
+//		gbc.gridy = 1;
+//		panelDroit.add(panelCara3,gbc);
+//		
+//		gbc.gridx = 0;
+//		gbc.gridy = 0;
+//		panelCara3.add(labelEnergie,gbc);
+//		
+//		gbc.gridx = 0;
+//		gbc.gridy = 2;
+//		panelCara3.add(labelHygiene,gbc);
+//		
+//		gbc.gridx = 0;
+//		gbc.gridy = 4;
+//		panelCara3.add(labelMoral,gbc);
+//		
+//		gbc.gridx = 0;
+//		gbc.gridy = 6;
+//		panelCara3.add(labelNourriture,gbc);
+//		
+//		gbc.gridx = 0;
+//		gbc.gridy = 8;
+//		panelCara3.add(labelToilettes,gbc);
+		// Ajout du panel gauche
+		gbc.gridx = 0;
+		gbc.gridy = 0;
+		gbc.weighty = 1;								// Espace qu'occupe l'objet dans l'axe y entre 0 et 1 de la cellule (1 -> 100%, 0 -> 0%)
+		gbc.insets = new Insets(20, 20, 20, 10);		// Espacement autour du panel en px, respectivement : top, left, bottom, right
+		gbc.fill = GridBagConstraints.VERTICAL;			// Prend toute la place dispo
+		add(buildPanelGauche("nom", "type", "humeur", "lieu"), gbc);
+		
+		
+		gbc.gridx = 1;
+		gbc.gridy = 0;
+		gbc.weighty = 1;								// Espace qu'occupe l'objet dans l'axe y entre 0 et 1 de la cellule (1 -> 100%, 0 -> 0%)
+		gbc.weightx = 1;								// Même chose mais sur l'axe x
+		gbc.insets = new Insets(20, 10, 20, 20);		// Espacement autour du panel en px, respectivement : top, left, bottom, right
+		gbc.fill = GridBagConstraints.BOTH;				// Prend toute la place dispo
+		add(buildPanelDroite(), gbc);
+	}
+	
+	
+	////////////////////////////////////////
+	//          CONSTRUCTION  DES         //
+	//          JPANEL COMPOSANTS         //        
+	////////////////////////////////////////
+	
+	/**
+	 * Construit le JPanel gauche contenant :
+	 * 		- JPanel panelCara1
+	 * 		- Image Tamagotchi
+	 * 		- JPanel panelLieu
+	 * 
+	 * @return JPanel - contenant tout le panel gauche
+	 */
+	private JPanel buildPanelGauche(String nom, String type, String humeur, String lieu) {
+		JPanel panelGauche = new JPanel(new GridBagLayout());
+		panelGauche.setBackground(Color.CYAN);
+		GridBagConstraints gbc = new GridBagConstraints();
+		
+		
+		gbc.gridx = 0;
+		gbc.gridy = 0;
+		gbc.weighty = 1;								// Espace qu'occupe l'objet dans l'axe y entre 0 et 1 de la cellule (1 -> 100%, 0 -> 0%)
+		gbc.weightx = 1;								// Même chose mais sur l'axe x
+		gbc.insets = new Insets(10, 10, 10, 10);		// Espacement autour du panel en px, respectivement : top, left, bottom, right
+		gbc.fill = GridBagConstraints.HORIZONTAL;		// Prend toute la place dispo
+		gbc.anchor = GridBagConstraints.NORTH;
+		panelGauche.add(buildPanelCara1(nom, type, humeur), gbc);
+		
+		
+		/**
+		 * Ajouter l'Image
+		 */
+		
+		
+		gbc.gridx = 0;
+		gbc.gridy = 2;
+		gbc.weighty = 1;								// Espace qu'occupe l'objet dans l'axe y entre 0 et 1 de la cellule (1 -> 100%, 0 -> 0%)
+		gbc.weightx = 1;								// Même chose mais sur l'axe x
+		gbc.insets = new Insets(10, 10, 10, 10);		// Espacement autour du panel en px, respectivement : top, left, bottom, right
+		gbc.fill = GridBagConstraints.HORIZONTAL; 		// Prend toute la place dispo
+		gbc.anchor = GridBagConstraints.SOUTH;
+		panelGauche.add(buildPanelLieu(lieu), gbc);
+		
+		
+		return panelGauche;
+	}
+	
+	/**
+	 * Construit le JPanel droite contenant :
+	 * 		- JPanel panelCara1
+	 * 		- Image tamagotchi
+	 * 		- JPanel panelLieu
+	 * 
+	 * @return JPanel - contenant tout le panel droit
+	 */
+	private JPanel buildPanelDroite() {
+		JPanel panelDroite = new JPanel(new GridBagLayout());
+		panelDroite.setBackground(Color.GREEN);
+		GridBagConstraints gbc = new GridBagConstraints();
+		
+		
+		gbc.gridx = 0;
+		gbc.gridy = 0;
+		panelDroite.add(buildPanelCara2("Points de vie :", 100, "Aucune action en cours"), gbc);
+		
+		
+		return panelDroite;
+	}
+	
+	/**
+	 * Construit le JPanel lieu contenant :
+	 * 		- JLabel lieu
+	 * 		- JButton aGauche
+	 * 		- JButton aDroite
+	 * 
+	 * @return JPanel - contenant tout le panel lieu
+	 */
+	private JPanel buildPanelLieu(String lieu) {
+		JPanel panelLieu = new JPanel(new GridBagLayout());
+		panelLieu.setBackground(Color.RED);
+		GridBagConstraints gbc = new GridBagConstraints();
+		
 		
 		Dimension dmBouton = new Dimension(110,25);
 		
-		//JPanel gauche contenant panelCara1, l'image du Tamagotchi, le label lieu et les boutons de changement de lieu
-		JPanel panelGauche = new JPanel(new GridBagLayout());
-		//x et y sont relatifs au panel auquel ils appartiennent
+			
+		labelLieu = new JLabel(lieu);
+		gbc.gridx = 0;
+		gbc.gridy = 0;
+		gbc.gridwidth = 2;	// occupe 2 cellules
+		panelLieu.add(labelLieu, gbc);
 		
 		
-		//JPanel contenant le label nom, le label type, et le label humeur
-		JPanel panelCara1 = new JPanel(new GridBagLayout());
-		
-		
-		//label contenant le nom du Tamagotchi		
-		final JLabel labelNom = new JLabel(/*nom*/); 
-		// @nom - variable importée depuis la classe personnage
-
-		
-		//label contenant le type du Tamagotchi		
-		final JLabel labelType = new JLabel(/*type*/);
-		// @type - variable importée depuis la classe personnage
-
-		
-		//label contenant l'humeur du Tamagotchi		
-		labelHumeur = new JLabel(/*humeur*/);
-		// @humeur - variable importée depuis la classe personnage
-
-		
-		//image du tamagotchi
-
-		
-		//panel contenant le label lieu, et les boutons lieuG et lieuD
-		JPanel panelLieu = new JPanel(new GridBagLayout());
-
-		
-		//label contenant le lieu actuel du Tamagotchi		
-		labelLieu = new JLabel(/*lieu*/);
-		// @lieu - variable importée depuis la classe personnage
-
-		
-		JButton btnLieuG = new JButton();
+		JButton btnLieuG = new JButton("<");
 		btnLieuG.setPreferredSize(dmBouton);
 		btnLieuG.addActionListener(new ActionListener() {
 			
@@ -86,9 +263,14 @@ public class MenuDeJeu extends Menu{
 				cmdLieuG();
 			}
 		});
+		gbc.gridx = 0;
+		gbc.gridy = 1;
+		gbc.gridwidth = 1;
+		gbc.insets = new Insets(10, 10, 10, 10);	// Espacement autour du panel en px, respectivement : top, left, bottom, right
+		panelLieu.add(btnLieuG, gbc);
 
 		
-		JButton btnLieuD = new JButton();
+		JButton btnLieuD = new JButton(">");
 		btnLieuD.setPreferredSize(dmBouton);
 		btnLieuG.addActionListener(new ActionListener() {
 			
@@ -96,169 +278,85 @@ public class MenuDeJeu extends Menu{
 				cmdLieuD();
 			}
 		});
-
-		
-		//JPanel droit contenant panelCara2, panelCara3, le label age et les boutons d'interaction avec le Tamagotchi :
-		//boutonDormir, boutonDouche, boutonJouer, boutonManger, et boutonToilettes
-		JPanel panelDroit = new JPanel(new GridBagLayout());
-
-		
-		//JPanel contenant labelVie, la barre de vie, et labelAction
-		JPanel panelCara2 = new JPanel(new GridBagLayout());
-
-		
-		//label contenant le texte "Points de vie : "		
-		final JLabel labelVie = new JLabel("Points de vie : ");
-
-		
-		/*
-		//JProgressBar contenant la valeur des points de vie restants
-		// @0 - valeur minimale / @100 - valeur maximale
-		barreVie = new JProgressbar(int 0, int 100);
-		//ajoute du texte dans la barre
-		barreVie.setStringPainted(true);
-		barreVie.setValue(vie);
-		// @vie - variable importée depuis la classe personnage
-		*/
-		
-		//label contenant l'action en cours qu'effectue le Tamagotchi		
-		labelAction = new JLabel(/*action*/);
-		// @action - variable importée depuis la classe personnage
-
-		
-		//label contenant l'âge actuel du Tamagotchi		
-		labelAge = new JLabel(/*age*/);
-		// @age - variable importée depuis la classe personnage
-
-		
-		//JPanel contenant labelEnergie, la barre d'énergie, labelHygiene, la barre d'hygène, labelMoral, la barre de moral, labelNourriture, la barre de nourriture, labelToilettes, et la barre d'envie d'aller aux toilettes
-		JPanel panelCara3 = new JPanel(new GridBagLayout());
-
-		
-		//label contenant l'énergie actuelle du Tamagotchi		
-		final JLabel labelEnergie = new JLabel(/*energie*/);
-		// @energie - variable importée depuis la classe personnage
-
-		
-		//label contenant le niveau d'hygiène actuel du Tamagotchi		
-		final JLabel labelHygiene = new JLabel(/*hygiene*/);
-		// @hygiene - variable importée depuis la classe personnage
-
-		
-		//label contenant le niveau de moral actuel du Tamagotchi		
-		final JLabel labelMoral = new JLabel(/*moral*/);
-		// @hygiene - variable importée depuis la classe personnage
-
-		
-		//label contenant le niveau de nourriture actuel du Tamagotchi		
-		final JLabel labelNourriture = new JLabel(/*nourriture*/);
-		// @nourriture - variable importée depuis la classe personnage
-
-		
-		//label contenant le niveau d'envie d'aller aux toilettes actuel du Tamagotchi		
-		final JLabel labelToilettes = new JLabel(/*toilettes*/);
-		// @toilettes - variable importée depuis la classe personnage
-
-		
-		
-		gbc.gridx = 0;
-		gbc.gridy = 0;
-		//raccourci de this.add (avec this = MenuDeJeu) => applique la contrainte
-		add(panelGauche,gbc);
-		
-		//on applique la contrainte gbc à chaque élément
-		gbc.gridx = 0;
-		gbc.gridy = 0;
-		panelGauche.add(panelCara1,gbc);
-		
-		gbc.gridx = 0;
-		gbc.gridy = 0;
-		panelCara1.add(labelNom,gbc);
-		
-		gbc.gridx = 0;
-		//cellule numéro 1
+		gbc.gridx = 1;
 		gbc.gridy = 1;
-		panelCara1.add(labelType,gbc);
+		gbc.gridwidth = 1;
+		gbc.insets = new Insets(10, 10, 10, 10);	// Espacement autour du panel en px, respectivement : top, left, bottom, right
+		panelLieu.add(btnLieuD, gbc);
 		
-		gbc.gridx = 0;
-		gbc.gridy = 2;
-		panelCara1.add(labelHumeur,gbc);
 		
-		//gbc.gridx = 0;
-		//gbc.gridy = 1;
-		//panelGauche.add(image,gbc);
+		return panelLieu;
+	}
+	
+	/**
+	 * Construit le JPanel cara1 contenant :
+	 * 		- JLabel nom
+	 * 		- JLabel type
+	 * 		- JLabel humeur
+	 * 
+	 * @return JPanel - contenant tout le panel cara1
+	 */
+	private JPanel buildPanelCara1(String nom, String type, String humeur) {
+		JPanel panelCara1 = new JPanel(new GridBagLayout());
+		panelCara1.setBackground(Color.YELLOW);
+		GridBagConstraints gbc = new GridBagConstraints();
 		
-		gbc.gridx = 0;
-		gbc.gridy = 2;
-		panelGauche.add(panelLieu,gbc);
 		
-		gbc.gridx = 0;
-		gbc.gridy = 0;
-		panelLieu.add(labelLieu,gbc);
-		
-		gbc.gridx = 0;
-		gbc.gridy = 2;
-		/*
-		gbc.anchor = GridBagConstraints.BASELINE;
-		gbc.insets = new Insets(0, 0, 0, 20);
-		*/
-		panelLieu.add(btnLieuG, gbc);
-		
-		gbc.gridx = 0;
-		gbc.gridy = 2;
-		/*
-		gbc.anchor = GridBagConstraints.BASELINE;
-		gbc.insets = new Insets(0, 0, 0, 20);
-		*/
-		panelLieu.add(btnLieuG, gbc);
-		
-		gbc.gridx = 1;
-		gbc.gridy = 0;
-		add(panelDroit,gbc);
-		
+		JLabel labelNom = new JLabel(nom);
 		gbc.gridx = 0;
 		gbc.gridy = 0;
-		panelDroit.add(panelCara2,gbc);
+		panelCara1.add(labelNom, gbc);
+			
 		
-		gbc.gridx = 0;
-		gbc.gridy = 0;
-		panelCara2.add(labelVie,gbc);
-		
-		//gbc.gridx = 0;
-		//gbc.gridy = 1;
-		//panelCara2.add(barreDeVie,gbc);
-		
-		gbc.gridx = 0;
-		gbc.gridy = 2;
-		panelCara2.add(labelAction,gbc);
-		
-		gbc.gridx = 1;
-		gbc.gridy = 0;
-		panelDroit.add(labelAge,gbc);
-		
+		JLabel labelType = new JLabel(type);
 		gbc.gridx = 0;
 		gbc.gridy = 1;
-		panelDroit.add(panelCara3,gbc);
-		
-		gbc.gridx = 0;
-		gbc.gridy = 0;
-		panelCara3.add(labelEnergie,gbc);
-		
+		panelCara1.add(labelType, gbc);
+
+	
+		labelHumeur = new JLabel(humeur);
 		gbc.gridx = 0;
 		gbc.gridy = 2;
-		panelCara3.add(labelHygiene,gbc);
+		panelCara1.add(labelHumeur, gbc);
 		
-		gbc.gridx = 0;
-		gbc.gridy = 4;
-		panelCara3.add(labelMoral,gbc);
 		
-		gbc.gridx = 0;
-		gbc.gridy = 6;
-		panelCara3.add(labelNourriture,gbc);
+		return panelCara1;
+	}
+	
+	/**
+	 * Construit le JPanel cara2 contenant :
+	 * 		- JLabel vie
+	 * 		- JProgressBar vie
+	 * 		- JLabel action
+	 * 
+	 * @return JPanel - contenant tout le panel cara2
+	 */
+	private JPanel buildPanelCara2(String vie, int ptsVie, String action) {
+		JPanel panelCara1 = new JPanel(new GridBagLayout());
+		panelCara1.setBackground(Color.YELLOW);
+		GridBagConstraints gbc = new GridBagConstraints();
 		
+		
+		JLabel lebelVie = new JLabel(vie);
 		gbc.gridx = 0;
-		gbc.gridy = 8;
-		panelCara3.add(labelToilettes,gbc);
+		gbc.gridy = 0;
+		panelCara1.add(lebelVie, gbc);
+			
+		
+		barreVie = new JProgressBar(0, 100);
+		barreVie.setValue(ptsVie);
+		gbc.gridx = 0;
+		gbc.gridy = 1;
+		panelCara1.add(barreVie, gbc);
+
+	
+		labelAction = new JLabel(action);
+		gbc.gridx = 0;
+		gbc.gridy = 2;
+		panelCara1.add(labelAction, gbc);
+		
+		
+		return panelCara1;
 	}
 	
 	
@@ -270,12 +368,12 @@ public class MenuDeJeu extends Menu{
 	/*
 	 * Demande d'une requête liée au bouton btnLieuG	<br/>
 	 */
-	public void cmdLieuG() {};
+	private void cmdLieuG() {};
 	
 	/*
 	 * Demande d'une requête liée au bouton btnLieuD	<br/>
 	 */
-	public void cmdLieuD() {};
+	private void cmdLieuD() {};
 	
 	
 	}

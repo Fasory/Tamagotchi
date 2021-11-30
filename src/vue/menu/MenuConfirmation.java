@@ -30,9 +30,9 @@ public abstract class MenuConfirmation extends Menu {
 	 * 																								<br/>
 	 * @param controleur - Contoleur de l'application												<br/>
 	 */
-	public MenuConfirmation(ControleurGeneral controleur) {
+	public MenuConfirmation() {
 		// Appel du modèle général de constructeur
-		this(controleur, "", "Oui", "Non", false);
+		this("", "Oui", "Non", false);
 	}
 	
 	/**
@@ -44,9 +44,9 @@ public abstract class MenuConfirmation extends Menu {
 	 * @param controleur - Contoleur de l'application												<br/>
 	 * @param message - String contenant le message à afficher dans la fenêtre de confirmation		<br/>
 	 */
-	public MenuConfirmation(ControleurGeneral controleur, String message) {
+	public MenuConfirmation(String message) {
 		// Appel du modèle général de constructeur
-		this(controleur, message, "Oui", "Non", false);
+		this(message, "Oui", "Non", false);
 	}
 	
 	/**
@@ -59,9 +59,9 @@ public abstract class MenuConfirmation extends Menu {
 	 * @param indicationVrai - String afficher sur le bouton de retour vrai							<br/>
 	 * @param indicationFaux - String afficher sur le bouton de retour faux							<br/>
 	 */
-	public MenuConfirmation(ControleurGeneral controleur, String message, String indicationVrai, String indicationFaux) {
+	public MenuConfirmation(String message, String indicationVrai, String indicationFaux) {
 		// Appel du modèle général de constructeur
-		this(controleur, message, indicationVrai, indicationFaux, false);
+		this(message, indicationVrai, indicationFaux, false);
 	}
 	
 	/**
@@ -75,8 +75,8 @@ public abstract class MenuConfirmation extends Menu {
 	 * @param indicationFaux - String afficher sur le bouton de retour faux							<br/>
 	 * @param saisie - boolean affiche un champ de saisie											<br/>
 	 */
-	public MenuConfirmation(ControleurGeneral controleur, String message, String indicationVrai, String indicationFaux, boolean saisie) {
-		super(controleur);
+	public MenuConfirmation(String message, String indicationVrai, String indicationFaux, boolean saisie) {
+		super();
 		
 		// Partie Affichage
 		setLayout(new GridBagLayout());
@@ -166,12 +166,12 @@ public abstract class MenuConfirmation extends Menu {
 	/*
 	 * Demande d'une requête liée au bouton btnVrai		<br/>
 	 */
-	public abstract void cmdConfirmation();
+	protected abstract void cmdConfirmation();
 	
 	/*
 	 * Demande d'annulation de confirmation				<br/>
 	 */
-	public void cmdRetour() {
+	protected void cmdRetour() {
 		ControleurGeneral.ctrlBouton.rqtRetourConfirmation();
 	}
 }

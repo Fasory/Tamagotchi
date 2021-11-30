@@ -1,12 +1,17 @@
 package controleur;
 
-public class ControleurTemps extends ControleurGeneral {
+public class ControleurTemps extends Controleur {
 	
-	private static int estCree = 0;					// Repère de création d'une unique instance par type de controleur
+	private static boolean estCree = false;					// Repère de création d'une unique instance par type de controleur
 
 
 	public ControleurTemps() {
 		super(estCree);
-		estCree++;
+		estCree = true;
+	}
+	
+	@Override
+	public void delControleur() {
+		estCree = false;
 	}
 }
