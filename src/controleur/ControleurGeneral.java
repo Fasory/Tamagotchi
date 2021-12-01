@@ -18,6 +18,7 @@ public class ControleurGeneral extends Controleur {
 	
 	// Constantes
 	public final static int NB_MAX_PARTIE = 3;
+	public final static String[] TYPE = {"Robot","Lapin", "Chat", "Dinosaure"};
 	public final static String NOM_ANONYME = "Anonyme";					  
 	public final static String STR_UUID_ANONYME = "00000000-0000-0000-0000-000000000000";
 	public final static boolean BY_PASS = true;			// Valable que pour la version de développement, il permet de passé oûtre les confirmations
@@ -30,6 +31,7 @@ public class ControleurGeneral extends Controleur {
 	public static ControleurAudio ctrlAudio;				// Controleur assistant pour la gestion de l'audio
 	public static ControleurConnexion ctrlConnexion;		// Controleur assistant pour la gestion de l'utilisateur
 	public static ControleurSecurite ctrlSecurite;			// Controleur assistant pour la gestion de la sécurité des données
+	public static ControleurJeu ctrlJeu;
 	
 	/**
 	 * Constructeur							<br/>
@@ -54,6 +56,7 @@ public class ControleurGeneral extends Controleur {
 		// Initialisation des controleurs complémentaires
 		ctrlBouton = new ControleurBouton();
 		ctrlAudio = new ControleurAudio();
+		ctrlJeu = new ControleurJeu();
 		ctrlFichier.addLogs("		-	Initialisation des contrôleurs complémentaires");
 		// Fin de la construction de l'application
 		ctrlFichier.addLogs("Satut	-	Application opérationnelle");
@@ -129,6 +132,7 @@ public class ControleurGeneral extends Controleur {
 		ctrlTemps.delControleur();
 		ctrlSecurite.delControleur();
 		ctrlFichier.delControleur();
+		ctrlJeu.delControleur();
 		System.exit(0);
 	}
 }

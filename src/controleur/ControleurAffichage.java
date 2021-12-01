@@ -4,11 +4,13 @@ import java.util.Stack;
 
 import javax.swing.JComponent;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 import java.awt.Color;
 
 import vue.fenetre.FenetreConfirmation;
 import vue.fenetre.FenetrePrincipale;
+import vue.menu.CreerPartie;
 import vue.menu.Menu;
 import vue.menu.MenuConfirmation;
 
@@ -167,5 +169,13 @@ public class ControleurAffichage extends Controleur {
 	
 	public void afficherAlerteConfirmation(String msg) {
 		fenetreDeConfirmation.getMenuConfirmation().setAlerte("saisie", msg);
+	}
+	
+	public void modifPanel(JPanel panel, CreerPartie menu, boolean affiche) {
+		menu.affichePanel(panel, affiche);
+	}
+	
+	public void changeType(int rng) {
+		((CreerPartie)pileMenu.peek()).selectionType(rng);
 	}
 }

@@ -1,9 +1,14 @@
 package controleur;
 
+import java.util.Random;
+
+import javax.swing.JPanel;
+
 import vue.menu.Credits;
 import vue.menu.CreerPartie;
 import vue.menu.DeconnexionConfirm;
 import vue.menu.Inscription;
+import vue.menu.MenuDeJeu;
 import vue.menu.Option;
 import vue.menu.OubliMdp;
 import vue.menu.Politique;
@@ -125,6 +130,8 @@ public class ControleurBouton extends Controleur {
 	}
 	
 	
+	
+	
 	////////////////////////////////////////
 	//           REQUETES DEMANDE         //
 	//             CONFIRMATION           //
@@ -213,6 +220,26 @@ public class ControleurBouton extends Controleur {
 		ControleurGeneral.ctrlAudio.changeMusique(musique);
 	}
 	
+	//////////////////////////////////////////
+	//			REQUETES CREATION			//
+	//			   DE PARTIE				//
+	//////////////////////////////////////////
+	
+	public void rqtChangeAffichagePanel(JPanel panel, CreerPartie menu, boolean affiche) {
+		ControleurGeneral.ctrlAffichage.modifPanel(panel, menu, affiche);
+	}
+	
+	public void rqtRandomType() {
+		Random rng = new Random();
+		ControleurGeneral.ctrlAffichage.changeType(rng.nextInt(ControleurGeneral.TYPE.length));
+	}
+	
+	/**
+	 * Redirige l'utilisateur vers le menu de jeu
+	 */
+	public void rqtJouer(String type, String nom, boolean triche) {
+		ControleurGeneral.ctrlJeu.lancePartie(type, nom, triche);
+	}
 	
 	////////////////////////////////////////
 	//          REQUETES AUTRES           //
