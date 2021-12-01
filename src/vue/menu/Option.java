@@ -97,6 +97,21 @@ public class Option extends Menu {
 		gbc.insets = new Insets(20, 0, 20, 0);
 		add(btnCredits, gbc);
 		
+		JButton btnSupprimerCompte = new JButton("Supprimer le compte");
+		btnSupprimerCompte.setPreferredSize(dmBouton);
+		btnSupprimerCompte.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent evt) {
+				cmdSupprimerCompte();
+			}
+		});
+		gbc.gridx = 0;
+		gbc.gridy = 5;
+		gbc.gridwidth = 1;
+		gbc.anchor = GridBagConstraints.BASELINE;
+		gbc.insets = new Insets(20, 0, 20, 0);
+		add(btnSupprimerCompte, gbc);
+		
 		JButton btnQuitterOptions = new JButton("Quitter les options");
 		btnQuitterOptions.setPreferredSize(dmBouton);
 		btnQuitterOptions.addActionListener(new ActionListener() {
@@ -106,7 +121,7 @@ public class Option extends Menu {
 			}
 		});
 		gbc.gridx = 0;
-		gbc.gridy = 5;
+		gbc.gridy = 6;
 		gbc.gridwidth = 1;
 		gbc.anchor = GridBagConstraints.BASELINE;
 		gbc.insets = new Insets(20, 0, 20, 0);
@@ -124,6 +139,13 @@ public class Option extends Menu {
 	 */
 	private void cmdAfficheCredits() {
 		ControleurGeneral.ctrlBouton.rqtAffichageCredits();
+	}
+	
+	/**
+	 * Demande de suppression du compte
+	 */
+	private void cmdSupprimerCompte() {
+		ControleurGeneral.ctrlBouton.rqtSuppressionCompte();
 	}
 	
 	/**

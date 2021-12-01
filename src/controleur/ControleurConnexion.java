@@ -177,4 +177,9 @@ public class ControleurConnexion extends Controleur {
 			else ControleurGeneral.ctrlAffichage.afficherAlerteConfirmation("Le code est invalide");
 		}
 	}
+	
+	public Compte getCompte() {
+		return compte;
+	}
+	}
 }

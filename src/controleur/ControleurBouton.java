@@ -212,6 +212,10 @@ public class ControleurBouton extends Controleur {
 		ControleurGeneral.ctrlAudio.changeVolume(volume);
 	}
 	
+	private void rqtSuppressionCompte() {
+		ControleurGeneral.ctrlFichier.supprimerFichier(ControleurGeneral.ctrlConnexion.getCompte().getId(),ControleurFichier.REP_JOUEUR);
+	}
+	
 	/**
 	 * Demande de changement du volume de la musique au controleur audio
 	 * @param musique
