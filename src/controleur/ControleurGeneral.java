@@ -90,11 +90,11 @@ public class ControleurGeneral extends Controleur {
 	 * @param contenu - String corps du mail					<br/>
 	 * @param destinataire - String destinataire du mail		<br/>
 	 */
-	public static void envoyerMail(String sujet, String contenu, String destinataire) {
+	public static boolean envoyerMail(String sujet, String contenu, String destinataire) {
 		// Configuration de la session d'envoie
 	    Properties config = new Properties();
 	    config.put("mail.smtp.host", "smtp.gmail.com");
-	    config.put("mail.smtp.port", "587");
+	    config.put("mail.smtp.port", "465");
 	    config.put("mail.smtp.auth", "true");
 	    config.put("mail.smtp.starttls.enable", "true"); //TLS
 	    Session session = Session.getDefaultInstance(config, new Authenticator() {
@@ -110,9 +110,11 @@ public class ControleurGeneral extends Controleur {
 			mail.setSubject(sujet);
 			mail.setText(contenu);
 			Transport.send(mail);
+			return true;
 	    } catch (MessagingException err) {
 	    	ctrlFichier.addLogs("Erreur - échec de l'envoie d'un mail", true);
 	    	ctrlFichier.addLogs(err.toString(), true);
+	    	return false;
 	    }
 	}
 	

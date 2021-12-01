@@ -15,6 +15,7 @@ import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 
 import modele.Compte;
+import modele.ObjectId;
 
 /**
  * Sous contrôleur qui a pour but de gérer la	<br/>
@@ -32,9 +33,9 @@ public class ControleurFichier extends Controleur {
 	private FileOutputStream logsOutStream;							// Flux de sortie pour écrire dans le fichier logs du jour courant
 	private File repLogs;											// Répertoire contenant tous les logs
 	private boolean erreurLogs;										// Repère binaire si les logs du jour courant contiennent une erreur
-	private final File dirData = new File("data");					// Répertoire contenant les données sauvegardées
-	private final File repJoueur = new File(dirData, "user");		// Répertoire contenant les fichiers de données de chaque utilisateur
-	private final File repSauvegarde = new File(dirData, "save");	// Répertoire contenant les sauvegardes des parties
+	private final static File REP_DATA = new File("data");					// Répertoire contenant les données sauvegardées
+	public final static File REP_JOUEUR = new File(REP_DATA, "user");		// Répertoire contenant les fichiers de données de chaque utilisateur
+	public final static File REP_SAUVEGARDE = new File(REP_DATA, "save");	// Répertoire contenant les sauvegardes des parties
 	
 	/**
 	 * Constructeur													<br/>
@@ -112,7 +113,7 @@ public class ControleurFichier extends Controleur {
 	 * Initialisation de data		<br/>
 	 */
 	private void init_data() {
-		if (!repExiste(dirData)) creeRep(dirData);
+		if (!repExiste(REP_DATA)) creeRep(REP_DATA);
 	}
 	
 	/**
@@ -254,10 +255,10 @@ public class ControleurFichier extends Controleur {
 	 * @param compte - Compte à sauvegarder
 	 * @return boolean - Vrai si enregistré avec succès, faux sinon
 	 */
-	public boolean enregistreCompte(Compte compte) {
-		if (!repExiste(repJoueur)) creeRep(repJoueur);
-		File fichierCompte = new File(repJoueur, compte.getId().toString());
-		byte[] encodeCompte = ControleurGeneral.ctrlSecurite.crypter(compte.toString().getBytes());
+	public boolean enregistrer(ObjectId objet, File rep) {
+		if (!repExiste(rep)) creeRep(rep);
+		File fichierCompte = new File(rep, objet.getId().toString());
+		byte[] encodeCompte = ControleurGeneral.ctrlSecurite.crypter(objet.toString().getBytes());
 		try {
 			ecrireFichier(fichierCompte, encodeCompte);
 			return true;
@@ -284,7 +285,7 @@ public class ControleurFichier extends Controleur {
 	 * @return Compte - compte de lié à l'UUID
 	 */
 	public Compte chargerCompte(UUID id) {
-		File fichierCompte = new File(repJoueur, id.toString());
+		File fichierCompte = new File(REP_JOUEUR, id.toString());
 		String[] contenu;
 		try {
 			contenu = new String(ControleurGeneral.ctrlSecurite.decrypter(lireFichier(fichierCompte))).split("\n");
@@ -330,13 +331,13 @@ public class ControleurFichier extends Controleur {
 	 */
 	public HashMap<String, Compte> getListeCompte() {
 		HashMap<String, Compte> lsCompte = new HashMap<String, Compte>();
-		if (repExiste(repJoueur)) {
+		if (repExiste(REP_JOUEUR)) {
 			// On crée un filtre qui accepte que les fichier qui ne sont pas des répertoires
 			FileFilter filtre = new FileFilter() {
 				@Override
 				public boolean accept(File fichier) {return fichier.isFile();}
 			};
-			for (File fichier : repJoueur.listFiles(filtre)) {
+			for (File fichier : REP_JOUEUR.listFiles(filtre)) {
 				try {
 					Compte compteRecupere = chargerCompte(UUID.fromString(fichier.getName()));
 					if (compteRecupere != null) lsCompte.put(compteRecupere.getUtilisateur(), compteRecupere);

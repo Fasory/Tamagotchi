@@ -70,7 +70,7 @@ public class ControleurConnexion extends Controleur {
 	 * Perd le focus du compte ouvert
 	 */
 	public void deconnexion() {
-		ControleurGeneral.ctrlFichier.enregistreCompte(compte);
+		ControleurGeneral.ctrlFichier.enregistrer(compte, ControleurFichier.REP_JOUEUR);
 		compte = null;
 		ControleurGeneral.ctrlAffichage.menuPrecedent();
 	}
@@ -141,28 +141,27 @@ public class ControleurConnexion extends Controleur {
 		// Vérification de l'adresse mail
 		if (possibleInscription) {
 			compteInscription = new Compte(utilisateur, ControleurGeneral.ctrlSecurite.hash(mdp), mail);
-			code = null;
-			confirmationInscription();
+			Random rng = new Random();
+			code = "";
+			for (int i = 0; i < TAILLE_CODE; i++) code += rng.nextInt(10);
 			if (!verifMail) verificationCode(this.code);
-			else ControleurGeneral.ctrlAffichage.ouvrirMenuConfirmation(new InscriptionConfirm());
+			else {
+				ControleurGeneral.ctrlAffichage.ouvrirMenuConfirmation(new InscriptionConfirm());
+				confirmationInscription();
+			}
 		}
 	}
 	
 	
 	public void confirmationInscription() {
-		Random rng = new Random();
-		code = "";
-		for (int i = 0; i < TAILLE_CODE; i++) code += rng.nextInt(10);
-		if (!ControleurGeneral.BY_PASS) {
-			String sujet = "Confirmation de création de compte";
-			String contenu = "Bienvenue " + compteInscription.getUtilisateur() + ",\r\n"
-					       + "\r\n"
-					       + "Le monde des Tamagotchis n'est plus très loin !\r\n"
-					       + "Veuillez saisir le code suivant pour finaliser votre inscription : " + code + "\r\n"
-					       + "\r\n"
-					       + "Bon jeu !";
-			ControleurGeneral.envoyerMail(sujet, contenu, compteInscription.getMail());
-		}
+		String sujet = "Confirmation de création de compte";
+		String contenu = "Bienvenue " + compteInscription.getUtilisateur() + ",\r\n"
+				       + "\r\n"
+				       + "Le monde des Tamagotchis n'est plus très loin !\r\n"
+				       + "Veuillez saisir le code suivant pour finaliser votre inscription : " + code + "\r\n"
+				       + "\r\n"
+				       + "Bon jeu !";
+		if (!ControleurGeneral.envoyerMail(sujet, contenu, compteInscription.getMail())) ControleurGeneral.ctrlAffichage.afficherAlerteConfirmation("Echec de l'envoie du mail.");
 	}
 	
 	

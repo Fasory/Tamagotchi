@@ -4,12 +4,11 @@ import java.util.UUID;
 
 import controleur.ControleurGeneral;
 
-public class Compte {
+public class Compte extends ObjectId {
 	
 	private final String utilisateur;
 	private String mdp;
 	private String mail;
-	private final UUID id;
 	private UUID[] partiesId;
 	
 	/**
@@ -26,11 +25,11 @@ public class Compte {
 	 * des parties en cours de l'utilisateurs				<br/>
 	 */
 	public Compte(String utilisateur, String mdp, String mail, UUID id, UUID[] partiesId) {
+		super(id);
 		if (partiesId.length > ControleurGeneral.NB_MAX_PARTIE) throw new IllegalArgumentException("UUID[] a une taille de " + partiesId.length + " alors qu'au maximum il doit être de " + ControleurGeneral.NB_MAX_PARTIE);
 		this.utilisateur = utilisateur;
 		this.mdp = mdp;
 		this.mail = mail;
-		this.id = id;
 		this.partiesId = new UUID[ControleurGeneral.NB_MAX_PARTIE];
 		int i = 0;
 		for (UUID partieId : partiesId) {
@@ -71,10 +70,6 @@ public class Compte {
 	
 	public String getMail() {
 		return mail;
-	}
-	
-	public UUID getId() {
-		return id;
 	}
 	
 	public UUID[] getPartiesId() {
