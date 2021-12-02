@@ -348,4 +348,18 @@ public class ControleurFichier extends Controleur {
 		}
 		return lsCompte;
 	}
+	
+	public void supprimerFichier(UUID id, File rep) {
+		File fichier = new File(rep, id.toString());
+		if (fichierExiste(fichier)) {
+			try {
+				if(!fichier.delete()) throw new Exception("Le fichier n'a pas pu être supprimé");
+			} catch (Exception err) {
+				addLogs("Erreur	-	échec de suppression du fichier " + fichier.getPath(), true);
+				addLogs(err.toString(), true);
+			}
+		} else {
+			addLogs("Warning	-	le fichier " + fichier.getPath() + " n'existe pas", true);
+		}
+	}
 }

@@ -135,18 +135,18 @@ public abstract class MenuConfirmation extends Menu {
 			gbc.anchor = GridBagConstraints.BASELINE;
 			gbc.insets = new Insets(0, 0, 0, 0);
 			add(txtSaisie, gbc);
-			
-			
-			JLabel lbAlerteSaisie = new JLabel(" ");
-			lbAlerteSaisie.setForeground(COULEUR_ALERTE);
-			gbc.gridx = 0;
-			gbc.gridy++;
-			gbc.gridwidth = 1;
-			gbc.anchor = GridBagConstraints.BASELINE;
-			gbc.insets = new Insets(0, 0, 10, 0);
-			lsAlerte.put("saisie", lbAlerteSaisie);
-			add(lbAlerteSaisie, gbc);
 		}
+			
+		
+		JLabel lbAlerteSaisie = new JLabel(" ");
+		lbAlerteSaisie.setForeground(COULEUR_ALERTE);
+		gbc.gridx = 0;
+		gbc.gridy++;
+		gbc.gridwidth = 1;
+		gbc.anchor = GridBagConstraints.BASELINE;
+		gbc.insets = new Insets(0, 0, 10, 0);
+		lsAlerte.put("confirmAlerte", lbAlerteSaisie);
+		add(lbAlerteSaisie, gbc);
 		
 		
 		gbc.gridx = 0;

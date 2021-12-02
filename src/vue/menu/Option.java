@@ -16,8 +16,12 @@ import javax.swing.event.ChangeListener;
 import controleur.ControleurGeneral;
 
 public class Option extends Menu {
-
+	
 	public Option() {
+		this(false);
+	}
+
+	public Option(boolean anonyme) {
 		super();
 		
 		// partie affichage
@@ -55,6 +59,7 @@ public class Option extends Menu {
 		gbc.insets = new Insets(20, 0, 20, 0);
 		add(barreVolume, gbc);
 		
+		
 		JLabel txtMusique = new JLabel("Musique");
 		gbc.gridx = 0;
 		gbc.gridy = 2;
@@ -62,6 +67,7 @@ public class Option extends Menu {
 		gbc.anchor = GridBagConstraints.BASELINE;
 		gbc.insets = new Insets(20, 0, 0, 0);
 		add(txtMusique, gbc);
+		
 		
 		JSlider barreMusique = new JSlider(0,100,ControleurGeneral.ctrlAudio.getMusique());
 		barreMusique.setPreferredSize(dmSlider);
@@ -83,6 +89,7 @@ public class Option extends Menu {
 		gbc.insets = new Insets(20, 0, 20, 0);
 		add(barreMusique, gbc);
 		
+		
 		JButton btnCredits = new JButton("Crédits");
 		btnCredits.setPreferredSize(dmBouton);
 		btnCredits.addActionListener(new ActionListener() {	
@@ -97,6 +104,7 @@ public class Option extends Menu {
 		gbc.insets = new Insets(20, 0, 20, 0);
 		add(btnCredits, gbc);
 		
+		
 		JButton btnSupprimerCompte = new JButton("Supprimer le compte");
 		btnSupprimerCompte.setPreferredSize(dmBouton);
 		btnSupprimerCompte.addActionListener(new ActionListener() {
@@ -105,12 +113,14 @@ public class Option extends Menu {
 				cmdSupprimerCompte();
 			}
 		});
+		if (anonyme) btnSupprimerCompte.setEnabled(false);
 		gbc.gridx = 0;
 		gbc.gridy = 5;
 		gbc.gridwidth = 1;
 		gbc.anchor = GridBagConstraints.BASELINE;
 		gbc.insets = new Insets(20, 0, 20, 0);
 		add(btnSupprimerCompte, gbc);
+		
 		
 		JButton btnQuitterOptions = new JButton("Quitter les options");
 		btnQuitterOptions.setPreferredSize(dmBouton);

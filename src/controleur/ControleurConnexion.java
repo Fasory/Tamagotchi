@@ -7,6 +7,7 @@ import java.util.UUID;
 import modele.Compte;
 import vue.menu.InscriptionConfirm;
 import vue.menu.MenuPrincipal;
+import vue.menu.SupressionCompteConfirm;
 
 public class ControleurConnexion extends Controleur {
 	
@@ -181,5 +182,26 @@ public class ControleurConnexion extends Controleur {
 	public Compte getCompte() {
 		return compte;
 	}
+	
+	public void confirmationSuppressionCompte() {
+		ControleurGeneral.ctrlAffichage.fermerMenuConfirmation();
+		lsCompte.remove(compte.getUtilisateur());
+		ControleurGeneral.ctrlFichier.supprimerFichier(compte.getId(), ControleurFichier.REP_JOUEUR);
+		for (UUID id : compte.getPartiesId()) {
+			if (id != null) ControleurGeneral.ctrlFichier.supprimerFichier(id, ControleurFichier.REP_SAUVEGARDE);
+			else break;
+		}
+		compte = null;
+		ControleurGeneral.ctrlAffichage.menuPrecedent();
+		ControleurGeneral.ctrlAffichage.menuPrecedent();
+	}
+	
+	public void suppressionCompte() {
+		ControleurGeneral.ctrlAffichage.ouvrirMenuConfirmation(new SupressionCompteConfirm());
+	}
+	
+	public boolean isAnonyme() {
+		return compte.getUtilisateur().equals(ControleurGeneral.NOM_ANONYME);
 	}
 }
+

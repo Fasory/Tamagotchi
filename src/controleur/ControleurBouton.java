@@ -8,7 +8,6 @@ import vue.menu.Credits;
 import vue.menu.CreerPartie;
 import vue.menu.DeconnexionConfirm;
 import vue.menu.Inscription;
-import vue.menu.MenuDeJeu;
 import vue.menu.Option;
 import vue.menu.OubliMdp;
 import vue.menu.Politique;
@@ -74,7 +73,7 @@ public class ControleurBouton extends Controleur {
 	* Demande de changement de menu : MenuOption			<br/>
 	*/
 	public void rqtMenuOption() {
-		ControleurGeneral.ctrlAffichage.ouvrirMenu(new Option());
+		ControleurGeneral.ctrlAffichage.ouvrirMenu(new Option(ControleurGeneral.ctrlConnexion.isAnonyme()));
 		
 	}
 	
@@ -212,8 +211,11 @@ public class ControleurBouton extends Controleur {
 		ControleurGeneral.ctrlAudio.changeVolume(volume);
 	}
 	
-	private void rqtSuppressionCompte() {
-		ControleurGeneral.ctrlFichier.supprimerFichier(ControleurGeneral.ctrlConnexion.getCompte().getId(),ControleurFichier.REP_JOUEUR);
+	/**
+	 * Demande de supprimer le compte connecté
+	 */
+	public void rqtSuppressionCompte() {
+		ControleurGeneral.ctrlConnexion.suppressionCompte();
 	}
 	
 	/**

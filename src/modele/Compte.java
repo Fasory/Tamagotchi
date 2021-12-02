@@ -9,7 +9,7 @@ public class Compte extends ObjectId {
 	private final String utilisateur;
 	private String mdp;
 	private String mail;
-	private UUID[] partiesId;
+	private UUID[] partiesId;								// Les UUID des parties se trouvent tous à gauche du tableau, dès qu'il y a un UUID à null, tous ceux qui suivent à droite seront considéré comme null
 	
 	/**
 	 * Constructeur											<br/>

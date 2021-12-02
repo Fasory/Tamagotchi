@@ -168,7 +168,7 @@ public class ControleurAffichage extends Controleur {
 	
 	
 	public void afficherAlerteConfirmation(String msg) {
-		fenetreDeConfirmation.getMenuConfirmation().setAlerte("saisie", msg);
+		fenetreDeConfirmation.getMenuConfirmation().setAlerte("confirmAlerte", msg);
 	}
 	
 	public void modifPanel(JPanel panel, CreerPartie menu, boolean affiche) {
