@@ -17,14 +17,22 @@ import controleur.ControleurGeneral;
 
 public class Option extends Menu {
 	
+	/**
+	 * Constructeur par défaut
+	 */
 	public Option() {
 		this(false);
 	}
+	
+	/**
+	 * Constructeur avec paramètre (vraie si connexion en anonyme, faux sinon)
+	 * @param anonyme
+	 */
 
 	public Option(boolean anonyme) {
 		super();
 		
-		// partie affichage
+		// Partie affichage
 		setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
 		Dimension dmBouton = new Dimension(200,50);
@@ -167,7 +175,7 @@ public class Option extends Menu {
 	
 	/**
 	 * Demande de changement de Volume
-	 * @param volume
+	 * @param volume - Volume appliqué aux bruitages 
 	 */
 	private void cmdChangeVolume(int volume) {
 		ControleurGeneral.ctrlBouton.rqtChangeVolume(volume);
@@ -175,7 +183,7 @@ public class Option extends Menu {
 	
 	/**
 	 * Demande de changement de Musique
-	 * @param musique
+	 * @param musique - Volument appliqué à la musique
 	 */
 	private void cmdChangeMusique(int musique) {
 		ControleurGeneral.ctrlBouton.rqtChangeMusique(musique);

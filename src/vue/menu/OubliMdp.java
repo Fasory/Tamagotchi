@@ -164,14 +164,14 @@ public class OubliMdp extends Menu {
 	////////////////////////////////////////
 	
 	/**
-	 * 
+	 * Demande de réinitialisation du mot de passe
 	 */
 	private void cmdRenitialisation() {
 		
 	}
 	
 	/**
-	 * 
+	 * Demande de retour au menu précédent
 	 */
 	private void cmdRetour() {
 		ControleurGeneral.ctrlBouton.rqtRetour();

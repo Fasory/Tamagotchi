@@ -87,7 +87,8 @@ public class Connexion extends Menu {
 		lbOublieMdp = new JLabel("Mot de passe oublié ?");
 		lbOublieMdp.setForeground(COULEUR_EN_NON_SELEC);
 		lbOublieMdp.addMouseListener(new MouseAdapter() {
-		    @Override
+			
+			@Override
 		    public void mouseClicked(MouseEvent e) {
 		    	cmdMdpOublier();
 		    }
@@ -323,6 +324,9 @@ public class Connexion extends Menu {
 	//          METHODES INTERNES         //
 	////////////////////////////////////////
 	
+	/**
+	 * Méthode permettant de réinitialiser le mot de passe de l'utilisateur
+	 */
 	@Override
 	public void renitialiser() {
 		lbOublieMdp.setForeground(COULEUR_EN_NON_SELEC);

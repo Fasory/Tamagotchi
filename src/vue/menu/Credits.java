@@ -13,7 +13,9 @@ import javax.swing.JLabel;
 import controleur.ControleurGeneral;
 
 public class Credits extends Menu {
-
+	/**
+	 * Constructeur
+	 */
 	public Credits() {
 		super();
 		

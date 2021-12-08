@@ -29,6 +29,9 @@ public class CreerPartie extends Menu {
 	private JCheckBox cbTriche; 
 	private HashMap<String, JRadioButton> listRadio;
 	
+	/**
+	 * Constructeur
+	 */
 	public CreerPartie() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -199,10 +202,21 @@ public class CreerPartie extends Menu {
 		ControleurGeneral.ctrlBouton.rqtRandomType();
 	}
 	
+	/**
+	 * Rend visible ou non un panel
+	 * 
+	 * @param panel- Panel auquel on affecte l'affichage
+	 * @param affiche - Choix d'afficher ou non
+	 */
 	public void affichePanel(JPanel panel, boolean affiche) {
 		panel.setVisible(affiche);
 	}
 	
+	/**
+	 * Sélectionne un type aléatoire pour le Tamagotchi
+	 * 
+	 * @param rng - Nombre aléatoire
+	 */
 	public void selectionType(int rng) {
 		grpType.clearSelection();
 		listRadio.get(ControleurGeneral.TYPE[rng]).setSelected(true);

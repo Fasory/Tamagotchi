@@ -32,7 +32,9 @@ public class Inscription extends Menu {
 	private JLabel lbCbPolitique_2;
 	private JButton btnInscription;
 	
-	
+	/**
+	 * Constructeur
+	 */
 	public Inscription() {
 		super();
 		
@@ -318,36 +320,38 @@ public class Inscription extends Menu {
 	////////////////////////////////////////
 	
 	/**
-	 * 
+	 * Demande d'affichage de la politique de confidentialité
 	 */
 	private void cmdVoirPolitique() {
 		ControleurGeneral.ctrlBouton.rqtAffichagePolitique();
 	}
 	
 	/**
-	 * 
+	 * Demande d'ouvrir la fenêtre d'inscription
 	 */
 	private void cmdInscrire() {
 		ControleurGeneral.ctrlBouton.rqtTentativeInscription(txtId.getText(), txtMail.getText(), txtMdp.getPassword(), txtMdpConfirme.getPassword(), !cbVerifMail.isSelected());
 	}
 	
 	/**
-	 * 
+	 * Demande de retour au menu précédent
 	 */
 	private void cmdRetour() {
 		ControleurGeneral.ctrlBouton.rqtRetour();
 	}
 	
 	/**
-	 * 
+	 * Demande d'acceptation de la politique de confidentialisté
 	 */
 	private void cmdPolitique() {
 		ControleurGeneral.ctrlAffichage.rqtComposantActif(this, btnInscription, cbPolitique.isSelected());
 	}
 	
 	/**
+	 * Demande de changement de la couleur d'un texte à son survole
 	 * 
-	 * @param type
+	 * @param type - Chaine de caractère à laquelle appliquer le changement de couleur
+	 * @param couleur - Couleur choisie pour le changement de couleur
 	 */
 	private void cmdSurvolePolitique(String type, Color couleur) {
 		ControleurGeneral.ctrlAffichage.rqtChangeCurseur(type);
@@ -360,6 +364,9 @@ public class Inscription extends Menu {
 	//         CONTROLEUR GENERAL         //
 	////////////////////////////////////////
 	
+	/**
+	 * Réinitialise l'affichage de la fenêtre
+	 */
 	@Override
 	public void renitialiser() {
 		ControleurGeneral.ctrlAffichage.afficherAlerte("id", " ");

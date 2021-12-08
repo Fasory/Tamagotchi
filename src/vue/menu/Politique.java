@@ -20,7 +20,9 @@ import controleur.ControleurGeneral;
 
 public class Politique extends Menu {
 	
-
+	/**
+	 * Constructeur
+	 */
 	public Politique() {
 		super();
 		
@@ -145,14 +147,20 @@ public class Politique extends Menu {
 	//                STYLES              //        
 	////////////////////////////////////////
 	
-	
+	/**
+	 * Initialisation du style pour le texte par défaut
+	 * @return SimpleAttributSet - style appliqué par défaut
+	 */
 	private SimpleAttributeSet init_normal_style() {
 		SimpleAttributeSet style = new SimpleAttributeSet();
 		StyleConstants.setFontSize(style, 14);
 		return style;
 	}
 	
-	
+	/**
+	 * Initialisation du style pour les titres
+	 * @return SimpleAttributSet - style appliqué aux titres
+	 */
 	private SimpleAttributeSet init_titre_style() {
 		SimpleAttributeSet style = new SimpleAttributeSet();
 		StyleConstants.setFontSize(style, 30);
@@ -161,7 +169,10 @@ public class Politique extends Menu {
 		return style;
 	}
 	
-	
+	/**
+	 * Initialisation du style pour les sous-titres
+	 * @return SimpleAttributSet - style appliqué aux sous-titres
+	 */
 	private SimpleAttributeSet init_sousTitre_style() {
 		SimpleAttributeSet style = new SimpleAttributeSet();
 		StyleConstants.setFontSize(style, 18);
@@ -169,7 +180,10 @@ public class Politique extends Menu {
 		return style;
 	}
 	
-	
+	/**
+	 * Initialisation du style pour centrer le texte
+	 * @return SimpleAttributSet - style centré appliqué au texte
+	 */
 	private SimpleAttributeSet init_centrer_style() {
 		SimpleAttributeSet style = new SimpleAttributeSet();
 		StyleConstants.setAlignment(style, StyleConstants.ALIGN_CENTER);
@@ -182,7 +196,7 @@ public class Politique extends Menu {
 	////////////////////////////////////////
 	
 	/**
-	 * 
+	 * Demande de retour au menu précédent
 	 */
 	private void cmdRetour() {
 		ControleurGeneral.ctrlBouton.rqtRetour();
