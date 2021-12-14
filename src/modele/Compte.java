@@ -1,15 +1,17 @@
 package modele;
 
+import java.io.Serializable;
+import java.util.HashSet;
 import java.util.UUID;
 
 import controleur.ControleurGeneral;
 
-public class Compte extends ObjectId {
+public class Compte extends ObjectId implements Serializable {
 	
 	private final String utilisateur;
 	private String mdp;
-	private String mail;
-	private UUID[] partiesId;								// Les UUID des parties se trouvent tous à gauche du tableau, dès qu'il y a un UUID à null, tous ceux qui suivent à droite seront considéré comme null
+	private final String mail;
+	private HashSet<UUID> partiesId;								// Les UUID des parties se trouvent tous à gauche du tableau, dès qu'il y a un UUID à null, tous ceux qui suivent à droite seront considéré comme null
 	
 	/**
 	 * Constructeur											<br/>
@@ -24,17 +26,15 @@ public class Compte extends ObjectId {
 	 * @param partie - Partie[] représentant la liste		<br/>
 	 * des parties en cours de l'utilisateurs				<br/>
 	 */
-	public Compte(String utilisateur, String mdp, String mail, UUID id, UUID[] partiesId) {
+	public Compte(String utilisateur, String mdp, String mail, UUID id, HashSet<UUID> partiesId) {
 		super(id);
-		if (partiesId.length > ControleurGeneral.NB_MAX_PARTIE) throw new IllegalArgumentException("UUID[] a une taille de " + partiesId.length + " alors qu'au maximum il doit être de " + ControleurGeneral.NB_MAX_PARTIE);
+		if (partiesId.size() > ControleurGeneral.NB_MAX_PARTIE) throw new IllegalArgumentException("UUID[] a une taille de " + partiesId.size() + " alors qu'au maximum il doit être de " + ControleurGeneral.NB_MAX_PARTIE);
 		this.utilisateur = utilisateur;
 		this.mdp = mdp;
 		this.mail = mail;
-		this.partiesId = new UUID[ControleurGeneral.NB_MAX_PARTIE];
-		int i = 0;
+		this.partiesId = new HashSet<UUID>(ControleurGeneral.NB_MAX_PARTIE);
 		for (UUID partieId : partiesId) {
-			this.partiesId[i] = partieId;
-			i++;
+			this.partiesId.add(partieId);
 		}
 	}
 	
@@ -52,7 +52,7 @@ public class Compte extends ObjectId {
 	 * mail de l'utilisateur								<br/>
 	 */
 	public Compte(String utilisateur, String mdp, String mail) {
-		this(utilisateur, mdp, mail, UUID.randomUUID(), new UUID[0]);
+		this(utilisateur, mdp, mail, UUID.randomUUID(), new HashSet<UUID>());
 	}
 	
 	
@@ -68,26 +68,15 @@ public class Compte extends ObjectId {
 		return mdp;
 	}
 	
+	public void setMdp(String mdp) {
+		this.mdp = mdp;
+	}
+	
 	public String getMail() {
 		return mail;
 	}
 	
-	public UUID[] getPartiesId() {
+	public HashSet<UUID> getPartiesId() {
 		return partiesId;
-	}
-	
-	@Override
-	public String toString() {
-		String apparence = id.toString() + "\n"
-						 + utilisateur + "\n"
-						 + mail + "\n"
-						 + mdp + "\n";
-		String strPartiesId = "";
-		for (UUID partieId : partiesId) {
-			if (partieId == null) break;
-			if (!strPartiesId.equals("")) strPartiesId += " ";
-			strPartiesId += partieId.toString();
-		}
-		return apparence+strPartiesId;
 	}
 }

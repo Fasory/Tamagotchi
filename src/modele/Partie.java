@@ -1,16 +1,13 @@
 package modele;
 
+import java.io.Serializable;
 import java.util.UUID;
 
 
-public class Partie extends ObjectId {
+public class Partie extends ObjectId implements Serializable {
 	
 	private Personnage tamagotchi;
-	private boolean triche;
-	
-	public Partie(UUID id) {
-		super(id);
-	}
+	private final boolean triche;
 	
 	public Partie(Personnage tamagotchi, boolean triche) {
 		super(UUID.randomUUID());
@@ -21,19 +18,7 @@ public class Partie extends ObjectId {
 		return tamagotchi;
 	}
 	
-	/**
-	 * Permet de sauvegarder une partie
-	 *  __________________________________
-	 * | File name : UUID PARTIE_ID       |
-	 * |__________________________________|
-	 * |UUID PARTIE_ID                    |
-	 * |String Personnage                       |
-	 * |__________________________________|
-	 */
-	@Override
-	public String toString() {
-		String identification = id.toString()+"\n";
-		String personnage = getTamagotchi().toString()+"\n";
-		return identification+personnage;
+	public boolean getTriche() {
+		return triche;
 	}
 }

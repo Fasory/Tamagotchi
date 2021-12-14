@@ -5,17 +5,13 @@ import java.io.FileFilter;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.nio.file.Files;
-import java.security.InvalidKeyException;
 import java.util.Calendar;
 import java.util.HashMap;
-import java.util.UUID;
-
-import javax.crypto.BadPaddingException;
-import javax.crypto.IllegalBlockSizeException;
 
 import modele.Compte;
-import modele.ObjectId;
 
 /**
  * Sous contrôleur qui a pour but de gérer la	<br/>
@@ -213,112 +209,45 @@ public class ControleurFichier extends Controleur {
 	}
 	
 	/**
-	 * Permet de lire tous les octets d'un fcihier
+	 * Sérialise un objet dans un fichier avec le
+	 * nom voulu dans le répertoire voulu
 	 * 
-	 * @param fichier - File représentant le fichier à lire
-	 * @return byte[] - représentant les octets lu du fichier
- 	 * @throws IOException
+	 * @param objet - Object à sérialisé
+	 * @param nom - String représentant le nom du
+	 * fichier où sera sérialisé l'object
+	 * @param rep - File représentant le répertoire
+	 * où se trouve le fichier
+	 * @throws IOException 
 	 */
-	public byte[] lireFichier(File fichier) throws IOException {
-		FileInputStream fluxEntree = new FileInputStream(fichier);
-		byte contenu[] = new byte[(int) fichier.length()];		// Création du stockage
-		fluxEntree.read(contenu);	// Lecture du fichier
-		fluxEntree.close();
-		return contenu;
-	}
-	
-	/**
-	 * Permet d'écrire des octets dans un fichier
-	 * 
-	 * @param fichier - File représentant le fichier où il faut écrire
-	 * @param contenu - byte[] représentant les octets à écrire
-	 * @throws IOException
-	 */
-	public void ecrireFichier(File fichier, byte[] contenu) throws IOException {
-		FileOutputStream fluxSortie = new FileOutputStream(fichier);
-		fluxSortie.write(contenu);
-		fluxSortie.close();
-	}
-	
-	/**
-	 * Permet de sauvegarder le compte dans un fichier crypté
-	 *  _______________________________ 
-	 * | File name : UUID USER_ID      |
-	 * |_______________________________|
-	 * | UUID USER_ID 			       |
-	 * | String USER_NAME			   |
-	 * | String USER_MAIL 		[HASH] |
-	 * | String MDP				[HASH] |
-	 * | UUID[] PARTIE_ID              |
-	 * |_______________________________|
-	 * 
-	 * @param compte - Compte à sauvegarder
-	 * @return boolean - Vrai si enregistré avec succès, faux sinon
-	 */
-	public boolean enregistrer(ObjectId objet, File rep) {
+	public void enregistrerObjet(Object objet, String nom, File rep) throws IOException {
+		File fichier = new File(rep, nom);
 		if (!repExiste(rep)) creeRep(rep);
-		File fichierCompte = new File(rep, objet.getId().toString());
-		byte[] encodeCompte = ControleurGeneral.ctrlSecurite.crypter(objet.toString().getBytes());
-		try {
-			ecrireFichier(fichierCompte, encodeCompte);
-			return true;
-		} catch (IOException err) {
-			addLogs("Erreur	-	échec d'enregistrement de compte", true);
-			return false;
-		}
+		FileOutputStream fluxFichier = new FileOutputStream(fichier);
+		ObjectOutputStream fluxSortant = new ObjectOutputStream(fluxFichier);
+		fluxSortant.writeObject(objet);
+		fluxSortant.flush();
+		fluxSortant.close();
 	}
 	
 	/**
-	 * Permet de récupérer un compte enregistré dans un fichier crypté
-	 * par l'UUID du compte
-	 *  _______________________________ 
-	 * | File name : UUID USER_ID      |
-	 * |_______________________________|
-	 * | UUID USER_ID 			       |
-	 * | String USER_NAME			   |
-	 * | String USER_MAIL 		[HASH] |
-	 * | String MDP				[HASH] |
-	 * | UUID[] PARTIE_ID              |
-	 * |_______________________________|
+	 * Permet de récupérer un objet sérialisé par
+	 * le nom du fichier et du répertoire où il a
+	 * été sérialisé
 	 * 
-	 * @param id - UUID représentant le compte à charger
-	 * @return Compte - compte de lié à l'UUID
+	 * @param nom - String représentant le nom du
+	 * fichier à charger
+	 * @param rep - File représentant le répertoire
+	 * où se trouve le fichier
+	 * @return Object - désérialisé
+	 * @throws Exception 
 	 */
-	public Compte chargerCompte(UUID id) {
-		File fichierCompte = new File(REP_JOUEUR, id.toString());
-		String[] contenu;
-		try {
-			contenu = new String(ControleurGeneral.ctrlSecurite.decrypter(lireFichier(fichierCompte))).split("\n");
-		} catch (InvalidKeyException | IllegalBlockSizeException | BadPaddingException | IOException err) {
-			addLogs("Erreur	-	échec de récupération du fichier " + fichierCompte.getPath(), true);
-			addLogs(err.toString(), true);
-			return null;
-		}
-		// Vérification de l'intégrité des données du fichier
-		// 4 lignes dû au split s'il n'y a pas au moins une partie de crée (sinon il y a 5 ligne)
-		if (contenu.length != 4 || !fichierCompte.getName().equals(contenu[0]) || (contenu.length == 5 && contenu[4].split(" ").length > ControleurGeneral.NB_MAX_PARTIE)) {
-			addLogs("Erreur	-	le fichier " + fichierCompte.getPath() + " est illisible", true);
-			return null;
-		}
-		String[] partiesStr;
-		UUID[] partiesId;
-		if (contenu.length == 5) {
-			partiesStr =  contenu[4].split(" ");
-			partiesId = new UUID[partiesStr.length];
-			for (int i = 0; i < partiesStr.length; i++) {
-				try {
-					partiesId[i] = UUID.fromString(partiesStr[i]);
-				} catch (Exception err) {
-					addLogs("Erreur	-	impossible de retrouver les parties liées au compte " + fichierCompte.getPath(), true);
-					addLogs(err.toString(), true);
-					return null;
-				}
-			}
-		} else {
-			partiesId = new UUID[0];
-		}
-		// Reconstruction du compte avec succès
-		return new Compte(contenu[1], contenu[3], contenu[2], id, partiesId);
+	public Object chargerObjet(String nom, File rep) throws Exception {
+		File fichier = new File(rep, nom);
+		FileInputStream fluxFichier = new FileInputStream(fichier);
+		ObjectInputStream fluxEntrant = new ObjectInputStream(fluxFichier);
+		Object obj = fluxEntrant.readObject();
+		fluxEntrant.close();
+		return obj;
 	}
 	
 	/**
@@ -339,18 +268,19 @@ public class ControleurFichier extends Controleur {
 			};
 			for (File fichier : REP_JOUEUR.listFiles(filtre)) {
 				try {
-					Compte compteRecupere = chargerCompte(UUID.fromString(fichier.getName()));
-					if (compteRecupere != null) lsCompte.put(compteRecupere.getUtilisateur(), compteRecupere);
-				} catch (IllegalArgumentException err) {
-					addLogs("Warning	-	un fichier imposteur a été détecté : " + fichier.getPath(), true);
+					Compte compteRecupere = (Compte) chargerObjet(fichier.getName(), REP_JOUEUR);
+					lsCompte.put(compteRecupere.getUtilisateur(), compteRecupere);
+				} catch (Exception err) {
+					addLogs("Erreur	-	échec de chargment du compte : " + fichier.getPath(), true);
+					addLogs(err.toString(), true);
 				}
 			}
 		}
 		return lsCompte;
 	}
 	
-	public void supprimerFichier(UUID id, File rep) {
-		File fichier = new File(rep, id.toString());
+	public void supprimerFichier(String nom, File rep) {
+		File fichier = new File(rep, nom);
 		if (fichierExiste(fichier)) {
 			try {
 				if(!fichier.delete()) throw new Exception("Le fichier n'a pas pu être supprimé");

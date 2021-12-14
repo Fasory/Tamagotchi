@@ -18,7 +18,6 @@ public class OubliMdp extends Menu {
 	
 	private JTextField txtId;
 	private JTextField txtMail;
-	private JLabel lbInfoConfirmation;
 
 	/**
 	 * Constructeur										<br/>
@@ -74,7 +73,7 @@ public class OubliMdp extends Menu {
 		formulaire.add(txtMail, gbc);
 		
 		// Construction du menu
-		JLabel lbInfo_p1 = new JLabel("Veuillez entrer votre identifiant et votre adresse mail afin de réinitialiser");
+		JLabel lbInfo_p1 = new JLabel("Veuillez entrer votre identifiant et votre adresse e-mail afin de réinitialiser");
 		gbc.gridx = 0;
 		gbc.gridy = 0;
 		gbc.gridwidth = 1;
@@ -92,7 +91,7 @@ public class OubliMdp extends Menu {
 		add(lbInfo_p2, gbc);
 		
 		
-		JLabel lbConsigne_p1 = new JLabel("Une fois la demande effectuée, entrez le code qui vous a été envoyé");
+		JLabel lbConsigne_p1 = new JLabel("La procédure de réinitialisation de mot de passe nécessite une connexion");
 		gbc.gridx = 0;
 		gbc.gridy++;
 		gbc.gridwidth = 1;
@@ -101,7 +100,7 @@ public class OubliMdp extends Menu {
 		add(lbConsigne_p1, gbc);
 		
 		
-		JLabel lbConsigne_p2 = new JLabel("par e-mail pour modifier votre mot de passe.");
+		JLabel lbConsigne_p2 = new JLabel("internet afin de recevoir un e-mail de vérification.");
 		gbc.gridx = 0;
 		gbc.gridy++;
 		gbc.gridwidth = 1;
@@ -118,13 +117,15 @@ public class OubliMdp extends Menu {
 		add(formulaire, gbc);
 		
 		
-		lbInfoConfirmation = new JLabel(" ");
+		JLabel lbAlerteConfirmation = new JLabel(" ");
+		lbAlerteConfirmation.setForeground(COULEUR_ALERTE);
 		gbc.gridx = 0;
 		gbc.gridy++;
 		gbc.gridwidth = 1;
-		gbc.anchor = GridBagConstraints.BASELINE_LEADING;
+		gbc.anchor = GridBagConstraints.BASELINE;
 		gbc.insets = new Insets(0, 0, 0, 0);
-		add(lbInfoConfirmation, gbc);
+		lsAlerte.put("info", lbAlerteConfirmation);
+		add(lbAlerteConfirmation, gbc);
 		
 		
 		JButton btnRenitialisation = new JButton("Réinitialiser");
@@ -156,6 +157,12 @@ public class OubliMdp extends Menu {
 		gbc.insets = new Insets(10, 0, 0, 0);
 		add(btnRetour, gbc);
 	}
+	
+	
+	@Override
+	public void renitialiser() {
+		ControleurGeneral.ctrlAffichage.afficherAlerte("info", " ");
+	}
 
 	
 	////////////////////////////////////////
@@ -167,7 +174,7 @@ public class OubliMdp extends Menu {
 	 * Demande de réinitialisation du mot de passe
 	 */
 	private void cmdRenitialisation() {
-		
+		ControleurGeneral.ctrlBouton.rqtReinitialiser(txtId.getText(), txtMail.getText());
 	}
 	
 	/**

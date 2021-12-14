@@ -2,12 +2,12 @@ package vue.menu;
 
 import controleur.ControleurGeneral;
 
-public class InscriptionConfirm extends MenuConfirmation {
+public class ReinitialiserMdpConfirm extends MenuConfirmation {
 	
 	/**
 	 * Constructeur
 	 */
-	public InscriptionConfirm() {
+	public ReinitialiserMdpConfirm() {
 		super("Veuillez entrer le code de validation envoyé par mail.", "Confirmer", "Annuler", true);
 	}
 
@@ -16,6 +16,7 @@ public class InscriptionConfirm extends MenuConfirmation {
 	 */
 	@Override
 	protected void cmdConfirmation() {
-		ControleurGeneral.ctrlBouton.rqtConfirmeCodeInscri(txtSaisie.getText());
+		ControleurGeneral.ctrlBouton.rqtConfirmeCodeMdp(txtSaisie.getText());
 	}
+
 }

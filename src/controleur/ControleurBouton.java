@@ -14,6 +14,7 @@ import vue.menu.Politique;
 import vue.menu.QuitterConfirm;
 import vue.menu.Score;
 import vue.menu.SelecPartie;
+import vue.menu.SupressionCompteConfirm;
 
 /**
  * Sous contrôleur qui a pour objectif de gérer les		<br/>
@@ -193,8 +194,23 @@ public class ControleurBouton extends Controleur {
 	 * 																		<br/>
 	 * @param code - String représentant le code à vérifier					<br/>
 	 */
-	public void rqtConfirmeCode(String code) {
-		ControleurGeneral.ctrlConnexion.verificationCode(code);
+	public void rqtConfirmeCodeInscri(String code) {
+		ControleurGeneral.ctrlConnexion.verificationCodeInscri(code);
+	}
+	
+	
+	public void rqtReinitialiser(String utilisateur, String mail) {
+		ControleurGeneral.ctrlConnexion.reinitialiserMdp(utilisateur, mail);
+	}
+	
+	
+	public void rqtConfirmeCodeMdp(String code) {
+		ControleurGeneral.ctrlConnexion.verificationCodeMdp(code);
+	}
+	
+	
+	public void rqtChangeMdp(char[] mdp, char[] mdpConfirm) {
+		ControleurGeneral.ctrlConnexion.verificationChangeMdp(new String(mdp), new String(mdpConfirm));
 	}
 	
 	
@@ -215,7 +231,7 @@ public class ControleurBouton extends Controleur {
 	 * Demande de supprimer le compte connecté
 	 */
 	public void rqtSuppressionCompte() {
-		ControleurGeneral.ctrlConnexion.suppressionCompte();
+		ControleurGeneral.ctrlAffichage.ouvrirMenuConfirmation(new SupressionCompteConfirm());
 	}
 	
 	/**
@@ -227,8 +243,8 @@ public class ControleurBouton extends Controleur {
 	}
 	
 	//////////////////////////////////////////
-	//			REQUETES CREATION			//
-	//			   DE PARTIE				//
+	//         	 REQUETES CREATION			//
+	//	             DE PARTIE				//
 	//////////////////////////////////////////
 	
 	public void rqtChangeAffichagePanel(JPanel panel, CreerPartie menu, boolean affiche) {

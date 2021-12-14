@@ -142,10 +142,22 @@ public class ControleurAffichage extends Controleur {
 	 * Affiche le précédent précédent										<br/>
 	 */	
 	public void menuPrecedent() {
-		pileMenu.pop();
-		renitialiserMenu();
-		fenetrePrincipale.changePanel(pileMenu.peek());
-		fenetrePrincipale.mettreEnAvant(true);
+		menuPrecedent(1);
+	}
+	
+	/**
+	 * Affiche le précédent précédent										<br/>
+	 * 
+	 * @param n - int représentant le nombre de menu
+	 * précédent auquel on revient
+	 */	
+	public void menuPrecedent(int n) {
+		if (n > 0) {
+			for (int i = 0; i < n; i++) pileMenu.pop();
+			renitialiserMenu();
+			fenetrePrincipale.changePanel(pileMenu.peek());
+			fenetrePrincipale.mettreEnAvant(true);
+		}
 	}
 	
 	/**

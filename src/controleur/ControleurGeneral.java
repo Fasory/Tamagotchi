@@ -1,6 +1,7 @@
 package controleur;
 
 import java.util.Properties;
+
 import javax.mail.Authenticator;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -41,7 +42,6 @@ public class ControleurGeneral extends Controleur {
 	private ControleurGeneral() {
 		super(estCree);
 		estCree = true;
-		
 		// Lancement de l'application
 		ctrlFichier = new ControleurFichier();
 		ctrlSecurite = new ControleurSecurite();
@@ -94,25 +94,35 @@ public class ControleurGeneral extends Controleur {
 	 * @param destinataire - String destinataire du mail		<br/>
 	 */
 	public static boolean envoyerMail(String sujet, String contenu, String destinataire) {
+		// Constantes d'envoie
+		final String SMTP_HOST = "smtp.gmail.com";
+        final String SMTP_PORT = "587";
+        final String GMAIL_USERNAME = "tamagotchi.univ.ubs@gmail.com";
+        final String GMAIL_PASSWORD = "@bcd3fgh";
 		// Configuration de la session d'envoie
 	    Properties config = new Properties();
-	    config.put("mail.smtp.host", "smtp.gmail.com");
-	    config.put("mail.smtp.port", "465");
-	    config.put("mail.smtp.auth", "true");
-	    config.put("mail.smtp.starttls.enable", "true"); //TLS
+	    config.setProperty("mail.smtp.host", SMTP_HOST);
+        config.setProperty("mail.smtp.user", GMAIL_USERNAME);
+        config.setProperty("mail.smtp.password", GMAIL_PASSWORD);
+	    config.setProperty("mail.smtp.port", SMTP_PORT);
+	    config.setProperty("mail.smtp.auth", "true");
+	    config.setProperty("mail.smtp.starttls.enable", "true"); //TLS
 	    Session session = Session.getDefaultInstance(config, new Authenticator() {
 	    	@Override
 	    	protected PasswordAuthentication getPasswordAuthentication() {
-	    		return new PasswordAuthentication("tamagotchi.univ.ubs@gmail.com", "@bcd3fgh");
+	    		return new PasswordAuthentication(GMAIL_USERNAME, "@bcd3fgh");
 	    	}
 	    });
 	    // Création du message
 	    try {
 	    	MimeMessage mail = new MimeMessage(session);
+	    	mail.setFrom(new InternetAddress(GMAIL_USERNAME));
 		  	mail.addRecipient(Message.RecipientType.TO, new InternetAddress(destinataire));
 			mail.setSubject(sujet);
 			mail.setText(contenu);
-			Transport.send(mail);
+			Transport transport = session.getTransport("smtp");
+            transport.connect(SMTP_HOST, GMAIL_USERNAME, GMAIL_PASSWORD);
+            transport.sendMessage(mail, mail.getAllRecipients());
 			return true;
 	    } catch (MessagingException err) {
 	    	ctrlFichier.addLogs("Erreur - échec de l'envoie d'un mail", true);

@@ -56,7 +56,7 @@ public class Inscription extends Menu {
 		checkBoxMail.add(cbVerifMail, gbc);
 		
 		
-		JLabel lbCbMail = new JLabel("Ne pas vérifier l'adresse mail.");
+		JLabel lbCbMail = new JLabel("Ne pas vérifier l'adresse e-mail.");
 		gbc.gridx = 1;
 		gbc.gridwidth = 1;
 		gbc.anchor = GridBagConstraints.CENTER;
@@ -137,7 +137,7 @@ public class Inscription extends Menu {
 		formulaire.add(lbId, gbc);
 		
 		
-		JLabel lbMail = new JLabel("Adresse mail");
+		JLabel lbMail = new JLabel("Adresse e-mail");
 		gbc.fill = GridBagConstraints.NONE;
 		gbc.gridx = 1;
 		gbc.gridwidth = 1;

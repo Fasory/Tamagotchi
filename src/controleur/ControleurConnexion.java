@@ -1,13 +1,16 @@
 package controleur;
 
+import java.io.IOException;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Random;
 import java.util.UUID;
 
 import modele.Compte;
 import vue.menu.InscriptionConfirm;
 import vue.menu.MenuPrincipal;
-import vue.menu.SupressionCompteConfirm;
+import vue.menu.ReinitialiserMdp;
+import vue.menu.ReinitialiserMdpConfirm;
 
 public class ControleurConnexion extends Controleur {
 	
@@ -18,18 +21,18 @@ public class ControleurConnexion extends Controleur {
 	private HashMap<String, Compte> lsCompte;
 	private String code;
 	private Compte compte;							// Compte de l'utilisateur
-	private Compte compteInscription;
+	private Compte compteTemp;
 
 	public ControleurConnexion() {
 		super(estCree);
 		estCree = true;
 		// Code null tant qu'il n'y a aucun code en cours d'utilisation
 		code = null;
-		compteInscription = null;
+		compteTemp = null;
 		// Compte null tant qu'aucune connexion est effectué
 		compte = null;
 		lsCompte = ControleurGeneral.ctrlFichier.getListeCompte();
-		if (lsCompte.get(ControleurGeneral.NOM_ANONYME) == null) lsCompte.put(ControleurGeneral.NOM_ANONYME, new Compte(ControleurGeneral.NOM_ANONYME, ControleurGeneral.ctrlSecurite.hash(""), ControleurGeneral.ctrlSecurite.hash(""), UUID.fromString(ControleurGeneral.STR_UUID_ANONYME), new UUID[0]));
+		if (lsCompte.get(ControleurGeneral.NOM_ANONYME) == null) lsCompte.put(ControleurGeneral.NOM_ANONYME, new Compte(ControleurGeneral.NOM_ANONYME, ControleurGeneral.ctrlSecurite.hash(""), ControleurGeneral.ctrlSecurite.hash(""), UUID.fromString(ControleurGeneral.STR_UUID_ANONYME), new HashSet<UUID>()));
 	}
 	
 	@Override
@@ -71,7 +74,12 @@ public class ControleurConnexion extends Controleur {
 	 * Perd le focus du compte ouvert
 	 */
 	public void deconnexion() {
-		ControleurGeneral.ctrlFichier.enregistrer(compte, ControleurFichier.REP_JOUEUR);
+		try {
+			ControleurGeneral.ctrlFichier.enregistrerObjet(compte, compte.getId().toString() + ".usr", ControleurFichier.REP_JOUEUR);
+		} catch (IOException err) {
+			ControleurGeneral.ctrlFichier.addLogs("Erreur	-	échec l'enregistrement du Compte " + compte.getId().toString(), true);
+			ControleurGeneral.ctrlFichier.addLogs(err.toString(), true);
+		}
 		compte = null;
 		ControleurGeneral.ctrlAffichage.menuPrecedent();
 	}
@@ -88,7 +96,7 @@ public class ControleurConnexion extends Controleur {
 		}
 		// Mail
 		if (mail.equals("")) {
-			ControleurGeneral.ctrlAffichage.afficherAlerte("mail", "Veuillez saisir une adresse mail.");
+			ControleurGeneral.ctrlAffichage.afficherAlerte("mail", "Veuillez saisir une adresse e-mail.");
 			possibleInscription = false;
 		}
 		// Mot de passe
@@ -114,7 +122,7 @@ public class ControleurConnexion extends Controleur {
 			}
 			// Mail
 			if (mail.contains(".@") || mail.contains("@.") || mail.contains("..")) {
-				ControleurGeneral.ctrlAffichage.afficherAlerte("mail", "Adresse mail invalide.");
+				ControleurGeneral.ctrlAffichage.afficherAlerte("mail", "Adresse e-mail invalide.");
 				possibleInscription = false;
 			} else {
 				byte cpt = 0;
@@ -123,7 +131,7 @@ public class ControleurConnexion extends Controleur {
 			 		if (cpt > 1) break;
 			 	}
 			 	if (cpt != 1) {
-			 		ControleurGeneral.ctrlAffichage.afficherAlerte("mail", "Adresse mail invalide.");
+			 		ControleurGeneral.ctrlAffichage.afficherAlerte("mail", "Adresse e-mail invalide.");
 					possibleInscription = false;
 			 	}
 			}
@@ -141,36 +149,36 @@ public class ControleurConnexion extends Controleur {
 		// Si conformtité des champs
 		// Vérification de l'adresse mail
 		if (possibleInscription) {
-			compteInscription = new Compte(utilisateur, ControleurGeneral.ctrlSecurite.hash(mdp), mail);
-			Random rng = new Random();
-			code = "";
-			for (int i = 0; i < TAILLE_CODE; i++) code += rng.nextInt(10);
-			if (!verifMail) verificationCode(this.code);
+			compteTemp = new Compte(utilisateur, ControleurGeneral.ctrlSecurite.hash(mdp), mail);
+			genererCode();
+			if (!verifMail) verificationCodeInscri(this.code);
 			else {
 				ControleurGeneral.ctrlAffichage.ouvrirMenuConfirmation(new InscriptionConfirm());
-				confirmationInscription();
+				String sujet = "Confirmation de création de compte";
+				String contenu = "Bienvenue " + compteTemp.getUtilisateur() + ",\r\n"
+						       + "\r\n"
+						       + "Le monde des Tamagotchis n'est plus très loin !\r\n"
+						       + "Veuillez saisir le code suivant pour finaliser votre inscription : " + code + "\r\n"
+						       + "\r\n"
+						       + "Bon jeu !";
+				ControleurGeneral.ctrlTemps.threadEnvoieMail(sujet, contenu, compteTemp.getMail());
 			}
 		}
 	}
 	
 	
-	public void confirmationInscription() {
-		String sujet = "Confirmation de création de compte";
-		String contenu = "Bienvenue " + compteInscription.getUtilisateur() + ",\r\n"
-				       + "\r\n"
-				       + "Le monde des Tamagotchis n'est plus très loin !\r\n"
-				       + "Veuillez saisir le code suivant pour finaliser votre inscription : " + code + "\r\n"
-				       + "\r\n"
-				       + "Bon jeu !";
-		if (!ControleurGeneral.envoyerMail(sujet, contenu, compteInscription.getMail())) ControleurGeneral.ctrlAffichage.afficherAlerteConfirmation("Echec de l'envoie du mail.");
+	public void genererCode() {
+		Random rng = new Random();
+		code = "";
+		for (int i = 0; i < TAILLE_CODE; i++) code += rng.nextInt(10);
 	}
 	
 	
-	public void verificationCode(String codeSaisie) {
+	public void verificationCodeInscri(String codeSaisie) {
 		if (codeSaisie.equals(code)) {
-			compte = new Compte(compteInscription.getUtilisateur(), compteInscription.getMdp(), ControleurGeneral.ctrlSecurite.hash(compteInscription.getMail()), compteInscription.getId(), compteInscription.getPartiesId());
+			compte = new Compte(compteTemp.getUtilisateur(), compteTemp.getMdp(), ControleurGeneral.ctrlSecurite.hash(compteTemp.getMail()), compteTemp.getId(), compteTemp.getPartiesId());
 			lsCompte.put(compte.getUtilisateur(), compte);
-			compteInscription = null;
+			compteTemp = null;
 			ControleurGeneral.ctrlAffichage.fermerMenuConfirmation();
 			ControleurGeneral.ctrlAffichage.ouvrirMenu(new MenuPrincipal(), 1);
 		} else {
@@ -179,16 +187,18 @@ public class ControleurConnexion extends Controleur {
 		}
 	}
 	
+	
 	public Compte getCompte() {
 		return compte;
 	}
 	
+	
 	public void confirmationSuppressionCompte() {
 		ControleurGeneral.ctrlAffichage.fermerMenuConfirmation();
 		lsCompte.remove(compte.getUtilisateur());
-		ControleurGeneral.ctrlFichier.supprimerFichier(compte.getId(), ControleurFichier.REP_JOUEUR);
+		ControleurGeneral.ctrlFichier.supprimerFichier(compte.getId().toString() + ".usr", ControleurFichier.REP_JOUEUR);
 		for (UUID id : compte.getPartiesId()) {
-			if (id != null) ControleurGeneral.ctrlFichier.supprimerFichier(id, ControleurFichier.REP_SAUVEGARDE);
+			if (id != null) ControleurGeneral.ctrlFichier.supprimerFichier(id.toString() + ".save", ControleurFichier.REP_SAUVEGARDE);
 			else break;
 		}
 		compte = null;
@@ -196,12 +206,60 @@ public class ControleurConnexion extends Controleur {
 		ControleurGeneral.ctrlAffichage.menuPrecedent();
 	}
 	
-	public void suppressionCompte() {
-		ControleurGeneral.ctrlAffichage.ouvrirMenuConfirmation(new SupressionCompteConfirm());
-	}
 	
 	public boolean isAnonyme() {
 		return compte.getUtilisateur().equals(ControleurGeneral.NOM_ANONYME);
+	}
+	
+	
+	public void reinitialiserMdp(String utilisateur, String mail) {
+		compteTemp = lsCompte.get(utilisateur);
+		if (utilisateur.equals(ControleurGeneral.NOM_ANONYME)) ControleurGeneral.ctrlAffichage.afficherAlerte("info", "Vous ne pouvez pas modifier le comtpe " + ControleurGeneral.NOM_ANONYME);
+		else if (compteTemp == null || !compteTemp.getMail().equals(ControleurGeneral.ctrlSecurite.hash(mail))) ControleurGeneral.ctrlAffichage.afficherAlerte("info", "L'identifiant ou l'adresse e-mail sont incorrects.");
+		else {
+			ControleurGeneral.ctrlAffichage.ouvrirMenuConfirmation(new ReinitialiserMdpConfirm());
+			genererCode();
+			String sujet = "Réinitialisation du mot de passe";
+			String contenu = "Bonjour " + utilisateur + ",\r\n"
+					       + "\r\n"
+					       + "Vous avez fait une demande de réinitialisation de mot de passe.\r\n"
+					       + "Veuillez saisir le code suivant pour réinitialisé votre mot de passe : " + code + "\r\n"
+					       + "\r\n"
+					       + "Bon jeu !";
+			ControleurGeneral.ctrlTemps.threadEnvoieMail(sujet, contenu, mail);
+		}
+	}
+	
+	
+	public void verificationCodeMdp(String codeSaisie) {
+		if (codeSaisie.equals(code)) {
+			ControleurGeneral.ctrlAffichage.fermerMenuConfirmation();
+			ControleurGeneral.ctrlAffichage.ouvrirMenu(new ReinitialiserMdp());
+		} else {
+			if (codeSaisie.equals("")) ControleurGeneral.ctrlAffichage.afficherAlerteConfirmation("Veuillez saisir le code.");
+			else ControleurGeneral.ctrlAffichage.afficherAlerteConfirmation("Le code est invalide");
+		}
+	}
+	
+	public void verificationChangeMdp(String mdp, String mdpConfirm) {
+		if (mdp.length() < 6) {
+			ControleurGeneral.ctrlAffichage.afficherAlerte("verif", "Au moins 6 caractères attendus.");
+		} else if (!mdpConfirm.equals(mdp)) {
+			ControleurGeneral.ctrlAffichage.afficherAlerte("verif", "Vérification invalide.");
+		} else {
+			compteTemp.setMdp(ControleurGeneral.ctrlSecurite.hash(mdp));
+			try {
+				ControleurGeneral.ctrlFichier.enregistrerObjet(compteTemp, compteTemp.getId().toString() + ".usr", ControleurFichier.REP_JOUEUR);
+				lsCompte.put(compteTemp.getUtilisateur(), compteTemp);
+				compteTemp = null;
+				ControleurGeneral.ctrlAffichage.menuPrecedent(2);
+				ControleurGeneral.ctrlAffichage.afficherAlerte("general", "Mot de passe réinitialisé avec succès.");
+			} catch (IOException err) {
+				ControleurGeneral.ctrlFichier.addLogs("Erreur	-	échec l'enregistrement du nouveau mot de passe pour le compte : " + compte.getId().toString(), true);
+				ControleurGeneral.ctrlFichier.addLogs(err.toString(), true);
+			}
+		}
+			
 	}
 }
 

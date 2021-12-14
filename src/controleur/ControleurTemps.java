@@ -14,4 +14,14 @@ public class ControleurTemps extends Controleur {
 	public void delControleur() {
 		estCree = false;
 	}
+	
+	public void threadEnvoieMail(String sujet, String contenu, String destinataire) {
+		Thread thread = new Thread() {
+			@Override
+			public void run() {
+				if (!ControleurGeneral.envoyerMail(sujet, contenu, destinataire)) ControleurGeneral.ctrlAffichage.afficherAlerteConfirmation("Echec de l'envoie du mail.");
+		    }
+		};
+		thread.start();
+	}
 }
