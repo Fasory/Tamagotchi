@@ -18,7 +18,7 @@ public class FenetrePrincipale extends Fenetre {
 		setLocationRelativeTo(null);
 		setTitle("Tamagotchi");
 		setSize(1024,640);
-		//setResizable(false);
+		setResizable(false);
 		mettreEnAvant(true);
 	}
 	

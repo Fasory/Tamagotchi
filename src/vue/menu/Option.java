@@ -48,6 +48,7 @@ public class Option extends Menu {
 		add(txtVolume, gbc);
 		
 		JSlider barreVolume = new JSlider(0,100, ControleurGeneral.ctrlAudio.getVolume());
+		barreVolume.setOpaque(false);
 		barreVolume.setPreferredSize(dmSlider);
 		barreVolume.setMinorTickSpacing(5);
 		barreVolume.setMajorTickSpacing(20);
@@ -78,6 +79,7 @@ public class Option extends Menu {
 		
 		
 		JSlider barreMusique = new JSlider(0,100,ControleurGeneral.ctrlAudio.getMusique());
+		barreMusique.setOpaque(false);
 		barreMusique.setPreferredSize(dmSlider);
 		barreMusique.setMinorTickSpacing(5);
 		barreMusique.setMajorTickSpacing(20);

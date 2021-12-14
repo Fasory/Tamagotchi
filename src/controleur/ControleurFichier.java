@@ -29,9 +29,16 @@ public class ControleurFichier extends Controleur {
 	private FileOutputStream logsOutStream;							// Flux de sortie pour écrire dans le fichier logs du jour courant
 	private File repLogs;											// Répertoire contenant tous les logs
 	private boolean erreurLogs;										// Repère binaire si les logs du jour courant contiennent une erreur
+	// DATA
 	private final static File REP_DATA = new File("data");					// Répertoire contenant les données sauvegardées
 	public final static File REP_JOUEUR = new File(REP_DATA, "user");		// Répertoire contenant les fichiers de données de chaque utilisateur
 	public final static File REP_SAUVEGARDE = new File(REP_DATA, "save");	// Répertoire contenant les sauvegardes des parties
+	// ASSET
+	private final static File REP_ASSET = new File("assets");
+	private final static File REP_IMG = new File(REP_ASSET, "img");
+	public final static File FOND_MENU = new File(REP_IMG, "fondMenu.png");
+	private final static File REP_FONT = new File(REP_ASSET, "font");
+	public final static File FONT_KAWAII = new File(REP_FONT, "candyshop-2-black.ttf");
 	
 	/**
 	 * Constructeur													<br/>

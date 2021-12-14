@@ -33,6 +33,7 @@ public class OubliMdp extends Menu {
 		
 		// Formulaire ID / Mail
 		JPanel formulaire = new JPanel(new GridBagLayout());
+		formulaire.setOpaque(false);
 		
 		
 		JLabel lbId = new JLabel("Identifiant");

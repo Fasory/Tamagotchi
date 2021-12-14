@@ -45,9 +45,11 @@ public class Inscription extends Menu {
 		
 		// CheckBox Mail
 		JPanel checkBoxMail = new JPanel(new GridBagLayout());
+		checkBoxMail.setOpaque(false);
 		
 		
 		cbVerifMail = new JCheckBox();
+		cbVerifMail.setOpaque(false);
 		gbc.gridx = 0;
 		gbc.gridy = 0;
 		gbc.gridwidth = 1;
@@ -66,9 +68,11 @@ public class Inscription extends Menu {
 		
 		// CheckBox Politique de Confidentialité
 		JPanel checkBoxPolitique = new JPanel(new GridBagLayout());
+		checkBoxPolitique.setOpaque(false);
 		
 		
 		cbPolitique = new JCheckBox();
+		cbPolitique.setOpaque(false);
 		cbPolitique.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				cmdPolitique();
@@ -125,6 +129,7 @@ public class Inscription extends Menu {
 		
 		// Formulaire ID / Mail / MDP / Confirmation MDP
 		JPanel formulaire = new JPanel(new GridBagLayout());
+		formulaire.setOpaque(false);
 		
 		
 		JLabel lbId = new JLabel("Identifiant");

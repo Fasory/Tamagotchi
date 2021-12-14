@@ -40,6 +40,7 @@ public class CreerPartie extends Menu {
 		Dimension dmBouton = new Dimension(150,38);
 		
 		choixType = new JPanel(new GridBagLayout());
+		choixType.setOpaque(false);
 		
 		JLabel lbChoisirType = new JLabel("Choisir votre Tamagotchi :");
 		gbc.gridx = 0;
@@ -54,6 +55,7 @@ public class CreerPartie extends Menu {
 		listRadio = new HashMap<String, JRadioButton>();
 		for (String elt: ControleurGeneral.TYPE) {
 			JRadioButton rad = new JRadioButton(elt);
+			rad.setOpaque(false);
 			rad.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent evt) {
 					cmdChoixType();
@@ -72,7 +74,7 @@ public class CreerPartie extends Menu {
 		
 		
 		nom = new JPanel(new GridBagLayout());
-		
+		nom.setOpaque(false);
 		
 		JLabel lbChoisirNom = new JLabel("Choisir le nom de votre Tamagotchi :");
 		gbc.gridx = 0;
@@ -111,6 +113,7 @@ public class CreerPartie extends Menu {
 		nom.add(btnJouer,gbc);
 		
 		JCheckBox cbTriche = new JCheckBox("Activation du mode triche");
+		cbTriche.setOpaque(false);
 		gbc.gridx = 0;
 		gbc.gridy = 4;
 		gbc.gridwidth = 1;

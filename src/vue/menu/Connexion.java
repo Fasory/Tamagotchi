@@ -10,7 +10,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.Color;
 
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
@@ -18,6 +17,7 @@ import javax.swing.JSeparator;
 import javax.swing.JTextField;
 
 import controleur.ControleurGeneral;
+import vue.modole.CustomBtn;
 
 public class Connexion extends Menu {
 	
@@ -40,6 +40,7 @@ public class Connexion extends Menu {
 		
 		// Formulaire ID / Mail
 		JPanel formulaire = new JPanel(new GridBagLayout());
+		formulaire.setOpaque(false);
 		
 		
 		JLabel lbId = new JLabel("Identifiant");
@@ -112,7 +113,7 @@ public class Connexion extends Menu {
 		formulaire.add(lbOublieMdp, gbc);
 		
 		
-		JButton btnConnexion = new JButton("Connexion");
+		CustomBtn btnConnexion = new CustomBtn("Connexion");
 		btnConnexion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				cmdConnexion();
@@ -137,7 +138,7 @@ public class Connexion extends Menu {
 		formulaire.add(lbOu, gbc);
 		
 		
-		JButton btnInscription = new JButton("Inscription");
+		CustomBtn btnInscription = new CustomBtn("Inscription");
 		btnInscription.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				cmdInscription();
@@ -233,8 +234,7 @@ public class Connexion extends Menu {
 		add(lbInfoAnonyme_p3, gbc);
 		
 		
-		JButton btnConnexionAnonyme = new JButton("Connexion anonyme");
-		btnConnexionAnonyme.setPreferredSize(new Dimension(formulaire.getPreferredSize().width, 25));
+		CustomBtn btnConnexionAnonyme = new CustomBtn("Connexion anonyme");
 		btnConnexionAnonyme.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				cmdConnexionAnonyme();

@@ -5,6 +5,7 @@ import java.awt.*;
 import java.awt.event.*;
 
 import controleur.ControleurGeneral;
+import vue.modole.CustomBtn;
 
 public class MenuPrincipal extends Menu {
 	
@@ -18,61 +19,83 @@ public class MenuPrincipal extends Menu {
 		
 		// Partie Affichage
 		setLayout(new GridBagLayout());
-		
-		JPanel panelBtn = new JPanel(new GridLayout(5, 1, 0, 40)) {
-			@Override
-			public Dimension getPreferredSize() {
-				return new Dimension(200, 350);
-			}
-		};
+		GridBagConstraints gbc = new GridBagConstraints();
+		Insets marges =  new Insets(17, 35, 15, 35);
 		
 		
-		JButton btnCreerPartie = new JButton("Créer une nouvelle partie");
+		CustomBtn btnCreerPartie = new CustomBtn("Créer une nouvelle partie", marges);
 		btnCreerPartie.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				cmdMenuCreerPartie();
 			}
 		});
-		panelBtn.add(btnCreerPartie);
+		gbc.fill = GridBagConstraints.HORIZONTAL;
+		gbc.gridx = 0;
+		gbc.gridy++;
+		gbc.gridwidth = 1;
+		gbc.anchor = GridBagConstraints.BASELINE;
+		gbc.insets = new Insets(0, 0, 0, 0);
+		add(btnCreerPartie, gbc);
 		
 		
-		JButton btnSelectionnerPartie = new JButton("Sélectionner une partie");
+		CustomBtn btnSelectionnerPartie = new CustomBtn("Sélectionner une partie", marges);
 		btnSelectionnerPartie.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				cmdMenuSelecPartie();
 			}
 		});
-		panelBtn.add(btnSelectionnerPartie);
+		gbc.fill = GridBagConstraints.HORIZONTAL;
+		gbc.gridx = 0;
+		gbc.gridy++;
+		gbc.gridwidth = 1;
+		gbc.anchor = GridBagConstraints.BASELINE;
+		gbc.insets = new Insets(25, 0, 0, 0);
+		add(btnSelectionnerPartie, gbc);
 		
 		
-		JButton btnOption = new JButton("Options");
+		CustomBtn btnOption = new CustomBtn("Options", marges);
 		btnOption.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				cmdMenuOption();
 			}
 		});
-		panelBtn.add(btnOption);
+		gbc.fill = GridBagConstraints.HORIZONTAL;
+		gbc.gridx = 0;
+		gbc.gridy++;
+		gbc.gridwidth = 1;
+		gbc.anchor = GridBagConstraints.BASELINE;
+		gbc.insets = new Insets(25, 0, 0, 0);
+		add(btnOption, gbc);
 		
 		
-		JButton btnScore = new JButton("Voir les scores");
+		CustomBtn btnScore = new CustomBtn("Voir les scores", marges);
 		btnScore.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				cmdMenuScore();
 			}
 		});
-		panelBtn.add(btnScore);
+		gbc.fill = GridBagConstraints.HORIZONTAL;
+		gbc.gridx = 0;
+		gbc.gridy++;
+		gbc.gridwidth = 1;
+		gbc.anchor = GridBagConstraints.BASELINE;
+		gbc.insets = new Insets(25, 0, 0, 0);
+		add(btnScore, gbc);
 		
 		
-		JButton btnDeconnexion = new JButton("Déconnexion");
+		CustomBtn btnDeconnexion = new CustomBtn("Déconnexion", marges);
 		btnDeconnexion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				cmdDeconnexion();
 			}
 		});
-		panelBtn.add(btnDeconnexion);
-		
-		
-		add(panelBtn);
+		gbc.fill = GridBagConstraints.HORIZONTAL;
+		gbc.gridx = 0;
+		gbc.gridy++;
+		gbc.gridwidth = 1;
+		gbc.anchor = GridBagConstraints.BASELINE;
+		gbc.insets = new Insets(25, 0, 0, 0);
+		add(btnDeconnexion, gbc);
 	}
 
 	
@@ -115,6 +138,5 @@ public class MenuPrincipal extends Menu {
 	private void cmdDeconnexion() {
 		ControleurGeneral.ctrlBouton.rqtDemandeDeconnexion();
 	}
-	
 	
 }

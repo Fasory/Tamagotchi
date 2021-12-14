@@ -1,9 +1,15 @@
 package vue.menu;
 
+import javax.imageio.ImageIO;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import controleur.ControleurFichier;
+
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.awt.Graphics;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.util.HashMap;
@@ -17,6 +23,7 @@ public abstract class Menu extends JPanel {
 	protected final Color COULEUR_EN_NON_SELEC = Color.BLUE;
 	
 	protected HashMap<String, JLabel> lsAlerte;
+	private BufferedImage fondImage;
 	
 	/**
 	 * Constructeur
@@ -25,7 +32,20 @@ public abstract class Menu extends JPanel {
 		super();
 		
 		lsAlerte = new HashMap<String, JLabel>();
+		try {
+			fondImage = ImageIO.read(ControleurFichier.FOND_MENU);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
+	
+	
+	protected void paintComponent(Graphics graph) {
+		super.paintComponent(graph);
+		graph.drawImage(fondImage, 0, 0, null);
+	}
+
 	
 	/**
 	 * 
