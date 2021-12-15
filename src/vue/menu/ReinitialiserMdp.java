@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 
 import controleur.ControleurGeneral;
+import vue.modole.CustomBtn;
 
 public class ReinitialiserMdp extends Menu {
 	
@@ -101,13 +102,12 @@ public class ReinitialiserMdp extends Menu {
 		add(lbAlerte, gbc);
 		
 		
-		JButton btnReinitialiser = new JButton("Réinitialiser");
+		CustomBtn btnReinitialiser = new CustomBtn("Réinitialiser");
 		btnReinitialiser.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				cmdReinitialiser();
 			}
 		});
-		btnReinitialiser.setPreferredSize(new Dimension(110,25));
 		gbc.gridx = 0;
 		gbc.gridy++;
 		gbc.gridwidth = 1;
@@ -116,13 +116,12 @@ public class ReinitialiserMdp extends Menu {
 		add(btnReinitialiser, gbc);
 		
 		
-		JButton btnRetour = new JButton("Annuler");
+		CustomBtn btnRetour = new CustomBtn("Annuler");
 		btnRetour.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				cmdRetour();
 			}
 		});
-		btnRetour.setPreferredSize(new Dimension(110,25));
 		gbc.gridx = 0;
 		gbc.gridy++;
 		gbc.gridwidth = 1;
