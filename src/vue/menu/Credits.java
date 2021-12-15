@@ -11,6 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 
 import controleur.ControleurGeneral;
+import vue.modole.CustomBtn;
 
 public class Credits extends Menu {
 	/**
@@ -104,7 +105,7 @@ public class Credits extends Menu {
 		gbc.insets = new Insets(0, 0, 10, 30);
 		add(lblicence, gbc);
 		
-		JButton btnRetour = new JButton("Quitter les crédits");
+		CustomBtn btnRetour = new CustomBtn("Quitter les crédits");
 		gbc.gridx = 0;
 		gbc.gridy++;
 		gbc.anchor = GridBagConstraints.BASELINE;

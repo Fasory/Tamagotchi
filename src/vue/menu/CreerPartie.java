@@ -18,6 +18,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import controleur.ControleurGeneral;
+import vue.modole.CustomBtn;
 
 public class CreerPartie extends Menu {
 
@@ -98,12 +99,11 @@ public class CreerPartie extends Menu {
 		nom.add(txtNom, gbc);
 		
 		
-		JButton btnJouer = new JButton("Jouer");
+		CustomBtn btnJouer = new CustomBtn("Jouer");
 		gbc.gridx = 0;
 		gbc.gridy = 3;
 		gbc.anchor = GridBagConstraints.BASELINE_LEADING;
 		gbc.insets = new Insets(0, 0, 10, 30);
-		btnJouer.setPreferredSize(dmBouton);
 		btnJouer.setVisible(true);
 		btnJouer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
@@ -122,12 +122,11 @@ public class CreerPartie extends Menu {
 		nom.add(cbTriche, gbc);
 		
 		
-		JButton btnRetour = new JButton("Retour");
+		CustomBtn btnRetour = new CustomBtn("Retour", new Insets(12,40,10,40));
 		gbc.gridx = 3;
 		gbc.gridy = 3;
 		gbc.anchor = GridBagConstraints.BASELINE;
 		gbc.insets = new Insets(0, 0, 10, 30);
-		btnRetour.setPreferredSize(dmBouton);
 		btnRetour.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				cmdRetour();
@@ -156,12 +155,11 @@ public class CreerPartie extends Menu {
 		add(nom, gbc);
 		
 		
-		JButton btnChoixAleatoire = new JButton("Choisir aléatoirement");
+		CustomBtn btnChoixAleatoire = new CustomBtn("Choisir aléatoirement", new Insets(12,40,12,40));
 		gbc.gridx = 0;
 		gbc.gridy = 1;
 		gbc.anchor = GridBagConstraints.BASELINE;
 		gbc.insets = new Insets(0, 0, 10, 30);
-		btnChoixAleatoire.setPreferredSize(dmBouton);
 		btnChoixAleatoire.setVisible(true);
 		btnChoixAleatoire.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {

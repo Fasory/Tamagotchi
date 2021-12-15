@@ -14,6 +14,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import controleur.ControleurGeneral;
+import vue.modole.CustomBtn;
 
 public class Option extends Menu {
 	
@@ -100,8 +101,7 @@ public class Option extends Menu {
 		add(barreMusique, gbc);
 		
 		
-		JButton btnCredits = new JButton("Crédits");
-		btnCredits.setPreferredSize(dmBouton);
+		CustomBtn btnCredits = new CustomBtn("Crédits");
 		btnCredits.addActionListener(new ActionListener() {	
 			public void actionPerformed(ActionEvent evt) {
 				cmdAfficheCredits();
@@ -115,8 +115,7 @@ public class Option extends Menu {
 		add(btnCredits, gbc);
 		
 		
-		JButton btnSupprimerCompte = new JButton("Supprimer le compte");
-		btnSupprimerCompte.setPreferredSize(dmBouton);
+		CustomBtn btnSupprimerCompte = new CustomBtn("Supprimer le compte");
 		btnSupprimerCompte.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent evt) {
@@ -132,8 +131,7 @@ public class Option extends Menu {
 		add(btnSupprimerCompte, gbc);
 		
 		
-		JButton btnQuitterOptions = new JButton("Quitter les options");
-		btnQuitterOptions.setPreferredSize(dmBouton);
+		CustomBtn btnQuitterOptions = new CustomBtn("Quitter les options");
 		btnQuitterOptions.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent evt) {

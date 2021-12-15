@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import controleur.ControleurGeneral;
+import vue.modole.CustomBtn;
 
 public class OubliMdp extends Menu {
 	
@@ -129,13 +130,12 @@ public class OubliMdp extends Menu {
 		add(lbAlerteConfirmation, gbc);
 		
 		
-		JButton btnRenitialisation = new JButton("Réinitialiser");
+		CustomBtn btnRenitialisation = new CustomBtn("Réinitialiser");
 		btnRenitialisation.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				cmdRenitialisation();
 			}
 		});
-		btnRenitialisation.setPreferredSize(new Dimension(110,25));
 		gbc.gridx = 0;
 		gbc.gridy++;
 		gbc.gridwidth = 1;
@@ -144,13 +144,12 @@ public class OubliMdp extends Menu {
 		add(btnRenitialisation, gbc);
 		
 		
-		JButton btnRetour = new JButton("Annuler");
+		CustomBtn btnRetour = new CustomBtn("Annuler");
 		btnRetour.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				cmdRetour();
 			}
 		});
-		btnRetour.setPreferredSize(new Dimension(110,25));
 		gbc.gridx = 0;
 		gbc.gridy++;
 		gbc.gridwidth = 1;

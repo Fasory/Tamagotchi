@@ -19,6 +19,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import controleur.ControleurGeneral;
+import vue.modole.CustomBtn;
 
 public class Inscription extends Menu {
 	
@@ -30,7 +31,7 @@ public class Inscription extends Menu {
 	private JCheckBox cbVerifMail;
 	private JCheckBox cbPolitique;
 	private JLabel lbCbPolitique_2;
-	private JButton btnInscription;
+	private CustomBtn btnInscription;
 	
 	/**
 	 * Constructeur
@@ -285,13 +286,12 @@ public class Inscription extends Menu {
 		add(checkBoxPolitique, gbc);
 		
 		
-		btnInscription = new JButton("S'inscrire");
+		btnInscription = new CustomBtn("S'inscrire");
 		btnInscription.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				cmdInscrire();
 			}
 		});
-		btnInscription.setPreferredSize(new Dimension(110,25));
 		btnInscription.setEnabled(cbPolitique.isSelected());
 		gbc.fill = GridBagConstraints.NONE;
 		gbc.gridx = 0;
@@ -302,13 +302,12 @@ public class Inscription extends Menu {
 		add(btnInscription, gbc);
 		
 		
-		JButton btnRetour = new JButton("Annuler");
+		CustomBtn btnRetour = new CustomBtn("Annuler");
 		btnRetour.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				cmdRetour();
 			}
 		});
-		btnRetour.setPreferredSize(new Dimension(110,25));
 		gbc.fill = GridBagConstraints.NONE;
 		gbc.gridx = 0;
 		gbc.gridy++;

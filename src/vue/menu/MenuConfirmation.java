@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import controleur.ControleurGeneral;
+import vue.modole.CustomBtn;
 
 /**
  * Menu mettant à disposition un choix binaire		<br/>
@@ -87,8 +88,7 @@ public abstract class MenuConfirmation extends Menu {
 		Dimension dmBouton = new Dimension(110,25);
 		
 		
-		JButton btnVrai = new JButton(indicationVrai);
-		btnVrai.setPreferredSize(dmBouton);
+		CustomBtn btnVrai = new CustomBtn(indicationVrai);
 		btnVrai.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent evt) {
@@ -103,8 +103,7 @@ public abstract class MenuConfirmation extends Menu {
 		panelBtn.add(btnVrai, gbc);
 		
 		
-		JButton btnFaux = new JButton(indicationFaux);
-		btnFaux.setPreferredSize(dmBouton);
+		CustomBtn btnFaux = new CustomBtn(indicationFaux);
 		btnFaux.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				cmdRetour();
