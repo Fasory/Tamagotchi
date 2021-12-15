@@ -5,7 +5,7 @@ import controleur.ControleurGeneral;
 public class QuitterConfirm extends MenuConfirmation {
 	
 	/**
-	 * Contructeur
+	 * Contructeur de la classe QuitterConfirm sans paramètre
 	 * 
 	 * @param controleur - Contoleur de l'application	<br/>
 	 */
@@ -14,7 +14,7 @@ public class QuitterConfirm extends MenuConfirmation {
 	}
 	
 	/**
-	 * Contructeur
+	 * Contructeur de la classe QuitterConfirm avec parmètre
 	 * 
 	 * @param controleur - Contoleur de l'application	<br/>
 	 * @param msg - String afficher pour demander la	<br/>
