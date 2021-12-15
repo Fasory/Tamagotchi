@@ -21,6 +21,7 @@ public class ReinitialiserMdp extends Menu {
 	
 	public ReinitialiserMdp() {
 		
+		// Appel au constructeur de la super classe Menu
 		super();
 		
 		// Partie Affichage

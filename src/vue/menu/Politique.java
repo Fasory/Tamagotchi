@@ -24,6 +24,7 @@ public class Politique extends Menu {
 	 * Constructeur
 	 */
 	public Politique() {
+		// Appel au constructeur de la super classe Menu
 		super();
 		
 		// Constantes utiles à la construction du Panel
