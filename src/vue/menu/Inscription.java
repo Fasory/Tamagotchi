@@ -21,6 +21,15 @@ import javax.swing.JTextField;
 import controleur.ControleurGeneral;
 import vue.modole.CustomBtn;
 
+/**
+ * La classe Inscription gère le menu "Inscription", 
+ * menu accessible après le menu "Connexion",
+ * lorsqu'on clique sur le bouton "Inscription" 
+ * 
+ * @author BIDAULT, BOUQUET, HAGUET, CASANOVA, BRZUSTOWSKI
+ *
+ */
+
 public class Inscription extends Menu {
 	
 	// Autres attributs
@@ -34,9 +43,10 @@ public class Inscription extends Menu {
 	private CustomBtn btnInscription;
 	
 	/**
-	 * Constructeur
+	 * Constructeur de la classe Inscription
 	 */
 	public Inscription() { 
+		// Appel au constructeur de la super classe Menu
 		super();
 		
 		// Partie Affichage
