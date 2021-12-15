@@ -19,6 +19,10 @@ public class ReinitialiserMdp extends Menu {
 	private JPasswordField txtMdp;
 	private JPasswordField txtMdpConfirm;
 	
+	/**
+	 * Constructeur de la classe ReinitialiserMdp
+	 */
+	
 	public ReinitialiserMdp() {
 		
 		// Appel au constructeur de la super classe Menu

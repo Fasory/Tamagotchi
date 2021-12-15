@@ -5,9 +5,11 @@ import controleur.ControleurGeneral;
 public class ReinitialiserMdpConfirm extends MenuConfirmation {
 	
 	/**
-	 * Constructeur
+	 * Constructeur de la classe ReinitialiserMdpConfirm 
 	 */
+	
 	public ReinitialiserMdpConfirm() {
+		// Appel au constructeur de la super classe Menu Confirmation 
 		super("Veuillez entrer le code de validation envoyé par mail.", "Confirmer", "Annuler", true);
 	}
 
