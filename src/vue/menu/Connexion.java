@@ -24,7 +24,7 @@ public class Connexion extends Menu {
 	// Autres attributs
 	private JLabel lbOublieMdp;
 	private JTextField txtId;
-	private JPasswordField txtMdp;
+	private JPasswordField txtMdp; 
 	
 	/**
 	 * Constructeur											<br/>

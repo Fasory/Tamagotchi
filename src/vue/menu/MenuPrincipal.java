@@ -136,7 +136,7 @@ public class MenuPrincipal extends Menu {
 	* Demande de déconnexion
 	*/
 	private void cmdDeconnexion() {
-		ControleurGeneral.ctrlBouton.rqtDemandeDeconnexion();
+		ControleurGeneral.ctrlBouton.rqtDemandeDeconnexion(); 
 	}
 	
 }

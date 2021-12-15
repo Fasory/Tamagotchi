@@ -165,7 +165,7 @@ public abstract class MenuConfirmation extends Menu {
 	/*
 	 * Demande d'une requête liée au bouton btnVrai		<br/>
 	 */
-	protected abstract void cmdConfirmation();
+	protected abstract void cmdConfirmation(); 
 	
 	/*
 	 * Demande d'annulation de confirmation				<br/>

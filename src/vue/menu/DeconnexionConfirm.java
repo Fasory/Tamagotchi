@@ -22,7 +22,7 @@ public class DeconnexionConfirm extends MenuConfirmation {
 	 */
 	public DeconnexionConfirm(String msg) {
 		super(msg, "Oui", "Annuler");
-	}
+	} 
 	
 	/**
 	 * Demande de fermeture de l'application			<br/>

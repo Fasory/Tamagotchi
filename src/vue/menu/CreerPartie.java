@@ -34,7 +34,7 @@ public class CreerPartie extends Menu {
 	 */
 	public CreerPartie() {
 		super();
-		// TODO Auto-generated constructor stub
+		// TODO Auto-generated constructor stub 
 		// partie affichage
 		setLayout(new GridBagLayout()); // nouvelle grille
 		GridBagConstraints gbc = new GridBagConstraints();

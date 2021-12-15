@@ -36,7 +36,7 @@ public class Inscription extends Menu {
 	/**
 	 * Constructeur
 	 */
-	public Inscription() {
+	public Inscription() { 
 		super();
 		
 		// Partie Affichage

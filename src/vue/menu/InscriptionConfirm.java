@@ -15,7 +15,7 @@ public class InscriptionConfirm extends MenuConfirmation {
 	 * Demande de confirmation de l'inscription
 	 */
 	@Override
-	protected void cmdConfirmation() {
+	protected void cmdConfirmation() { 
 		ControleurGeneral.ctrlBouton.rqtConfirmeCodeInscri(txtSaisie.getText());
 	}
 }

@@ -23,7 +23,7 @@ public class Credits extends Menu {
 		// partie affichage
 		
 		setLayout(new GridBagLayout());
-		GridBagConstraints gbc = new GridBagConstraints();
+		GridBagConstraints gbc = new GridBagConstraints(); 
 		
 		JLabel lbCredits = new JLabel("Réalisé par :");
 		gbc.gridx = 0;

@@ -75,7 +75,7 @@ public class Option extends Menu {
 		gbc.gridy = 2;
 		gbc.gridwidth = 1;
 		gbc.anchor = GridBagConstraints.BASELINE;
-		gbc.insets = new Insets(20, 0, 0, 0);
+		gbc.insets = new Insets(20, 0, 0, 0); 
 		add(txtMusique, gbc);
 		
 		
