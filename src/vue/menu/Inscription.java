@@ -285,6 +285,8 @@ public class Inscription extends Menu {
 		gbc.insets = new Insets(10, 0, 0, 0);
 		add(checkBoxPolitique, gbc);
 		
+		JPanel button = new JPanel(new GridBagLayout());
+		button.setOpaque(false);
 		
 		btnInscription = new CustomBtn("S'inscrire");
 		btnInscription.addActionListener(new ActionListener() {
@@ -299,7 +301,7 @@ public class Inscription extends Menu {
 		gbc.gridwidth = 1;
 		gbc.anchor = GridBagConstraints.BASELINE_TRAILING;
 		gbc.insets = new Insets(10, 0, 0, 0);
-		add(btnInscription, gbc);
+		button.add(btnInscription, gbc);
 		
 		
 		CustomBtn btnRetour = new CustomBtn("Annuler");
@@ -308,13 +310,21 @@ public class Inscription extends Menu {
 				cmdRetour();
 			}
 		});
+		gbc.fill = GridBagConstraints.HORIZONTAL;
+		gbc.gridx = 0;
+		gbc.gridy++;
+		gbc.gridwidth = 1;
+		gbc.anchor = GridBagConstraints.BASELINE_TRAILING;
+		gbc.insets = new Insets(10, 0, 0, 0);
+		button.add(btnRetour, gbc);
+		
 		gbc.fill = GridBagConstraints.NONE;
 		gbc.gridx = 0;
 		gbc.gridy++;
 		gbc.gridwidth = 1;
 		gbc.anchor = GridBagConstraints.BASELINE_TRAILING;
 		gbc.insets = new Insets(10, 0, 0, 0);
-		add(btnRetour, gbc);
+		add(button,gbc);
 	}
 	
 	
