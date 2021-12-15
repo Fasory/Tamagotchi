@@ -20,6 +20,15 @@ import javax.swing.JTextField;
 import controleur.ControleurGeneral;
 import vue.modole.CustomBtn;
 
+/**
+ * La classe CreerPartie gère le menu "Créer Partie", 
+ * menu accessible après le menu "Connexion",
+ * lorsqu'on clique sur le bouton "Créer une nouvelle partie" 
+ * 
+ * @author BIDAULT, BOUQUET, HAGUET, CASANOVA, BRZUSTOWSKI
+ *
+ */
+
 public class CreerPartie extends Menu {
 
 	private JTextField txtNom;

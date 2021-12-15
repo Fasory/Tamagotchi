@@ -19,6 +19,14 @@ import javax.swing.JTextField;
 import controleur.ControleurGeneral;
 import vue.modole.CustomBtn;
 
+/**
+ * La classe Connexion gère le menu "Connexion", 
+ * premier menu au lancement du jeu.
+ * 
+ * @author BIDAULT, BOUQUET, HAGUET, CASANOVA, BRZUSTOWSKI
+ *
+ */
+
 public class Connexion extends Menu {
 	
 	// Autres attributs
@@ -27,11 +35,12 @@ public class Connexion extends Menu {
 	private JPasswordField txtMdp; 
 	
 	/**
-	 * Constructeur											<br/>
+	 * Constructeur	de la classe Connexion					<br/>
 	 * 														<br/>
 	 * @param controleur - Controleur de l'application		<br/>
 	 */
 	public Connexion() {
+		// Appel au constructeur de la super classe Menu 
 		super();
 		
 		// Partie Affichage

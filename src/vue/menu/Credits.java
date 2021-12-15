@@ -13,11 +13,21 @@ import javax.swing.JLabel;
 import controleur.ControleurGeneral;
 import vue.modole.CustomBtn;
 
+/**
+ * La classe Credits gère le menu "Crédits", 
+ * menu accessible après le menu "Options"
+ * losqu'on clique sur le bouton "Crédits"
+ * 
+ * @author BIDAULT, BOUQUET, HAGUET, CASANOVA, BRZUSTOWSKI
+ *
+ */
+
 public class Credits extends Menu {
 	/**
-	 * Constructeur
+	 * Constructeur de la classe Credits
 	 */
 	public Credits() {
+		// Appel au constructeur de la super classe Menu
 		super();
 		
 		// partie affichage
