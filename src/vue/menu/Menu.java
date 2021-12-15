@@ -48,56 +48,59 @@ public abstract class Menu extends JPanel {
 
 	
 	/**
-	 * 
+	 * Change le curseur de la souris par curseur par défaut
 	 */
 	public void curseurDefault() {
         setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 	}
 	
 	/**
-	 * 
+	 * Change le curseur  de la souris par curseur main
 	 */
 	public void curseurHand() {
         setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 	}
 	
 	/**
-	 * 
+	 * Méthode appelée lorsque l'on fait apparaitre un menu précédent
 	 */
 	public void renitialiser() {
-		// A réécrire si besoin dans les menus enfants
+		// A réécrire si besoin dans les menus fils
 	}
 	
 	/**
-	 * 
-	 * @return
+	 * Donne les clés des alertes
+	 * @return Set<String> - liste des clés
 	 */
 	public Set<String> getClefLsAlerte() {
 		return lsAlerte.keySet();
 	}
 	
 	/**
+	 * Modifie une alerte
 	 * 
-	 * @param alerteCible
-	 * @param message
+	 * @param alerteCible - String définissant le nom d'une alerte
+	 * @param message - String du message "alerte" liée à l'alerte nommée
 	 */
 	public void setAlerte(String alerteCible, String message) {
 		lsAlerte.get(alerteCible).setText(message);
 	}
 	
 	/**
+	 * Change la couleur du label
 	 * 
-	 * @param label
-	 * @param couleur
+	 * @param label - JLabel définissant le label à modifier
+	 * @param couleur - Color choisie pour modifier la couleur de notre JLabel
 	 */
 	public void changeCouleurLabel(JLabel label, Color couleur) {
 		label.setForeground(couleur);
 	}
 	
 	/**
+	 * Modifie l'activité d'un composant
 	 * 
-	 * @param composant
-	 * @param actif
+	 * @param composant - JComponent définissant le label à modifier
+	 * @param actif - boolean qui active ou désactive le composant choisi
 	 */
 	public void setActive(JComponent composant, boolean actif) {
 		composant.setEnabled(actif);
