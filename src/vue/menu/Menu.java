@@ -15,6 +15,14 @@ import java.awt.Cursor;
 import java.util.HashMap;
 import java.util.Set;
 
+/**
+ * Classe abstraite Menu qui nous permet de définir
+ * les autres menus.
+ * 
+ * @author BIDAULT, BOUQUET, HAGUET, CASANOVA, BRZUSTOWSKI
+ * 
+ */
+
 public abstract class Menu extends JPanel {
 	
 	protected final Color COULEUR_ALERTE = Color.RED;
@@ -26,9 +34,10 @@ public abstract class Menu extends JPanel {
 	private BufferedImage fondImage;
 	
 	/**
-	 * Constructeur
+	 * Constructeur de la classe Menu
 	 */
 	protected Menu() {
+		// Appel au constructeur de la super classe JPanel
 		super();
 		
 		lsAlerte = new HashMap<String, JLabel>();

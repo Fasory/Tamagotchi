@@ -16,8 +16,9 @@ import controleur.ControleurGeneral;
 import vue.modole.CustomBtn;
 
 /**
- * Menu mettant à disposition un choix binaire		<br/>
- * retournant vrai ou faux au contrôleur			<br/>
+ * MenuConfirmation met à disposition un choix binaire		<br/>
+ * retournant vrai ou faux au contrôleur					<br/>
+ * @author BIDAULT, BOUQUET, HAGUET, CASANOVA, BRZUSTOWSKI	<br/>
  */
 public abstract class MenuConfirmation extends Menu {
 	
@@ -77,6 +78,8 @@ public abstract class MenuConfirmation extends Menu {
 	 * @param saisie - boolean affiche un champ de saisie											<br/>
 	 */
 	public MenuConfirmation(String message, String indicationVrai, String indicationFaux, boolean saisie) {
+		
+		// Appel au constructeur de la super classe Menu
 		super();
 		
 		// Partie Affichage

@@ -16,10 +16,19 @@ import javax.swing.event.ChangeListener;
 import controleur.ControleurGeneral;
 import vue.modole.CustomBtn;
 
+/**
+ * La classe Option gère le menu "Option", 
+ * menu accessible après le menu "Menu Principal",
+ * lorsqu'on clique sur le bouton "Connexion" ou "Connexion anonyme"
+ * 
+ * @author BIDAULT, BOUQUET, HAGUET, CASANOVA, BRZUSTOWSKI
+ *
+ */
+
 public class Option extends Menu {
 	
 	/**
-	 * Constructeur par défaut
+	 * Constructeur par défaut de la classe Option
 	 */
 	public Option() {
 		this(false);
@@ -31,6 +40,8 @@ public class Option extends Menu {
 	 */
 
 	public Option(boolean anonyme) {
+		
+		// Appel au constructeur de la super classe Menu
 		super();
 		
 		// Partie affichage

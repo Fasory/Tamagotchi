@@ -7,14 +7,25 @@ import java.awt.event.*;
 import controleur.ControleurGeneral;
 import vue.modole.CustomBtn;
 
+/**
+ * La classe MenuPrincipal gère le menu "Menu Principal", 
+ * menu accessible après le menu "Connexion",
+ * lorsqu'on clique sur le bouton "Connexion" ou "Connexion anonyme"
+ * 
+ * @author BIDAULT, BOUQUET, HAGUET, CASANOVA, BRZUSTOWSKI
+ *
+ */
+
 public class MenuPrincipal extends Menu {
 	
 	/**
-	 * Constructeur
+	 * Constructeur de la classe MenuPrincipal
 	 * 
 	 * @param controleur - Controleur de l'application
 	 */
 	public MenuPrincipal() {
+		
+		// Appel au constructeur de la super classe Menu
 		super();
 		
 		// Partie Affichage
