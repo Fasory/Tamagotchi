@@ -17,6 +17,7 @@ import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 
 import controleur.ControleurGeneral;
+import vue.modole.CustomBtn;
 
 public class Politique extends Menu {
 	
@@ -128,13 +129,12 @@ public class Politique extends Menu {
 		add(panelPolitique, gbc);
 		
 		
-		JButton btnRetour = new JButton("Retour");
+		CustomBtn btnRetour = new CustomBtn("Retour");
 		btnRetour.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				cmdRetour();
 			}
 		});
-		btnRetour.setPreferredSize(new Dimension(110, 25));
 		gbc.gridx = 0;
 		gbc.gridy++;
 		gbc.gridwidth = 1;
