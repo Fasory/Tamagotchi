@@ -7,7 +7,6 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
@@ -47,7 +46,6 @@ public class Option extends Menu {
 		// Partie affichage
 		setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
-		Dimension dmBouton = new Dimension(200,50);
 		Dimension dmSlider = new Dimension(500, 50);
 		
 		
@@ -113,6 +111,7 @@ public class Option extends Menu {
 		
 		
 		CustomBtn btnCredits = new CustomBtn("Crédits");
+		lsCustomBtn.add(btnCredits);
 		btnCredits.addActionListener(new ActionListener() {	
 			public void actionPerformed(ActionEvent evt) {
 				cmdAfficheCredits();
@@ -127,6 +126,7 @@ public class Option extends Menu {
 		
 		
 		CustomBtn btnSupprimerCompte = new CustomBtn("Supprimer le compte");
+		lsCustomBtn.add(btnSupprimerCompte);
 		btnSupprimerCompte.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent evt) {
@@ -143,6 +143,7 @@ public class Option extends Menu {
 		
 		
 		CustomBtn btnQuitterOptions = new CustomBtn("Quitter les options");
+		lsCustomBtn.add(btnQuitterOptions);
 		btnQuitterOptions.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent evt) {

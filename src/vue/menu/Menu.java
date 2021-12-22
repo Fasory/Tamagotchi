@@ -6,6 +6,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import controleur.ControleurFichier;
+import vue.modole.CustomBtn;
+import vue.modole.CustomStyle;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -13,6 +15,7 @@ import java.awt.Graphics;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -25,12 +28,13 @@ import java.util.Set;
 
 public abstract class Menu extends JPanel {
 	
-	protected final Color COULEUR_ALERTE = Color.RED;
+	protected final Color COULEUR_ALERTE = CustomStyle.ROUGE_DEFAUT;
 	// Constantes publics
-	protected final Color COULEUR_EN_SELEC = COULEUR_ALERTE;
-	protected final Color COULEUR_EN_NON_SELEC = Color.BLUE;
+	protected final Color COULEUR_EN_SELEC = CustomStyle.ROUGE_DEFAUT;
+	protected final Color COULEUR_EN_NON_SELEC = CustomStyle.BLEU_DEFAUT;
 	
 	protected HashMap<String, JLabel> lsAlerte;
+	protected HashSet<CustomBtn> lsCustomBtn;
 	private BufferedImage fondImage;
 	
 	/**
@@ -41,6 +45,7 @@ public abstract class Menu extends JPanel {
 		super();
 		
 		lsAlerte = new HashMap<String, JLabel>();
+		lsCustomBtn = new HashSet<CustomBtn>();
 		try {
 			fondImage = ImageIO.read(ControleurFichier.FOND_MENU);
 		} catch (IOException e) {
@@ -74,6 +79,8 @@ public abstract class Menu extends JPanel {
 	 * Méthode appelée lorsque l'on fait apparaitre un menu précédent
 	 */
 	public void renitialiser() {
+		for (CustomBtn btn : lsCustomBtn) btn.reset();
+		repaint();
 		// A réécrire si besoin dans les menus fils
 	}
 	

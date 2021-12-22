@@ -11,7 +11,6 @@ import java.awt.event.ActionListener;
 import java.util.HashMap;
 
 import javax.swing.ButtonGroup;
-import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -109,6 +108,7 @@ public class CreerPartie extends Menu {
 		
 		
 		CustomBtn btnJouer = new CustomBtn("Jouer");
+		lsCustomBtn.add(btnJouer);
 		gbc.gridx = 0;
 		gbc.gridy = 3;
 		gbc.anchor = GridBagConstraints.BASELINE_LEADING;
@@ -132,6 +132,7 @@ public class CreerPartie extends Menu {
 		
 		
 		CustomBtn btnRetour = new CustomBtn("Retour", new Insets(12,40,10,40));
+		lsCustomBtn.add(btnRetour);
 		gbc.gridx = 3;
 		gbc.gridy = 3;
 		gbc.anchor = GridBagConstraints.BASELINE;
@@ -165,6 +166,7 @@ public class CreerPartie extends Menu {
 		
 		
 		CustomBtn btnChoixAleatoire = new CustomBtn("Choisir aléatoirement", new Insets(12,40,12,40));
+		lsCustomBtn.add(btnChoixAleatoire);
 		gbc.gridx = 0;
 		gbc.gridy = 1;
 		gbc.anchor = GridBagConstraints.BASELINE;

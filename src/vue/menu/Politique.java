@@ -7,17 +7,16 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 import javax.swing.SwingUtilities;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.SimpleAttributeSet;
-import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 
 import controleur.ControleurGeneral;
 import vue.modole.CustomBtn;
+import vue.modole.CustomStyle;
 
 public class Politique extends Menu {
 	
@@ -29,10 +28,10 @@ public class Politique extends Menu {
 		super();
 		
 		// Constantes utiles à la construction du Panel
-		final SimpleAttributeSet STYLE_NORMAL = init_normal_style();
-		final SimpleAttributeSet STYLE_TITRE = init_titre_style();
-		final SimpleAttributeSet STYLE_SOUSTITRE = init_sousTitre_style();
-		final SimpleAttributeSet STYLE_CENTRER = init_centrer_style();
+		final SimpleAttributeSet STYLE_NORMAL = CustomStyle.getStyleNormal();
+		final SimpleAttributeSet STYLE_TITRE = CustomStyle.getStyleTitre();
+		final SimpleAttributeSet STYLE_SOUSTITRE = CustomStyle.getStyleSousTritre();
+		final SimpleAttributeSet STYLE_CENTRER = CustomStyle.getStyleCentrer();
 		final String titre = "POLITIQUE DE CONFIDENTIALITÉ\n";
 		final String[] titreSecondaire = {
 				"\n1. Confidentialité et Protection des Données\n",
@@ -130,6 +129,7 @@ public class Politique extends Menu {
 		
 		
 		CustomBtn btnRetour = new CustomBtn("Retour");
+		lsCustomBtn.add(btnRetour);
 		btnRetour.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				cmdRetour();
@@ -141,54 +141,6 @@ public class Politique extends Menu {
 		gbc.anchor = GridBagConstraints.CENTER;
 		gbc.insets = new Insets(30, 0, 0, 0);
 		add(btnRetour, gbc);
-	}
-	
-	////////////////////////////////////////
-	//            DEFINITION DES          //
-	//                STYLES              //        
-	////////////////////////////////////////
-	
-	/**
-	 * Initialisation du style pour le texte par défaut
-	 * @return SimpleAttributSet - style appliqué par défaut
-	 */
-	private SimpleAttributeSet init_normal_style() {
-		SimpleAttributeSet style = new SimpleAttributeSet();
-		StyleConstants.setFontSize(style, 14);
-		return style;
-	}
-	
-	/**
-	 * Initialisation du style pour les titres
-	 * @return SimpleAttributSet - style appliqué aux titres
-	 */
-	private SimpleAttributeSet init_titre_style() {
-		SimpleAttributeSet style = new SimpleAttributeSet();
-		StyleConstants.setFontSize(style, 30);
-		StyleConstants.setBold(style, true);
-		StyleConstants.setAlignment(style, StyleConstants.ALIGN_CENTER);
-		return style;
-	}
-	
-	/**
-	 * Initialisation du style pour les sous-titres
-	 * @return SimpleAttributSet - style appliqué aux sous-titres
-	 */
-	private SimpleAttributeSet init_sousTitre_style() {
-		SimpleAttributeSet style = new SimpleAttributeSet();
-		StyleConstants.setFontSize(style, 18);
-		StyleConstants.setBold(style, true);
-		return style;
-	}
-	
-	/**
-	 * Initialisation du style pour centrer le texte
-	 * @return SimpleAttributSet - style centré appliqué au texte
-	 */
-	private SimpleAttributeSet init_centrer_style() {
-		SimpleAttributeSet style = new SimpleAttributeSet();
-		StyleConstants.setAlignment(style, StyleConstants.ALIGN_CENTER);
-		return style;
 	}
 	
 	////////////////////////////////////////

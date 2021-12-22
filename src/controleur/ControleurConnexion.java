@@ -66,6 +66,7 @@ public class ControleurConnexion extends Controleur {
 				ControleurGeneral.ctrlAffichage.ouvrirMenu(new MenuPrincipal());
 			} else {
 				ControleurGeneral.ctrlAffichage.afficherAlerte("general", "Votre identifiant ou votre mot de passe est incorret.");
+				compte = null;
 			}
 		}
 	}

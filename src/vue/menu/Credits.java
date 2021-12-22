@@ -7,7 +7,6 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
 import javax.swing.JLabel;
 
 import controleur.ControleurGeneral;
@@ -116,6 +115,7 @@ public class Credits extends Menu {
 		add(lblicence, gbc);
 		
 		CustomBtn btnRetour = new CustomBtn("Quitter les crédits");
+		lsCustomBtn.add(btnRetour);
 		gbc.gridx = 0;
 		gbc.gridy++;
 		gbc.anchor = GridBagConstraints.BASELINE;

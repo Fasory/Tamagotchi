@@ -7,7 +7,6 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -88,10 +87,10 @@ public abstract class MenuConfirmation extends Menu {
 		
 		// Construction du panel des boutons
 		JPanel panelBtn = new JPanel(new GridBagLayout());
-		Dimension dmBouton = new Dimension(110,25);
 		
 		
 		CustomBtn btnVrai = new CustomBtn(indicationVrai);
+		lsCustomBtn.add(btnVrai);
 		btnVrai.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent evt) {
@@ -107,6 +106,7 @@ public abstract class MenuConfirmation extends Menu {
 		
 		
 		CustomBtn btnFaux = new CustomBtn(indicationFaux);
+		lsCustomBtn.add(btnFaux);
 		btnFaux.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				cmdRetour();

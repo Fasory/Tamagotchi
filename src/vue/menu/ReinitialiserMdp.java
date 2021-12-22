@@ -7,7 +7,6 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
@@ -103,6 +102,7 @@ public class ReinitialiserMdp extends Menu {
 		
 		
 		CustomBtn btnReinitialiser = new CustomBtn("Réinitialiser");
+		lsCustomBtn.add(btnReinitialiser);
 		btnReinitialiser.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				cmdReinitialiser();
@@ -117,6 +117,7 @@ public class ReinitialiserMdp extends Menu {
 		
 		
 		CustomBtn btnRetour = new CustomBtn("Annuler");
+		lsCustomBtn.add(btnRetour);
 		btnRetour.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				cmdRetour();

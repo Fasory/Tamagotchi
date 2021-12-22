@@ -7,7 +7,6 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -131,6 +130,7 @@ public class OubliMdp extends Menu {
 		
 		
 		CustomBtn btnRenitialisation = new CustomBtn("Réinitialiser");
+		lsCustomBtn.add(btnRenitialisation);
 		btnRenitialisation.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				cmdRenitialisation();
@@ -145,6 +145,7 @@ public class OubliMdp extends Menu {
 		
 		
 		CustomBtn btnRetour = new CustomBtn("Annuler");
+		lsCustomBtn.add(btnRetour);
 		btnRetour.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				cmdRetour();

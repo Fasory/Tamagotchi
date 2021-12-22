@@ -1,6 +1,5 @@
 package vue.menu;
 
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
@@ -35,6 +34,7 @@ public class MenuPrincipal extends Menu {
 		
 		
 		CustomBtn btnCreerPartie = new CustomBtn("Créer une nouvelle partie", marges);
+		lsCustomBtn.add(btnCreerPartie);
 		btnCreerPartie.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				cmdMenuCreerPartie();
@@ -50,6 +50,7 @@ public class MenuPrincipal extends Menu {
 		
 		
 		CustomBtn btnSelectionnerPartie = new CustomBtn("Sélectionner une partie", marges);
+		lsCustomBtn.add(btnSelectionnerPartie);
 		btnSelectionnerPartie.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				cmdMenuSelecPartie();
@@ -65,6 +66,7 @@ public class MenuPrincipal extends Menu {
 		
 		
 		CustomBtn btnOption = new CustomBtn("Options", marges);
+		lsCustomBtn.add(btnOption);
 		btnOption.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				cmdMenuOption();
@@ -80,6 +82,7 @@ public class MenuPrincipal extends Menu {
 		
 		
 		CustomBtn btnScore = new CustomBtn("Voir les scores", marges);
+		lsCustomBtn.add(btnScore);
 		btnScore.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				cmdMenuScore();
@@ -95,6 +98,7 @@ public class MenuPrincipal extends Menu {
 		
 		
 		CustomBtn btnDeconnexion = new CustomBtn("Déconnexion", marges);
+		lsCustomBtn.add(btnDeconnexion);
 		btnDeconnexion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				cmdDeconnexion();

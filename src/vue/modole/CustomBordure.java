@@ -21,8 +21,10 @@ public class CustomBordure implements Border {
 
 	@Override
 	public void paintBorder(Component c, Graphics graph, int x, int y, int width, int height) {
-		graph.setColor(couleur);
-		graph.drawRoundRect(x+epaisseur/2, y+epaisseur/2, width-1-epaisseur, height-1-epaisseur, height-1, height-1);
+		if (epaisseur != 0) {
+			graph.setColor(couleur);
+			graph.drawRoundRect(x+epaisseur/2, y+epaisseur/2, width-1-epaisseur, height-1-epaisseur, height-1, height-1);
+		}
 	}
 
 	@Override

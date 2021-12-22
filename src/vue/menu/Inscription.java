@@ -10,8 +10,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Color;
 
-
-import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -20,6 +18,8 @@ import javax.swing.JTextField;
 
 import controleur.ControleurGeneral;
 import vue.modole.CustomBtn;
+import vue.modole.CustomLb;
+import vue.modole.CustomTxt;
 
 /**
  * La classe Inscription gère le menu "Inscription", 
@@ -39,7 +39,7 @@ public class Inscription extends Menu {
 	private JPasswordField txtMdpConfirme;
 	private JCheckBox cbVerifMail;
 	private JCheckBox cbPolitique;
-	private JLabel lbCbPolitique_2;
+	private CustomLb lbCbPolitique_2;
 	private CustomBtn btnInscription;
 	
 	/**
@@ -52,6 +52,8 @@ public class Inscription extends Menu {
 		// Partie Affichage
 		setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
+		
+		Dimension taille = new Dimension(300, 25);
 		
 		
 		// CheckBox Mail
@@ -69,7 +71,7 @@ public class Inscription extends Menu {
 		checkBoxMail.add(cbVerifMail, gbc);
 		
 		
-		JLabel lbCbMail = new JLabel("Ne pas vérifier l'adresse e-mail.");
+		CustomLb lbCbMail = new CustomLb("Ne pas vérifier l'adresse e-mail.", 10f);
 		gbc.gridx = 1;
 		gbc.gridwidth = 1;
 		gbc.anchor = GridBagConstraints.CENTER;
@@ -97,7 +99,7 @@ public class Inscription extends Menu {
 		checkBoxPolitique.add(cbPolitique, gbc);
 		
 		
-		JLabel lbCbPolitique_1 = new JLabel("J'ai lu et j'accepte la ");
+		CustomLb lbCbPolitique_1 = new CustomLb("J'ai lu et j'accepte la ");
 		gbc.gridx = 1;
 		gbc.gridwidth = 1;
 		gbc.anchor = GridBagConstraints.CENTER;
@@ -105,7 +107,7 @@ public class Inscription extends Menu {
 		checkBoxPolitique.add(lbCbPolitique_1, gbc);
 		
 		
-		lbCbPolitique_2 = new JLabel("politique de confidentialité");
+		lbCbPolitique_2 = new CustomLb("politique de confidentialité");
 		lbCbPolitique_2.setForeground(COULEUR_EN_NON_SELEC);
 		lbCbPolitique_2.addMouseListener(new MouseAdapter() {
 		    @Override
@@ -130,7 +132,7 @@ public class Inscription extends Menu {
 		checkBoxPolitique.add(lbCbPolitique_2, gbc);
 		
 		
-		JLabel lbCbPolitique_3 = new JLabel(".");
+		CustomLb lbCbPolitique_3 = new CustomLb(".");
 		gbc.gridx = 3;
 		gbc.gridwidth = 1;
 		gbc.anchor = GridBagConstraints.CENTER;
@@ -143,27 +145,27 @@ public class Inscription extends Menu {
 		formulaire.setOpaque(false);
 		
 		
-		JLabel lbId = new JLabel("Identifiant");
-		gbc.fill = GridBagConstraints.NONE;
+		CustomTxt lbId = new CustomTxt("Identifiant");
+		gbc.fill = GridBagConstraints.HORIZONTAL;
 		gbc.gridx = 0;
 		gbc.gridy = 0;
 		gbc.gridwidth = 1;
 		gbc.anchor = GridBagConstraints.BASELINE_LEADING;
-		gbc.insets = new Insets(0, 0, 3, 0);
+		gbc.insets = new Insets(0, 0, 10, 20);
 		formulaire.add(lbId, gbc);
 		
 		
-		JLabel lbMail = new JLabel("Adresse e-mail");
-		gbc.fill = GridBagConstraints.NONE;
+		CustomTxt lbMail = new CustomTxt("Adresse e-mail");
+		gbc.fill = GridBagConstraints.HORIZONTAL;
 		gbc.gridx = 1;
 		gbc.gridwidth = 1;
 		gbc.anchor = GridBagConstraints.BASELINE_LEADING;
-		gbc.insets = new Insets(0, 0, 3, 0);
+		gbc.insets = new Insets(0, 0, 10, 0);
 		formulaire.add(lbMail, gbc);
 		
 		
 		txtId = new JTextField();
-		txtId.setPreferredSize(new Dimension(200, 25));
+		txtId.setPreferredSize(taille);
 		gbc.fill = GridBagConstraints.NONE;
 		gbc.gridx = 0;
 		gbc.gridy++;
@@ -174,7 +176,7 @@ public class Inscription extends Menu {
 		
 		
 		txtMail = new JTextField();
-		txtMail.setPreferredSize(new Dimension(200, 25));
+		txtMail.setPreferredSize(taille);
 		gbc.fill = GridBagConstraints.NONE;
 		gbc.gridx = 1;
 		gbc.gridwidth = 1;
@@ -183,7 +185,7 @@ public class Inscription extends Menu {
 		formulaire.add(txtMail, gbc);
 		
 		
-		JLabel lbAlerteId = new JLabel(" ");
+		CustomLb lbAlerteId = new CustomLb(" ");
 		lbAlerteId.setForeground(COULEUR_ALERTE);
 		gbc.fill = GridBagConstraints.NONE;
 		gbc.gridx = 0;
@@ -203,7 +205,7 @@ public class Inscription extends Menu {
 		formulaire.add(checkBoxMail, gbc);
 		
 		
-		JLabel lbAlerteMail = new JLabel(" ");
+		CustomLb lbAlerteMail = new CustomLb(" ");
 		lbAlerteMail.setForeground(COULEUR_ALERTE);
 		gbc.fill = GridBagConstraints.NONE;
 		gbc.gridx = 1;
@@ -215,27 +217,27 @@ public class Inscription extends Menu {
 		formulaire.add(lbAlerteMail, gbc);
 		
 		
-		JLabel lbMdp = new JLabel("Mot de passe");
-		gbc.fill = GridBagConstraints.NONE;
+		CustomTxt lbMdp = new CustomTxt("Mot de passe");
+		gbc.fill = GridBagConstraints.HORIZONTAL;
 		gbc.gridx = 0;
 		gbc.gridy++;
 		gbc.gridwidth = 1;
 		gbc.anchor = GridBagConstraints.BASELINE_LEADING;
-		gbc.insets = new Insets(0, 0, 3, 0);
+		gbc.insets = new Insets(0, 0, 10, 20);
 		formulaire.add(lbMdp, gbc);
 		
 		
-		JLabel lbMdpConfirme = new JLabel("Confirmez le mot de passe");
-		gbc.fill = GridBagConstraints.NONE;
+		CustomTxt lbMdpConfirme = new CustomTxt("Confirmez le mot de passe");
+		gbc.fill = GridBagConstraints.HORIZONTAL;
 		gbc.gridx = 1;
 		gbc.gridwidth = 1;
 		gbc.anchor = GridBagConstraints.BASELINE_LEADING;
-		gbc.insets = new Insets(0, 0, 3, 0);
+		gbc.insets = new Insets(0, 0, 10, 0);
 		formulaire.add(lbMdpConfirme, gbc);
 		
 		
 		txtMdp = new JPasswordField();
-		txtMdp.setPreferredSize(new Dimension(200, 25));
+		txtMdp.setPreferredSize(taille);
 		gbc.fill = GridBagConstraints.NONE;
 		gbc.gridx = 0;
 		gbc.gridy++;
@@ -246,7 +248,7 @@ public class Inscription extends Menu {
 		
 		
 		txtMdpConfirme = new JPasswordField();
-		txtMdpConfirme.setPreferredSize(new Dimension(200, 25));
+		txtMdpConfirme.setPreferredSize(taille);
 		gbc.fill = GridBagConstraints.NONE;
 		gbc.gridx = 1;
 		gbc.gridwidth = 1;
@@ -255,7 +257,7 @@ public class Inscription extends Menu {
 		formulaire.add(txtMdpConfirme, gbc);
 		
 		
-		JLabel lbAlerteMdp = new JLabel(" ");
+		CustomLb lbAlerteMdp = new CustomLb(" ");
 		lbAlerteMdp.setForeground(COULEUR_ALERTE);
 		gbc.fill = GridBagConstraints.NONE;
 		gbc.gridx = 0;
@@ -267,7 +269,7 @@ public class Inscription extends Menu {
 		formulaire.add(lbAlerteMdp, gbc);
 		
 		
-		JLabel lbAlerteMdpConfirme = new JLabel(" ");
+		CustomLb lbAlerteMdpConfirme = new CustomLb(" ");
 		lbAlerteMdpConfirme.setForeground(COULEUR_ALERTE);
 		gbc.fill = GridBagConstraints.NONE;
 		gbc.gridx = 1;
@@ -299,6 +301,7 @@ public class Inscription extends Menu {
 		button.setOpaque(false);
 		
 		btnInscription = new CustomBtn("S'inscrire");
+		lsCustomBtn.add(btnInscription);
 		btnInscription.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				cmdInscrire();
@@ -315,6 +318,7 @@ public class Inscription extends Menu {
 		
 		
 		CustomBtn btnRetour = new CustomBtn("Annuler");
+		lsCustomBtn.add(btnRetour);
 		btnRetour.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				cmdRetour();
