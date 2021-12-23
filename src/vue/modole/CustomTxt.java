@@ -23,9 +23,23 @@ public class CustomTxt extends JTextPane {
 	private Color couleur_foreground;
 	private Color couleur_background;
 	private static Font police = null;
+	private int arrondi;
 	
 	public CustomTxt(String contenu) {
+		this(contenu, 8, true, -1);
+	}
+	
+	public CustomTxt(String contenu, boolean centrer) {
+		this(contenu, 8, centrer, -1);
+	}
+	
+	public CustomTxt(String contenu, int taille) {
+		this(contenu, taille, true, -1);
+	}
+	
+	public CustomTxt(String contenu, int taille, boolean centrer, int arrondi) {
 		super();
+		this.arrondi = arrondi;
 		couleur_foreground = DEFAUT_FOREGROUND;
 		couleur_background = DEFAUT_BACKGROUND;
 		if (police == null) {
@@ -42,8 +56,8 @@ public class CustomTxt extends JTextPane {
 	 	setOpaque(false);
 	 	try {
 		 	StyledDocument doc = getStyledDocument();
-			doc.insertString(doc.getLength(), contenu, CustomStyle.getStyleDefaut());
-		 	doc.setParagraphAttributes(0, contenu.length(), CustomStyle.getStyleCentrer(), false);
+			doc.insertString(doc.getLength(), contenu, CustomStyle.getStyleDefaut(taille));
+			if (centrer) doc.setParagraphAttributes(0, contenu.length(), CustomStyle.getStyleCentrer(), false);
 		} catch (BadLocationException e) {
 			e.printStackTrace();
 		}
@@ -58,7 +72,8 @@ public class CustomTxt extends JTextPane {
 		Graphics2D graph = (Graphics2D) graphParam;
 		graph.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		graph.setColor(couleur_background);
-		graph.fillRoundRect(0, 0, size.width, size.height, size.height, size.height);
+		if (arrondi == -1) graph.fillRoundRect(0, 0, size.width, size.height, size.height, size.height);
+		else graph.fillRoundRect(0, 0, size.width, size.height, arrondi, arrondi);
 
 		super.paintComponent(graph);
 	}

@@ -1,5 +1,6 @@
 package vue.menu;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -7,17 +8,20 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 import controleur.ControleurGeneral;
 import vue.modole.CustomBtn;
+import vue.modole.CustomLb;
+import vue.modole.CustomStyle;
+import vue.modole.CustomTxt;
+import vue.modole.CustomTxtField;
 
 public class OubliMdp extends Menu {
 	
-	private JTextField txtId;
-	private JTextField txtMail;
+	private CustomTxtField txtId;
+	private CustomTxtField txtMail;
 
 	/**
 	 * Constructeur										<br/>
@@ -36,7 +40,9 @@ public class OubliMdp extends Menu {
 		formulaire.setOpaque(false);
 		
 		
-		JLabel lbId = new JLabel("Identifiant");
+		CustomLb lbId = new CustomLb("Identifiant", Color.WHITE, CustomStyle.ROSE_ALPHA);
+		lbId.setHorizontalAlignment(SwingConstants.CENTER); 
+		gbc.fill = GridBagConstraints.HORIZONTAL;
 		gbc.gridx = 0;
 		gbc.gridy = 0;
 		gbc.gridwidth = 1;
@@ -45,17 +51,18 @@ public class OubliMdp extends Menu {
 		formulaire.add(lbId, gbc);
 		
 		
-		txtId = new JTextField();
+		txtId = new CustomTxtField();
 		txtId.setPreferredSize(new Dimension(200, 25));
+		gbc.fill = GridBagConstraints.NONE;
 		gbc.gridx = 1;
 		gbc.gridy = 0;
 		gbc.gridwidth = 1;
 		gbc.anchor = GridBagConstraints.BASELINE;
-		gbc.insets = new Insets(0, 0, 0, 0);
+		gbc.insets = new Insets(0, 0, 10, 0);
 		formulaire.add(txtId, gbc);
 		
 		
-		JLabel lbMail = new JLabel("Adresse Mail");
+		CustomLb lbMail = new CustomLb("Adresse Mail", Color.WHITE, CustomStyle.ROSE_ALPHA);
 		gbc.gridx = 0;
 		gbc.gridy = 1;
 		gbc.gridwidth = 1;
@@ -64,16 +71,17 @@ public class OubliMdp extends Menu {
 		formulaire.add(lbMail, gbc);
 		
 		
-		txtMail = new JTextField();
+		txtMail = new CustomTxtField();
 		txtMail.setPreferredSize(new Dimension(200, 25));
 		gbc.gridx = 1;
 		gbc.gridy = 1;
 		gbc.gridwidth = 1;
 		gbc.anchor = GridBagConstraints.BASELINE;
-		gbc.insets = new Insets(0, 0, 0, 0);
+		gbc.insets = new Insets(0, 0, 5, 0);
 		formulaire.add(txtMail, gbc);
 		
 		// Construction du menu
+		/*
 		JLabel lbInfo_p1 = new JLabel("Veuillez entrer votre identifiant et votre adresse e-mail afin de réinitialiser");
 		gbc.gridx = 0;
 		gbc.gridy = 0;
@@ -107,7 +115,20 @@ public class OubliMdp extends Menu {
 		gbc.gridwidth = 1;
 		gbc.anchor = GridBagConstraints.BASELINE_LEADING;
 		gbc.insets = new Insets(0, 0, 0, 0);
-		add(lbConsigne_p2, gbc);
+		add(lbConsigne_p2, gbc);*/
+		
+		String contenu = "Veuillez entrer votre identifiant et votre adresse e-mail afin de réinitialiser\n" +
+						 "votre mot de passe.\n" +
+						 "\nLa procédure de réinitialisation de mot de passe nécessite une connexion\n" +
+						 "internet afin de recevoir un e-mail de vérification.";
+		CustomTxt consigne = new CustomTxt(contenu, 10, false, 50);
+		consigne.setAlignmentX(LEFT_ALIGNMENT);
+		gbc.gridx = 0;
+		gbc.gridy = 0;
+		gbc.gridwidth = 1;
+		gbc.anchor = GridBagConstraints.BASELINE;
+		gbc.insets = new Insets(0, 0, 0, 0);
+		add(consigne, gbc);
 		
 		
 		gbc.gridx = 0;
@@ -118,8 +139,7 @@ public class OubliMdp extends Menu {
 		add(formulaire, gbc);
 		
 		
-		JLabel lbAlerteConfirmation = new JLabel(" ");
-		lbAlerteConfirmation.setForeground(COULEUR_ALERTE);
+		CustomLb lbAlerteConfirmation = new CustomLb(" ", 7, Color.WHITE, CustomStyle.ROUGE_ALPHA);
 		gbc.gridx = 0;
 		gbc.gridy++;
 		gbc.gridwidth = 1;
@@ -129,7 +149,11 @@ public class OubliMdp extends Menu {
 		add(lbAlerteConfirmation, gbc);
 		
 		
-		CustomBtn btnRenitialisation = new CustomBtn("Réinitialiser");
+		JPanel panelBtn =  new JPanel(new GridBagLayout());
+		panelBtn.setOpaque(false);
+		
+		
+		CustomBtn btnRenitialisation = new CustomBtn("Réinitialiser", 10);
 		lsCustomBtn.add(btnRenitialisation);
 		btnRenitialisation.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
@@ -141,22 +165,32 @@ public class OubliMdp extends Menu {
 		gbc.gridwidth = 1;
 		gbc.anchor = GridBagConstraints.BASELINE_TRAILING;
 		gbc.insets = new Insets(10, 0, 0, 0);
-		add(btnRenitialisation, gbc);
+		panelBtn.add(btnRenitialisation, gbc);
 		
 		
-		CustomBtn btnRetour = new CustomBtn("Annuler");
+		CustomBtn btnRetour = new CustomBtn("Annuler", 10);
 		lsCustomBtn.add(btnRetour);
 		btnRetour.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				cmdRetour();
 			}
 		});
+		gbc.fill =  GridBagConstraints.HORIZONTAL;
 		gbc.gridx = 0;
 		gbc.gridy++;
 		gbc.gridwidth = 1;
 		gbc.anchor = GridBagConstraints.BASELINE_TRAILING;
 		gbc.insets = new Insets(10, 0, 0, 0);
-		add(btnRetour, gbc);
+		panelBtn.add(btnRetour, gbc);
+		
+		
+		gbc.fill =  GridBagConstraints.NONE;
+		gbc.gridx = 0;
+		gbc.gridy++;
+		gbc.gridwidth = 1;
+		gbc.anchor = GridBagConstraints.BASELINE_TRAILING;
+		gbc.insets = new Insets(0, 0, 0, 0);
+		add(panelBtn, gbc);
 	}
 	
 	

@@ -29,7 +29,7 @@ public class CustomBtn extends JButton {
 	private final static Color DESACTIVE_FOREGROUND = new Color(96, 96, 96);
 	private final static Color DESACTIVE_BACKGROUND = new Color(199, 199, 199);
 	private final static int EPAISSEUR = 4;
-	private static Font police = null;
+	private Font police = null;
 	private final Insets marges;
 	private Color couleur_foreground;
 	private Color couleur_background;
@@ -37,10 +37,18 @@ public class CustomBtn extends JButton {
 	
 	
 	public CustomBtn(String texte) {
-		this(texte, new Insets(12, 35, 10, 35));
+		this(texte, 15f, new Insets(12, 35, 10, 35));
+	}
+	
+	public CustomBtn(String texte, float taille) {
+		this(texte, taille, new Insets(12, 35, 10, 35));
 	}
 	
 	public CustomBtn(String texte, Insets marges) {
+		this(texte, 15f, marges);
+	}
+	
+	public CustomBtn(String texte, float taille, Insets marges) {
 		super(texte);
 		focus = false;
 		this.marges = marges;
@@ -48,7 +56,7 @@ public class CustomBtn extends JButton {
 			try {
 				police = Font.createFont(Font.PLAIN, ControleurFichier.FONT_KAWAII);
 				//police.deriveFont(15f);
-				police = police.deriveFont(Font.BOLD, 15f);
+				police = police.deriveFont(taille);
 			} catch (FontFormatException | IOException err) {
 				err.printStackTrace();
 			}

@@ -11,6 +11,7 @@ import java.io.IOException;
 
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
+import javax.swing.border.Border;
 
 import controleur.ControleurFichier;
 
@@ -32,7 +33,15 @@ public class CustomLb extends JLabel {
 		this(texte, 10f, foreground, background);
 	}
 	
+	public CustomLb(String texte, Color foreground, Color background, Border marge) {
+		this(texte, 10f, foreground, background, marge);
+	}
+	
 	public CustomLb(String texte, float taille, Color foreground, Color background) {
+		this(texte, 10f, foreground, background, BorderFactory.createEmptyBorder(5, 10, 3, 10));
+	}
+	
+	public CustomLb(String texte, float taille, Color foreground, Color background, Border marge) {
 		super(texte);
 		try {
 			police = Font.createFont(Font.PLAIN, ControleurFichier.FONT_KAWAII);
@@ -42,7 +51,7 @@ public class CustomLb extends JLabel {
 			err.printStackTrace();
 		}
 		setFont(police);
-		setBorder(BorderFactory.createCompoundBorder(this.getBorder(), BorderFactory.createEmptyBorder(5, 10, 4, 10))); // Padding interne du Field
+		setBorder(BorderFactory.createCompoundBorder(this.getBorder(), marge)); // Padding interne du Field
 		couleur_foreground = foreground;
 		couleur_background = background;
 	}

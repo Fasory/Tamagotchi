@@ -19,6 +19,8 @@ public abstract class CustomStyle {
 	public final static Color ROUGE_DEFAUT = new Color(240, 20, 60);
 	public final static Color ROUGE_ALPHA = new Color(240, 20, 60, 200);
 	public final static Color BLEU_DEFAUT = new Color(32, 97, 200);
+	public final static Color GRIS_DEFAUT = new Color(199, 199, 199);
+	public final static Color ALPHA = new Color(0, 0, 0, 0);
 	
 	////////////////////////////////////////
 	//            DEFINITION DES          //
@@ -69,9 +71,9 @@ public abstract class CustomStyle {
 	}
 	
 	
-	public static SimpleAttributeSet getStyleDefaut() {
+	public static SimpleAttributeSet getStyleDefaut(int taille) {
 		SimpleAttributeSet style = new SimpleAttributeSet();
-		StyleConstants.setFontSize(style, 8);
+		StyleConstants.setFontSize(style, taille);
 		return style;
 	}
 }
