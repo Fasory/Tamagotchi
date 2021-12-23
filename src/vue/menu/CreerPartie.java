@@ -1,5 +1,6 @@
 package vue.menu;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import javax.swing.JRadioButton;
 import java.awt.Font;
@@ -18,6 +19,10 @@ import javax.swing.JTextField;
 
 import controleur.ControleurGeneral;
 import vue.modole.CustomBtn;
+import vue.modole.CustomCheckBox;
+import vue.modole.CustomLb;
+import vue.modole.CustomStyle;
+import vue.modole.CustomTxtField;
 
 /**
  * La classe CreerPartie gère le menu "Créer Partie", 
@@ -30,12 +35,14 @@ import vue.modole.CustomBtn;
 
 public class CreerPartie extends Menu {
 
-	private JTextField txtNom;
+	private CustomTxtField txtNom;
 	private JPanel nom;
 	private JPanel choixType;
+	private JPanel triche;
 	private ButtonGroup grpType;
 	private JCheckBox cbTriche; 
 	private HashMap<String, JRadioButton> listRadio;
+	
 	
 	/**
 	 * Constructeur
@@ -47,16 +54,16 @@ public class CreerPartie extends Menu {
 		setLayout(new GridBagLayout()); // nouvelle grille
 		GridBagConstraints gbc = new GridBagConstraints();
 		Dimension dmBouton = new Dimension(150,38);
+		Dimension taille = new Dimension(300, 25);
 		
 		choixType = new JPanel(new GridBagLayout());
 		choixType.setOpaque(false);
 		
-		JLabel lbChoisirType = new JLabel("Choisir votre Tamagotchi :");
+		CustomLb lbChoisirType = new CustomLb("Choisir votre Tamagotchi :",Color.WHITE, CustomStyle.ROSE_ALPHA);
 		gbc.gridx = 0;
 		gbc.gridy = 0;
 		gbc.anchor = GridBagConstraints.BASELINE_LEADING;
 		gbc.insets = new Insets(0, 0, 10, 30);
-		lbChoisirType.setFont(new Font("Calibri", Font.PLAIN, 12));
 		choixType.add(lbChoisirType, gbc);
 		
 		
@@ -85,25 +92,23 @@ public class CreerPartie extends Menu {
 		nom = new JPanel(new GridBagLayout());
 		nom.setOpaque(false);
 		
-		JLabel lbChoisirNom = new JLabel("Choisir le nom de votre Tamagotchi :");
+		CustomLb lbChoisirNom = new CustomLb("Choisir le nom de votre Tamagotchi :",Color.WHITE, CustomStyle.ROSE_ALPHA);
 		gbc.gridx = 0;
 		gbc.gridy = 1;
 		gbc.anchor = GridBagConstraints.BASELINE_LEADING;
 		gbc.insets = new Insets(0, 0, 10, 30);
-		lbChoisirNom.setFont(new Font("Calibri", Font.PLAIN, 12));
 		lbChoisirNom.setVisible(true);
 		nom.add(lbChoisirNom, gbc);
 		
 		
-		txtNom = new JTextField();
-		txtNom.setPreferredSize(new Dimension(200, 25));
-		txtNom.setVisible(true);
+		txtNom = new CustomTxtField();
+		txtNom.setPreferredSize(taille);
 		gbc.fill = GridBagConstraints.NONE;
 		gbc.gridx = 0;
 		gbc.gridy = 2;
 		gbc.gridwidth = 1;
 		gbc.anchor = GridBagConstraints.BASELINE_LEADING;
-		gbc.insets = new Insets(0, 0, 10, 0);
+		gbc.insets = new Insets(0, 0, 10, 30);
 		nom.add(txtNom, gbc);
 		
 		
@@ -121,14 +126,27 @@ public class CreerPartie extends Menu {
 		});
 		nom.add(btnJouer,gbc);
 		
-		JCheckBox cbTriche = new JCheckBox("Activation du mode triche");
+		
+		triche = new JPanel(new GridBagLayout());
+		triche.setOpaque(false);
+		
+		
+		CustomCheckBox cbTriche = new CustomCheckBox();
 		cbTriche.setOpaque(false);
 		gbc.gridx = 0;
-		gbc.gridy = 4;
+		gbc.gridy = 0;
+		gbc.gridwidth = 1;
+		gbc.anchor = GridBagConstraints.BASELINE_LEADING;
+		gbc.insets = new Insets(0, 0, 0, 0);
+		triche.add(cbTriche, gbc);
+		
+		
+		CustomLb lbTriche = new CustomLb("Activer le mode triche", 10f, Color.WHITE, CustomStyle.ROSE_ALPHA);
+		gbc.gridx = 1;
 		gbc.gridwidth = 1;
 		gbc.anchor = GridBagConstraints.LINE_START;
 		gbc.insets = new Insets(0, 0, 0, 0);
-		nom.add(cbTriche, gbc);
+		triche.add(lbTriche, gbc);
 		
 		
 		CustomBtn btnRetour = new CustomBtn("Retour", new Insets(12,40,10,40));
@@ -163,6 +181,16 @@ public class CreerPartie extends Menu {
 		gbc.insets = new Insets(5, 0, 0, 0);
 		nom.setVisible(false);
 		add(nom, gbc);
+		
+		
+		gbc.fill = GridBagConstraints.NONE;
+		gbc.gridx = 0;
+		gbc.gridy = 4;
+		gbc.gridwidth = 1;
+		gbc.anchor = GridBagConstraints.BASELINE_LEADING;
+		gbc.insets = new Insets(5, 0, 0, 0);
+		nom.setVisible(false);
+		nom.add(triche, gbc);
 		
 		
 		CustomBtn btnChoixAleatoire = new CustomBtn("Choisir aléatoirement", new Insets(12,40,12,40));

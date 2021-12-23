@@ -1,5 +1,6 @@
 package vue.menu;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -14,6 +15,8 @@ import javax.swing.event.ChangeListener;
 
 import controleur.ControleurGeneral;
 import vue.modole.CustomBtn;
+import vue.modole.CustomLb;
+import vue.modole.CustomStyle;
 
 /**
  * La classe Option gère le menu "Option", 
@@ -47,9 +50,10 @@ public class Option extends Menu {
 		setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
 		Dimension dmSlider = new Dimension(500, 50);
+		Dimension dmBouton = new Dimension(500,50);
 		
 		
-		JLabel txtVolume = new JLabel("Volume");
+		CustomLb txtVolume = new CustomLb("Volume",Color.WHITE, CustomStyle.ROSE_ALPHA);
 		gbc.gridx = 0;
 		gbc.gridy = 0;
 		gbc.gridwidth = 1;
@@ -79,7 +83,7 @@ public class Option extends Menu {
 		add(barreVolume, gbc);
 		
 		
-		JLabel txtMusique = new JLabel("Musique");
+		CustomLb txtMusique = new CustomLb("Musique",Color.WHITE, CustomStyle.ROSE_ALPHA);
 		gbc.gridx = 0;
 		gbc.gridy = 2;
 		gbc.gridwidth = 1;
@@ -122,6 +126,7 @@ public class Option extends Menu {
 		gbc.gridwidth = 1;
 		gbc.anchor = GridBagConstraints.BASELINE;
 		gbc.insets = new Insets(20, 0, 20, 0);
+		btnCredits.setPreferredSize(dmBouton);
 		add(btnCredits, gbc);
 		
 		
@@ -139,6 +144,7 @@ public class Option extends Menu {
 		gbc.gridwidth = 1;
 		gbc.anchor = GridBagConstraints.BASELINE;
 		gbc.insets = new Insets(20, 0, 20, 0);
+		btnSupprimerCompte.setPreferredSize(dmBouton);
 		add(btnSupprimerCompte, gbc);
 		
 		
@@ -155,6 +161,7 @@ public class Option extends Menu {
 		gbc.gridwidth = 1;
 		gbc.anchor = GridBagConstraints.BASELINE;
 		gbc.insets = new Insets(20, 0, 20, 0);
+		btnQuitterOptions.setPreferredSize(dmBouton);
 		add(btnQuitterOptions, gbc);
 		
 	}

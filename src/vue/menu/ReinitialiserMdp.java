@@ -1,5 +1,6 @@
 package vue.menu;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -13,11 +14,14 @@ import javax.swing.JPasswordField;
 
 import controleur.ControleurGeneral;
 import vue.modole.CustomBtn;
+import vue.modole.CustomLb;
+import vue.modole.CustomPwdField;
+import vue.modole.CustomStyle;
 
 public class ReinitialiserMdp extends Menu {
 	
-	private JPasswordField txtMdp;
-	private JPasswordField txtMdpConfirm;
+	private CustomPwdField txtMdp;
+	private CustomPwdField txtMdpConfirm;
 	
 	/**
 	 * Constructeur de la classe ReinitialiserMdp
@@ -36,7 +40,7 @@ public class ReinitialiserMdp extends Menu {
 		JPanel formulaire = new JPanel(new GridBagLayout());
 		
 		
-		JLabel lbMdp = new JLabel("Nouveau mot de passe");
+		CustomLb lbMdp = new CustomLb("Nouveau mot de passe", Color.WHITE, CustomStyle.ROSE_ALPHA);
 		gbc.gridx = 0;
 		gbc.gridy++;
 		gbc.gridwidth = 1;
@@ -45,7 +49,7 @@ public class ReinitialiserMdp extends Menu {
 		formulaire.add(lbMdp, gbc);
 		
 		
-		txtMdp = new JPasswordField();
+		txtMdp = new CustomPwdField();
 		txtMdp.setPreferredSize(new Dimension(200, 25));
 		gbc.gridx = 1;
 		gbc.gridwidth = 1;
@@ -54,7 +58,7 @@ public class ReinitialiserMdp extends Menu {
 		formulaire.add(txtMdp, gbc);
 		
 		
-		JLabel lbMdpConfirm = new JLabel("Confirmez le mot de passe");
+		CustomLb lbMdpConfirm = new CustomLb("Confirmez le mot de passe", Color.WHITE, CustomStyle.ROSE_ALPHA);
 		gbc.gridx = 0;
 		gbc.gridy++;
 		gbc.gridwidth = 1;
@@ -63,7 +67,7 @@ public class ReinitialiserMdp extends Menu {
 		formulaire.add(lbMdpConfirm, gbc);
 		
 		
-		txtMdpConfirm = new JPasswordField();
+		txtMdpConfirm = new CustomPwdField();
 		txtMdpConfirm.setPreferredSize(new Dimension(200, 25));
 		gbc.gridx = 1;
 		gbc.gridwidth = 1;
@@ -73,7 +77,7 @@ public class ReinitialiserMdp extends Menu {
 		
 		
 		// Création du menu
-		JLabel lbInfo = new JLabel("Veuillez saisir votre nouveau mot de passe.");
+		CustomLb lbInfo = new CustomLb("Veuillez saisir votre nouveau mot de passe.", Color.WHITE, CustomStyle.ROSE_ALPHA);
 		gbc.gridx = 0;
 		gbc.gridy = 0;
 		gbc.gridwidth = 1;
@@ -90,7 +94,7 @@ public class ReinitialiserMdp extends Menu {
 		add(formulaire, gbc);
 		
 		
-		JLabel lbAlerte = new JLabel(" ");
+		CustomLb lbAlerte = new CustomLb(" ", Color.WHITE, CustomStyle.ROSE_ALPHA);
 		lbAlerte.setForeground(COULEUR_ALERTE);
 		gbc.gridx = 0;
 		gbc.gridy++;

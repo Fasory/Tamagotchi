@@ -1,5 +1,6 @@
 package vue.menu;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
@@ -13,6 +14,9 @@ import javax.swing.JTextField;
 
 import controleur.ControleurGeneral;
 import vue.modole.CustomBtn;
+import vue.modole.CustomLb;
+import vue.modole.CustomStyle;
+import vue.modole.CustomTxtField;
 
 /**
  * MenuConfirmation met à disposition un choix binaire		<br/>
@@ -119,7 +123,7 @@ public abstract class MenuConfirmation extends Menu {
 		panelBtn.add(btnFaux, gbc);
 		
 		// Construction du menu
-		JLabel indication = new JLabel(message);
+		CustomLb indication = new CustomLb(message,Color.WHITE, CustomStyle.ROSE_ALPHA);
 		gbc.gridx = 0;
 		gbc.gridy = 0;
 		gbc.gridwidth = 1;
@@ -129,7 +133,7 @@ public abstract class MenuConfirmation extends Menu {
 		
 		
 		if (saisie) {
-			txtSaisie = new JTextField();
+			txtSaisie = new CustomTxtField();
 			txtSaisie.setPreferredSize(new Dimension(95, 25));
 			gbc.gridx = 0;
 			gbc.gridy++;
@@ -140,7 +144,7 @@ public abstract class MenuConfirmation extends Menu {
 		}
 			
 		
-		JLabel lbAlerteSaisie = new JLabel(" ");
+		CustomLb lbAlerteSaisie = new CustomLb(" ");
 		lbAlerteSaisie.setForeground(COULEUR_ALERTE);
 		gbc.gridx = 0;
 		gbc.gridy++;

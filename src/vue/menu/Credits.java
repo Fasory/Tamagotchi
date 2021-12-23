@@ -1,5 +1,6 @@
 package vue.menu;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -11,6 +12,8 @@ import javax.swing.JLabel;
 
 import controleur.ControleurGeneral;
 import vue.modole.CustomBtn;
+import vue.modole.CustomLb;
+import vue.modole.CustomStyle;
 
 /**
  * La classe Credits gère le menu "Crédits", 
@@ -34,87 +37,77 @@ public class Credits extends Menu {
 		setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints(); 
 		
-		JLabel lbCredits = new JLabel("Réalisé par :");
+		CustomLb lbCredits = new CustomLb("Realise par :",Color.WHITE, CustomStyle.ROSE_ALPHA);
 		gbc.gridx = 0;
 		gbc.gridy = 0;
 		gbc.anchor = GridBagConstraints.BASELINE;
-		lbCredits.setFont(new Font("Calibri", Font.PLAIN, 25));
 		gbc.insets = new Insets(0, 0, 30, 30);
 		add(lbCredits, gbc);
 		
-		JLabel lbJA = new JLabel("BIDAULT Julie-Amélie : Chef de projet");
+		CustomLb lbJA = new CustomLb("BIDAULT Julie-Amelie : Chef de projet",Color.WHITE, CustomStyle.ROSE_ALPHA);
 		gbc.gridx = 0;
 		gbc.gridy++;
 		gbc.anchor = GridBagConstraints.BASELINE_LEADING;
-		lbJA.setFont(new Font("Calibri", Font.PLAIN, 15));
 		gbc.insets = new Insets(0, 0, 10, 30);
 		add(lbJA, gbc);
 		
-		JLabel lbclement = new JLabel("BOUQUET Clément : (Architecte logiciel");
+		CustomLb lbclement = new CustomLb("BOUQUET Clement : Architecte logiciel",Color.WHITE, CustomStyle.ROSE_ALPHA);
 		gbc.gridx = 0;
 		gbc.gridy++;
 		gbc.anchor = GridBagConstraints.BASELINE_LEADING;
-		lbclement.setFont(new Font("Calibri", Font.PLAIN, 15));
 		gbc.insets = new Insets(0, 0, 10, 30);
 		add(lbclement, gbc);
 		
-		JLabel lbmatthias = new JLabel("BRZUSTOWSKI Matthias : (Analyste des besoins)");
+		CustomLb lbmatthias = new CustomLb("BRZUSTOWSKI Matthias : Analyste des besoins",Color.WHITE, CustomStyle.ROSE_ALPHA);
 		gbc.gridx = 0;
 		gbc.gridy++;
 		gbc.anchor = GridBagConstraints.BASELINE_LEADING;
-		lbmatthias.setFont(new Font("Calibri", Font.PLAIN, 15));
 		gbc.insets = new Insets(0, 0, 10, 30);
 		add(lbmatthias, gbc);
 		
-		JLabel lbarthur = new JLabel("CASANOVA Arthur : (Gestionnaire de la qualité/validation)");
+		CustomLb lbarthur = new CustomLb("CASANOVA Arthur : Gestionnaire de la qualite/validation",Color.WHITE, CustomStyle.ROSE_ALPHA);
 		gbc.gridx = 0;
 		gbc.gridy++;
 		gbc.anchor = GridBagConstraints.BASELINE_LEADING;
-		lbarthur.setFont(new Font("Calibri", Font.PLAIN, 15));
 		gbc.insets = new Insets(0, 0, 10, 30);
 		add(lbarthur, gbc);
 		
-		JLabel lbvictor = new JLabel("HAGUET Victor : (Développeur senior)");
+		CustomLb lbvictor = new CustomLb("HAGUET Victor : Developpeur senior",Color.WHITE, CustomStyle.ROSE_ALPHA);
 		gbc.gridx = 0;
 		gbc.gridy++;
 		gbc.anchor = GridBagConstraints.BASELINE_LEADING;
-		lbvictor.setFont(new Font("Calibri", Font.PLAIN, 15));
 		gbc.insets = new Insets(0, 0, 30, 30);
 		add(lbvictor, gbc);
 		
-		JLabel lbmusique = new JLabel("Musique :");
+		CustomLb lbmusique = new CustomLb("Musique :",Color.WHITE, CustomStyle.ROSE_ALPHA);
 		gbc.gridx = 0;
 		gbc.gridy++;
 		gbc.anchor = GridBagConstraints.BASELINE;
-		lbmusique.setFont(new Font("Calibri", Font.PLAIN, 25));
 		gbc.insets = new Insets(0, 0, 10, 30);
 		add(lbmusique, gbc);
 		
-		JLabel lbtitre = new JLabel("Titre : Tender Remains");
+		CustomLb lbtitre = new CustomLb("Titre : Tender Remains",Color.WHITE, CustomStyle.ROSE_ALPHA);
 		gbc.gridx = 0;
 		gbc.gridy++;
 		gbc.anchor = GridBagConstraints.BASELINE_LEADING;
-		lbtitre.setFont(new Font("Calibri", Font.PLAIN, 15));
 		gbc.insets = new Insets(0, 0, 10, 30);
 		add(lbtitre, gbc);
 		
-		JLabel lbauteur = new JLabel("Auteur : Myuu");
+		CustomLb lbauteur = new CustomLb("Auteur : Myuu",Color.WHITE, CustomStyle.ROSE_ALPHA);
 		gbc.gridx = 0;
 		gbc.gridy++;
 		gbc.anchor = GridBagConstraints.BASELINE_LEADING;
-		lbauteur.setFont(new Font("Calibri", Font.PLAIN, 15));
 		gbc.insets = new Insets(0, 0, 10, 30);
 		add(lbauteur, gbc);
 		
-		JLabel lblicence = new JLabel("Licence : CC BY 3.0");
+		CustomLb lblicence = new CustomLb("Licence : CC BY 3.0",Color.WHITE, CustomStyle.ROSE_ALPHA);
 		gbc.gridx = 0;
 		gbc.gridy++;
 		gbc.anchor = GridBagConstraints.BASELINE_LEADING;
-		lblicence.setFont(new Font("Calibri", Font.PLAIN, 15));
 		gbc.insets = new Insets(0, 0, 10, 30);
 		add(lblicence, gbc);
 		
-		CustomBtn btnRetour = new CustomBtn("Quitter les crédits");
+		CustomBtn btnRetour = new CustomBtn("Quitter les credits");
 		lsCustomBtn.add(btnRetour);
 		gbc.gridx = 0;
 		gbc.gridy++;
