@@ -21,7 +21,7 @@ public class QuitterConfirm extends MenuConfirmation {
 	 * confirmation de quitter							<br/>
 	 */
 	public QuitterConfirm(String msg) {
-		super(msg, "Oui", "Annuler");
+		super(msg, "Oui", "Annuler", false, false);
 	}
 	
 	/**

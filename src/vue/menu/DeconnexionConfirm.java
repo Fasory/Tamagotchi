@@ -32,7 +32,7 @@ public class DeconnexionConfirm extends MenuConfirmation {
 	 */
 	public DeconnexionConfirm(String msg) {
 		// Appel au constructeur de la super classe MenuConfirmation
-		super(msg, "Oui", "Annuler");
+		super(msg, "Oui", "Annuler", false, false);
 	} 
 	
 	/**

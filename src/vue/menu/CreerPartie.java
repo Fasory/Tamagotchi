@@ -3,26 +3,28 @@ package vue.menu;
 import java.awt.Color;
 import java.awt.Dimension;
 import javax.swing.JRadioButton;
-import java.awt.Font;
+import javax.swing.SwingConstants;
+
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.ButtonGroup;
-import javax.swing.JCheckBox;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 import controleur.ControleurGeneral;
-import vue.modole.CustomBtn;
-import vue.modole.CustomCheckBox;
-import vue.modole.CustomLb;
-import vue.modole.CustomStyle;
-import vue.modole.CustomTxtField;
+import vue.modele.CustomBtn;
+import vue.modele.CustomCheckBox;
+import vue.modele.CustomLb;
+import vue.modele.CustomPanel;
+import vue.modele.CustomRadioBtn;
+import vue.modele.CustomStyle;
+import vue.modele.CustomTxtField;
 
 /**
  * La classe CreerPartie gère le menu "Créer Partie", 
@@ -39,8 +41,9 @@ public class CreerPartie extends Menu {
 	private JPanel nom;
 	private JPanel choixType;
 	private JPanel triche;
+	private CustomBtn btnJouer;
 	private ButtonGroup grpType;
-	private JCheckBox cbTriche; 
+	private CustomCheckBox cbTriche; 
 	private HashMap<String, JRadioButton> listRadio;
 	
 	
@@ -49,82 +52,112 @@ public class CreerPartie extends Menu {
 	 */
 	public CreerPartie() {
 		super();
-		// TODO Auto-generated constructor stub 
 		// partie affichage
 		setLayout(new GridBagLayout()); // nouvelle grille
 		GridBagConstraints gbc = new GridBagConstraints();
 		Dimension dmBouton = new Dimension(150,38);
-		Dimension taille = new Dimension(300, 25);
+		Dimension taille = new Dimension(180, 25);
 		
+		// Panel type
 		choixType = new JPanel(new GridBagLayout());
 		choixType.setOpaque(false);
 		
-		CustomLb lbChoisirType = new CustomLb("Choisir votre Tamagotchi :",Color.WHITE, CustomStyle.ROSE_ALPHA);
+		CustomLb lbChoisirType = new CustomLb("Type du Tamagotchi",Color.WHITE, CustomStyle.ROSE_ALPHA);
+		lbChoisirType.setHorizontalAlignment(SwingConstants.CENTER);
+		gbc.fill = GridBagConstraints.HORIZONTAL;
 		gbc.gridx = 0;
 		gbc.gridy = 0;
-		gbc.anchor = GridBagConstraints.BASELINE_LEADING;
-		gbc.insets = new Insets(0, 0, 10, 30);
+		gbc.anchor = GridBagConstraints.BASELINE;
+		gbc.insets = new Insets(0, 0, 0, 0);
 		choixType.add(lbChoisirType, gbc);
+		
+		
+		CustomPanel panelRadio = new CustomPanel(new GridBagLayout(), 50, 10);
 		
 		
 		grpType = new ButtonGroup();
 		listRadio = new HashMap<String, JRadioButton>();
+		gbc.fill = GridBagConstraints.NONE;
+		gbc.gridx = 0;
+		gbc.gridy = 0;
+		gbc.anchor = GridBagConstraints.BASELINE_LEADING;
+		gbc.insets = new Insets(15, 10, 0, 0);
 		for (String elt: ControleurGeneral.TYPE) {
-			JRadioButton rad = new JRadioButton(elt);
-			rad.setOpaque(false);
+			CustomRadioBtn rad = new CustomRadioBtn(elt);
 			rad.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent evt) {
 					cmdChoixType();
 				}
 			});
-			gbc.gridx = 0;
-			gbc.gridy ++;
-			gbc.anchor = GridBagConstraints.BASELINE_LEADING;
-			gbc.insets = new Insets(0, 0, 0, 30);
 			rad.setPreferredSize(dmBouton);
 			rad.setActionCommand(elt);
-			choixType.add(rad,gbc);
+			panelRadio.add(rad,gbc);
 			grpType.add(rad);
 			listRadio.put(elt, rad);
+			gbc.gridy++;
 		}
 		
+
+		gbc.gridx = 0;
+		gbc.gridy = 1;
+		gbc.anchor = GridBagConstraints.BASELINE;
+		gbc.insets = new Insets(30, 0, 30, 0);
+		choixType.add(panelRadio, gbc);
 		
+		
+		CustomBtn btnChoixAleatoire = new CustomBtn("Choix aléatoire", 12, new Insets(12,40,12,40));
+		lsCustomBtn.add(btnChoixAleatoire);
+		gbc.gridx = 0;
+		gbc.gridy++;
+		gbc.anchor = GridBagConstraints.BASELINE;
+		gbc.insets = new Insets(0, 0, 0, 0);
+		btnChoixAleatoire.setVisible(true);
+		btnChoixAleatoire.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				cmdChoixAleatoire();
+			}
+		});
+		choixType.add(btnChoixAleatoire,gbc);
+		
+		// Panel Nom
 		nom = new JPanel(new GridBagLayout());
 		nom.setOpaque(false);
 		
-		CustomLb lbChoisirNom = new CustomLb("Choisir le nom de votre Tamagotchi :",Color.WHITE, CustomStyle.ROSE_ALPHA);
+		CustomLb lbChoisirNom = new CustomLb("Nom du Tamagotchi",Color.WHITE, CustomStyle.ROSE_ALPHA);
+		lbChoisirNom.setHorizontalAlignment(SwingConstants.CENTER);
+		gbc.fill = GridBagConstraints.HORIZONTAL;
 		gbc.gridx = 0;
-		gbc.gridy = 1;
+		gbc.gridy = 0;
 		gbc.anchor = GridBagConstraints.BASELINE_LEADING;
-		gbc.insets = new Insets(0, 0, 10, 30);
+		gbc.insets = new Insets(0, 0, 0, 0);
 		lbChoisirNom.setVisible(true);
 		nom.add(lbChoisirNom, gbc);
 		
 		
 		txtNom = new CustomTxtField();
-		txtNom.setPreferredSize(taille);
-		gbc.fill = GridBagConstraints.NONE;
-		gbc.gridx = 0;
-		gbc.gridy = 2;
-		gbc.gridwidth = 1;
-		gbc.anchor = GridBagConstraints.BASELINE_LEADING;
-		gbc.insets = new Insets(0, 0, 10, 30);
-		nom.add(txtNom, gbc);
-		
-		
-		CustomBtn btnJouer = new CustomBtn("Jouer");
-		lsCustomBtn.add(btnJouer);
-		gbc.gridx = 0;
-		gbc.gridy = 3;
-		gbc.anchor = GridBagConstraints.BASELINE_LEADING;
-		gbc.insets = new Insets(0, 0, 10, 30);
-		btnJouer.setVisible(true);
-		btnJouer.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent evt) {
-				cmdJouer();
+		txtNom.addKeyListener(new KeyListener() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+			}
+
+			@Override
+			public void keyTyped(KeyEvent e) {
+				cmdNom();
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+				cmdNom();
 			}
 		});
-		nom.add(btnJouer,gbc);
+		txtNom.setPreferredSize(taille);
+		gbc.fill = GridBagConstraints.HORIZONTAL;
+		gbc.gridx = 0;
+		gbc.gridy = 1;
+		gbc.gridwidth = 1;
+		gbc.anchor = GridBagConstraints.BASELINE_LEADING;
+		gbc.insets = new Insets(30, 0, 10, 0);
+		nom.add(txtNom, gbc);
 		
 		
 		triche = new JPanel(new GridBagLayout());
@@ -133,15 +166,16 @@ public class CreerPartie extends Menu {
 		
 		CustomCheckBox cbTriche = new CustomCheckBox();
 		cbTriche.setOpaque(false);
+		gbc.fill = GridBagConstraints.NONE;
 		gbc.gridx = 0;
 		gbc.gridy = 0;
 		gbc.gridwidth = 1;
 		gbc.anchor = GridBagConstraints.BASELINE_LEADING;
-		gbc.insets = new Insets(0, 0, 0, 0);
+		gbc.insets = new Insets(0, 0, 0, 10);
 		triche.add(cbTriche, gbc);
 		
 		
-		CustomLb lbTriche = new CustomLb("Activer le mode triche", 10f, Color.WHITE, CustomStyle.ROSE_ALPHA);
+		CustomLb lbTriche = new CustomLb("Activer le mode triche", 10f);
 		gbc.gridx = 1;
 		gbc.gridwidth = 1;
 		gbc.anchor = GridBagConstraints.LINE_START;
@@ -149,26 +183,60 @@ public class CreerPartie extends Menu {
 		triche.add(lbTriche, gbc);
 		
 		
-		CustomBtn btnRetour = new CustomBtn("Retour", new Insets(12,40,10,40));
+		gbc.fill = GridBagConstraints.NONE;
+		gbc.gridx = 0;
+		gbc.gridy = 2;
+		gbc.gridwidth = 1;
+		gbc.anchor = GridBagConstraints.BASELINE_LEADING;
+		gbc.insets = new Insets(5, 0, 0, 0);
+		nom.setVisible(false);
+		nom.add(triche, gbc);
+		
+		
+		JPanel panelBtn = new JPanel(new GridBagLayout());
+		panelBtn.setOpaque(false);
+		
+		
+		btnJouer = new CustomBtn("Jouer", 12);
+		btnJouer.setEnabled(false);
+		lsCustomBtn.add(btnJouer);
+		gbc.fill = GridBagConstraints.HORIZONTAL;
+		gbc.gridx = 0;
+		gbc.gridy = 0;
+		gbc.gridwidth = 1;
+		gbc.anchor = GridBagConstraints.BASELINE_TRAILING;
+		gbc.insets = new Insets(0, 0, 10, 0);
+		btnJouer.setVisible(true);
+		btnJouer.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				cmdJouer();
+			}
+		});
+		panelBtn.add(btnJouer,gbc);
+		
+
+		CustomBtn btnRetour = new CustomBtn("Retour", 12, new Insets(12,40,10,40));
 		lsCustomBtn.add(btnRetour);
-		gbc.gridx = 3;
-		gbc.gridy = 3;
-		gbc.anchor = GridBagConstraints.BASELINE;
-		gbc.insets = new Insets(0, 0, 10, 30);
+		gbc.fill = GridBagConstraints.NONE;
+		gbc.gridx = 0;
+		gbc.gridy++;
+		gbc.gridwidth = 1;
+		gbc.anchor = GridBagConstraints.BASELINE_TRAILING;
+		gbc.insets = new Insets(0, 0, 0, 0);
 		btnRetour.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				cmdRetour();
 			}
 		});
-		add(btnRetour,gbc);
+		panelBtn.add(btnRetour,gbc);
 		
-		
+		// Construction du Menu
 		gbc.fill = GridBagConstraints.NONE;
 		gbc.gridx = 0;
 		gbc.gridy = 0;
 		gbc.gridwidth = 1;
 		gbc.anchor = GridBagConstraints.BASELINE;
-		gbc.insets = new Insets(5, 0, 0, 0);
+		gbc.insets = new Insets(0, 0, 0, 0);
 		choixType.setVisible(true);
 		add(choixType, gbc);
 		
@@ -177,35 +245,20 @@ public class CreerPartie extends Menu {
 		gbc.gridx = 1;
 		gbc.gridy = 0;
 		gbc.gridwidth = 1;
-		gbc.anchor = GridBagConstraints.BASELINE;
-		gbc.insets = new Insets(5, 0, 0, 0);
+		gbc.anchor = GridBagConstraints.NORTH;
+		gbc.insets = new Insets(0, 30, 0, 0);
 		nom.setVisible(false);
 		add(nom, gbc);
 		
 		
 		gbc.fill = GridBagConstraints.NONE;
 		gbc.gridx = 0;
-		gbc.gridy = 4;
-		gbc.gridwidth = 1;
-		gbc.anchor = GridBagConstraints.BASELINE_LEADING;
-		gbc.insets = new Insets(5, 0, 0, 0);
+		gbc.gridy++;
+		gbc.gridwidth = 2;
+		gbc.anchor = GridBagConstraints.BASELINE_TRAILING;
+		gbc.insets = new Insets(10, 0, 0, 0);
 		nom.setVisible(false);
-		nom.add(triche, gbc);
-		
-		
-		CustomBtn btnChoixAleatoire = new CustomBtn("Choisir aléatoirement", new Insets(12,40,12,40));
-		lsCustomBtn.add(btnChoixAleatoire);
-		gbc.gridx = 0;
-		gbc.gridy = 1;
-		gbc.anchor = GridBagConstraints.BASELINE;
-		gbc.insets = new Insets(0, 0, 10, 30);
-		btnChoixAleatoire.setVisible(true);
-		btnChoixAleatoire.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent evt) {
-				cmdChoixAleatoire();
-			}
-		});
-		add(btnChoixAleatoire,gbc);
+		add(panelBtn, gbc);
 	}
 	
 	////////////////////////////////////////
@@ -239,6 +292,10 @@ public class CreerPartie extends Menu {
 	 */
 	public void cmdChoixAleatoire() {
 		ControleurGeneral.ctrlBouton.rqtRandomType();
+	}
+	
+	public void cmdNom() {
+		ControleurGeneral.ctrlAffichage.rqtTestActif(this, btnJouer, txtNom.getText());
 	}
 	
 	/**

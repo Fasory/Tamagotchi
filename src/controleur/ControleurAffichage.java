@@ -87,6 +87,11 @@ public class ControleurAffichage extends Controleur {
 		menu.setActive(composant, actif);
 	}
 	
+	
+	public void rqtTestActif(Menu menu, JComponent composant, String contenu) {
+		rqtComposantActif(menu, composant, !contenu.trim().equals(""));
+	}
+	
 	/**
 	 * Ouvre dans la fenêtre le nouveau menu								<br/>
 	 * 																		<br/>

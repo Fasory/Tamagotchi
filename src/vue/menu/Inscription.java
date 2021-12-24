@@ -16,13 +16,13 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import controleur.ControleurGeneral;
-import vue.modole.CustomBtn;
-import vue.modole.CustomCheckBox;
-import vue.modole.CustomLb;
-import vue.modole.CustomPanelLb;
-import vue.modole.CustomPwdField;
-import vue.modole.CustomStyle;
-import vue.modole.CustomTxtField;
+import vue.modele.CustomBtn;
+import vue.modele.CustomCheckBox;
+import vue.modele.CustomLb;
+import vue.modele.CustomPanel;
+import vue.modele.CustomPwdField;
+import vue.modele.CustomStyle;
+import vue.modele.CustomTxtField;
 
 /**
  * La classe Inscription gère le menu "Inscription", 
@@ -100,7 +100,7 @@ public class Inscription extends Menu {
 		checkBoxPolitique.add(cbPolitique, gbc);
 		
 		
-		CustomPanelLb panelLb = new CustomPanelLb(new GridBagLayout());
+		CustomPanel panelLb = new CustomPanel(new GridBagLayout());
 		
 		
 		CustomLb lbCbPolitique_1 = new CustomLb("J'ai lu et j'accepte la ", CustomStyle.ROSE_DEFAUT, CustomStyle.ALPHA, BorderFactory.createEmptyBorder(5, 10, 4, 0));

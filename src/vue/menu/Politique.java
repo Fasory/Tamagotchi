@@ -15,8 +15,8 @@ import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyledDocument;
 
 import controleur.ControleurGeneral;
-import vue.modole.CustomBtn;
-import vue.modole.CustomStyle;
+import vue.modele.CustomBtn;
+import vue.modele.CustomStyle;
 
 public class Politique extends Menu {
 	

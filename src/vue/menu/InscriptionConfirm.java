@@ -18,7 +18,7 @@ public class InscriptionConfirm extends MenuConfirmation {
 	 */
 	public InscriptionConfirm() {
 		// Appel au constructeur de la super classe MenuConfirmation
-		super("Veuillez entrer le code de validation envoyé par mail.", "Confirmer", "Annuler", true);
+		super("Veuillez entrer le code de validation\nenvoyé par mail.", "Confirmer", "Annuler", true);
 	}
 
 	/**

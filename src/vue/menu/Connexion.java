@@ -15,12 +15,12 @@ import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
 
 import controleur.ControleurGeneral;
-import vue.modole.CustomBtn;
-import vue.modole.CustomLb;
-import vue.modole.CustomPwdField;
-import vue.modole.CustomStyle;
-import vue.modole.CustomTxt;
-import vue.modole.CustomTxtField;
+import vue.modele.CustomBtn;
+import vue.modele.CustomLb;
+import vue.modele.CustomPwdField;
+import vue.modele.CustomStyle;
+import vue.modele.CustomTxt;
+import vue.modele.CustomTxtField;
 
 /**
  * La classe Connexion gère le menu "Connexion", 

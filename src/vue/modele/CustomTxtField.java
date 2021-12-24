@@ -1,4 +1,4 @@
-package vue.modole;
+package vue.modele;
 
 import javax.swing.BorderFactory;
 import javax.swing.JTextField;

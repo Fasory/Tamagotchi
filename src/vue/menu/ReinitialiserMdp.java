@@ -8,15 +8,13 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JPasswordField;
 
 import controleur.ControleurGeneral;
-import vue.modole.CustomBtn;
-import vue.modole.CustomLb;
-import vue.modole.CustomPwdField;
-import vue.modole.CustomStyle;
+import vue.modele.CustomBtn;
+import vue.modele.CustomLb;
+import vue.modele.CustomPwdField;
+import vue.modele.CustomStyle;
 
 public class ReinitialiserMdp extends Menu {
 	

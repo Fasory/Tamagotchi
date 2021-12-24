@@ -1,19 +1,16 @@
 package vue.menu;
 
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JLabel;
-
 import controleur.ControleurGeneral;
-import vue.modole.CustomBtn;
-import vue.modole.CustomLb;
-import vue.modole.CustomStyle;
+import vue.modele.CustomBtn;
+import vue.modele.CustomLb;
+import vue.modele.CustomStyle;
 
 /**
  * La classe Credits gère le menu "Crédits", 
@@ -37,7 +34,7 @@ public class Credits extends Menu {
 		setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints(); 
 		
-		CustomLb lbCredits = new CustomLb("Realise par :",Color.WHITE, CustomStyle.ROSE_ALPHA);
+		CustomLb lbCredits = new CustomLb("Réalise par :",Color.WHITE, CustomStyle.ROSE_ALPHA);
 		gbc.gridx = 0;
 		gbc.gridy = 0;
 		gbc.anchor = GridBagConstraints.BASELINE;
@@ -51,7 +48,7 @@ public class Credits extends Menu {
 		gbc.insets = new Insets(0, 0, 10, 30);
 		add(lbJA, gbc);
 		
-		CustomLb lbclement = new CustomLb("BOUQUET Clement : Architecte logiciel",Color.WHITE, CustomStyle.ROSE_ALPHA);
+		CustomLb lbclement = new CustomLb("BOUQUET Clément : Architecte logiciel",Color.WHITE, CustomStyle.ROSE_ALPHA);
 		gbc.gridx = 0;
 		gbc.gridy++;
 		gbc.anchor = GridBagConstraints.BASELINE_LEADING;
@@ -65,14 +62,14 @@ public class Credits extends Menu {
 		gbc.insets = new Insets(0, 0, 10, 30);
 		add(lbmatthias, gbc);
 		
-		CustomLb lbarthur = new CustomLb("CASANOVA Arthur : Gestionnaire de la qualite/validation",Color.WHITE, CustomStyle.ROSE_ALPHA);
+		CustomLb lbarthur = new CustomLb("CASANOVA Arthur : Gestionnaire de la qualité/validation",Color.WHITE, CustomStyle.ROSE_ALPHA);
 		gbc.gridx = 0;
 		gbc.gridy++;
 		gbc.anchor = GridBagConstraints.BASELINE_LEADING;
 		gbc.insets = new Insets(0, 0, 10, 30);
 		add(lbarthur, gbc);
 		
-		CustomLb lbvictor = new CustomLb("HAGUET Victor : Developpeur senior",Color.WHITE, CustomStyle.ROSE_ALPHA);
+		CustomLb lbvictor = new CustomLb("HAGUET Victor : Développeur senior",Color.WHITE, CustomStyle.ROSE_ALPHA);
 		gbc.gridx = 0;
 		gbc.gridy++;
 		gbc.anchor = GridBagConstraints.BASELINE_LEADING;
@@ -107,7 +104,7 @@ public class Credits extends Menu {
 		gbc.insets = new Insets(0, 0, 10, 30);
 		add(lblicence, gbc);
 		
-		CustomBtn btnRetour = new CustomBtn("Quitter les credits");
+		CustomBtn btnRetour = new CustomBtn("Quitter les crédits");
 		lsCustomBtn.add(btnRetour);
 		gbc.gridx = 0;
 		gbc.gridy++;

@@ -1,4 +1,4 @@
-package vue.modole;
+package vue.modele;
 
 import java.awt.Color;
 import java.awt.Component;

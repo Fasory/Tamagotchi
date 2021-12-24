@@ -1,4 +1,4 @@
-package vue.modole;
+package vue.modele;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -38,7 +38,7 @@ public class CustomLb extends JLabel {
 	}
 	
 	public CustomLb(String texte, float taille, Color foreground, Color background) {
-		this(texte, 10f, foreground, background, BorderFactory.createEmptyBorder(5, 10, 3, 10));
+		this(texte, taille, foreground, background, BorderFactory.createEmptyBorder(5, 10, 3, 10));
 	}
 	
 	public CustomLb(String texte, float taille, Color foreground, Color background, Border marge) {

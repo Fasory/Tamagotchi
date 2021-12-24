@@ -1,6 +1,5 @@
 package vue.fenetre;
 
-
 import controleur.ControleurGeneral;
 import vue.menu.Menu;
 

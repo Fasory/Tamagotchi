@@ -12,11 +12,11 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import controleur.ControleurGeneral;
-import vue.modole.CustomBtn;
-import vue.modole.CustomLb;
-import vue.modole.CustomStyle;
-import vue.modole.CustomTxt;
-import vue.modole.CustomTxtField;
+import vue.modele.CustomBtn;
+import vue.modele.CustomLb;
+import vue.modele.CustomStyle;
+import vue.modele.CustomTxt;
+import vue.modele.CustomTxtField;
 
 public class OubliMdp extends Menu {
 	

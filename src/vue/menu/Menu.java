@@ -6,8 +6,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import controleur.ControleurFichier;
-import vue.modole.CustomBtn;
-import vue.modole.CustomStyle;
+import vue.modele.CustomBtn;
+import vue.modele.CustomStyle;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -55,9 +55,18 @@ public abstract class Menu extends JPanel {
 	}
 	
 	
+	protected Menu(Color couleur) {
+		super();
+
+		lsCustomBtn = new HashSet<CustomBtn>();
+		lsAlerte = new HashMap<String, JLabel>();
+		setBackground(couleur);
+	}
+	
+	
 	protected void paintComponent(Graphics graph) {
 		super.paintComponent(graph);
-		graph.drawImage(fondImage, 0, 0, null);
+		if (fondImage != null) graph.drawImage(fondImage, 0, 0, null);
 	}
 
 	

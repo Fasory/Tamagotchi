@@ -8,15 +8,15 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JLabel;
-import javax.swing.JSlider;
+import javax.swing.JPanel;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import controleur.ControleurGeneral;
-import vue.modole.CustomBtn;
-import vue.modole.CustomLb;
-import vue.modole.CustomStyle;
+import vue.modele.CustomBtn;
+import vue.modele.CustomLb;
+import vue.modele.CustomSlider;
+import vue.modele.CustomStyle;
 
 /**
  * La classe Option gère le menu "Option", 
@@ -50,7 +50,6 @@ public class Option extends Menu {
 		setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
 		Dimension dmSlider = new Dimension(500, 50);
-		Dimension dmBouton = new Dimension(500,50);
 		
 		
 		CustomLb txtVolume = new CustomLb("Volume",Color.WHITE, CustomStyle.ROSE_ALPHA);
@@ -61,8 +60,7 @@ public class Option extends Menu {
 		gbc.insets = new Insets(0, 0, 0, 0);
 		add(txtVolume, gbc);
 		
-		JSlider barreVolume = new JSlider(0,100, ControleurGeneral.ctrlAudio.getVolume());
-		barreVolume.setOpaque(false);
+		CustomSlider barreVolume = new CustomSlider(0,100, ControleurGeneral.ctrlAudio.getVolume());
 		barreVolume.setPreferredSize(dmSlider);
 		barreVolume.setMinorTickSpacing(5);
 		barreVolume.setMajorTickSpacing(20);
@@ -92,15 +90,13 @@ public class Option extends Menu {
 		add(txtMusique, gbc);
 		
 		
-		JSlider barreMusique = new JSlider(0,100,ControleurGeneral.ctrlAudio.getMusique());
+		CustomSlider barreMusique = new CustomSlider(0,100,ControleurGeneral.ctrlAudio.getMusique());
 		barreMusique.setOpaque(false);
 		barreMusique.setPreferredSize(dmSlider);
 		barreMusique.setMinorTickSpacing(5);
 		barreMusique.setMajorTickSpacing(20);
 		barreMusique.setMinimum(0);
 		barreMusique.setMaximum(100);
-		barreMusique.setPaintTicks(true);
-		barreMusique.setPaintLabels(true);
 		barreMusique.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent evt) {
 				cmdChangeMusique(barreMusique.getValue());
@@ -114,6 +110,10 @@ public class Option extends Menu {
 		add(barreMusique, gbc);
 		
 		
+		JPanel btnPanel = new JPanel(new GridBagLayout());
+		btnPanel.setOpaque(false);
+		
+		
 		CustomBtn btnCredits = new CustomBtn("Crédits");
 		lsCustomBtn.add(btnCredits);
 		btnCredits.addActionListener(new ActionListener() {	
@@ -121,13 +121,13 @@ public class Option extends Menu {
 				cmdAfficheCredits();
 			}
 		});
+		gbc.fill = GridBagConstraints.HORIZONTAL;
 		gbc.gridx = 0;
-		gbc.gridy = 4;
+		gbc.gridy = 0;
 		gbc.gridwidth = 1;
 		gbc.anchor = GridBagConstraints.BASELINE;
-		gbc.insets = new Insets(20, 0, 20, 0);
-		btnCredits.setPreferredSize(dmBouton);
-		add(btnCredits, gbc);
+		gbc.insets = new Insets(20, 0, 30, 0);
+		btnPanel.add(btnCredits, gbc);
 		
 		
 		CustomBtn btnSupprimerCompte = new CustomBtn("Supprimer le compte");
@@ -139,16 +139,16 @@ public class Option extends Menu {
 			}
 		});
 		if (anonyme) btnSupprimerCompte.setEnabled(false);
+		gbc.fill = GridBagConstraints.HORIZONTAL;
 		gbc.gridx = 0;
-		gbc.gridy = 5;
+		gbc.gridy = 1;
 		gbc.gridwidth = 1;
 		gbc.anchor = GridBagConstraints.BASELINE;
-		gbc.insets = new Insets(20, 0, 20, 0);
-		btnSupprimerCompte.setPreferredSize(dmBouton);
-		add(btnSupprimerCompte, gbc);
+		gbc.insets = new Insets(0, 0, 30, 0);
+		btnPanel.add(btnSupprimerCompte, gbc);
 		
 		
-		CustomBtn btnQuitterOptions = new CustomBtn("Quitter les options");
+		CustomBtn btnQuitterOptions = new CustomBtn("Retour");
 		lsCustomBtn.add(btnQuitterOptions);
 		btnQuitterOptions.addActionListener(new ActionListener() {
 			
@@ -156,13 +156,23 @@ public class Option extends Menu {
 				cmdQuitterOptions();
 			}
 		});
+		gbc.fill = GridBagConstraints.HORIZONTAL;
 		gbc.gridx = 0;
-		gbc.gridy = 6;
+		gbc.gridy = 2;
 		gbc.gridwidth = 1;
 		gbc.anchor = GridBagConstraints.BASELINE;
-		gbc.insets = new Insets(20, 0, 20, 0);
-		btnQuitterOptions.setPreferredSize(dmBouton);
-		add(btnQuitterOptions, gbc);
+		gbc.insets = new Insets(0, 0, 30, 0);
+		btnPanel.add(btnQuitterOptions, gbc);
+		
+		
+
+		gbc.fill = GridBagConstraints.NONE;
+		gbc.gridx = 0;
+		gbc.gridy = 4;
+		gbc.gridwidth = 1;
+		gbc.anchor = GridBagConstraints.BASELINE;
+		gbc.insets = new Insets(0, 0, 0, 0);
+		add(btnPanel, gbc);
 		
 	}
 	

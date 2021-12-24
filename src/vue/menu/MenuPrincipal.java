@@ -4,7 +4,7 @@ import java.awt.*;
 import java.awt.event.*;
 
 import controleur.ControleurGeneral;
-import vue.modole.CustomBtn;
+import vue.modele.CustomBtn;
 
 /**
  * La classe MenuPrincipal gère le menu "Menu Principal", 

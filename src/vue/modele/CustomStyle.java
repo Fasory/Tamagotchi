@@ -1,4 +1,4 @@
-package vue.modole;
+package vue.modele;
 
 import java.awt.Color;
 
@@ -14,13 +14,18 @@ public abstract class CustomStyle {
 	////////////////////////////////////////
 
 	public final static Color ROSE_DEFAUT = new Color(255, 110, 160);
+	public final static Color ROSE_DEFAUT_FONCE = new Color(255, 40, 110);
 	public final static Color ROSE_ALPHA = new Color(255, 110, 160, 200);
 	public final static Color BLANC_ALPHA = new Color(255, 255, 255, 200);
+	public final static Color BLANC_DEFAUT = Color.WHITE;
 	public final static Color ROUGE_DEFAUT = new Color(240, 20, 60);
 	public final static Color ROUGE_ALPHA = new Color(240, 20, 60, 200);
 	public final static Color BLEU_DEFAUT = new Color(32, 97, 200);
 	public final static Color GRIS_DEFAUT = new Color(199, 199, 199);
+	public final static Color GRIS_DEFAUT_FONCE =new Color(96, 96, 96);
+	public final static Color GRIS_ALPHA = new Color(199, 199, 199, 200);
 	public final static Color ALPHA = new Color(0, 0, 0, 0);
+	public final static Color ROSE_FOND = new Color(255,222,233);
 	
 	////////////////////////////////////////
 	//            DEFINITION DES          //
