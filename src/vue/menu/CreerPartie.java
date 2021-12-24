@@ -164,7 +164,7 @@ public class CreerPartie extends Menu {
 		triche.setOpaque(false);
 		
 		
-		CustomCheckBox cbTriche = new CustomCheckBox();
+		cbTriche = new CustomCheckBox();
 		cbTriche.setOpaque(false);
 		gbc.fill = GridBagConstraints.NONE;
 		gbc.gridx = 0;

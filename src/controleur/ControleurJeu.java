@@ -6,6 +6,7 @@ import modele.Animal;
 import modele.Partie;
 import modele.Personnage;
 import modele.Robot;
+import vue.menu.MenuDeJeu;
 
 public class ControleurJeu extends Controleur{
 	
@@ -35,6 +36,7 @@ public class ControleurJeu extends Controleur{
 			ControleurGeneral.ctrlFichier.addLogs("Erreur	-	échec de sauvegarde de la partie " + partie.getId().toString(), true);
 			ControleurGeneral.ctrlFichier.addLogs(err.toString(), true);
 		}
+		ControleurGeneral.ctrlAffichage.ouvrirMenu(new MenuDeJeu(), 1);
 	}
 	
 	
