@@ -7,7 +7,7 @@ public class Robot extends Personnage{
 	private Caracteristique entretien;
 	
 	public Robot(String nom, int entretien) {
-		super(nom, "Robot");
+		super(nom, "Robot");   // je modifie
 		this.entretien = new Caracteristique(entretien, "Entretien", "Nettoyage", 0, 100);
 		caracteristiques.put(this.entretien.getNom(), this.entretien);	
 	}
