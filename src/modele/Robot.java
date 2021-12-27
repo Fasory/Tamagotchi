@@ -4,6 +4,8 @@ import java.util.Hashtable;
 
 public class Robot extends Personnage{
 	
+	private Caracteristique entretien;
+	
 	public Robot(String nom) {
 		super(nom, "Robot");
 	}
@@ -27,16 +29,24 @@ public class Robot extends Personnage{
 			valVie += caracteristique.tranchePourcent(0, -3, 25, -1, 75, 1);
 		}
 		nouvellesCaracteristiques.put(vie, valVie);
-		// Energie
-		// ...
-		// Hygiène
-		// ...
-		// Moral
-		// ...
-		// Faim
-		// ...
-		// Toilettes
-		// ...
+		
+		//Energie
+		
+				float valEne = 0;
+				valEne+=energie.regressionPourcent(25, -3, 50, -2, -1);
+				nouvellesCaracteristiques.put(energie, valEne);
+				
+				//Hygiene
+				
+				float valHyg = 0;
+				valHyg+=energie.regressionPourcent(25, -3, 50, -2, -1);
+				nouvellesCaracteristiques.put(energie, valHyg);
+				
+				//Entretien
+				
+				float valEnt = 0;
+				valEnt+=entretien.regressionPourcent(25, -3, 50, -2, -1);
+				nouvellesCaracteristiques.put(entretien, valEnt);
 		
 		// Retourne la liste des règles à appliquer
 		return nouvellesCaracteristiques;
