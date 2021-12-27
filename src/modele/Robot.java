@@ -6,8 +6,10 @@ public class Robot extends Personnage{
 	
 	private Caracteristique entretien;
 	
-	public Robot(String nom) {
+	public Robot(String nom, int entretien) {
 		super(nom, "Robot");
+		this.entretien = new Caracteristique(entretien, "Entretien", "Nettoyage", 0, 100);
+		caracteristiques.put(this.entretien.getNom(), this.entretien);	
 	}
 	
 	/**
@@ -32,21 +34,21 @@ public class Robot extends Personnage{
 		
 		//Energie
 		
-				float valEne = 0;
-				valEne+=energie.regressionPourcent(25, -3, 50, -2, -1);
-				nouvellesCaracteristiques.put(energie, valEne);
+		float valEne = 0;
+		valEne+=energie.regressionPourcent(25, -3, 50, -2, -1);
+		nouvellesCaracteristiques.put(energie, valEne);
 				
-				//Hygiene
+		//Hygiene
 				
-				float valHyg = 0;
-				valHyg+=energie.regressionPourcent(25, -3, 50, -2, -1);
-				nouvellesCaracteristiques.put(energie, valHyg);
+		float valHyg = 0;
+		valHyg+=energie.regressionPourcent(25, -3, 50, -2, -1);
+		nouvellesCaracteristiques.put(energie, valHyg);
 				
-				//Entretien
+		//Entretien
 				
-				float valEnt = 0;
-				valEnt+=entretien.regressionPourcent(25, -3, 50, -2, -1);
-				nouvellesCaracteristiques.put(entretien, valEnt);
+		float valEnt = 0;
+		valEnt+=entretien.regressionPourcent(25, -3, 50, -2, -1);
+		nouvellesCaracteristiques.put(entretien, valEnt);
 		
 		// Retourne la liste des règles à appliquer
 		return nouvellesCaracteristiques;
