@@ -12,13 +12,13 @@ public abstract class Personnage implements Serializable {
 	protected Hashtable<String, Caracteristique> caracteristiques;
 	protected Caracteristique age;
 	protected Caracteristique vie;
-	protected Caracteristique moral;
+	protected Caracteristique hygiene;
 	protected Caracteristique energie;
 	protected final String nom;
 	protected final String type;
 	
 	//Constructeurs
-	Personnage(int age, int vie, int moral, int energie, String nom, String type){
+	Personnage(int age, int vie, int hygiene, int energie, String nom, String type){
 		this.nom = nom;
 		this.type = type;
 		// Caractéristiques
@@ -27,8 +27,8 @@ public abstract class Personnage implements Serializable {
 		this.vie = new Caracteristique(vie, "Vie", 0,100);
 		this.energie = new Caracteristique(energie, "Energie", "Dormir", 0,100);
 		caracteristiques.put(this.energie.getNom(), this.energie);
-		this.moral = new Caracteristique(moral, "Hygiène", "Doucher", 0,100);
-		caracteristiques.put(this.moral.getNom(), this.moral);
+		this.hygiene = new Caracteristique(hygiene, "Hygiène", "Doucher", 0,100);
+		caracteristiques.put(this.hygiene.getNom(), this.hygiene);
 	}
 	
 	Personnage(String nom, String type){
@@ -45,6 +45,11 @@ public abstract class Personnage implements Serializable {
 
 	public Caracteristique getCaracteristique(String caracteristique) {
 		return caracteristiques.get(caracteristique);
+	}
+	
+
+	public Caracteristique getAge() {
+		return age;
 	}
 	
 	/**
@@ -97,8 +102,8 @@ public abstract class Personnage implements Serializable {
 	 * 
 	 * @return hygiene - Caracteristique
 	 */
-	public Caracteristique getMoral() {
-		return moral;
+	public Caracteristique getHygiene() {
+		return hygiene;
 	}
 	
 	/**
