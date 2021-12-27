@@ -67,7 +67,7 @@ public class ControleurBouton extends Controleur {
 	* Demande de changement de menu : MenuSelecPartie		<br/>
 	*/
 	public void rqtMenuSelecPartie() {
-		ControleurGeneral.ctrlAffichage.ouvrirMenu(new SelecPartie());
+		ControleurGeneral.ctrlAffichage.ouvrirMenu(new SelecPartie(ControleurGeneral.ctrlConnexion.getCompte().getPartiesId()));
 	}
 	
 	/**
@@ -164,6 +164,7 @@ public class ControleurBouton extends Controleur {
 	*/
 	public void rqtDeconnexion() {
 		ControleurGeneral.ctrlConnexion.deconnexion();
+		ControleurGeneral.ctrlAffichage.menuPrecedent();
 	}
 	
 	/**

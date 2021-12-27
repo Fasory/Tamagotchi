@@ -63,7 +63,7 @@ public class ControleurConnexion extends Controleur {
 		} else {
 			compte = lsCompte.get(utilisateur);
 			if (compte != null && ControleurGeneral.ctrlSecurite.hash(mdp).equals(compte.getMdp())) {
-				ControleurGeneral.ctrlAffichage.ouvrirMenu(new MenuPrincipal());
+				ControleurGeneral.ctrlAffichage.ouvrirMenu(new MenuPrincipal(ControleurGeneral.ctrlJeu.peutCreerPartie()));
 			} else {
 				ControleurGeneral.ctrlAffichage.afficherAlerte("general", "Votre identifiant ou votre mot de passe est incorret.");
 				compte = null;
@@ -75,14 +75,8 @@ public class ControleurConnexion extends Controleur {
 	 * Perd le focus du compte ouvert
 	 */
 	public void deconnexion() {
-		try {
-			ControleurGeneral.ctrlFichier.enregistrerObjet(compte, compte.getId().toString() + ".usr", ControleurFichier.REP_JOUEUR);
-		} catch (IOException err) {
-			ControleurGeneral.ctrlFichier.addLogs("Erreur	-	échec l'enregistrement du Compte " + compte.getId().toString(), true);
-			ControleurGeneral.ctrlFichier.addLogs(err.toString(), true);
-		}
+		enregistrerCompte();
 		compte = null;
-		ControleurGeneral.ctrlAffichage.menuPrecedent();
 	}
 	
 	
@@ -181,7 +175,7 @@ public class ControleurConnexion extends Controleur {
 			lsCompte.put(compte.getUtilisateur(), compte);
 			compteTemp = null;
 			ControleurGeneral.ctrlAffichage.fermerMenuConfirmation();
-			ControleurGeneral.ctrlAffichage.ouvrirMenu(new MenuPrincipal(), 1);
+			ControleurGeneral.ctrlAffichage.ouvrirMenu(new MenuPrincipal(ControleurGeneral.ctrlJeu.peutCreerPartie()), 1);
 		} else {
 			if (codeSaisie.equals("")) ControleurGeneral.ctrlAffichage.afficherAlerteConfirmation("Veuillez saisir le code.");
 			else ControleurGeneral.ctrlAffichage.afficherAlerteConfirmation("Le code est invalide");
@@ -260,7 +254,17 @@ public class ControleurConnexion extends Controleur {
 				ControleurGeneral.ctrlFichier.addLogs(err.toString(), true);
 			}
 		}
-			
+	}
+	
+	public void enregistrerCompte() {
+		if (compte != null) {
+			try {
+				ControleurGeneral.ctrlFichier.enregistrerObjet(compte, compte.getId().toString() + ".usr", ControleurFichier.REP_JOUEUR);
+			} catch (IOException err) {
+				ControleurGeneral.ctrlFichier.addLogs("Erreur	-	échec l'enregistrement du Compte " + compte.getId().toString(), true);
+				ControleurGeneral.ctrlFichier.addLogs(err.toString(), true);
+			}
+		}
 	}
 }
 

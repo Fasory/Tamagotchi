@@ -17,12 +17,14 @@ import vue.modele.CustomBtn;
 
 public class MenuPrincipal extends Menu {
 	
+	private CustomBtn btnCreerPartie;
+	
 	/**
 	 * Constructeur de la classe MenuPrincipal
 	 * 
 	 * @param controleur - Controleur de l'application
 	 */
-	public MenuPrincipal() {
+	public MenuPrincipal(boolean creerPartie) {
 		
 		// Appel au constructeur de la super classe Menu
 		super();
@@ -33,7 +35,8 @@ public class MenuPrincipal extends Menu {
 		Insets marges =  new Insets(17, 35, 15, 35);
 		
 		
-		CustomBtn btnCreerPartie = new CustomBtn("Créer une nouvelle partie", marges);
+		btnCreerPartie = new CustomBtn("Créer une nouvelle partie", marges);
+		btnCreerPartie.setEnabled(creerPartie);
 		lsCustomBtn.add(btnCreerPartie);
 		btnCreerPartie.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
@@ -153,5 +156,15 @@ public class MenuPrincipal extends Menu {
 	private void cmdDeconnexion() {
 		ControleurGeneral.ctrlBouton.rqtDemandeDeconnexion(); 
 	}
+
 	
+	////////////////////////////////////////
+	//           AUTRES METHODES          //    
+	////////////////////////////////////////
+	
+	@Override
+	public void renitialiser() {
+		ControleurGeneral.ctrlAffichage.rqtComposantActif(this, btnCreerPartie, ControleurGeneral.ctrlJeu.peutCreerPartie());
+		super.renitialiser();
+	}
 }

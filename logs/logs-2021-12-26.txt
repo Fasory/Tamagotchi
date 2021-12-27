@@ -1,0 +1,205 @@
+****************************************
+		-	17:12:08 - 26/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	17:12:40 - 26/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	17:12:56 - 26/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	22:47:19 - 26/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	22:48:51 - 26/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	22:49:10 - 26/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	22:49:20 - 26/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	22:49:27 - 26/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	22:49:33 - 26/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	22:52:34 - 26/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	22:52:41 - 26/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	22:54:43 - 26/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	22:54:48 - 26/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	22:54:53 - 26/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	22:56:57 - 26/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	23:01:15 - 26/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+Erreur	-	échec de chargmeent de la partie 041007c9-f52d-46b4-ab5f-c0b3e9f3e065
+java.lang.NullPointerException: Cannot invoke "modele.Personnage.getNom()" because the return value of "modele.Partie.getTamagotchi()" is null
+****************************************
+		-	23:03:50 - 26/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+Erreur	-	échec de chargmeent de la partie f18d5b3b-d1f5-468e-b78c-f832c2817b00.save
+java.io.FileNotFoundException: data\save\f18d5b3b-d1f5-468e-b78c-f832c2817b00.save (Le fichier spécifié est introuvable)
+****************************************
+		-	23:04:14 - 26/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	23:07:41 - 26/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+Erreur	-	échec de sauvegarde de la partie 60dd163c-e14e-4353-8ed2-2e419e6c3fe8.save
+java.io.NotSerializableException: modele.Robot
+****************************************
+		-	23:09:16 - 26/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+Erreur	-	échec de sauvegarde de la partie c40d9022-4b56-4ccc-b76d-a5895f213545.save
+java.io.NotSerializableException: modele.Caracteristique
+****************************************
+		-	23:09:53 - 26/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	23:10:04 - 26/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	23:10:14 - 26/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	23:10:30 - 26/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	23:10:39 - 26/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	23:59:20 - 26/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+Erreur	-	échec de chargmeent de la partie 7aed17b4-9c62-44e2-bc90-1a5ebe45b4f8.save
+java.io.InvalidClassException: modele.Personnage; local class incompatible: stream classdesc serialVersionUID = -8213501463214416760, local class serialVersionUID = 5337810082056405541
+Erreur	-	échec de chargmeent de la partie b3a67d0c-05a4-4a15-8d8d-7296e90481c6.save
+java.io.InvalidClassException: modele.Personnage; local class incompatible: stream classdesc serialVersionUID = -8213501463214416760, local class serialVersionUID = 5337810082056405541
+Erreur	-	échec de chargmeent de la partie b3a67d0c-05a4-4a15-8d8d-7296e90481c6.save
+java.io.InvalidClassException: modele.Personnage; local class incompatible: stream classdesc serialVersionUID = -8213501463214416760, local class serialVersionUID = 5337810082056405541
+Erreur	-	échec de chargmeent de la partie b3a67d0c-05a4-4a15-8d8d-7296e90481c6.save
+java.io.InvalidClassException: modele.Personnage; local class incompatible: stream classdesc serialVersionUID = -8213501463214416760, local class serialVersionUID = 5337810082056405541
+****************************************
+		-	23:59:44 - 26/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle

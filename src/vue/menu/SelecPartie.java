@@ -1,30 +1,28 @@
 package vue.menu;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.GridBagConstraints;
-import java.awt.BorderLayout;
-import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 import javax.swing.BorderFactory;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashSet;
+import java.util.UUID;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
 
 import controleur.ControleurGeneral;
+import vue.modele.CustomRadioBtn;
 
 public class SelecPartie extends Menu {
 	private ButtonGroup grpPanel;
 	
-	public SelecPartie() {
+	public SelecPartie(HashSet<UUID> ids) {
 		super();
 		// TODO Auto-generated constructor stub
 		
@@ -91,10 +89,23 @@ public class SelecPartie extends Menu {
 	    gbc.insets = new Insets(0, 0, 10, 30);
 	    partie3.add(nom3);
 	    
-	    
-		
-	    
+	    // Bouton radio
+	    grpPanel = new ButtonGroup();
+		gbc.fill = GridBagConstraints.NONE;
+		gbc.gridx = 1;
+		gbc.gridy = 1;
+		gbc.anchor = GridBagConstraints.BASELINE_LEADING;
+		gbc.insets = new Insets(15, 10, 0, 0);
+		for (UUID elt: ids) {
+			CustomRadioBtn rad = new CustomRadioBtn("");
+			rad.setActionCommand(elt.toString());
+			add(rad,gbc);
+			grpPanel.add(rad);
+			gbc.gridy++;
+		}
+	    /*
 	    JRadioButton choix1 = new JRadioButton();
+	    choix1.setActionCommand("");
 	    gbc.gridx = 1;
 		gbc.gridy = 1;
 		gbc.anchor = GridBagConstraints.BASELINE;
@@ -129,8 +140,9 @@ public class SelecPartie extends Menu {
 			}
 		});
 		add(choix3, gbc);
-		
+		*/
 		JPanel buttons = new JPanel();
+		gbc.gridy = 1;
 	    add(buttons,gbc);
 	    JButton btnsupprimer = new JButton("Supprimer la partie");
 		gbc.gridx = 0;
@@ -138,6 +150,11 @@ public class SelecPartie extends Menu {
 		buttons.add(btnsupprimer,gbc);
 		
 		JButton btnJouer = new JButton("Jouer");
+		btnJouer.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				cmdJouer();
+			}
+		});
 		gbc.gridx = 1;
 		gbc.gridy++;
 		buttons.add(btnJouer,gbc);
@@ -151,12 +168,12 @@ public class SelecPartie extends Menu {
 			}
 		});
 		buttons.add(btnRetour,gbc);
-		
+		/*
 		grpPanel = new ButtonGroup();
 		grpPanel.add(choix1);
 		grpPanel.add(choix2);
 		grpPanel.add(choix3);
-		
+		*/
 		
 		
 		
@@ -236,7 +253,7 @@ public class SelecPartie extends Menu {
 	}
 	
 	public void cmdJouer() {
-		ControleurGeneral.ctrlBouton.rqtRetour();	
+		ControleurGeneral.ctrlJeu.lancePartie(grpPanel.getSelection().getActionCommand());
 	}
 	
 	public void cmdChoixPartie() {

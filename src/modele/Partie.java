@@ -12,6 +12,7 @@ public class Partie extends ObjectId implements Serializable {
 	public Partie(Personnage tamagotchi, boolean triche) {
 		super(UUID.randomUUID());
 		this.triche = triche;
+		this.tamagotchi = tamagotchi;
 	}
 	
 	public Personnage getTamagotchi() {

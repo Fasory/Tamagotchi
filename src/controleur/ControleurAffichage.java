@@ -195,4 +195,8 @@ public class ControleurAffichage extends Controleur {
 	public void changeType(int rng) {
 		((CreerPartie)pileMenu.peek()).selectionType(rng);
 	}
+	
+	public Menu getMenu() {
+		return pileMenu.peek();
+	}
 }

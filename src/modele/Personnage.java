@@ -1,37 +1,49 @@
 package modele;
 
-public class Personnage {
+import java.io.Serializable;
+import java.util.Hashtable;
+import java.util.Vector;
+
+public class Personnage implements Serializable {
 	
 	// Attributs
 	// Icone personnage à définir
+	protected Hashtable<String, Caracteristique> caracteristiques;
 	protected Caracteristique age;
 	protected Caracteristique vie;
 	protected Caracteristique hygiene;
 	protected Caracteristique energie;
-	protected Caracteristique moral;
 	protected String nom;
 	protected String type;
 	
 	//Constructeurs
-	Personnage(Caracteristique age, Caracteristique vie, Caracteristique hygiene, Caracteristique energie, String nom){
-		this.age = age;
-		this.vie = vie;
-		this.hygiene = hygiene;
-		this.energie = energie;
+	Personnage(int age, int vie, int hygiene, int energie, String nom){
 		this.nom = nom;
+		// Caractéristiques
+		caracteristiques = new Hashtable<String, Caracteristique>();
+		this.age = new Caracteristique(age, "Age", 0);
+		this.vie = new Caracteristique(vie, "Vie", 0,100);
+		this.energie = new Caracteristique(energie, "Energie", "Dormir", 0,100);
+		caracteristiques.put(this.energie.getNom(), this.energie);
+		this.hygiene = new Caracteristique(hygiene, "Hygiène", "Doucher", 0,100);
+		caracteristiques.put(this.hygiene.getNom(), this.hygiene);
 	}
 	
 	Personnage(String nom){
-		this.nom = nom;
-		age = new Caracteristique(0,0);
-		vie = new Caracteristique(100,0,100);
-		hygiene = new Caracteristique(100,0,100);
-		energie = new Caracteristique(100,0,100);
+		this(0, 100, 100, 100, nom);
 	}
 	
 	//Méthodes
 	
 	//Getters
+
+	public Vector<Caracteristique> getCaracteristiques() {
+		return new Vector<Caracteristique>(caracteristiques.values());
+	}
+
+	public Caracteristique getCaracteristique(String caracteristique) {
+		return caracteristiques.get(caracteristique);
+	}
 	
 	/**
 	 * Retourne le nom du Personnage

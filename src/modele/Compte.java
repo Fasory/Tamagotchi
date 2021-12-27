@@ -56,6 +56,11 @@ public class Compte extends ObjectId implements Serializable {
 	}
 	
 	
+	public void addPartie(UUID id) {
+		partiesId.add(id);
+	}
+	
+	
 	////////////////////////////////////////
 	//         GETTEURS ET SETTEURS       //     
 	////////////////////////////////////////

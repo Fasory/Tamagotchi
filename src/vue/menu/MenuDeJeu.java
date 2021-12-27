@@ -6,14 +6,18 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Hashtable;
+import java.util.Vector;
 import java.awt.Color;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JProgressBar;
 
 import controleur.ControleurGeneral;
+import modele.Caracteristique;
+import modele.Personnage;
+import vue.modele.CustomProgressBar;
 
 
 public class MenuDeJeu extends Menu {
@@ -24,6 +28,9 @@ public class MenuDeJeu extends Menu {
 	private JLabel labelHumeur;
 	private JLabel labelAction;
 	private JLabel labelLieu;
+	private Hashtable<String, CustomProgressBar> barres;
+	private Hashtable<String, JButton> btns;
+	private CustomProgressBar barreVie;
 	
 	/**
 	 * Constructeur
@@ -31,117 +38,14 @@ public class MenuDeJeu extends Menu {
 	 * @param controleur - Controleur de l'application
 	 */
 	
-	public MenuDeJeu() {
+	public MenuDeJeu(final Personnage tamagotchi) {
 		super();
+		
+		barres = new Hashtable<String, CustomProgressBar>();
+		btns = new Hashtable<String, JButton>();
 		
 		setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
-//
-//		
-//		//JPanel contenant labelVie, la barre de vie, et labelAction
-//		JPanel panelCara2 = new JPanel(new GridBagLayout());
-//
-//		
-//		//label contenant le texte "Points de vie : "		
-//		final JLabel labelVie = new JLabel("Points de vie : ");
-//
-//		
-//		/*
-//		//JProgressBar contenant la valeur des points de vie restants
-//		// @0 - valeur minimale / @100 - valeur maximale
-//		barreVie = new JProgressbar(int 0, int 100);
-//		//ajoute du texte dans la barre
-//		barreVie.setStringPainted(true);
-//		barreVie.setValue(vie);
-//		// @vie - variable importée depuis la classe personnage
-//		*/
-//		
-//		//label contenant l'action en cours qu'effectue le Tamagotchi		
-//		labelAction = new JLabel(/*action*/"action");
-//		// @action - variable importée depuis la classe personnage
-//
-//		
-//		//label contenant l'âge actuel du Tamagotchi		
-//		labelAge = new JLabel(/*age*/"age");
-//		// @age - variable importée depuis la classe personnage
-//
-//		
-//		//JPanel contenant labelEnergie, la barre d'énergie, labelHygiene, la barre d'hygène, labelMoral, la barre de moral, labelNourriture, la barre de nourriture, labelToilettes, et la barre d'envie d'aller aux toilettes
-//		JPanel panelCara3 = new JPanel(new GridBagLayout());
-//
-//		
-//		//label contenant l'énergie actuelle du Tamagotchi		
-//		final JLabel labelEnergie = new JLabel(/*energie*/"energie");
-//		// @energie - variable importée depuis la classe personnage
-//
-//		
-//		//label contenant le niveau d'hygiène actuel du Tamagotchi		
-//		final JLabel labelHygiene = new JLabel(/*hygiene*/"hygiene");
-//		// @hygiene - variable importée depuis la classe personnage
-//
-//		
-//		//label contenant le niveau de moral actuel du Tamagotchi		
-//		final JLabel labelMoral = new JLabel(/*moral*/"moral");
-//		// @hygiene - variable importée depuis la classe personnage
-//
-//		
-//		//label contenant le niveau de nourriture actuel du Tamagotchi		
-//		final JLabel labelNourriture = new JLabel(/*nourriture*/"nourriture");
-//		// @nourriture - variable importée depuis la classe personnage
-//
-//		
-//		//label contenant le niveau d'envie d'aller aux toilettes actuel du Tamagotchi		
-//		final JLabel labelToilettes = new JLabel(/*toilettes*/"toilettes");
-//		// @toilettes - variable importée depuis la classe personnage
-
-//		
-//		gbc.gridx = 1;
-//		gbc.gridy = 0;
-//		add(panelDroit,gbc);
-//		
-//		gbc.gridx = 0;
-//		gbc.gridy = 0;
-//		panelDroit.add(panelCara2,gbc);
-//		
-//		gbc.gridx = 0;
-//		gbc.gridy = 0;
-//		panelCara2.add(labelVie,gbc);
-//		
-//		//gbc.gridx = 0;
-//		//gbc.gridy = 1;
-//		//panelCara2.add(barreDeVie,gbc);
-//		
-//		gbc.gridx = 0;
-//		gbc.gridy = 2;
-//		panelCara2.add(labelAction,gbc);
-//		
-//		gbc.gridx = 1;
-//		gbc.gridy = 0;
-//		panelDroit.add(labelAge,gbc);
-//		
-//		gbc.gridx = 0;
-//		gbc.gridy = 1;
-//		panelDroit.add(panelCara3,gbc);
-//		
-//		gbc.gridx = 0;
-//		gbc.gridy = 0;
-//		panelCara3.add(labelEnergie,gbc);
-//		
-//		gbc.gridx = 0;
-//		gbc.gridy = 2;
-//		panelCara3.add(labelHygiene,gbc);
-//		
-//		gbc.gridx = 0;
-//		gbc.gridy = 4;
-//		panelCara3.add(labelMoral,gbc);
-//		
-//		gbc.gridx = 0;
-//		gbc.gridy = 6;
-//		panelCara3.add(labelNourriture,gbc);
-//		
-//		gbc.gridx = 0;
-//		gbc.gridy = 8;
-//		panelCara3.add(labelToilettes,gbc);
 		
 		// Ajout du panel gauche
 		gbc.gridx = 0;
@@ -149,7 +53,7 @@ public class MenuDeJeu extends Menu {
 		gbc.weighty = 1;								// Espace qu'occupe l'objet dans l'axe y entre 0 et 1 de la cellule (1 -> 100%, 0 -> 0%)
 		gbc.insets = new Insets(20, 20, 20, 10);		// Espacement autour du panel en px, respectivement : top, left, bottom, right
 		gbc.fill = GridBagConstraints.VERTICAL;			// Prend toute la place dispo
-		add(buildPanelGauche("Nom", "Type", "Humeur", "Lieu"), gbc);
+		add(buildPanelGauche(tamagotchi.getNom(), "Type", "Humeur", "Lieu"), gbc);
 		
 		
 		// Ajout du panel droit
@@ -159,7 +63,7 @@ public class MenuDeJeu extends Menu {
 		gbc.weightx = 1;								// Même chose mais sur l'axe x
 		gbc.insets = new Insets(20, 0, 20, 20);			// Espacement autour du panel en px, respectivement : top, left, bottom, right
 		gbc.fill = GridBagConstraints.BOTH;				// Prend toute la place dispo
-		add(buildPanelDroite(), gbc);
+		add(buildPanelDroite(tamagotchi), gbc);
 	}
 	
 	
@@ -217,7 +121,7 @@ public class MenuDeJeu extends Menu {
 	 * 
 	 * @return JPanel - contenant tout le panel droit
 	 */
-	private JPanel buildPanelDroite() {
+	private JPanel buildPanelDroite(final Personnage tamagotchi) {
 		JPanel panelDroite = new JPanel(new GridBagLayout());
 		panelDroite.setBackground(Color.GREEN);
 		GridBagConstraints gbc = new GridBagConstraints();
@@ -239,7 +143,7 @@ public class MenuDeJeu extends Menu {
 		gbc.insets = new Insets(10, 10, 10, 10);		// Espacement autour du panel en px, respectivement : top, left, bottom, right
 		gbc.fill = GridBagConstraints.BOTH;				// Prend toute la place dispo
 		gbc.anchor = GridBagConstraints.SOUTH;
-		panelDroite.add(buildPanelCara3(), gbc);
+		panelDroite.add(buildPanelCara3(tamagotchi.getCaracteristiques()), gbc);
 		
 		
 		return panelDroite;
@@ -360,7 +264,7 @@ public class MenuDeJeu extends Menu {
 		panelCara2.add(labelVie, gbc);
 			
 		
-		JProgressBar barreVie = new JProgressBar(0, 100);
+		barreVie = new CustomProgressBar(0, 100);
 		barreVie.setValue(ptsVie);
 		gbc.gridx = 0;
 		gbc.gridy = 1;
@@ -385,298 +289,75 @@ public class MenuDeJeu extends Menu {
 	}
 	
 	
-	private JPanel buildPanelCara3() {
+	private JPanel buildPanelCara3(Vector<Caracteristique> caracteristiques) {
 		JPanel panelCara3 = new JPanel(new GridBagLayout());
 		panelCara3.setBackground(Color.ORANGE);
 		GridBagConstraints gbc = new GridBagConstraints();
-			
+		
 		
 		gbc.gridx = 0;
 		gbc.gridy = 0;
 		gbc.insets = new Insets(10, 10, 10, 10);	// Espacement autour du panel en px, respectivement : top, left, bottom, right
 		gbc.fill = GridBagConstraints.BOTH;			// Prend toute la place dispo
 		gbc.anchor = GridBagConstraints.NORTH;
-		panelCara3.add(buildPanelEnergie("Energie :", 100), gbc);
-		
-		
-		gbc.gridx = 0;
-		gbc.gridy = 1;
-		gbc.insets = new Insets(0, 10, 10, 10);		// Espacement autour du panel en px, respectivement : top, left, bottom, right
-		gbc.fill = GridBagConstraints.BOTH;			// Prend toute la place dispo
-		gbc.anchor = GridBagConstraints.NORTH;
-		panelCara3.add(buildPanelHygiene("Hygiène :", 100), gbc);
-		
-		
-		gbc.gridx = 0;
-		gbc.gridy = 2;
-		gbc.insets = new Insets(0, 10, 10, 10);		// Espacement autour du panel en px, respectivement : top, left, bottom, right
-		gbc.fill = GridBagConstraints.BOTH;			// Prend toute la place dispo
-		gbc.anchor = GridBagConstraints.NORTH;
-		panelCara3.add(buildPanelMoral("Moral :", 100), gbc);
-		
-		
-		gbc.gridx = 0;
-		gbc.gridy = 3;
-		gbc.insets = new Insets(0, 10, 10, 10);		// Espacement autour du panel en px, respectivement : top, left, bottom, right
-		gbc.fill = GridBagConstraints.BOTH;			// Prend toute la place dispo
-		gbc.anchor = GridBagConstraints.NORTH;
-		panelCara3.add(buildPanelNourriture("Nourriture :", 100), gbc);
-		
-		
-		gbc.gridx = 0;
-		gbc.gridy = 4;
-		gbc.insets = new Insets(0, 10, 10, 10);		// Espacement autour du panel en px, respectivement : top, left, bottom, right
-		gbc.fill = GridBagConstraints.BOTH;			// Prend toute la place dispo
-		gbc.anchor = GridBagConstraints.NORTH;
-		panelCara3.add(buildPanelToilettes("Toilettes :", 100), gbc);	
-		
+		for (Caracteristique caracteristique : caracteristiques) {
+			panelCara3.add(buildPanelCaracteristique(caracteristique), gbc);
+			gbc.gridy++;
+		}
+
 		
 		return panelCara3;
 	}
 	
 	
-	/**
-	 * Construit le JPanel energie contenant :
-	 * 		- JLabel LabelEnergie
-	 * 		- JProgressBar barreEnergie
-	 *  	- JButton btnDormir
-	 * 
-	 * @return JPanel - contenant tout le panel energie
-	 */
-	private JPanel buildPanelEnergie(String energie, int ptsEnergie) {
-		JPanel panelEnergie = new JPanel(new GridBagLayout());
-		panelEnergie.setBackground(Color.PINK);
+	private JPanel buildPanelCaracteristique(Caracteristique caracteristique) {
+		JPanel panelCaracteristique = new JPanel(new GridBagLayout());
+		panelCaracteristique.setBackground(Color.PINK);
 		GridBagConstraints gbc = new GridBagConstraints();
 		
 		
 		Dimension dmBouton = new Dimension(100,25);
 		
 		
-		JLabel labelEnergie = new JLabel(energie);
+		JLabel labelCaracteristique = new JLabel(caracteristique.getNom());
 		gbc.gridx = 0;
 		gbc.gridy = 0;
-		panelEnergie.add(labelEnergie, gbc);
+		panelCaracteristique.add(labelCaracteristique, gbc);
 		
 		
-		JProgressBar barreEnergie = new JProgressBar(0, 100);
-		barreEnergie.setValue(ptsEnergie);
+		
+		CustomProgressBar barreCaracteristique = new CustomProgressBar((int) caracteristique.getMin(), (int) caracteristique.getMax());
+		barreCaracteristique.setValue((int) caracteristique.getValeur());
 		gbc.gridx = 0;
 		gbc.gridy = 1;
 		gbc.insets = new Insets(0, 10, 0, 10);
-		panelEnergie.add(barreEnergie, gbc);
+		panelCaracteristique.add(barreCaracteristique, gbc);
+		barres.put(caracteristique.getNom(), barreCaracteristique);
 		
 		
-		JButton btnDormir = new JButton("Dormir");
-		btnDormir.setPreferredSize(dmBouton);
-		btnDormir.addActionListener(new ActionListener() {
-			
+		JButton btnCaracteristique = new JButton(caracteristique.getModifieur());
+		btnCaracteristique.setPreferredSize(dmBouton);
+		btnCaracteristique.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent evt) {
-				cmdDormir();
+				cmdAction(caracteristique.getNom());
 			}
 		});
 		gbc.gridx = 1;
 		gbc.gridy = 1;
 		gbc.insets = new Insets(0, 0, 10, 10);
-		panelEnergie.add(btnDormir, gbc);
+		panelCaracteristique.add(btnCaracteristique, gbc);
+		btns.put(caracteristique.getNom(), btnCaracteristique);
 		
 		
-		return panelEnergie;
+		return panelCaracteristique;
 	}
 	
-	
-	/**
-	 * Construit le JPanel hygiene contenant :
-	 * 		- JLabel LabelHygiene
-	 * 		- JProgressBar barreHygiene
-	 *  	- JButton btnDouche
-	 * 
-	 * @return JPanel - contenant tout le panel hygiene
-	 */
-	private JPanel buildPanelHygiene(String hygiene, int ptsHygiene) {
-		JPanel panelHygiene = new JPanel(new GridBagLayout());
-		panelHygiene.setBackground(Color.PINK);
-		GridBagConstraints gbc = new GridBagConstraints();
-		
-		
-		Dimension dmBouton = new Dimension(100,25);
-		
-		
-		JLabel labelHygiene = new JLabel(hygiene);
-		gbc.gridx = 0;
-		gbc.gridy = 0;
-		panelHygiene.add(labelHygiene, gbc);
-		
-		
-		JProgressBar barreHygiene = new JProgressBar(0, 100);
-		barreHygiene.setValue(ptsHygiene);
-		gbc.gridx = 0;
-		gbc.gridy = 1;
-		gbc.insets = new Insets(0, 10, 0, 10);
-		panelHygiene.add(barreHygiene, gbc);
-		
-		
-		JButton btnDouche = new JButton("Douche");
-		btnDouche.setPreferredSize(dmBouton);
-		btnDouche.addActionListener(new ActionListener() {
-			
-			public void actionPerformed(ActionEvent evt) {
-				cmdDouche();
-			}
-		});
-		gbc.gridx = 1;
-		gbc.gridy = 1;
-		gbc.insets = new Insets(0, 0, 10, 10);
-		panelHygiene.add(btnDouche, gbc);
-		
-		
-		return panelHygiene;
-	}
-	
-	
-	/**
-	 * Construit le JPanel moral contenant :
-	 * 		- JLabel LabelMoral
-	 * 		- JProgressBar barreMoral
-	 *  	- JButton btnJouer
-	 * 
-	 * @return JPanel - contenant tout le panel moral
-	 */
-	private JPanel buildPanelMoral(String moral, int ptsMoral) {
-		JPanel panelMoral = new JPanel(new GridBagLayout());
-		panelMoral.setBackground(Color.PINK);
-		GridBagConstraints gbc = new GridBagConstraints();
-		
-		
-		Dimension dmBouton = new Dimension(100,25);
-		
-		
-		JLabel labelMoral = new JLabel(moral);
-		gbc.gridx = 0;
-		gbc.gridy = 0;
-		panelMoral.add(labelMoral, gbc);
-		
-		
-		JProgressBar barreMoral = new JProgressBar(0, 100);
-		barreMoral.setValue(ptsMoral);
-		gbc.gridx = 0;
-		gbc.gridy = 1;
-		gbc.insets = new Insets(0, 10, 0, 10);
-		panelMoral.add(barreMoral, gbc);
-		
-		
-		JButton btnJouer = new JButton("Jouer");
-		btnJouer.setPreferredSize(dmBouton);
-		btnJouer.addActionListener(new ActionListener() {
-			
-			public void actionPerformed(ActionEvent evt) {
-				cmdJouer();
-			}
-		});
-		gbc.gridx = 1;
-		gbc.gridy = 1;
-		gbc.insets = new Insets(0, 0, 10, 10);
-		panelMoral.add(btnJouer, gbc);
-		
-		
-		return panelMoral;
-	}
-	
-	
-	/**
-	 * Construit le JPanel nourriture contenant :
-	 * 		- JLabel LabelNourriture
-	 * 		- JProgressBar barreNourriture
-	 *  	- JButton btnManger
-	 * 
-	 * @return JPanel - contenant tout le panel nourriture
-	 */
-	private JPanel buildPanelNourriture(String nourriture, int ptsNourriture) {
-		JPanel panelNourriture = new JPanel(new GridBagLayout());
-		panelNourriture.setBackground(Color.PINK);
-		GridBagConstraints gbc = new GridBagConstraints();
-		
-		
-		Dimension dmBouton = new Dimension(100,25);
-		
-		
-		JLabel labelNourriture = new JLabel(nourriture);
-		gbc.gridx = 0;
-		gbc.gridy = 0;
-		panelNourriture.add(labelNourriture, gbc);
-		
-		
-		JProgressBar barreNourriture = new JProgressBar(0, 100);
-		barreNourriture.setValue(ptsNourriture);
-		gbc.gridx = 0;
-		gbc.gridy = 1;
-		gbc.insets = new Insets(0, 10, 0, 10);
-		panelNourriture.add(barreNourriture, gbc);
-		
-		
-		JButton btnManger = new JButton("Manger");
-		btnManger.setPreferredSize(dmBouton);
-		btnManger.addActionListener(new ActionListener() {
-			
-			public void actionPerformed(ActionEvent evt) {
-				cmdManger();
-			}
-		});
-		gbc.gridx = 1;
-		gbc.gridy = 1;
-		gbc.insets = new Insets(0, 0, 10, 10);
-		panelNourriture.add(btnManger, gbc);
-		
-		
-		return panelNourriture;
-	}
-	
-	
-	/**
-	 * Construit le JPanel toilettes contenant :
-	 * 		- JLabel LabelToilettes
-	 * 		- JProgressBar barreToilettes
-	 *  	- JButton btnToilettes
-	 * 
-	 * @return JPanel - contenant tout le panel toilettes
-	 */
-	private JPanel buildPanelToilettes(String toilettes, int ptsToilettes) {
-		JPanel panelToilettes = new JPanel(new GridBagLayout());
-		panelToilettes.setBackground(Color.PINK);
-		GridBagConstraints gbc = new GridBagConstraints();
-		
-		
-		Dimension dmBouton = new Dimension(100,25);
-		
-		
-		JLabel labelToilettes = new JLabel(toilettes);
-		gbc.gridx = 0;
-		gbc.gridy = 0;
-		panelToilettes.add(labelToilettes, gbc);
-		
-		
-		JProgressBar barreToilettes = new JProgressBar(0, 100);
-		barreToilettes.setValue(ptsToilettes);
-		gbc.gridx = 0;
-		gbc.gridy = 1;
-		gbc.insets = new Insets(0, 10, 0, 10);
-		panelToilettes.add(barreToilettes, gbc);
-		
-		
-		JButton btnToilettes = new JButton("Toilettes");
-		btnToilettes.setPreferredSize(dmBouton);
-		btnToilettes.addActionListener(new ActionListener() {
-			
-			public void actionPerformed(ActionEvent evt) {
-				cmdToilettes();
-			}
-		});
-		gbc.gridx = 1;
-		gbc.gridy = 1;
-		gbc.insets = new Insets(0, 0, 10, 10);
-		panelToilettes.add(btnToilettes, gbc);
-		
-		
-		return panelToilettes;
+	public void setAll(Vector<Caracteristique> caracteristiques, Caracteristique vie) {
+		for (Caracteristique caracteristique: caracteristiques) {
+			barres.get(caracteristique.getNom()).setValue((int) caracteristique.getValeur());
+		}
+		barreVie.setValue((int) vie.getValeur());
 	}
 	
 	
@@ -688,37 +369,16 @@ public class MenuDeJeu extends Menu {
 	/*
 	 * Demande d'une requête liée au bouton btnLieuG	<br/>
 	 */
-	private void cmdLieuG() {};
+	private void cmdLieuG() {}
 	
 	/*
 	 * Demande d'une requête liée au bouton btnLieuD	<br/>
 	 */
-	private void cmdLieuD() {};
+	private void cmdLieuD() {}
 	
-	/*
-	 * Demande d'une requête liée au bouton btnDormir	<br/>
-	 */
-	private void cmdDormir() {};
-	
-	/*
-	 * Demande d'une requête liée au bouton btnDouche	<br/>
-	 */
-	private void cmdDouche() {};
-	
-	/*
-	 * Demande d'une requête liée au bouton btnJouer	<br/>
-	 */
-	private void cmdJouer() {};
-	
-	/*
-	 * Demande d'une requête liée au bouton btnManger	<br/>
-	 */
-	private void cmdManger() {};
-	
-	/*
-	 * Demande d'une requête liée au bouton btnToilettes	<br/>
-	 */
-	private void cmdToilettes() {};
+	private void cmdAction(String caracteristique) {
+		ControleurGeneral.ctrlJeu.rqtAction(caracteristique);
+	}
 	
 	
 }

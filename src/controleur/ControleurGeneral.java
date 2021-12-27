@@ -18,6 +18,7 @@ public class ControleurGeneral extends Controleur {
 	private static boolean estCree = false;							// Repère de création d'une unique instance par type de controleur
 	
 	// Constantes
+	public final static int TEMPS_MAJ = 500;			// Temps en milliseconde de pause entre chaque mise à jour du Tamagotchi
 	public final static int NB_MAX_PARTIE = 3;
 	public final static String[] TYPE = {"Robot","Lapin", "Chat", "Dinosaure"};
 	public final static String NOM_ANONYME = "Anonyme";					  

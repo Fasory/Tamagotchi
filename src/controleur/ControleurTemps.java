@@ -24,4 +24,23 @@ public class ControleurTemps extends Controleur {
 		};
 		thread.start();
 	}
+	
+	public <T, R> void threadMajCaracteristiques(int pause, Runnable action) {
+		Thread thread = new Thread() {
+			
+			@Override
+			public void run() {
+				while (true) {
+					try {
+						Thread.sleep(pause);
+					} catch (InterruptedException err) {
+						ControleurGeneral.ctrlFichier.addLogs("Erreur - échec de la mise en pause du Thread majCaracteristiques", true);
+						ControleurGeneral.ctrlFichier.addLogs(err.toString(), true);
+					}
+					action.run();
+				}
+		    }
+		};
+		thread.start();
+	}
 }
