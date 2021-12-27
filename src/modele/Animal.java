@@ -43,17 +43,32 @@ public class Animal extends Personnage  {
 		for (Caracteristique caracteristique : getCaracteristiques()) {
 			valVie += caracteristique.tranchePourcent(0, -3, 25, -1, 75, 1);
 		}
-		nouvellesCaracteristiques.put(vie, valVie);
+		nouvellesCaracteristiques.put(vie, valVie);					// vie -> attribut hérité de la classe Personnage
+		
 		// Energie
-		// ...
+		float valEne = 0;
+		valEne += energie.regressionPourcent(25, -3, 50, -2, -1); 	// en-dessous ou égal à 25 -> -3; en-dessous ou égal à 50 -> -2; en-dessous ou égal à 100
+		nouvellesCaracteristiques.put(energie, valEne);
+		
 		// Hygiène
-		// ...
+		float valHyg = 0;
+		valHyg+=hygiene.regressionPourcent(25, -3, 50, -2, -1);
+		nouvellesCaracteristiques.put(hygiene, valHyg);
+		
 		// Moral
-		// ...
+		float valMor = 0;
+		valMor += moral.regressionPourcent(25, -3, 50, -2, -1);
+		nouvellesCaracteristiques.put(moral, valMor);
+		
 		// Faim
-		// ...
+		float valFaim = 0;
+		valFaim += faim.regressionPourcent(25, -3, 50, -2, -1);
+		nouvellesCaracteristiques.put(faim, valFaim);
+		
 		// Toilettes
-		// ...
+		float valToi = 0;
+		valToi += toilettes.regressionPourcent(25, -3, 50, -2, -1);
+		nouvellesCaracteristiques.put(toilettes, valToi);
 		
 		// Retourne la liste des règles à appliquer
 		return nouvellesCaracteristiques;
