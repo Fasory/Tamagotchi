@@ -45,9 +45,9 @@ public class Animal extends Personnage  {
 		}
 		nouvellesCaracteristiques.put(vie, valVie);
 		// Energie
-		nouvellesCaracteristiques.put(energie, (float) -10);
+		// ...
 		// Hygiène
-		nouvellesCaracteristiques.put(hygiene, (float) -10);
+		// ...
 		// Moral
 		// ...
 		// Faim
