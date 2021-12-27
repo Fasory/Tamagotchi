@@ -6,11 +6,17 @@ public class Robot extends Personnage{
 	
 	private Caracteristique entretien;
 	
+	
 	public Robot(String nom, int entretien) {
-		super(nom, "Robot");   // je modifie
+		super(nom, "Robot"); 
 		this.entretien = new Caracteristique(entretien, "Entretien", "Nettoyage", 0, 100);
 		caracteristiques.put(this.entretien.getNom(), this.entretien);	
 	}
+	
+	public Robot(String nom){
+		this( nom, 100);
+	}
+	
 	
 	/**
 	 * Définition des règles de vie
