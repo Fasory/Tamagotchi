@@ -84,19 +84,8 @@ public class ControleurJeu extends Controleur{
 	
 	
 	public void majCaracteristiques() {
-		int gainVie = 0;
 		// Update Caracteristiques
-		for (Caracteristique caracteristique : partie.getTamagotchi().getCaracteristiques()) {
-			caracteristique.add(-1);
-			/*						REGLE DE VIE
-			 * Pour chaque caractéristique à au moins 75%, +1 pts de vie
-			 * Pour chaque caractéristique à moins de 25%, -1 pts de vie
-			 */
-			if (caracteristique.getValeur() >= (caracteristique.getMax()-caracteristique.getMin())*0.75+caracteristique.getMin()) gainVie++;
-			else if (caracteristique.getValeur() < (caracteristique.getMax()-caracteristique.getMin())*0.25+caracteristique.getMin()) gainVie--;
-		}
-		// Update Vie
-		partie.getTamagotchi().getVie().add(gainVie);
+		partie.getTamagotchi().cycleVie(partie.getTamagotchi().reglesVie());
 		// Update Affichage
 		majAffichage();
 	}

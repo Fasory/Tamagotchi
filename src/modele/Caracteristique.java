@@ -9,6 +9,7 @@ public class Caracteristique implements Serializable {
 	private float val;
 	private final float min;
 	private final float max;
+	private final float delta;
 	private float coef;
 	
 	public Caracteristique(float val, String nom, String modifieur)  {
@@ -32,11 +33,17 @@ public class Caracteristique implements Serializable {
 	}
 	
 	public Caracteristique(float val, String nom, String modifieur, float min, float max, float coef) {
-		this.min=min;
-		this.max=max;
+		if (min > max) {
+			this.min=max;
+			this.max=min;
+		} else {
+			this.min=min;
+			this.max=max;
+		}
 		this.coef=coef;
 		this.nom = nom;
 		this.modifieur = modifieur;
+		this.delta = this.max-this.min;
 		setValeur(val);
 	}
 	
@@ -60,6 +67,10 @@ public class Caracteristique implements Serializable {
 		return this.max;
 	}
 	
+	public float getDelta() {
+		return this.delta;
+	}
+	
 	
 	public void setValeur(float val) {
 		if (val<min) {
@@ -77,5 +88,12 @@ public class Caracteristique implements Serializable {
 	
 	public boolean equals(Caracteristique car) {
 		return car.nom.equals(nom) && car.val == val;
+	}
+	
+	public float tranchePourcent(float pourcentCritique, float retourCritique, float pourcentFaible, float retourFaible, float pourcentFort, float retourFort) {
+		if (min + delta * pourcentCritique == val) return retourCritique;
+		else if (min + delta * pourcentFaible/100 >= val) return retourFaible;
+		else if (min + delta * pourcentFort/100 <= val) return retourFort;
+		else return 0;
 	}
 }
