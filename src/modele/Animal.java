@@ -4,7 +4,7 @@ import java.util.Hashtable;
 
 public class Animal extends Personnage  {
 	private String race;
-	private Caracteristique moral;
+	private Caracteristique hygiene;
 	private Caracteristique faim;
 	private Caracteristique toilettes;
 	
@@ -14,8 +14,8 @@ public class Animal extends Personnage  {
 		// Caractéristiques
 		faim = new Caracteristique(100 , "Nourriture", "Manger", 0, 100);
 		caracteristiques.put(this.faim.getNom(), this.faim);
-		moral = new Caracteristique(100 , "Moral", "Jouer", 0, 100);
-		caracteristiques.put(this.moral.getNom(), this.moral);
+		hygiene = new Caracteristique(100 , "Moral", "Jouer", 0, 100);
+		caracteristiques.put(this.hygiene.getNom(), this.hygiene);
 		toilettes = new Caracteristique(100 , "Toilettes", "Toilettes", 0, 100);
 		caracteristiques.put(this.toilettes.getNom(), this.toilettes);
 	}

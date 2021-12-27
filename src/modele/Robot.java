@@ -7,16 +7,17 @@ public class Robot extends Personnage{
 	private Caracteristique entretien;
 	
 	
-	public Robot(String nom, int entretien) {
+	public Robot(String nom, int entretien, int moral, int energie) {
 		super(nom, "Robot"); 
 		this.entretien = new Caracteristique(entretien, "Entretien", "Nettoyage", 0, 100);
 		caracteristiques.put(this.entretien.getNom(), this.entretien);	
+		this.moral = new Caracteristique(moral, "Moral", "Jouer", 0, 100);	
+		this.energie = new Caracteristique(energie, "Moral", "Brancher", 0, 100);	
 	}
 	
 	public Robot(String nom){
-		this( nom, 100);
+		this( nom, 100, 100, 100);
 	}
-	
 	
 	/**
 	 * Définition des règles de vie
@@ -46,9 +47,9 @@ public class Robot extends Personnage{
 				
 		//Hygiene
 				
-		float valHyg = 0;
-		valHyg+=energie.regressionPourcent(25, -3, 50, -2, -1);
-		nouvellesCaracteristiques.put(energie, valHyg);
+		float valMor = 0;
+		valMor+=moral.regressionPourcent(25, -3, 50, -2, -1);
+		nouvellesCaracteristiques.put(moral, valMor);
 				
 		//Entretien
 				
