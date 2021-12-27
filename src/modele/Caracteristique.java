@@ -97,4 +97,11 @@ public class Caracteristique implements Serializable {
 		else return 0;
 	}
 	
+	public float regressionPourcent(float pourcentCritique, float retourCritique, float pourcentFaible, float retourFaible, float pourcentFort, float retourFort) {
+		if (min + delta * pourcentCritique >= val) return retourCritique;
+		else if (min + delta * pourcentFaible/100 >= val) return retourFaible;
+		else if (min + delta * pourcentFort/100 >= val) return retourFort;
+		else return 0;
+	}
+	
 }
