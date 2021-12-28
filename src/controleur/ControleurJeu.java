@@ -35,7 +35,7 @@ public class ControleurJeu extends Controleur{
 	
 	public void lancePartie(String type, String nom, boolean triche) {
 		Personnage tamagotchi;
-		if (type.equals(ControleurGeneral.TYPE[0])) {
+		if (type.equals(Robot.class.getSimpleName())) {
 			tamagotchi = new Robot(nom);
 		} else {
 			tamagotchi = new Animal(nom, type);
