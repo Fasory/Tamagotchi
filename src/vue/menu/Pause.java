@@ -118,7 +118,7 @@ public class Pause extends Menu {
 	* Demande de changement de menu. Retour au menu de jeu
 	*/
 	private void cmdReprendre() {
-		ControleurGeneral.ctrlBouton.rqtRetour();
+		ControleurGeneral.ctrlBouton.rqtReprendre();
 	}
 	
 	/**

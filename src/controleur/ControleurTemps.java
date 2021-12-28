@@ -1,8 +1,11 @@
 package controleur;
 
+import modele.ThreadJeu;
+
 public class ControleurTemps extends Controleur {
 	
 	private static boolean estCree = false;					// Repère de création d'une unique instance par type de controleur
+	private ThreadJeu threadJeu;
 
 
 	public ControleurTemps() {
@@ -25,22 +28,18 @@ public class ControleurTemps extends Controleur {
 		thread.start();
 	}
 	
-	public <T, R> void threadMajCaracteristiques(int pause, Runnable action) {
-		Thread thread = new Thread() {
-			
-			@Override
-			public void run() {
-				while (true) {
-					try {
-						Thread.sleep(pause);
-					} catch (InterruptedException err) {
-						ControleurGeneral.ctrlFichier.addLogs("Erreur - échec de la mise en pause du Thread majCaracteristiques", true);
-						ControleurGeneral.ctrlFichier.addLogs(err.toString(), true);
-					}
-					action.run();
-				}
-		    }
-		};
-		thread.start();
+	public void threadMajCaracteristiques(int pause, Runnable action) {
+		threadJeu = new ThreadJeu(pause, action);
+		threadJeu.start();
+	}
+	
+	public void threadJeuPause(boolean pause) {
+		if (pause) threadJeu.suspendre();
+		else threadJeu.reprendre();
+	}
+	
+	public void threadJeuKill() {
+		threadJeu.interrupt();
+		threadJeu = null;
 	}
 }

@@ -8,6 +8,7 @@ import modele.Partie;
 import modele.Personnage;
 import modele.Robot;
 import vue.menu.MenuDeJeu;
+import vue.menu.Pause;
 
 public class ControleurJeu extends Controleur{
 	
@@ -101,7 +102,18 @@ public class ControleurJeu extends Controleur{
 		} catch (IOException err) {
 			ControleurGeneral.ctrlFichier.addLogs("Erreur	-	Ã©chec de sauvegarde de la partie " + partie.getId().toString() + ".save", true);
 			ControleurGeneral.ctrlFichier.addLogs(err.toString(), true);
-			ControleurGeneral.ctrlAffichage.afficherAlerte("general", "La sauvegarde a échouée.");
+			ControleurGeneral.ctrlAffichage.afficherAlerte("general", "La sauvegarde a ï¿½chouï¿½e.");
 		}
+	}
+	
+	public void mettrePause() {
+		ControleurGeneral.ctrlTemps.threadJeuPause(true);
+		ControleurGeneral.ctrlAffichage.ouvrirMenu(new Pause());
+	}
+	
+	
+	public void arreterPause() {
+		ControleurGeneral.ctrlAffichage.menuPrecedent();
+		ControleurGeneral.ctrlTemps.threadJeuPause(false);
 	}
 }

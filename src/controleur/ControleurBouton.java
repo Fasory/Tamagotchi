@@ -11,7 +11,6 @@ import vue.menu.Inscription;
 import vue.menu.MenuPrincipal;
 import vue.menu.Option;
 import vue.menu.OubliMdp;
-import vue.menu.Pause;
 import vue.menu.Politique;
 import vue.menu.QuitterConfirm;
 import vue.menu.SauvegardeConfirm;
@@ -129,7 +128,14 @@ public class ControleurBouton extends Controleur {
 	 * Redirige l'utilisateur vers le menu Pause					<br/>
 	 */
 	public void rqtPause() {
-		ControleurGeneral.ctrlAffichage.ouvrirMenu(new Pause());
+		ControleurGeneral.ctrlJeu.mettrePause();
+	}
+	
+	/**
+	 * Redirige l'utilisateur vers le menu Pause					<br/>
+	 */
+	public void rqtReprendre() {
+		ControleurGeneral.ctrlJeu.arreterPause();
 	}
 	
 	/**
