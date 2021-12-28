@@ -212,3 +212,376 @@ Satut	-	Lancement de l'application
 		-	Création des fenêtres
 		-	Initialisation des contrôleurs complémentaires
 Satut	-	Application opérationnelle
+****************************************
+		-	17:43:07 - 27/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	17:47:00 - 27/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	18:06:11 - 27/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	18:06:59 - 27/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	18:07:36 - 27/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	18:13:50 - 27/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	18:14:16 - 27/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	18:14:37 - 27/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	18:14:49 - 27/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	18:22:30 - 27/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	18:23:14 - 27/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	18:24:40 - 27/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	18:33:45 - 27/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	18:34:02 - 27/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	18:34:45 - 27/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	18:35:35 - 27/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	18:36:04 - 27/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	19:16:53 - 27/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	19:17:29 - 27/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	19:17:40 - 27/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	19:17:55 - 27/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	19:23:37 - 27/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	19:24:19 - 27/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	19:25:02 - 27/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	19:25:26 - 27/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	19:26:18 - 27/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	19:32:47 - 27/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	19:33:39 - 27/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	19:35:41 - 27/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	19:36:04 - 27/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	19:36:36 - 27/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	19:50:56 - 27/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	19:51:18 - 27/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	20:06:08 - 27/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	20:17:30 - 27/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	21:44:15 - 27/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	22:05:36 - 27/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	22:22:26 - 27/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	22:22:43 - 27/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	22:22:53 - 27/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	23:03:25 - 27/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+Erreur - échec de lecture du fcihier e0e8d9e6-24b5-4b1d-95ab-1c948182796b.save
+java.io.InvalidClassException: modele.Caracteristique; local class incompatible: stream classdesc serialVersionUID = -5997753779128996096, local class serialVersionUID = -5656927669303942308
+****************************************
+		-	23:03:37 - 27/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	23:03:46 - 27/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	23:07:11 - 27/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	23:07:27 - 27/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	23:10:34 - 27/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	23:10:52 - 27/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	23:11:40 - 27/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	23:27:40 - 27/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	23:29:44 - 27/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	23:31:49 - 27/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	23:41:43 - 27/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	23:41:53 - 27/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle

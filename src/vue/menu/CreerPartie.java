@@ -82,7 +82,7 @@ public class CreerPartie extends Menu {
 		gbc.gridy = 0;
 		gbc.anchor = GridBagConstraints.BASELINE_LEADING;
 		gbc.insets = new Insets(15, 10, 0, 0);
-		for (String elt: ControleurGeneral.TYPE) {
+		for (String elt: ControleurGeneral.TYPE.keySet()) {
 			CustomRadioBtn rad = new CustomRadioBtn(elt);
 			rad.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent evt) {
@@ -315,7 +315,7 @@ public class CreerPartie extends Menu {
 	 */
 	public void selectionType(int rng) {
 		grpType.clearSelection();
-		listRadio.get(ControleurGeneral.TYPE[rng]).setSelected(true);
+		listRadio.get(ControleurGeneral.TYPE.keySet().toArray()[rng]).setSelected(true);
 		cmdChoixType();
 	}
 }

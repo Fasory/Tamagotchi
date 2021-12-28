@@ -16,8 +16,12 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import controleur.ControleurFichier;
 import controleur.ControleurGeneral;
+import modele.Partie;
+import modele.Personnage;
 import vue.modele.CustomRadioBtn;
+import vue.modele.CustomRadioPanel;
 
 public class SelecPartie extends Menu {
 	private ButtonGroup grpPanel;
@@ -35,73 +39,27 @@ public class SelecPartie extends Menu {
 		gbc.anchor = GridBagConstraints.BASELINE;
 		gbc.insets = new Insets(0, 0, 10, 30);
 		add(lbCredits, gbc);
-
-	    JPanel partie1 = new JPanel();
-	   
-	    partie1.setBorder(new TitledBorder("Partie 1"));
-	    partie1.setBackground(Color.white);
-	    partie1.setSize(420,240);
-	    partie1.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),"Partie 1", TitledBorder.CENTER, TitledBorder.TOP));
-	    
-	    
-	    gbc.gridx = 0;
-		gbc.gridy++;
-	    setVisible(true);
-	    add(partie1,gbc);
-	    gbc.anchor = GridBagConstraints.BASELINE;
-	    
-	    JLabel nom = new JLabel("Nom : 'nom'       Age : 'age'");
-	    gbc.insets = new Insets(0, 0, 10, 30);
-	    partie1.add(nom);
-	    
-	    JPanel partie2 = new JPanel();
 		
-	    partie2.setBorder(new TitledBorder("Partie 2"));
-	    partie2.setBackground(Color.white);
-	    setSize(200,100);
-	    
-	    gbc.gridx = 0;
-		gbc.gridy++;
-	    setVisible(true);
-	    add(partie2,gbc);
-	    gbc.anchor = GridBagConstraints.BASELINE;
-	    
-	    JLabel nom2 = new JLabel("Nom : 'nom'       Age : 'age'");
-	    gbc.insets = new Insets(0, 0, 10, 30);
-	    partie2.add(nom2);
-	    
-	    
-	    
-	    
-	    JPanel partie3 = new JPanel();
-		
-	    partie3.setBorder(new TitledBorder("Partie 3"));
-	    partie3.setBackground(Color.white);
-	    setSize(200,100);
-	    
-	    gbc.gridx = 0;
-		gbc.gridy++;
-	    setVisible(true);
-	    add(partie3,gbc);
-	    gbc.anchor = GridBagConstraints.BASELINE;
-	    
-	    JLabel nom3 = new JLabel("Nom : 'nom'       Age : 'age'");
-	    gbc.insets = new Insets(0, 0, 10, 30);
-	    partie3.add(nom3);
 	    
 	    // Bouton radio
 	    grpPanel = new ButtonGroup();
 		gbc.fill = GridBagConstraints.NONE;
-		gbc.gridx = 1;
+		gbc.gridx = 0;
 		gbc.gridy = 1;
 		gbc.anchor = GridBagConstraints.BASELINE_LEADING;
 		gbc.insets = new Insets(15, 10, 0, 0);
-		for (UUID elt: ids) {
-			CustomRadioBtn rad = new CustomRadioBtn("");
-			rad.setActionCommand(elt.toString());
-			add(rad,gbc);
-			grpPanel.add(rad);
-			gbc.gridy++;
+		for (UUID elt : ids) {
+			try {
+				Personnage tamagotchi = ((Partie) ControleurGeneral.ctrlFichier.chargerObjet(elt + ".save", ControleurFichier.REP_SAUVEGARDE)).getTamagotchi();
+				CustomRadioPanel panelPartie = new CustomRadioPanel("Partie 1", tamagotchi.getNom(), tamagotchi.getType(), (int) tamagotchi.getAge().getValeur(), (int) tamagotchi.getVie().getValeur());
+				panelPartie.setActionCommand(elt.toString());
+				add(panelPartie, gbc);
+				grpPanel.add(panelPartie);
+				gbc.gridy++;
+			} catch (Exception err) {
+				ControleurGeneral.ctrlFichier.addLogs("Erreur - échec de lecture du fcihier " + elt.toString() + ".save", true);
+				ControleurGeneral.ctrlFichier.addLogs(err.toString(), true);
+			}
 		}
 	    /*
 	    JRadioButton choix1 = new JRadioButton();
@@ -142,7 +100,7 @@ public class SelecPartie extends Menu {
 		add(choix3, gbc);
 		*/
 		JPanel buttons = new JPanel();
-		gbc.gridy = 1;
+		gbc.gridy++;
 	    add(buttons,gbc);
 	    JButton btnsupprimer = new JButton("Supprimer la partie");
 		gbc.gridx = 0;

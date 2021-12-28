@@ -278,7 +278,7 @@ public class ControleurBouton extends Controleur {
 	
 	public void rqtRandomType() {
 		Random rng = new Random();
-		ControleurGeneral.ctrlAffichage.changeType(rng.nextInt(ControleurGeneral.TYPE.length));
+		ControleurGeneral.ctrlAffichage.changeType(rng.nextInt(ControleurGeneral.TYPE.size()));
 	}
 	
 	/**

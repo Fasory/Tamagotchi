@@ -1,5 +1,6 @@
 package controleur;
 
+import java.util.LinkedHashMap;
 import java.util.Properties;
 
 import javax.mail.Authenticator;
@@ -20,7 +21,7 @@ public class ControleurGeneral extends Controleur {
 	// Constantes
 	public final static int TEMPS_MAJ = 500;			// Temps en milliseconde de pause entre chaque mise à jour du Tamagotchi
 	public final static int NB_MAX_PARTIE = 3;
-	public final static String[] TYPE = {"Robot","Lapin", "Chat", "Dinosaure"};
+	public final static LinkedHashMap<String, String> TYPE = new LinkedHashMap<String, String>();
 	public final static String NOM_ANONYME = "Anonyme";					  
 	public final static String STR_UUID_ANONYME = "00000000-0000-0000-0000-000000000000";
 	public final static boolean BY_PASS = true;			// Valable que pour la version de développement, il permet de passé oûtre les confirmations
@@ -43,6 +44,14 @@ public class ControleurGeneral extends Controleur {
 	private ControleurGeneral() {
 		super(estCree);
 		estCree = true;
+		// Initialisation des constantes incomplètes
+		String[][] ref = {
+				{"Robot", "robot.png"},
+				{"Lapin", "lapin.png"},
+				{"Chat", "chat.png"},
+				{"Dinosaure", "dinosaure.png"}
+		};
+		for (String[] paire : ref) TYPE.put(paire[0], paire[1]);
 		// Lancement de l'application
 		ctrlFichier = new ControleurFichier();
 		ctrlSecurite = new ControleurSecurite();

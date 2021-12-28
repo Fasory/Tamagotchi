@@ -1,9 +1,15 @@
 package vue.modele;
 
 import java.awt.Color;
+import java.awt.Font;
+import java.awt.FontFormatException;
+import java.io.IOException;
 
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
+
+import controleur.ControleurFichier;
+import controleur.ControleurGeneral;
 
 public abstract class CustomStyle {
 
@@ -27,11 +33,29 @@ public abstract class CustomStyle {
 	public final static Color ALPHA = new Color(0, 0, 0, 0);
 	public final static Color ROSE_FOND = new Color(255,222,233);
 	
+	
+	public static Font getFont(float taille) {
+		Font police;
+		try {
+			police = Font.createFont(Font.PLAIN, ControleurFichier.FONT_KAWAII);
+			police = police.deriveFont(taille);
+			return police;
+		} catch (FontFormatException | IOException err) {
+	    	ControleurGeneral.ctrlFichier.addLogs("Erreur - échec lors de la création de la Font", true);
+	    	ControleurGeneral.ctrlFichier.addLogs(err.toString(), true);
+			return null;
+		}
+	}
+	
+	
+	public static Font getFont() {
+		return getFont(15f);
+	}
+	
 	////////////////////////////////////////
 	//            DEFINITION DES          //
 	//                STYLES              //        
 	////////////////////////////////////////
-	
 	/**
 	 * Initialisation du style pour le texte par défaut
 	 * @return SimpleAttributSet - style appliqué par défaut
