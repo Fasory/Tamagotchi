@@ -93,4 +93,15 @@ public class ControleurJeu extends Controleur{
 	public void majAffichage() {
 		getMenu().setAll(partie.getTamagotchi().getCaracteristiques(), partie.getTamagotchi().getVie());
 	}
+	
+	public void sauvegardePartie()  {
+		try {
+			ControleurGeneral.ctrlFichier.enregistrerObjet(partie, partie.getId().toString() + ".save", ControleurFichier.REP_SAUVEGARDE);
+			ControleurGeneral.ctrlBouton.rqtRetourConfirmation();
+		} catch (IOException err) {
+			ControleurGeneral.ctrlFichier.addLogs("Erreur	-	Ã©chec de sauvegarde de la partie " + partie.getId().toString() + ".save", true);
+			ControleurGeneral.ctrlFichier.addLogs(err.toString(), true);
+			ControleurGeneral.ctrlAffichage.afficherAlerte("general", "La sauvegarde a échouée.");
+		}
+	}
 }

@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class Caracteristique implements Serializable {
 	
 	private final String nom;
-	private final String modifieur;
+	private String modifieur;
 	private float val;
 	private final float min;
 	private final float max;
@@ -81,6 +81,12 @@ public class Caracteristique implements Serializable {
 			this.val = val;
 		}
 	}
+	
+	
+	public void setModifieur(String mod) {
+		this.modifieur = mod;
+	}
+	
 	
 	public void add(float val) {
 		setValeur(coef*val+this.val);

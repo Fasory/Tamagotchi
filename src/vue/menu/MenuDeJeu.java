@@ -262,7 +262,20 @@ public class MenuDeJeu extends Menu {
 		gbc.gridx = 0;
 		gbc.gridy = 0;
 		panelCara2.add(labelVie, gbc);
-			
+		
+		
+		JButton buttonPause = new JButton("Pause");
+		gbc.gridx = 2;
+		gbc.gridy = 0;
+		gbc.anchor = GridBagConstraints.BASELINE_LEADING;
+		buttonPause.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				cmdPause();
+			}
+		});
+		panelCara2.add(buttonPause, gbc);
+		
+		
 		
 		barreVie = new CustomProgressBar(0, 100);
 		barreVie.setValue(ptsVie);
@@ -378,6 +391,13 @@ public class MenuDeJeu extends Menu {
 	
 	private void cmdAction(String caracteristique) {
 		ControleurGeneral.ctrlJeu.rqtAction(caracteristique);
+	}
+	
+	/**
+	 * Demande de changement de menu : Menu pause
+	 */
+	public void cmdPause() {
+		ControleurGeneral.ctrlBouton.rqtPause();	
 	}
 	
 	

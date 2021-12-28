@@ -8,10 +8,13 @@ import vue.menu.Credits;
 import vue.menu.CreerPartie;
 import vue.menu.DeconnexionConfirm;
 import vue.menu.Inscription;
+import vue.menu.MenuPrincipal;
 import vue.menu.Option;
 import vue.menu.OubliMdp;
+import vue.menu.Pause;
 import vue.menu.Politique;
 import vue.menu.QuitterConfirm;
+import vue.menu.SauvegardeConfirm;
 import vue.menu.Score;
 import vue.menu.SelecPartie;
 import vue.menu.SupressionCompteConfirm;
@@ -123,13 +126,34 @@ public class ControleurBouton extends Controleur {
 	}
 	
 	/**
+	 * Redirige l'utilisateur vers le menu Pause					<br/>
+	 */
+	public void rqtPause() {
+		ControleurGeneral.ctrlAffichage.ouvrirMenu(new Pause());
+	}
+	
+	/**
+	 * Redirige l'utilisateur vers le menu Principal					<br/>
+	 */
+	public void rqtMenuPrincipal() {
+		ControleurGeneral.ctrlAffichage.ouvrirMenu(new MenuPrincipal(ControleurGeneral.ctrlConnexion.isAnonyme()));
+	}
+	
+	
+	/**
+	 * Redirige l'utilisateur vers le menu Principal					<br/>
+	 */
+	public void rqtAfficheSauvegardeMenu() {
+		ControleurGeneral.ctrlAffichage.ouvrirMenuConfirmation(new SauvegardeConfirm());
+	}
+	
+	
+	/**
 	 * Redirige l'utilisateur vers le menu précédent						<br/>
 	 */
 	public void rqtRetour() {
 		ControleurGeneral.ctrlAffichage.menuPrecedent();
 	}
-	
-	
 	
 	
 	////////////////////////////////////////
@@ -275,4 +299,10 @@ public class ControleurBouton extends Controleur {
 		ControleurGeneral.quitter();
 	}
 	
+	/**
+	 * Sauvegarde une partie
+	 */
+	public void rqtSauvegarde() {
+		ControleurGeneral.ctrlJeu.sauvegardePartie();
+	}
 }

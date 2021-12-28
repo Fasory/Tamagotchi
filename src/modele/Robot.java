@@ -11,8 +11,8 @@ public class Robot extends Personnage{
 		super(nom, "Robot"); 
 		this.entretien = new Caracteristique(entretien, "Entretien", "Reparer", 0, 100);
 		caracteristiques.put(this.entretien.getNom(), this.entretien);	
-		this.hygiene = new Caracteristique(hygiene, "Hygiene", "Nettoyer", 0, 100);	
-		this.energie = new Caracteristique(energie, "Moral", "Brancher", 0, 100);	
+		this.hygiene.setModifieur("Nettoyer");
+		this.energie.setModifieur("Brancher");
 	}
 	
 	public Robot(String nom){
