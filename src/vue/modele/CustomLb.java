@@ -63,11 +63,18 @@ public class CustomLb extends JLabel {
 	}
 	
 	@Override
+	public void setBackground(Color couleur) {
+		super.setBackground(couleur);
+		couleur_background = couleur;
+	}
+	
+	@Override
 	public void paintComponent(Graphics graphParam) {
 		setForeground(couleur_foreground);
 		Graphics2D graph = (Graphics2D) graphParam;
 		if (!getText().trim().equals("")) {
 			Dimension size = getSize();
+			setSize(size);
 			graph.setColor(couleur_background);
 			graph.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 			graph.fillRoundRect(0, 0, size.width, size.height, size.height, size.height);

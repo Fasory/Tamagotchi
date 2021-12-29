@@ -1,6 +1,7 @@
 package controleur;
 
 import java.io.IOException;
+import java.util.UUID;
 
 import modele.Animal;
 import modele.Caracteristique;
@@ -9,6 +10,7 @@ import modele.Personnage;
 import modele.Robot;
 import vue.menu.MenuDeJeu;
 import vue.menu.Pause;
+import vue.menu.SelecPartie;
 
 public class ControleurJeu extends Controleur{
 	
@@ -44,6 +46,7 @@ public class ControleurJeu extends Controleur{
 		partie = new Partie(tamagotchi, triche);
 		try {
 			ControleurGeneral.ctrlFichier.enregistrerObjet(partie, partie.getId().toString() + ".save", ControleurFichier.REP_SAUVEGARDE);
+			ControleurGeneral.ctrlConnexion.enregistrerCompte();
 		} catch (IOException err) {
 			ControleurGeneral.ctrlFichier.addLogs("Erreur	-	échec de sauvegarde de la partie " + partie.getId().toString() + ".save", true);
 			ControleurGeneral.ctrlFichier.addLogs(err.toString(), true);
@@ -115,5 +118,17 @@ public class ControleurJeu extends Controleur{
 	public void arreterPause() {
 		ControleurGeneral.ctrlAffichage.menuPrecedent();
 		ControleurGeneral.ctrlTemps.threadJeuPause(false);
+	}
+	
+	public void rqtSupprimerPartie(String id) {
+		try {
+			ControleurGeneral.ctrlFichier.supprimerFichier(id + ".save", ControleurFichier.REP_SAUVEGARDE);
+		} catch (Exception err) {
+			ControleurGeneral.ctrlFichier.addLogs("Erreur	-	échec de suppression du fichier " + partie.getId().toString() + ".save", true);
+			ControleurGeneral.ctrlFichier.addLogs(err.toString(), true);
+		}
+		ControleurGeneral.ctrlConnexion.getCompte().supprPartieId(UUID.fromString(id));
+		ControleurGeneral.ctrlConnexion.enregistrerCompte();
+		ControleurGeneral.ctrlAffichage.ouvrirMenu(new SelecPartie(ControleurGeneral.ctrlConnexion.getCompte().getPartiesId()), 1);
 	}
 }

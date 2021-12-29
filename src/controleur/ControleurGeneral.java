@@ -20,7 +20,7 @@ public class ControleurGeneral extends Controleur {
 	
 	// Constantes
 	public final static int TEMPS_MAJ = 500;			// Temps en milliseconde de pause entre chaque mise à jour du Tamagotchi
-	public final static int NB_MAX_PARTIE = 3;
+	public final static int NB_MAX_PARTIE = 4;
 	public final static LinkedHashMap<String, String> TYPE = new LinkedHashMap<String, String>();
 	public final static String NOM_ANONYME = "Anonyme";					  
 	public final static String STR_UUID_ANONYME = "00000000-0000-0000-0000-000000000000";

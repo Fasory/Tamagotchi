@@ -45,4 +45,10 @@ public class CustomPanel extends JPanel {
 		graph.fillRoundRect(0, 0, size.width, size.height, arrondi, arrondi);
 		super.paintComponent(graphParam);
 	}
+	
+	@Override
+	public void setBackground(Color couleur) {
+		couleur_background = couleur;
+		super.setBackground(couleur);
+	}
 }

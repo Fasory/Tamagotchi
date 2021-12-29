@@ -191,10 +191,23 @@ public class ControleurConnexion extends Controleur {
 	public void confirmationSuppressionCompte() {
 		ControleurGeneral.ctrlAffichage.fermerMenuConfirmation();
 		lsCompte.remove(compte.getUtilisateur());
-		ControleurGeneral.ctrlFichier.supprimerFichier(compte.getId().toString() + ".usr", ControleurFichier.REP_JOUEUR);
+		try {
+			ControleurGeneral.ctrlFichier.supprimerFichier(compte.getId().toString() + ".usr", ControleurFichier.REP_JOUEUR);
+		} catch (Exception err) {
+			ControleurGeneral.ctrlFichier.addLogs("Erreur	-	échec de suppression du fichier " + compte.getId().toString() + ".usr", true);
+			ControleurGeneral.ctrlFichier.addLogs(err.toString(), true);
+		}
 		for (UUID id : compte.getPartiesId()) {
-			if (id != null) ControleurGeneral.ctrlFichier.supprimerFichier(id.toString() + ".save", ControleurFichier.REP_SAUVEGARDE);
-			else break;
+			if (id != null) {
+				try {
+					ControleurGeneral.ctrlFichier.supprimerFichier(id.toString() + ".save", ControleurFichier.REP_SAUVEGARDE);
+				} catch (Exception err) {
+					ControleurGeneral.ctrlFichier.addLogs("Erreur	-	échec de suppression du fichier " + id.toString() + ".save", true);
+					ControleurGeneral.ctrlFichier.addLogs(err.toString(), true);
+				}
+			} else {
+				break;
+			}
 		}
 		compte = null;
 		ControleurGeneral.ctrlAffichage.menuPrecedent();

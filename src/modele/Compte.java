@@ -84,4 +84,8 @@ public class Compte extends ObjectId implements Serializable {
 	public HashSet<UUID> getPartiesId() {
 		return partiesId;
 	}
+	
+	public void supprPartieId(UUID id) {
+		partiesId.remove(id);
+	}
 }

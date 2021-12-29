@@ -286,17 +286,12 @@ public class ControleurFichier extends Controleur {
 		return lsCompte;
 	}
 	
-	public void supprimerFichier(String nom, File rep) {
+	public void supprimerFichier(String nom, File rep) throws Exception {
 		File fichier = new File(rep, nom);
 		if (fichierExiste(fichier)) {
-			try {
-				if(!fichier.delete()) throw new Exception("Le fichier n'a pas pu être supprimé");
-			} catch (Exception err) {
-				addLogs("Erreur	-	échec de suppression du fichier " + fichier.getPath(), true);
-				addLogs(err.toString(), true);
-			}
+			if(!fichier.delete()) throw new Exception("Le fichier n'a pas pu être supprimé");
 		} else {
-			addLogs("Warning	-	le fichier " + fichier.getPath() + " n'existe pas", true);
+			throw new Exception("Le fichier n'existe pas");
 		}
 	}
 }
