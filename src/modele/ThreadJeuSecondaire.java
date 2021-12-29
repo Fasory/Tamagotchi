@@ -5,14 +5,15 @@ import controleur.ControleurGeneral;
 public class ThreadJeuSecondaire extends Thread {
 	
 	private boolean threadSuspendre = false;
-	
+
+	private final long PRECISION = 100;
 	private final Runnable action;
-	private long pause;
+	private final long pause;
 	
 	
 	public ThreadJeuSecondaire(int pause, Runnable action) {
 		super();
-		this.pause = pause*10;	// Car on effectue les pauses durant 100ms par 100ms
+		this.pause = pause;	// Car on effectue les pauses durant 100ms par 100ms
 		this.action = action;
 	}
 	
@@ -20,8 +21,8 @@ public class ThreadJeuSecondaire extends Thread {
 	@Override
 	public void run() {
 		try {
-			for (int i = 0; i < pause; i++) {
-				Thread.sleep(100);
+			for (int i = 0; i < pause; i += PRECISION) {
+				Thread.sleep(PRECISION);
 				if (threadSuspendre) synchronized(this) {
 					while (threadSuspendre) wait();
 					if (isInterrupted()) break;

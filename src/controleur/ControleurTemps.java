@@ -9,7 +9,7 @@ public class ControleurTemps extends Controleur {
 	
 	private static boolean estCree = false;					// Repère de création d'une unique instance par type de controleur
 	private ThreadJeu threadJeu;
-	private Vector<ThreadJeuSecondaire> threadJeuSecondaire;
+	private static Vector<ThreadJeuSecondaire> threadJeuSecondaire;
 
 
 	public ControleurTemps() {
@@ -41,7 +41,11 @@ public class ControleurTemps extends Controleur {
 	}
 	
 	public void addThreadJeu(int pause, Runnable action) {
+		Vector<ThreadJeuSecondaire> deleteThread = new Vector<ThreadJeuSecondaire>();
 		for (ThreadJeuSecondaire thread : threadJeuSecondaire) {
+			if (thread.getState() == Thread.State.TERMINATED) deleteThread.add(thread);
+		}
+		for (ThreadJeuSecondaire thread : deleteThread) {
 			if (thread.getState() == Thread.State.TERMINATED) threadJeuSecondaire.remove(thread);
 		}
 		threadJeuSecondaire.add(new ThreadJeuSecondaire(pause, action));
@@ -49,18 +53,22 @@ public class ControleurTemps extends Controleur {
 	}
 	
 	public void threadJeuPause(boolean pause) {
+		Vector<ThreadJeuSecondaire> deleteThread = new Vector<ThreadJeuSecondaire>();
 		if (pause) {
 			threadJeu.suspendre();
 			for (ThreadJeuSecondaire thread : threadJeuSecondaire) {
-				if (thread.getState() == Thread.State.TERMINATED) threadJeuSecondaire.remove(thread);
+				if (thread.getState() == Thread.State.TERMINATED) deleteThread.add(thread);
 				else thread.suspendre();
 			}
 		} else {
 			threadJeu.reprendre();
 			for (ThreadJeuSecondaire thread : threadJeuSecondaire) {
-				if (thread.getState() == Thread.State.TERMINATED) threadJeuSecondaire.remove(thread);
+				if (thread.getState() == Thread.State.TERMINATED) deleteThread.add(thread);
 				else thread.reprendre();
 			}
+		}
+		for (ThreadJeuSecondaire thread : deleteThread) {
+			if (thread.getState() == Thread.State.TERMINATED) threadJeuSecondaire.remove(thread);
 		}
 	}
 	

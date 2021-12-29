@@ -57,7 +57,7 @@ public class CustomProgressBar extends JProgressBar {
 	
 	@Override
 	public void setBackground(Color couleur) {
-		couleur_background = couleur;
+		couleur_fond = couleur;
 	}
 	
 	@Override

@@ -405,11 +405,11 @@ public class MenuDeJeu extends Menu {
 		ControleurGeneral.ctrlJeu.rqtAction(caracteristique);
 		String action = "restaure : "+caracteristique;
 		ControleurGeneral.ctrlAffichage.modifLabel(labelAction, action);
-		// désactive les btn après le lancement d'une première action
+		// dï¿½sactive les btn aprï¿½s le lancement d'une premiï¿½re action
 		btns.forEach((k, v) -> {
 			ControleurGeneral.ctrlAffichage.rqtComposantActif(this,v, false);
 		});
-		// Réactivation des btns avec un timer
+		// Rï¿½activation des btns avec un timer
 		Menu menu = this;
 		ControleurGeneral.ctrlTemps.addThreadJeu(5000, new Runnable(){
 			  @Override
