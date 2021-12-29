@@ -124,7 +124,7 @@ public class ControleurJeu extends Controleur{
 		try {
 			ControleurGeneral.ctrlFichier.supprimerFichier(id + ".save", ControleurFichier.REP_SAUVEGARDE);
 		} catch (Exception err) {
-			ControleurGeneral.ctrlFichier.addLogs("Erreur	-	échec de suppression du fichier " + partie.getId().toString() + ".save", true);
+			ControleurGeneral.ctrlFichier.addLogs("Erreur	-	échec de suppression du fichier " + id + ".save", true);
 			ControleurGeneral.ctrlFichier.addLogs(err.toString(), true);
 		}
 		ControleurGeneral.ctrlConnexion.getCompte().supprPartieId(UUID.fromString(id));

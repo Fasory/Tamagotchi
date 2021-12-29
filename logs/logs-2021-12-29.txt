@@ -1,0 +1,213 @@
+****************************************
+		-	02:03:37 - 29/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+Erreur - échec de lecture du fcihier ad835d2b-f71e-43d6-baae-bfc4e160e8d7.save
+java.io.StreamCorruptedException: invalid stream header: EFBFBDEF
+****************************************
+		-	02:05:52 - 29/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+Erreur - échec de lecture du fcihier ad835d2b-f71e-43d6-baae-bfc4e160e8d7.save
+java.io.StreamCorruptedException: invalid stream header: EFBFBDEF
+****************************************
+		-	02:08:07 - 29/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+Erreur - échec de lecture du fcihier ad835d2b-f71e-43d6-baae-bfc4e160e8d7.save
+java.io.StreamCorruptedException: invalid stream header: EFBFBDEF
+****************************************
+		-	02:08:32 - 29/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+Erreur - échec de lecture du fcihier ad835d2b-f71e-43d6-baae-bfc4e160e8d7.save
+java.io.StreamCorruptedException: invalid stream header: EFBFBDEF
+****************************************
+		-	02:10:18 - 29/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+Erreur - échec de lecture du fcihier ad835d2b-f71e-43d6-baae-bfc4e160e8d7.save
+java.io.StreamCorruptedException: invalid stream header: EFBFBDEF
+****************************************
+		-	02:12:44 - 29/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+Erreur - échec de lecture du fcihier ad835d2b-f71e-43d6-baae-bfc4e160e8d7.save
+java.io.StreamCorruptedException: invalid stream header: EFBFBDEF
+****************************************
+		-	02:18:31 - 29/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+Erreur - échec de lecture du fcihier ad835d2b-f71e-43d6-baae-bfc4e160e8d7.save
+java.io.StreamCorruptedException: invalid stream header: EFBFBDEF
+****************************************
+		-	02:23:19 - 29/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	02:23:49 - 29/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+Erreur - échec de lecture du fcihier ad835d2b-f71e-43d6-baae-bfc4e160e8d7.save
+java.io.StreamCorruptedException: invalid stream header: EFBFBDEF
+****************************************
+		-	02:24:50 - 29/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+Erreur - échec de lecture du fcihier ad835d2b-f71e-43d6-baae-bfc4e160e8d7.save
+java.io.StreamCorruptedException: invalid stream header: EFBFBDEF
+****************************************
+		-	02:25:27 - 29/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+Erreur - échec de lecture du fcihier ad835d2b-f71e-43d6-baae-bfc4e160e8d7.save
+java.io.StreamCorruptedException: invalid stream header: EFBFBDEF
+****************************************
+		-	02:26:52 - 29/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+Erreur - échec de lecture du fcihier ad835d2b-f71e-43d6-baae-bfc4e160e8d7.save
+java.io.StreamCorruptedException: invalid stream header: EFBFBDEF
+****************************************
+		-	02:31:03 - 29/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+Erreur - échec de lecture du fcihier ad835d2b-f71e-43d6-baae-bfc4e160e8d7.save
+java.io.FileNotFoundException: data\save\ad835d2b-f71e-43d6-baae-bfc4e160e8d7.save (Le fichier spécifié est introuvable)
+Erreur - échec de lecture du fcihier ad835d2b-f71e-43d6-baae-bfc4e160e8d7.save
+java.io.FileNotFoundException: data\save\ad835d2b-f71e-43d6-baae-bfc4e160e8d7.save (Le fichier spécifié est introuvable)
+****************************************
+		-	02:32:36 - 29/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+Erreur - échec de lecture du fcihier ad835d2b-f71e-43d6-baae-bfc4e160e8d7.save
+java.io.FileNotFoundException: data\save\ad835d2b-f71e-43d6-baae-bfc4e160e8d7.save (Le fichier spécifié est introuvable)
+Erreur	-	échec de suppression du fichier ad835d2b-f71e-43d6-baae-bfc4e160e8d7.save
+java.lang.Exception: Le fichier n'existe pas
+****************************************
+		-	02:33:32 - 29/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	02:37:12 - 29/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+Erreur - échec de lecture du fcihier 08a5c165-f8c0-48bd-9034-3b2270e3f688.save
+java.io.FileNotFoundException: data\save\08a5c165-f8c0-48bd-9034-3b2270e3f688.save (Le fichier spécifié est introuvable)
+****************************************
+		-	02:37:35 - 29/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	02:39:35 - 29/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	02:41:29 - 29/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	02:41:49 - 29/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	02:42:27 - 29/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	02:42:40 - 29/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	02:43:52 - 29/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+Erreur - échec de lecture du fcihier 68d5a357-97b7-4c8e-acbf-479737224770.save
+java.io.FileNotFoundException: data\save\68d5a357-97b7-4c8e-acbf-479737224770.save (Le fichier spécifié est introuvable)
+Erreur	-	échec de suppression du fichier 68d5a357-97b7-4c8e-acbf-479737224770.save
+java.lang.Exception: Le fichier n'existe pas
+****************************************
+		-	02:44:08 - 29/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	02:44:21 - 29/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+Erreur - échec de lecture du fcihier 14eca3e5-e845-488b-9417-97b3d97e6c0c.save
+java.io.StreamCorruptedException: invalid stream header: EFBFBDEF
