@@ -36,7 +36,7 @@ public class CustomRadioPanel extends JRadioButton {
 	private Color couleur_interne;
 	private CustomPanel panel;
 	private CustomLb lbInfo;
-	private static Dimension sizeRef = (new CustomRadioPanel(" ", "Robot", 0, 0, false)).panel.getPreferredSize();
+	private static Dimension sizeRef = (new CustomRadioPanel(" ", "Robot", 0, 0, false)).panel.getPreferredSize();	// Taille référent pour les RadioPanel vide
 	
 	
 	public CustomRadioPanel(String nom, String type, int age, int vie, boolean triche) {

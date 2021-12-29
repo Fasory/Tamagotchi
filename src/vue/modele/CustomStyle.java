@@ -32,6 +32,9 @@ public abstract class CustomStyle {
 	public final static Color GRIS_ALPHA = new Color(199, 199, 199, 200);
 	public final static Color ALPHA = new Color(0, 0, 0, 0);
 	public final static Color ROSE_FOND = new Color(255,222,233);
+	public final static Color VERT_DEFAUT = new Color(39, 174, 96);
+	public final static Color JAUNE_DEFAUT = new Color(241, 196, 15);
+	public final static Color ORANGE_DEFAUT = new Color(220, 118, 51);
 	
 	
 	public static Font getFont(float taille) {

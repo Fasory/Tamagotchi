@@ -9,7 +9,6 @@ import java.util.HashSet;
 import java.util.UUID;
 
 import javax.swing.ButtonGroup;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import controleur.ControleurFichier;
