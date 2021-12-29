@@ -82,6 +82,11 @@ public class ControleurJeu extends Controleur{
 	public void rqtAction(String clef) {
 		Caracteristique caracteristique = partie.getTamagotchi().getCaracteristique(clef);
 		caracteristique.add((float) ((caracteristique.getMax()-caracteristique.getMin())*0.15));
+		//Baisse energie
+		if (caracteristique.getNom()!="Energie") {
+			Caracteristique energ = partie.getTamagotchi().getCaracteristique("Energie");
+			energ.add(-5);
+		}
 		// Update Affichage
 		majAffichage();
 	}

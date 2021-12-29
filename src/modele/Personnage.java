@@ -138,4 +138,7 @@ public abstract class Personnage implements Serializable {
 	public abstract Hashtable<Caracteristique, Float> reglesVie();
 	
 	
+	public void baisseEnergie() {
+		energie.add(-5);
+	}
 }
