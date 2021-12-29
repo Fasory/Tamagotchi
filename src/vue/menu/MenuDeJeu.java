@@ -6,18 +6,24 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Enumeration;
 import java.util.Hashtable;
+import java.util.LinkedHashMap;
 import java.util.Vector;
 import java.awt.Color;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.Timer;
 
+import controleur.ControleurAffichage;
 import controleur.ControleurGeneral;
 import modele.Caracteristique;
 import modele.Personnage;
 import vue.modele.CustomProgressBar;
+import vue.modele.CustomStyle;
 
 
 public class MenuDeJeu extends Menu {
@@ -31,6 +37,7 @@ public class MenuDeJeu extends Menu {
 	private Hashtable<String, CustomProgressBar> barres;
 	private Hashtable<String, JButton> btns;
 	private CustomProgressBar barreVie;
+	
 	
 	/**
 	 * Constructeur
@@ -53,7 +60,7 @@ public class MenuDeJeu extends Menu {
 		gbc.weighty = 1;								// Espace qu'occupe l'objet dans l'axe y entre 0 et 1 de la cellule (1 -> 100%, 0 -> 0%)
 		gbc.insets = new Insets(20, 20, 20, 10);		// Espacement autour du panel en px, respectivement : top, left, bottom, right
 		gbc.fill = GridBagConstraints.VERTICAL;			// Prend toute la place dispo
-		add(buildPanelGauche(tamagotchi.getNom(), "Type", "Humeur", "Lieu"), gbc);
+		add(buildPanelGauche(tamagotchi.getNom(), "Type", "Humeur", "Chambre"), gbc);
 		
 		
 		// Ajout du panel droit
@@ -277,11 +284,13 @@ public class MenuDeJeu extends Menu {
 		
 		
 		
-		barreVie = new CustomProgressBar(0, 100);
+		barreVie = new CustomProgressBar(0, 100,true);
 		barreVie.setValue(ptsVie);
 		gbc.gridx = 0;
 		gbc.gridy = 1;
 		gbc.insets = new Insets(10, 10, 10, 0);		// Espacement autour du panel en px, respectivement : top, left, bottom, right
+		barreVie.setForeground(CustomStyle.VERT_DEFAUT);
+		barreVie.setBackground(CustomStyle.ROUGE_DEFAUT);
 		panelCara2.add(barreVie, gbc);
 		
 		
@@ -382,22 +391,41 @@ public class MenuDeJeu extends Menu {
 	/*
 	 * Demande d'une requÃªte liÃ©e au bouton btnLieuG	<br/>
 	 */
-	private void cmdLieuG() {}
+	private void cmdLieuG() {
+
+	}
 	
 	/*
 	 * Demande d'une requÃªte liÃ©e au bouton btnLieuD	<br/>
 	 */
-	private void cmdLieuD() {}
+	private void cmdLieuD() {
+	}
 	
 	private void cmdAction(String caracteristique) {
 		ControleurGeneral.ctrlJeu.rqtAction(caracteristique);
+		String action = "restaure : "+caracteristique;
+		ControleurGeneral.ctrlAffichage.modifLabel(labelAction, action);
+		// désactive les btn après le lancement d'une première action
+		btns.forEach((k, v) -> {
+			ControleurGeneral.ctrlAffichage.rqtComposantActif(this,v, false);
+		});
+		// Réactivation des btns avec un timer
+		Menu menu = this;
+		ControleurGeneral.ctrlTemps.addThreadJeu(5000, new Runnable(){
+			  @Override
+			  public void run() {
+					btns.forEach((k, v) -> {
+						ControleurGeneral.ctrlAffichage.rqtComposantActif(menu,v, true);
+					});
+			  }
+		});
 	}
 	
 	/**
 	 * Demande de changement de menu : Menu pause
 	 */
 	public void cmdPause() {
-		ControleurGeneral.ctrlBouton.rqtPause();	
+		ControleurGeneral.ctrlBouton.rqtPause();
 	}
 	
 	

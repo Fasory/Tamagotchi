@@ -2,9 +2,12 @@ package controleur;
 
 import java.util.Stack;
 
+import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import modele.Caracteristique;
 
 import java.awt.Color;
 
@@ -198,5 +201,15 @@ public class ControleurAffichage extends Controleur {
 	
 	public Menu getMenu() {
 		return pileMenu.peek();
+	}
+	
+	
+	/**
+	 * Modifie le texte d'un label
+	 * @param label
+	 * @param txt
+	 */
+	public void modifLabel(JLabel label,String txt) {
+		label.setText(txt);
 	}
 }
