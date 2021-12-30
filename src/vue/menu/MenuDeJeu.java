@@ -12,16 +12,22 @@ import java.util.LinkedHashMap;
 import java.util.Vector;
 import java.awt.Color;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 import javax.swing.Timer;
 
 import controleur.ControleurAffichage;
 import controleur.ControleurGeneral;
 import modele.Caracteristique;
 import modele.Personnage;
+import modele.Piece;
+import vue.modele.CustomBtn;
+import vue.modele.CustomLb;
+import vue.modele.CustomPanel;
 import vue.modele.CustomProgressBar;
 import vue.modele.CustomStyle;
 
@@ -36,6 +42,7 @@ public class MenuDeJeu extends Menu {
 	private JLabel labelLieu;
 	private Hashtable<String, CustomProgressBar> barres;
 	private Hashtable<String, JButton> btns;
+	private JButton[] btnLieu = new JButton[4];
 	private CustomProgressBar barreVie;
 	
 	
@@ -59,8 +66,8 @@ public class MenuDeJeu extends Menu {
 		gbc.gridy = 0;
 		gbc.weighty = 1;								// Espace qu'occupe l'objet dans l'axe y entre 0 et 1 de la cellule (1 -> 100%, 0 -> 0%)
 		gbc.insets = new Insets(20, 20, 20, 10);		// Espacement autour du panel en px, respectivement : top, left, bottom, right
-		gbc.fill = GridBagConstraints.VERTICAL;			// Prend toute la place dispo
-		add(buildPanelGauche(tamagotchi.getNom(), "Type", "Humeur", "Chambre"), gbc);
+		gbc.fill = GridBagConstraints.BOTH;			// Prend toute la place dispo
+		add(buildPanelGauche(tamagotchi.getNom(), tamagotchi.getType(), "Humeur", tamagotchi.getLocalisation()), gbc);
 		
 		
 		// Ajout du panel droit
@@ -87,9 +94,8 @@ public class MenuDeJeu extends Menu {
 	 * 
 	 * @return JPanel - contenant tout le panel gauche
 	 */
-	private JPanel buildPanelGauche(String nom, String type, String humeur, String lieu) {
-		JPanel panelGauche = new JPanel(new GridBagLayout());
-		panelGauche.setBackground(Color.CYAN);
+	private CustomPanel buildPanelGauche(String nom, String type, String humeur, Piece lieu) {
+		CustomPanel panelGauche = new CustomPanel(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
 		
 		
@@ -97,7 +103,7 @@ public class MenuDeJeu extends Menu {
 		gbc.gridy = 0;
 		gbc.weighty = 1;								// Espace qu'occupe l'objet dans l'axe y entre 0 et 1 de la cellule (1 -> 100%, 0 -> 0%)
 		gbc.weightx = 1;								// Même chose mais sur l'axe x
-		gbc.insets = new Insets(10, 10, 10, 10);		// Espacement autour du panel en px, respectivement : top, left, bottom, right
+		gbc.insets = new Insets(0, 0, 0, 0);		// Espacement autour du panel en px, respectivement : top, left, bottom, right
 		gbc.fill = GridBagConstraints.HORIZONTAL;		// Prend toute la place dispo
 		gbc.anchor = GridBagConstraints.NORTH;
 		panelGauche.add(buildPanelCara1(nom, type, humeur), gbc);
@@ -112,7 +118,7 @@ public class MenuDeJeu extends Menu {
 		gbc.gridy = 2;
 		gbc.weighty = 1;								// Espace qu'occupe l'objet dans l'axe y entre 0 et 1 de la cellule (1 -> 100%, 0 -> 0%)
 		gbc.weightx = 1;								// Même chose mais sur l'axe x
-		gbc.insets = new Insets(10, 10, 10, 10);		// Espacement autour du panel en px, respectivement : top, left, bottom, right
+		gbc.insets = new Insets(0, 0, 0, 0);		// Espacement autour du panel en px, respectivement : top, left, bottom, right
 		gbc.fill = GridBagConstraints.HORIZONTAL; 		// Prend toute la place dispo
 		gbc.anchor = GridBagConstraints.SOUTH;
 		panelGauche.add(buildPanelLieu(lieu), gbc);
@@ -128,9 +134,8 @@ public class MenuDeJeu extends Menu {
 	 * 
 	 * @return JPanel - contenant tout le panel droit
 	 */
-	private JPanel buildPanelDroite(final Personnage tamagotchi) {
-		JPanel panelDroite = new JPanel(new GridBagLayout());
-		panelDroite.setBackground(Color.GREEN);
+	private CustomPanel buildPanelDroite(final Personnage tamagotchi) {
+		CustomPanel panelDroite = new CustomPanel(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
 		
 		
@@ -138,17 +143,15 @@ public class MenuDeJeu extends Menu {
 		gbc.gridy = 0;
 		gbc.weighty = 1;								// Espace qu'occupe l'objet dans l'axe y entre 0 et 1 de la cellule (1 -> 100%, 0 -> 0%)
 		gbc.weightx = 1;								// Même chose mais sur l'axe x
-		gbc.insets = new Insets(10, 10, 10, 10);		// Espacement autour du panel en px, respectivement : top, left, bottom, right
-		gbc.fill = GridBagConstraints.HORIZONTAL;		// Prend toute la place dispo
+		gbc.insets = new Insets(0, 0, 0, 0);		// Espacement autour du panel en px, respectivement : top, left, bottom, right
 		gbc.anchor = GridBagConstraints.NORTH;
-		panelDroite.add(buildPanelCara2("Points de vie :", 100, 1,  "Aucune action en cours"), gbc);
+		panelDroite.add(buildPanelCara2((int) tamagotchi.getVie().getValeur(), (int) tamagotchi.getAge().getValeur()), gbc);
 		
 		gbc.gridx = 0;
-		gbc.gridy = 0;
+		gbc.gridy = 1;
 		gbc.weighty = 1;								// Espace qu'occupe l'objet dans l'axe y entre 0 et 1 de la cellule (1 -> 100%, 0 -> 0%)
 		gbc.weightx = 1;								// Même chose mais sur l'axe x
-		gbc.insets = new Insets(10, 10, 10, 10);		// Espacement autour du panel en px, respectivement : top, left, bottom, right
-		gbc.fill = GridBagConstraints.BOTH;				// Prend toute la place dispo
+		gbc.insets = new Insets(0, 0, 0, 0);		// Espacement autour du panel en px, respectivement : top, left, bottom, right
 		gbc.anchor = GridBagConstraints.SOUTH;
 		panelDroite.add(buildPanelCara3(tamagotchi.getCaracteristiques()), gbc);
 		
@@ -164,50 +167,67 @@ public class MenuDeJeu extends Menu {
 	 * 
 	 * @return JPanel - contenant tout le panel lieu
 	 */
-	private JPanel buildPanelLieu(String lieu) {
-		JPanel panelLieu = new JPanel(new GridBagLayout());
-		panelLieu.setBackground(Color.RED);
+	private CustomPanel buildPanelLieu(Piece localisation) {
+		CustomPanel panelLieu = new CustomPanel(new GridBagLayout());
+		Dimension dimPanel = new Dimension(250,30);
 		GridBagConstraints gbc = new GridBagConstraints();
 		
 		
-		Dimension dmBouton = new Dimension(110,25);
+		CustomPanel panelPosition = new CustomPanel(new GridBagLayout(), -1, 0, CustomStyle.BLANC_ALPHA);
+		panelPosition.setPreferredSize(dimPanel);
+		CustomLb labelInfo;
 		
-			
-		labelLieu = new JLabel(lieu);
+		// Pièce
+		labelInfo = new CustomLb("Pièce : ", CustomStyle.ROSE_DEFAUT, CustomStyle.ALPHA, BorderFactory.createEmptyBorder(5, 10, 4, 0));
 		gbc.gridx = 0;
 		gbc.gridy = 0;
-		gbc.gridwidth = 2;	// occupe 2 cellules
-		panelLieu.add(labelLieu, gbc);
-		
-		
-		JButton btnLieuG = new JButton("<");
-		btnLieuG.setPreferredSize(dmBouton);
-		btnLieuG.addActionListener(new ActionListener() {
-			
-			public void actionPerformed(ActionEvent evt) {
-				cmdLieuG();
-			}
-		});
-		gbc.gridx = 0;
-		gbc.gridy = 1;
 		gbc.gridwidth = 1;
-		gbc.insets = new Insets(10, 10, 10, 10);	// Espacement autour du panel en px, respectivement : top, left, bottom, right
-		panelLieu.add(btnLieuG, gbc);
-
+		gbc.anchor = GridBagConstraints.BASELINE_LEADING;
+		gbc.insets = new Insets(0, 0, 0, 0);
+		panelPosition.add(labelInfo, gbc);
 		
-		JButton btnLieuD = new JButton(">");
-		btnLieuD.setPreferredSize(dmBouton);
-		btnLieuG.addActionListener(new ActionListener() {
-			
-			public void actionPerformed(ActionEvent evt) {
-				cmdLieuD();
-			}
-		});
+		
+		labelLieu = new CustomLb(" ", CustomStyle.GRIS_DEFAUT_FONCE, CustomStyle.ALPHA, BorderFactory.createEmptyBorder(5, 0, 4, 10));
 		gbc.gridx = 1;
-		gbc.gridy = 1;
+		gbc.gridy = 0;
 		gbc.gridwidth = 1;
-		gbc.insets = new Insets(10, 10, 10, 10);	// Espacement autour du panel en px, respectivement : top, left, bottom, right
-		panelLieu.add(btnLieuD, gbc);
+		gbc.gridheight = 1;
+		gbc.anchor = GridBagConstraints.BASELINE_LEADING;
+		gbc.insets = new Insets(0, 0, 0, 0);
+		panelPosition.add(labelLieu, gbc);
+		
+		
+		gbc.fill = GridBagConstraints.HORIZONTAL;
+		gbc.gridx = 0;
+		gbc.gridy = 0;
+		gbc.gridwidth = 1;
+		gbc.gridheight = 1;
+		gbc.insets = new Insets(0, 0, 0, 0);
+		panelLieu.add(panelPosition, gbc);
+		
+		// Choix
+		gbc.fill = GridBagConstraints.HORIZONTAL;
+		gbc.gridx = 0;
+		gbc.gridy++;
+		gbc.gridwidth = 1;
+		gbc.gridheight = 1;
+		gbc.insets = new Insets(5, 0, 0, 0);	// Espacement autour du panel en px, respectivement : top, left, bottom, right
+		for (int i = 0; i < btnLieu.length; i++) {
+			CustomBtn btnLieuX = new CustomBtn(" ", 8);
+			int n = i;
+			btnLieuX.setPreferredSize(dimPanel);
+			btnLieuX.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent evt) {
+					cmdLieu(n);
+				}
+			});
+			panelLieu.add(btnLieuX, gbc);
+			btnLieu[i] = btnLieuX;
+			gbc.gridy++;
+		}
+		
+		
+		reinitialiser();
 		
 		
 		return panelLieu;
@@ -221,28 +241,93 @@ public class MenuDeJeu extends Menu {
 	 * 
 	 * @return JPanel - contenant tout le panel cara1
 	 */
-	private JPanel buildPanelCara1(String nom, String type, String humeur) {
-		JPanel panelCara1 = new JPanel(new GridBagLayout());
-		panelCara1.setBackground(Color.YELLOW);
+	private CustomPanel buildPanelCara1(String nom, String type, String humeur) {
+		CustomPanel panelCara1 = new CustomPanel(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
+		Dimension dimPanel = new Dimension(250,30);
 		
 		
-		JLabel labelNom = new JLabel(nom);
+		CustomPanel panelLbNom = new CustomPanel(new GridBagLayout(), -1, 0, CustomStyle.BLANC_ALPHA);
+		panelLbNom.setPreferredSize(dimPanel);
+		CustomPanel panelLbType = new CustomPanel(new GridBagLayout(), -1, 0, CustomStyle.BLANC_ALPHA);
+		panelLbType.setPreferredSize(dimPanel);
+		CustomPanel panelLbHumeur = new CustomPanel(new GridBagLayout(), -1, 0, CustomStyle.BLANC_ALPHA);
+		panelLbHumeur.setPreferredSize(dimPanel);
+		CustomLb labelInfo;
+		
+		// Nom
+		labelInfo = new CustomLb("Nom : ", CustomStyle.ROSE_DEFAUT, CustomStyle.ALPHA, BorderFactory.createEmptyBorder(5, 10, 4, 0));
 		gbc.gridx = 0;
 		gbc.gridy = 0;
-		panelCara1.add(labelNom, gbc);
-			
+		gbc.gridwidth = 1;
+		gbc.anchor = GridBagConstraints.BASELINE_LEADING;
+		gbc.insets = new Insets(0, 0, 0, 0);
+		panelLbNom.add(labelInfo, gbc);
 		
-		JLabel labelType = new JLabel(type);
+		
+		labelInfo = new CustomLb(nom, CustomStyle.GRIS_DEFAUT_FONCE, CustomStyle.ALPHA, BorderFactory.createEmptyBorder(5, 0, 4, 10));
+		gbc.gridx = 1;
+		gbc.gridy = 0;
+		gbc.gridwidth = 1;
+		gbc.anchor = GridBagConstraints.BASELINE_LEADING;
+		gbc.insets = new Insets(0, 0, 0, 0);
+		panelLbNom.add(labelInfo, gbc);
+		
+		// Type
+		labelInfo = new CustomLb("Type : ", CustomStyle.ROSE_DEFAUT, CustomStyle.ALPHA, BorderFactory.createEmptyBorder(5, 10, 4, 0));
 		gbc.gridx = 0;
-		gbc.gridy = 1;
-		panelCara1.add(labelType, gbc);
+		gbc.gridy = 0;
+		gbc.gridwidth = 1;
+		gbc.insets = new Insets(0, 0, 0, 0);
+		panelLbType.add(labelInfo, gbc);
+		
+		
+		labelInfo = new CustomLb(type, CustomStyle.GRIS_DEFAUT_FONCE, CustomStyle.ALPHA, BorderFactory.createEmptyBorder(5, 0, 4, 10));
+		gbc.gridx = 1;
+		gbc.gridy = 0;
+		gbc.gridwidth = 1;
+		gbc.insets = new Insets(0, 0, 0, 0);
+		panelLbType.add(labelInfo, gbc);
+		
+		// Humeur
+		labelInfo = new CustomLb("Humeur : ", CustomStyle.ROSE_DEFAUT, CustomStyle.ALPHA, BorderFactory.createEmptyBorder(5, 10, 4, 0));
+		gbc.gridx = 0;
+		gbc.gridy = 0;
+		gbc.gridwidth = 1;
+		gbc.insets = new Insets(0, 0, 0, 0);
+		panelLbHumeur.add(labelInfo, gbc);
 
 	
-		labelHumeur = new JLabel(humeur);
+		labelHumeur = new CustomLb(humeur, CustomStyle.GRIS_DEFAUT_FONCE, CustomStyle.ALPHA, BorderFactory.createEmptyBorder(5, 0, 4, 10));
+		gbc.gridx = 1;
+		gbc.gridy = 0;
+		gbc.gridwidth = 1;
+		gbc.insets = new Insets(0, 0, 0, 0);
+		panelLbHumeur.add(labelHumeur, gbc);
+		
+		// Resultat
+		gbc.fill = GridBagConstraints.HORIZONTAL;
 		gbc.gridx = 0;
-		gbc.gridy = 2;
-		panelCara1.add(labelHumeur, gbc);
+		gbc.gridy = 0;
+		gbc.gridwidth = 1;
+		gbc.insets = new Insets(0, 0, 5, 0);
+		panelCara1.add(panelLbNom, gbc);
+		
+
+		gbc.fill = GridBagConstraints.HORIZONTAL;
+		gbc.gridx = 0;
+		gbc.gridy++;
+		gbc.gridwidth = 1;
+		gbc.insets = new Insets(0, 0, 5, 0);
+		panelCara1.add(panelLbType, gbc);
+		
+
+		gbc.fill = GridBagConstraints.HORIZONTAL;
+		gbc.gridx = 0;
+		gbc.gridy++;
+		gbc.gridwidth = 1;
+		gbc.insets = new Insets(0, 0, 0, 0);
+		panelCara1.add(panelLbHumeur, gbc);
 		
 		
 		return panelCara1;
@@ -259,19 +344,18 @@ public class MenuDeJeu extends Menu {
 	 * 
 	 * @return JPanel - contenant tout le panel cara2
 	 */
-	private JPanel buildPanelCara2(String vie, int ptsVie, int age, String action) {
-		JPanel panelCara2 = new JPanel(new GridBagLayout());
-		panelCara2.setBackground(Color.WHITE);
+	private CustomPanel buildPanelCara2(int ptsVie, int age) {
+		CustomPanel panelCara2 = new CustomPanel(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
 		
 		
-		JLabel labelVie = new JLabel(vie);
+		CustomLb labelVie = new CustomLb("Point de vie", 10);
 		gbc.gridx = 0;
 		gbc.gridy = 0;
 		panelCara2.add(labelVie, gbc);
 		
 		
-		JButton buttonPause = new JButton("Pause");
+		CustomBtn buttonPause = new CustomBtn("Pause", 10);
 		gbc.gridx = 2;
 		gbc.gridy = 0;
 		gbc.anchor = GridBagConstraints.BASELINE_LEADING;
@@ -285,80 +369,79 @@ public class MenuDeJeu extends Menu {
 		
 		
 		barreVie = new CustomProgressBar(0, 100,true);
+		barreVie.setPreferredSize(new Dimension(400, 30));
 		barreVie.setValue(ptsVie);
 		gbc.gridx = 0;
 		gbc.gridy = 1;
-		gbc.insets = new Insets(10, 10, 10, 0);		// Espacement autour du panel en px, respectivement : top, left, bottom, right
+		gbc.insets = new Insets(0, 0, 0, 0);		// Espacement autour du panel en px, respectivement : top, left, bottom, right
 		barreVie.setForeground(CustomStyle.VERT_DEFAUT);
 		barreVie.setBackground(CustomStyle.ROUGE_DEFAUT);
 		panelCara2.add(barreVie, gbc);
 		
 		
-		labelAge = new JLabel("Age : "+age); 		// Concaténation : le constructeur JLabel prend un String en paramètre
+		labelAge = new CustomLb("Age : " + age, 10); 		// Concaténation : le constructeur JLabel prend un String en paramètre
 		gbc.gridx = 1;
-		gbc.gridy = 1;
-		gbc.insets = new Insets(0, 10, 0, 10);		// Espacement autour du panel en px, respectivement : top, left, bottom, right
+		gbc.gridy = 0;
+		gbc.insets = new Insets(0, 0, 0, 0);		// Espacement autour du panel en px, respectivement : top, left, bottom, right
 		panelCara2.add(labelAge, gbc);
 		
 	
-		labelAction = new JLabel(action);
-		gbc.gridx = 0;
-		gbc.gridy = 2;
-		gbc.insets = new Insets(0, 10, 10, 10);		// Espacement autour du panel en px, respectivement : top, left, bottom, right
+		labelAction = new CustomLb("Aucune action en cours", 10);
+		gbc.gridx = 1;
+		gbc.gridy = 1;
+		gbc.insets = new Insets(0, 0, 0, 0);		// Espacement autour du panel en px, respectivement : top, left, bottom, right
 		panelCara2.add(labelAction, gbc);
 		
 		return panelCara2;
 	}
 	
 	
-	private JPanel buildPanelCara3(Vector<Caracteristique> caracteristiques) {
-		JPanel panelCara3 = new JPanel(new GridBagLayout());
-		panelCara3.setBackground(Color.ORANGE);
+	private CustomPanel buildPanelCara3(Vector<Caracteristique> caracteristiques) {
+		CustomPanel panelCara3 = new CustomPanel(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
 		
 		
 		gbc.gridx = 0;
 		gbc.gridy = 0;
-		gbc.insets = new Insets(10, 10, 10, 10);	// Espacement autour du panel en px, respectivement : top, left, bottom, right
-		gbc.fill = GridBagConstraints.BOTH;			// Prend toute la place dispo
+		gbc.insets = new Insets(5, 0, 0, 0);	// Espacement autour du panel en px, respectivement : top, left, bottom, right
+		gbc.fill = GridBagConstraints.HORIZONTAL;			// Prend toute la place dispo
 		gbc.anchor = GridBagConstraints.NORTH;
 		for (Caracteristique caracteristique : caracteristiques) {
 			panelCara3.add(buildPanelCaracteristique(caracteristique), gbc);
 			gbc.gridy++;
 		}
-
-		
 		return panelCara3;
 	}
 	
 	
-	private JPanel buildPanelCaracteristique(Caracteristique caracteristique) {
-		JPanel panelCaracteristique = new JPanel(new GridBagLayout());
-		panelCaracteristique.setBackground(Color.PINK);
+	private CustomPanel buildPanelCaracteristique(Caracteristique caracteristique) {
+		CustomPanel panelCaracteristique = new CustomPanel(new GridBagLayout(), 60, 0, CustomStyle.GRIS_ALPHA);
 		GridBagConstraints gbc = new GridBagConstraints();
+		Dimension dmBouton = new Dimension(80,25);
 		
 		
-		Dimension dmBouton = new Dimension(100,25);
-		
-		
-		JLabel labelCaracteristique = new JLabel(caracteristique.getNom());
+		CustomLb labelCaracteristique = new CustomLb(caracteristique.getNom());
 		gbc.gridx = 0;
 		gbc.gridy = 0;
+		gbc.insets = new Insets(10, 10, 10, 0);
+		gbc.anchor = GridBagConstraints.WEST;
 		panelCaracteristique.add(labelCaracteristique, gbc);
 		
 		
 		
 		CustomProgressBar barreCaracteristique = new CustomProgressBar((int) caracteristique.getMin(), (int) caracteristique.getMax());
+		barreCaracteristique.setPreferredSize(new Dimension(400, 30));
 		barreCaracteristique.setValue((int) caracteristique.getValeur());
 		gbc.gridx = 0;
 		gbc.gridy = 1;
 		gbc.insets = new Insets(0, 10, 0, 10);
+		gbc.anchor = GridBagConstraints.WEST;
 		panelCaracteristique.add(barreCaracteristique, gbc);
 		barres.put(caracteristique.getNom(), barreCaracteristique);
 		
 		
-		JButton btnCaracteristique = new JButton(caracteristique.getModifieur());
-		btnCaracteristique.setPreferredSize(dmBouton);
+		CustomBtn btnCaracteristique = new CustomBtn(caracteristique.getModifieur(), 8);
+		btnCaracteristique.setSize(dmBouton);
 		btnCaracteristique.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent evt) {
@@ -366,8 +449,11 @@ public class MenuDeJeu extends Menu {
 			}
 		});
 		gbc.gridx = 1;
-		gbc.gridy = 1;
-		gbc.insets = new Insets(0, 0, 10, 10);
+		gbc.gridy = 0;
+		gbc.gridheight = 2;
+		gbc.insets = new Insets(10, 0, 10, 0);
+		gbc.anchor = GridBagConstraints.BASELINE_LEADING;
+		gbc.fill = GridBagConstraints.HORIZONTAL;
 		panelCaracteristique.add(btnCaracteristique, gbc);
 		btns.put(caracteristique.getNom(), btnCaracteristique);
 		
@@ -388,22 +474,15 @@ public class MenuDeJeu extends Menu {
 	//             AUX BOUTTONS           //        
 	////////////////////////////////////////
 	
-	/*
-	 * Demande d'une requête liée au bouton btnLieuG	<br/>
-	 */
-	private void cmdLieuG() {
 
+	private void cmdLieu(int direction) {
+		ControleurGeneral.ctrlJeu.rqtChangeLieu(direction);
 	}
 	
-	/*
-	 * Demande d'une requête liée au bouton btnLieuD	<br/>
-	 */
-	private void cmdLieuD() {
-	}
 	
 	private void cmdAction(String caracteristique) {
 		ControleurGeneral.ctrlJeu.rqtAction(caracteristique);
-		String action = "restaure : "+caracteristique;
+		String action = "Restaure : "+caracteristique;
 		ControleurGeneral.ctrlAffichage.modifLabel(labelAction, action);
 		// d�sactive les btn apr�s le lancement d'une premi�re action
 		btns.forEach((k, v) -> {
@@ -419,6 +498,13 @@ public class MenuDeJeu extends Menu {
 					});
 			  }
 		});
+		ControleurGeneral.ctrlTemps.addThreadJeu(5000, new Runnable(){
+			  @Override
+			  public void run() {
+				  	String action = "Aucune action en cours";
+					ControleurGeneral.ctrlAffichage.modifLabel(labelAction, action);
+			  }
+		});
 	}
 	
 	/**
@@ -426,6 +512,22 @@ public class MenuDeJeu extends Menu {
 	 */
 	public void cmdPause() {
 		ControleurGeneral.ctrlBouton.rqtPause();
+	}
+	
+	@Override
+	public void reinitialiser() {
+		Piece localisation = ControleurGeneral.ctrlJeu.rqtGetLieu();
+		labelLieu.setText(localisation.getNom());
+		int[] lsDirection = {Piece.HAUT, Piece.GAUCHE, Piece.BAS, Piece.DROITE};
+		for (int direction : lsDirection) {
+			if (localisation.existePiece(direction)) {
+				btnLieu[direction].setText(localisation.voirPiece(direction).getNom());
+				btnLieu[direction].setEnabled(true);
+			} else {
+				btnLieu[direction].setText(" ");
+				btnLieu[direction].setEnabled(false);
+			}
+		}
 	}
 	
 	

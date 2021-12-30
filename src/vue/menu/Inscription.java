@@ -100,7 +100,7 @@ public class Inscription extends Menu {
 		checkBoxPolitique.add(cbPolitique, gbc);
 		
 		
-		CustomPanel panelLb = new CustomPanel(new GridBagLayout());
+		CustomPanel panelLb = new CustomPanel(new GridBagLayout(), -1, 0, CustomStyle.BLANC_ALPHA);
 		
 		
 		CustomLb lbCbPolitique_1 = new CustomLb("J'ai lu et j'accepte la ", CustomStyle.ROSE_DEFAUT, CustomStyle.ALPHA, BorderFactory.createEmptyBorder(5, 10, 4, 0));
@@ -399,7 +399,7 @@ public class Inscription extends Menu {
 	 * Réinitialise l'affichage de la fenêtre
 	 */
 	@Override
-	public void renitialiser() {
+	public void reinitialiser() {
 		ControleurGeneral.ctrlAffichage.afficherAlerte("id", " ");
 		ControleurGeneral.ctrlAffichage.afficherAlerte("mail", " ");
 		ControleurGeneral.ctrlAffichage.afficherAlerte("mdp", " ");

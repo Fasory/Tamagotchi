@@ -14,13 +14,15 @@ public abstract class Personnage implements Serializable {
 	protected Caracteristique vie;
 	protected Caracteristique hygiene;
 	protected Caracteristique energie;
+	protected Piece localisation;
 	protected final String nom;
 	protected final String type;
 	
 	//Constructeurs
-	Personnage(int age, int vie, int hygiene, int energie, String nom, String type){
+	Personnage(int age, int vie, int hygiene, int energie, String nom, String type, Piece localisation){
 		this.nom = nom;
 		this.type = type;
+		this.localisation = localisation;
 		// Caractéristiques
 		caracteristiques = new Hashtable<String, Caracteristique>();
 		this.age = new Caracteristique(age, "Age", 0);
@@ -31,8 +33,8 @@ public abstract class Personnage implements Serializable {
 		caracteristiques.put(this.hygiene.getNom(), this.hygiene);
 	}
 	
-	Personnage(String nom, String type){
-		this(0, 100, 100, 100, nom, type);
+	Personnage(String nom, String type, Piece localisation){
+		this(0, 100, 100, 100, nom, type, localisation);
 	}
 	
 	//Méthodes
@@ -115,6 +117,10 @@ public abstract class Personnage implements Serializable {
 		return energie;
 	}
 	
+	public Piece getLocalisation() {
+		return localisation;
+	}
+	
 	/**
 	 * Application des règles de vie
 	 * 
@@ -140,5 +146,9 @@ public abstract class Personnage implements Serializable {
 	
 	public void baisseEnergie() {
 		energie.add(-5);
+	}
+	
+	public void changerDeLocalisation(int direction) {
+		localisation = localisation.voirPiece(direction);
 	}
 }

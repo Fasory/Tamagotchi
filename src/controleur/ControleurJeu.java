@@ -1,12 +1,14 @@
 package controleur;
 
 import java.io.IOException;
+import java.util.Hashtable;
 import java.util.UUID;
 
 import modele.Animal;
 import modele.Caracteristique;
 import modele.Partie;
 import modele.Personnage;
+import modele.Piece;
 import modele.Robot;
 import vue.menu.MenuDeJeu;
 import vue.menu.Pause;
@@ -38,10 +40,11 @@ public class ControleurJeu extends Controleur{
 	
 	public void lancePartie(String type, String nom, boolean triche) {
 		Personnage tamagotchi;
+		Hashtable<String, Piece> maison = getMaison();
 		if (type.equals(Robot.class.getSimpleName())) {
-			tamagotchi = new Robot(nom);
+			tamagotchi = new Robot(nom, maison.get(ControleurGeneral.LIEN_PIECES[0][0]));
 		} else {
-			tamagotchi = new Animal(nom, type);
+			tamagotchi = new Animal(nom, type, maison.get(ControleurGeneral.LIEN_PIECES[0][0]));
 		}
 		partie = new Partie(tamagotchi, triche);
 		try {
@@ -135,5 +138,21 @@ public class ControleurJeu extends Controleur{
 		ControleurGeneral.ctrlConnexion.getCompte().supprPartieId(UUID.fromString(id));
 		ControleurGeneral.ctrlConnexion.enregistrerCompte();
 		ControleurGeneral.ctrlAffichage.ouvrirMenu(new SelecPartie(ControleurGeneral.ctrlConnexion.getCompte().getPartiesId()), 1);
+	}
+	
+	private Hashtable<String, Piece> getMaison() {
+		Hashtable<String, Piece> maison = new Hashtable<String, Piece>();
+		for (String elt : ControleurGeneral.PIECE.keySet()) maison.put(elt, new Piece(elt));
+		for (String[] elt : ControleurGeneral.LIEN_PIECES) maison.get(elt[0]).addLiens(Integer.parseInt(elt[1]), maison.get(elt[2]), Integer.parseInt(elt[3]));
+		return maison;
+	}
+	
+	public void rqtChangeLieu(int direction) {
+		partie.getTamagotchi().changerDeLocalisation(direction);
+		ControleurGeneral.ctrlAffichage.renitialiserMenu();
+	}
+	
+	public Piece rqtGetLieu() {
+		return partie.getTamagotchi().getLocalisation();
 	}
 }

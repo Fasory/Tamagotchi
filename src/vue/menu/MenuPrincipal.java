@@ -163,8 +163,8 @@ public class MenuPrincipal extends Menu {
 	////////////////////////////////////////
 	
 	@Override
-	public void renitialiser() {
+	public void reinitialiser() {
 		ControleurGeneral.ctrlAffichage.rqtComposantActif(this, btnCreerPartie, ControleurGeneral.ctrlJeu.peutCreerPartie());
-		super.renitialiser();
+		super.reinitialiser();
 	}
 }

@@ -8,8 +8,8 @@ public class Animal extends Personnage  {
 	private Caracteristique faim;
 	private Caracteristique toilettes;
 	
-	public Animal(String nom, String race) {
-		super(nom, "Animal");
+	public Animal(String nom, String race, Piece localisation) {
+		super(nom, "Animal", localisation);
 		this.race = race;
 		// Caractéristiques
 		faim = new Caracteristique(100 , "Nourriture", "Manger", 0, 100);

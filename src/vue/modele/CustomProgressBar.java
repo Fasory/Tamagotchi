@@ -1,6 +1,5 @@
 package vue.modele;
 
-import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -17,7 +16,7 @@ public class CustomProgressBar extends JProgressBar {
 	private final static Color DEFAUT_25_50 = CustomStyle.ORANGE_DEFAUT;
 	private final static Color DEFAUT_50_75 = CustomStyle.JAUNE_DEFAUT;
 	private final static Color DEFAUT_75_100 = CustomStyle.VERT_DEFAUT;
-	private final static int MARGE = 2;
+	private final static int MARGE = 5;
 	private final boolean fixe;
 	private Color couleur_background;
 	private Color couleur_foreground;

@@ -449,3 +449,211 @@ Satut	-	Lancement de l'application
 		-	Création des fenêtres
 		-	Initialisation des contrôleurs complémentaires
 Satut	-	Application opérationnelle
+****************************************
+		-	17:52:33 - 29/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	17:52:45 - 29/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	17:53:48 - 29/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	17:56:37 - 29/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	18:35:29 - 29/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	18:55:07 - 29/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+Erreur - échec de lecture du fcihier 36da1960-a0ad-493c-b1b1-6fd7fd7856f3.save
+java.io.InvalidClassException: modele.Personnage; local class incompatible: stream classdesc serialVersionUID = 6953180398700131982, local class serialVersionUID = -6957402953345240907
+Erreur	-	échec de suppression du fichier 36da1960-a0ad-493c-b1b1-6fd7fd7856f3.save
+java.lang.Exception: Le fichier n'a pas pu être supprimé
+****************************************
+		-	18:55:55 - 29/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	18:58:58 - 29/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	18:59:51 - 29/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	19:02:11 - 29/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	19:02:56 - 29/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	19:03:02 - 29/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	19:03:08 - 29/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	19:03:16 - 29/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	19:03:26 - 29/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	19:03:45 - 29/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	19:06:32 - 29/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	19:06:48 - 29/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	19:07:41 - 29/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	19:08:19 - 29/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	19:10:03 - 29/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	19:10:58 - 29/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	23:38:56 - 29/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	23:51:07 - 29/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	23:51:26 - 29/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	23:52:54 - 29/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	23:57:34 - 29/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+Erreur - échec de lecture du fcihier 221ae122-c7c9-42f2-a5fe-5e1f67a1272d.save
+java.io.InvalidClassException: modele.Piece; local class incompatible: stream classdesc serialVersionUID = -9034128088253542644, local class serialVersionUID = 5800790041212607309
+****************************************
+		-	23:59:21 - 29/12/2021
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+Erreur	-	échec de chargmeent de la partie fd262e25-21c2-4352-b29a-36a85e4efeeb.save
+java.lang.NullPointerException: Cannot invoke "modele.Piece.getNom()" because the return value of "modele.Piece.voirPiece(int)" is null
+Erreur	-	échec de chargmeent de la partie fd262e25-21c2-4352-b29a-36a85e4efeeb.save
+java.lang.NullPointerException: Cannot invoke "modele.Piece.getNom()" because the return value of "modele.Piece.voirPiece(int)" is null
+Erreur	-	échec de chargmeent de la partie 8786b2b3-e2eb-4ff0-a67d-e0c2eb39e0ca.save
+java.lang.NullPointerException: Cannot invoke "modele.Piece.getNom()" because the return value of "modele.Piece.voirPiece(int)" is null

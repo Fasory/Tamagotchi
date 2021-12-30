@@ -7,16 +7,16 @@ public class Robot extends Personnage{
 	private Caracteristique entretien;
 	
 	
-	public Robot(String nom, int entretien, int hygiene, int energie) {
-		super(nom, "Robot"); 
+	public Robot(String nom, int entretien, int hygiene, int energie, Piece localisation) {
+		super(nom, "Robot", localisation); 
 		this.entretien = new Caracteristique(entretien, "Entretien", "Reparer", 0, 100);
 		caracteristiques.put(this.entretien.getNom(), this.entretien);	
 		this.hygiene.setModifieur("Nettoyer");
 		this.energie.setModifieur("Brancher");
 	}
 	
-	public Robot(String nom){
-		this( nom, 100, 100, 100);
+	public Robot(String nom, Piece localisation){
+		this( nom, 100, 100, 100, localisation);
 	}
 	
 	/**

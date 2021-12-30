@@ -369,8 +369,8 @@ public class Connexion extends Menu {
 	 * Méthode permettant de réinitialiser le mot de passe de l'utilisateur
 	 */
 	@Override
-	public void renitialiser() {
-		super.renitialiser();
+	public void reinitialiser() {
+		super.reinitialiser();
 		lbOublieMdp.setForeground(COULEUR_EN_NON_SELEC);
 		ControleurGeneral.ctrlAffichage.rqtChangeCurseur("default");
 		txtId.setText("");

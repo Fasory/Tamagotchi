@@ -2,12 +2,9 @@ package controleur;
 
 import java.util.Stack;
 
-import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
-import modele.Caracteristique;
 
 import java.awt.Color;
 
@@ -172,7 +169,7 @@ public class ControleurAffichage extends Controleur {
 	 * Rénitialise l'affichage du menu										<br/>
 	 */
 	public void renitialiserMenu() {
-		pileMenu.peek().renitialiser();
+		pileMenu.peek().reinitialiser();
 	}
 	
 	/**

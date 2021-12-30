@@ -87,7 +87,7 @@ public abstract class Menu extends JPanel {
 	/**
 	 * Méthode appelée lorsque l'on fait apparaitre un menu précédent
 	 */
-	public void renitialiser() {
+	public void reinitialiser() {
 		for (CustomBtn btn : lsCustomBtn) btn.reset();
 		repaint();
 		// A réécrire si besoin dans les menus fils

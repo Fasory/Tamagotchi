@@ -195,7 +195,7 @@ public class OubliMdp extends Menu {
 	
 	
 	@Override
-	public void renitialiser() {
+	public void reinitialiser() {
 		ControleurGeneral.ctrlAffichage.afficherAlerte("info", " ");
 	}
 

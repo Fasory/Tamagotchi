@@ -12,6 +12,7 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import modele.Piece;
 import vue.menu.Connexion;
 
 public class ControleurGeneral extends Controleur {
@@ -21,7 +22,28 @@ public class ControleurGeneral extends Controleur {
 	// Constantes
 	public final static int TEMPS_MAJ = 500;			// Temps en milliseconde de pause entre chaque mise à jour du Tamagotchi
 	public final static int NB_MAX_PARTIE = 4;
-	public final static LinkedHashMap<String, String> TYPE = new LinkedHashMap<String, String>();
+	private final static String[][] REF_TYPE = {		// Sous faire : {Nom du type, nom du fichier associer (img)} -> String[]
+			{"Robot", "robot.png"},
+			{"Lapin", "lapin.png"},
+			{"Chat", "chat.png"},
+			{"Dinosaure", "dinosaure.png"}
+	};
+	private final static String[][] REF_PIECE = {		// Sous faire : {Nom de la Piece, nom du fichier associer (img)} -> String[]
+			{"Salon", ""},
+			{"Jardin", ""},
+			{"Cuisine", ""},
+			{"Chambre", ""},
+			{"Salle de bain", ""}
+	};
+	public final static String[][] LIEN_PIECES = {		// Sous fore : {Piece de départ, porte de départ, Piece d'arrivé, porte d'arrivé} -> String[]
+			{REF_PIECE[0][0], "" + Piece.HAUT, REF_PIECE[1][0], "" + Piece.BAS},
+			{REF_PIECE[0][0], "" + Piece.GAUCHE, REF_PIECE[2][0], "" + Piece.DROITE},
+			{REF_PIECE[0][0], "" + Piece.BAS, REF_PIECE[3][0], "" + Piece.HAUT},
+			{REF_PIECE[0][0], "" + Piece.DROITE, REF_PIECE[4][0], "" + Piece.GAUCHE},
+			{REF_PIECE[3][0], "" + Piece.DROITE, REF_PIECE[4][0], "" + Piece.BAS}
+	};
+	public final static LinkedHashMap<String, String> PIECE = get_PIECE();
+	public final static LinkedHashMap<String, String> TYPE = get_TYPE();
 	public final static String NOM_ANONYME = "Anonyme";					  
 	public final static String STR_UUID_ANONYME = "00000000-0000-0000-0000-000000000000";
 	public final static boolean BY_PASS = true;			// Valable que pour la version de développement, il permet de passé oûtre les confirmations
@@ -44,14 +66,6 @@ public class ControleurGeneral extends Controleur {
 	private ControleurGeneral() {
 		super(estCree);
 		estCree = true;
-		// Initialisation des constantes incomplètes
-		String[][] ref = {
-				{"Robot", "robot.png"},
-				{"Lapin", "lapin.png"},
-				{"Chat", "chat.png"},
-				{"Dinosaure", "dinosaure.png"}
-		};
-		for (String[] paire : ref) TYPE.put(paire[0], paire[1]);
 		// Lancement de l'application
 		ctrlFichier = new ControleurFichier();
 		ctrlSecurite = new ControleurSecurite();
@@ -154,5 +168,17 @@ public class ControleurGeneral extends Controleur {
 		ctrlFichier.delControleur();
 		ctrlJeu.delControleur();
 		System.exit(0);
+	}
+	
+	private static LinkedHashMap<String, String> get_TYPE() {
+		LinkedHashMap<String, String> temp = new LinkedHashMap<String, String>();
+		for (String[] paire : REF_TYPE) temp.put(paire[0], paire[1]);
+		return temp;
+	}
+	
+	private static LinkedHashMap<String, String> get_PIECE() {
+		LinkedHashMap<String, String> temp = new LinkedHashMap<String, String>();
+		for (String[] paire : REF_PIECE) temp.put(paire[0], paire[1]);
+		return temp;
 	}
 }

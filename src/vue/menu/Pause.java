@@ -125,7 +125,7 @@ public class Pause extends Menu {
 	* Demande de changement de menu. Retour au menu principale
 	*/
 	private void cmdQuitter() {
-		ControleurGeneral.ctrlBouton.rqtMenuPrincipal();
+		ControleurGeneral.ctrlAffichage.menuPrecedent(2);
 	}
 
 }
