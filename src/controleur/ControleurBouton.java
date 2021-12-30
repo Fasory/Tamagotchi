@@ -149,6 +149,14 @@ public class ControleurBouton extends Controleur {
 	/**
 	 * Redirige l'utilisateur vers le menu Principal					<br/>
 	 */
+	public void rqtMenuPrincipal(int retour) {
+		ControleurGeneral.ctrlAffichage.ouvrirMenu(new MenuPrincipal(ControleurGeneral.ctrlConnexion.isAnonyme()),retour);
+	}
+	
+	
+	/**
+	 * Redirige l'utilisateur vers le menu de sauvegarde					<br/>
+	 */
 	public void rqtAfficheSauvegardeMenu() {
 		ControleurGeneral.ctrlAffichage.ouvrirMenuConfirmation(new SauvegardeConfirm());
 	}
@@ -293,6 +301,7 @@ public class ControleurBouton extends Controleur {
 	public void rqtJouer(String type, String nom, boolean triche) {
 		ControleurGeneral.ctrlJeu.lancePartie(type, nom, triche);
 	}
+	
 	
 	////////////////////////////////////////
 	//          REQUETES AUTRES           //

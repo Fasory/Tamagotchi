@@ -62,7 +62,7 @@ public class MenuFin extends Menu {
 		btnQuitter.setVisible(true);
 		btnQuitter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				cmdQuitter();
+				cmdQuitter(3);
 			}
 		});
 		add(btnQuitter,gbc);
@@ -74,8 +74,8 @@ public class MenuFin extends Menu {
 	//             AUX BOUTTONS           //        
 	////////////////////////////////////////
 	
-	public void cmdQuitter() {
+	public void cmdQuitter(int retour) {
 		ControleurGeneral.ctrlBouton.rqtSauvegarde();
-		ControleurGeneral.ctrlBouton.rqtMenuPrincipal();
+		ControleurGeneral.ctrlBouton.rqtMenuPrincipal(retour);
 	}
 }
