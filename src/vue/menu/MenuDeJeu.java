@@ -6,21 +6,13 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Enumeration;
 import java.util.Hashtable;
-import java.util.LinkedHashMap;
 import java.util.Vector;
-import java.awt.Color;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JList;
-import javax.swing.JPanel;
-import javax.swing.SwingConstants;
-import javax.swing.Timer;
 
-import controleur.ControleurAffichage;
 import controleur.ControleurGeneral;
 import modele.Caracteristique;
 import modele.Personnage;
@@ -38,6 +30,8 @@ public class MenuDeJeu extends Menu {
 	//on initialise certains attributs (qui pourront être modifiés plus tard) hors du constructeur :
 	private JLabel labelAge;
 	private JLabel labelHumeur;
+	private JLabel labelType;
+	private JLabel labelNom;
 	private JLabel labelAction;
 	private JLabel labelLieu;
 	private Hashtable<String, CustomProgressBar> barres;
@@ -265,13 +259,13 @@ public class MenuDeJeu extends Menu {
 		panelLbNom.add(labelInfo, gbc);
 		
 		
-		labelInfo = new CustomLb(nom, CustomStyle.GRIS_DEFAUT_FONCE, CustomStyle.ALPHA, BorderFactory.createEmptyBorder(5, 0, 4, 10));
+		labelNom = new CustomLb(nom, CustomStyle.GRIS_DEFAUT_FONCE, CustomStyle.ALPHA, BorderFactory.createEmptyBorder(5, 0, 4, 10));
 		gbc.gridx = 1;
 		gbc.gridy = 0;
 		gbc.gridwidth = 1;
 		gbc.anchor = GridBagConstraints.BASELINE_LEADING;
 		gbc.insets = new Insets(0, 0, 0, 0);
-		panelLbNom.add(labelInfo, gbc);
+		panelLbNom.add(labelNom, gbc);
 		
 		// Type
 		labelInfo = new CustomLb("Type : ", CustomStyle.ROSE_DEFAUT, CustomStyle.ALPHA, BorderFactory.createEmptyBorder(5, 10, 4, 0));
@@ -282,12 +276,12 @@ public class MenuDeJeu extends Menu {
 		panelLbType.add(labelInfo, gbc);
 		
 		
-		labelInfo = new CustomLb(type, CustomStyle.GRIS_DEFAUT_FONCE, CustomStyle.ALPHA, BorderFactory.createEmptyBorder(5, 0, 4, 10));
+		labelType = new CustomLb(type, CustomStyle.GRIS_DEFAUT_FONCE, CustomStyle.ALPHA, BorderFactory.createEmptyBorder(5, 0, 4, 10));
 		gbc.gridx = 1;
 		gbc.gridy = 0;
 		gbc.gridwidth = 1;
 		gbc.insets = new Insets(0, 0, 0, 0);
-		panelLbType.add(labelInfo, gbc);
+		panelLbType.add(labelType, gbc);
 		
 		// Humeur
 		labelInfo = new CustomLb("Humeur : ", CustomStyle.ROSE_DEFAUT, CustomStyle.ALPHA, BorderFactory.createEmptyBorder(5, 10, 4, 0));
@@ -461,11 +455,15 @@ public class MenuDeJeu extends Menu {
 		return panelCaracteristique;
 	}
 	
-	public void setAll(Vector<Caracteristique> caracteristiques, Caracteristique vie) {
+	public void setAll(Vector<Caracteristique> caracteristiques, Caracteristique vie, Caracteristique age) {
 		for (Caracteristique caracteristique: caracteristiques) {
 			barres.get(caracteristique.getNom()).setValue((int) caracteristique.getValeur());
 		}
-		barreVie.setValue((int) vie.getValeur());
+		if (vie.getValeur()>0) {
+			barreVie.setValue((int) vie.getValeur());
+		}else {
+			ControleurGeneral.ctrlJeu.rqtFin(labelType.getText(),labelNom.getText(),(int)age.getValeur());
+		}
 	}
 	
 	
@@ -529,6 +527,9 @@ public class MenuDeJeu extends Menu {
 			}
 		}
 	}
+	
+
+	
 	
 	
 }

@@ -11,6 +11,7 @@ import modele.Personnage;
 import modele.Piece;
 import modele.Robot;
 import vue.menu.MenuDeJeu;
+import vue.menu.MenuFin;
 import vue.menu.Pause;
 import vue.menu.SelecPartie;
 
@@ -103,8 +104,18 @@ public class ControleurJeu extends Controleur{
 	}
 	
 	public void majAffichage() {
-		getMenu().setAll(partie.getTamagotchi().getCaracteristiques(), partie.getTamagotchi().getVie());
+		getMenu().setAll(partie.getTamagotchi().getCaracteristiques(), partie.getTamagotchi().getVie(), partie.getTamagotchi().getAge());
 	}
+	
+	
+	/**
+	 * Demande de changement de menu : Menu Fin
+	 */
+	public void rqtFin(String type, String nom, int age) {
+		ControleurGeneral.ctrlTemps.threadJeuPause(true);
+		ControleurGeneral.ctrlAffichage.ouvrirMenu(new MenuFin(type, nom , age));
+	}
+	
 	
 	public void sauvegardePartie()  {
 		try {
