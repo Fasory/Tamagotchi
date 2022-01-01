@@ -14,7 +14,7 @@ import javax.mail.internet.MimeMessage;
 
 import modele.Piece;
 import vue.menu.Connexion;
-
+ 
 public class ControleurGeneral extends Controleur {
 	
 	private static boolean estCree = false;							// Repère de création d'une unique instance par type de controleur

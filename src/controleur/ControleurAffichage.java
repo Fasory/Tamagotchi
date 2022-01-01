@@ -101,7 +101,7 @@ public class ControleurAffichage extends Controleur {
 	 * @param menu - Menu que l'on souhaite afficher						<br/>
 	 */
 	public void ouvrirMenu(Menu menu) {
-		ouvrirMenu(menu, 0);
+		ouvrirMenu(menu, 0); 
 	}
 	
 	/**

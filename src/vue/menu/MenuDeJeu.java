@@ -463,7 +463,7 @@ public class MenuDeJeu extends Menu {
 			barreVie.setValue((int) vie.getValeur());
 		}else {
 			ControleurGeneral.ctrlJeu.rqtFin(labelType.getText(),labelNom.getText(),(int)age.getValeur());
-		}
+		} 
 	}
 	
 	

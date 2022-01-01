@@ -114,7 +114,7 @@ public class ControleurJeu extends Controleur{
 	public void rqtFin(String type, String nom, int age) {
 		ControleurGeneral.ctrlTemps.threadJeuPause(true);
 		ControleurGeneral.ctrlAffichage.ouvrirMenu(new MenuFin(type, nom , age));
-	}
+	} 
 	
 	
 	public void sauvegardePartie()  {
