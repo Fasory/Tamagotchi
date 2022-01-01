@@ -20,22 +20,22 @@ public class ControleurGeneral extends Controleur {
 	private static boolean estCree = false;							// Repère de création d'une unique instance par type de controleur
 	
 	// Constantes
-	public final static int TEMPS_MAJ = 500;			// Temps en milliseconde de pause entre chaque mise à jour du Tamagotchi
+	public final static int TEMPS_MAJ = 500;			// Temps (en millisecondes) de pause entre chaque mise à jour du Tamagotchi
 	public final static int NB_MAX_PARTIE = 4;
-	private final static String[][] REF_TYPE = {		// Sous faire : {Nom du type, nom du fichier associer (img)} -> String[]
+	private final static String[][] REF_TYPE = {		// Sous forme : {Nom du type, nom du fichier associer (img)} -> String[]
 			{"Robot", "robot.png"},
 			{"Lapin", "lapin.png"},
 			{"Chat", "chat.png"},
 			{"Dinosaure", "dinosaure.png"}
 	};
-	private final static String[][] REF_PIECE = {		// Sous faire : {Nom de la Piece, nom du fichier associer (img)} -> String[]
-			{"Salon", ""},
-			{"Jardin", ""},
+	private final static String[][] REF_PIECE = {		// Sous forme : {Nom de la Piece, nom du fichier associer (img)} -> String[]
+			{"Salon", "Salon.jpg"},
+			{"Jardin", "jardin.jpg"},
 			{"Cuisine", ""},
-			{"Chambre", ""},
-			{"Salle de bain", ""}
+			{"Chambre", "chambre.jpg"},
+			{"Salle de bain", "salle_de_bain.png"}
 	};
-	public final static String[][] LIEN_PIECES = {		// Sous fore : {Piece de départ, porte de départ, Piece d'arrivé, porte d'arrivé} -> String[]
+	public final static String[][] LIEN_PIECES = {		// Sous forme : {Piece de départ, porte de départ, Piece d'arrivé, porte d'arrivé} -> String[]
 			{REF_PIECE[0][0], "" + Piece.HAUT, REF_PIECE[1][0], "" + Piece.BAS},
 			{REF_PIECE[0][0], "" + Piece.GAUCHE, REF_PIECE[2][0], "" + Piece.DROITE},
 			{REF_PIECE[0][0], "" + Piece.BAS, REF_PIECE[3][0], "" + Piece.HAUT},
