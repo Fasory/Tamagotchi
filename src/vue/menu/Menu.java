@@ -35,7 +35,7 @@ public abstract class Menu extends JPanel {
 	
 	protected HashMap<String, JLabel> lsAlerte;
 	protected HashSet<CustomBtn> lsCustomBtn;
-	private BufferedImage fondImage;
+	protected BufferedImage fondImage;
 	
 	/**
 	 * Constructeur de la classe Menu

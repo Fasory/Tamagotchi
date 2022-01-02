@@ -31,7 +31,7 @@ public class ControleurGeneral extends Controleur {
 	private final static String[][] REF_PIECE = {		// Sous forme : {Nom de la Piece, nom du fichier associer (img)} -> String[]
 			{"Salon", "Salon.jpg"},
 			{"Jardin", "jardin.jpg"},
-			{"Cuisine", ""},
+			{"Cuisine", "Cuisine.png"},
 			{"Chambre", "chambre.jpg"},
 			{"Salle de bain", "salle_de_bain.png"}
 	};
