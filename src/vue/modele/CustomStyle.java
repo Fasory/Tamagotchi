@@ -11,6 +11,14 @@ import javax.swing.text.StyleConstants;
 import controleur.ControleurFichier;
 import controleur.ControleurGeneral;
 
+/**
+ * La classe CustomStyle est une classe abstraite
+ * 
+ * @author BIDAULT, BOUQUET, HAGUET, CASANOVA, BRZUSTOWSKI
+ *
+ */
+
+
 public abstract class CustomStyle {
 
 	
@@ -36,7 +44,12 @@ public abstract class CustomStyle {
 	public final static Color JAUNE_DEFAUT = new Color(241, 196, 15);
 	public final static Color ORANGE_DEFAUT = new Color(220, 118, 51);
 	
-	
+	/**
+	 * Initialisation de la taille de la police
+	 * 
+	 * @param taille - float définit taille de la police 
+	 * @return Font - la police définie
+	 */
 	public static Font getFont(float taille) {
 		Font police;
 		try {
@@ -50,7 +63,11 @@ public abstract class CustomStyle {
 		}
 	}
 	
-	
+	/**
+	 * Initialisation de la police
+	 * 
+	 * @return Font - la police définie
+	 */
 	public static Font getFont() {
 		return getFont(15f);
 	}
@@ -102,7 +119,12 @@ public abstract class CustomStyle {
 		return style;
 	}
 	
-	
+	/**
+	 * Initialisation du style par défaut
+	 * 
+	 * @param taille - int définit la taille par défaut
+	 * @return SimpleAttributSet - style par défaut appliqué au texte
+	 */
 	public static SimpleAttributeSet getStyleDefaut(int taille) {
 		SimpleAttributeSet style = new SimpleAttributeSet();
 		StyleConstants.setFontSize(style, taille);

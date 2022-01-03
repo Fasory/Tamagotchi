@@ -15,32 +15,83 @@ import javax.swing.border.Border;
 
 import controleur.ControleurFichier;
 
-public class CustomLb extends JLabel {
+/**
+ * La classe CustomLb implémente un style de label
+ * 
+ * @author BIDAULT, BOUQUET, HAGUET, CASANOVA, BRZUSTOWSKI
+ *
+ */
 
+public class CustomLb extends JLabel {
+	// Attributs
 	private Font police = null;
 	private Color couleur_foreground;
 	private Color couleur_background;
 	
+	// Constructeurs
+	/**
+	 * Constructeur de la classe CustomLb
+	 * 
+	 * @param texte - String définissant le texte sur lequel l'appliquer
+	 */
 	public CustomLb(String texte) {
 		this(texte, 10f);
 	}
 	
+	/**
+	 * Constructeur de la classe CustomLb
+	 * 
+	 * @param texte - String définissant le texte sur lequel l'appliquer
+	 * @param taille - float taille de police à appliquer au label
+	 */
 	public CustomLb(String texte, float taille) {
 		this(texte, taille, CustomStyle.ROSE_DEFAUT, CustomStyle.BLANC_ALPHA);
 	}
 	
+	/**
+	 * Constructeur de la classe CustomLb
+	 * 
+	 * @param texte - String définissant le texte sur lequel l'appliquer
+	 * @param foreground - Color définit la couleur au premier plan
+	 * @param background - Color définit la couleur au second plan
+	 */
 	public CustomLb(String texte, Color foreground, Color background) {
 		this(texte, 10f, foreground, background);
 	}
 	
+	/**
+	 * Constructeur de la classe CustomLb
+	 * 
+	 * @param texte - String définissant le texte sur lequel l'appliquer
+	 * @param foreground - Color définit la couleur au premier plan
+	 * @param background - Color définit la couleur au second plan
+	 * @param marge - Insets définit l'espacement autour du label
+	 */
 	public CustomLb(String texte, Color foreground, Color background, Border marge) {
 		this(texte, 10f, foreground, background, marge);
 	}
 	
+	/**
+	 * Constructeur de la classe CustomLb
+	 * 
+	 * @param texte - String définissant le texte sur lequel l'appliquer
+	 * @param taille - float taille de police à appliquer au texte
+	 * @param foreground - Color définit la couleur au premier plan
+	 * @param background - Color définit la couleur au second plan
+	 */
 	public CustomLb(String texte, float taille, Color foreground, Color background) {
 		this(texte, taille, foreground, background, BorderFactory.createEmptyBorder(5, 10, 3, 10));
 	}
 	
+	/**
+	 * Constructeur de la classe CustomLb
+	 * 
+	 * @param texte - String définissant le texte sur lequel l'appliquer
+	 * @param taille - float taille de police à appliquer au texte
+	 * @param foreground - Color définit la couleur au premier plan
+	 * @param background - Color définit la couleur au second plan
+	 * @param marge - Insets définit l'espacement autour du label
+	 */
 	public CustomLb(String texte, float taille, Color foreground, Color background, Border marge) {
 		super(texte);
 		try {
@@ -55,6 +106,8 @@ public class CustomLb extends JLabel {
 		couleur_foreground = foreground;
 		couleur_background = background;
 	}
+	
+	//Redéfinition
 	
 	@Override
 	public void setForeground(Color couleur) {

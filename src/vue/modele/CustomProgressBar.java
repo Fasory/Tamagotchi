@@ -8,8 +8,15 @@ import java.awt.RenderingHints;
 
 import javax.swing.JProgressBar;
 
+/**
+ * La classe CustomProgressBar implémente un style de barre de progression
+ * 
+ * @author BIDAULT, BOUQUET, HAGUET, CASANOVA, BRZUSTOWSKI
+ *
+ */
+
 public class CustomProgressBar extends JProgressBar {
-	
+	// Attributs
 	private final static Color DEFAUT_BACKGROUND = CustomStyle.GRIS_ALPHA;
 	private final static Color DEFAUT_FOND = CustomStyle.BLANC_DEFAUT;
 	private final static Color DEFAUT_0_25 = CustomStyle.ROUGE_DEFAUT;
@@ -22,10 +29,25 @@ public class CustomProgressBar extends JProgressBar {
 	private Color couleur_foreground;
 	private Color couleur_fond;
 	
+	// Constructeurs
+	
+	/**
+	 * Constructeur de la classe CustomProgressBar
+	 * 
+	 * @param min - int le minimum de la barre de progression
+	 * @param max - int le maximum de la barre de progression
+	 */
 	public CustomProgressBar(int min, int max) {
 		this(min, max, false);
 	}
 	
+	/**
+	 * Constructeur de la classe CustomProgressBar
+	 * 
+	 * @param min - int le minimum de la barre de progression
+	 * @param max - int le maximum de la barre de progression
+	 * @param fixe - boolean désigne si on fixe ou pas la barre
+	 */
 	public CustomProgressBar(int min, int max, boolean fixe) {
 		super(min, max);
 		
@@ -41,6 +63,8 @@ public class CustomProgressBar extends JProgressBar {
 		else if (pourcent <= 75) couleur_foreground = DEFAUT_50_75;
 		else couleur_foreground = DEFAUT_75_100;
 	}
+	
+	//Redéfinition
 	
 	@Override
 	public void setValue(int valeur) {

@@ -14,10 +14,20 @@ import javax.swing.JPasswordField;
 
 import controleur.ControleurFichier;
 
+/**
+ * La classe CustomPwdField implémente un style de champ d'entrée de mot de passe
+ * 
+ * @author BIDAULT, BOUQUET, HAGUET, CASANOVA, BRZUSTOWSKI
+ *
+ */
+
 public class CustomPwdField extends JPasswordField {
-	
+	// Attribut
 	private static Font police = null;
 	
+	/**
+	 * Constructeur de la classe CustomPwdField
+	 */
 	public CustomPwdField() {
 		super();
 		if (police == null) {
@@ -34,6 +44,8 @@ public class CustomPwdField extends JPasswordField {
 		setBorder(null);
 		setBorder(BorderFactory.createCompoundBorder(this.getBorder(), BorderFactory.createEmptyBorder(2, 10, 0, 10))); // Padding interne du Field
 	}
+	
+	// Redéfinition
 	
 	@Override
 	public void paintComponent(Graphics graphParam) {

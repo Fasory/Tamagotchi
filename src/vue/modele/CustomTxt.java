@@ -16,8 +16,15 @@ import javax.swing.text.StyledDocument;
 
 import controleur.ControleurFichier;
 
-public class CustomTxt extends JTextPane {
+/**
+ * La classe CustomTxt implémente un style de texte
+ * 
+ * @author BIDAULT, BOUQUET, HAGUET, CASANOVA, BRZUSTOWSKI
+ *
+ */
 
+public class CustomTxt extends JTextPane {
+	// Attributs
 	private final static Color DEFAUT_FOREGROUND = Color.WHITE;
 	private final static Color DEFAUT_BACKGROUND = new Color(255, 110, 160, 200);
 	private Color couleur_foreground;
@@ -25,18 +32,45 @@ public class CustomTxt extends JTextPane {
 	private static Font police = null;
 	private int arrondi;
 	
+	// Constructeurs
+	
+	/**
+	 * Constructeur de la classe CustomTxt
+	 * 
+	 * @param contenu - String texte sur lequel appliquer
+	 */
 	public CustomTxt(String contenu) {
 		this(contenu, 8, true, -1);
 	}
 	
+	/**
+	 * Constructeur de la classe CustomTxt
+	 * 
+	 * @param contenu - String texte sur lequel appliquer
+	 * @param centrer - boolean active ou désactive le centrage du texte
+	 */
 	public CustomTxt(String contenu, boolean centrer) {
 		this(contenu, 8, centrer, -1);
 	}
 	
+	/**
+	 * Constructeur de la classe CustomTxt
+	 * 
+	 * @param contenu - String texte sur lequel appliquer
+	 * @param taille - int taille du texte
+	 */
 	public CustomTxt(String contenu, int taille) {
 		this(contenu, taille, true, -1);
 	}
 	
+	/**
+	 * Constructeur de la classe CustomTxt
+	 * 
+	 * @param contenu - String texte sur lequel appliquer
+	 * @param taille - int taille du texte
+	 * @param centrer - boolean active ou désactive le centrage du texte
+	 * @param arrondi - int définit l'arrondi appliqué
+	 */
 	public CustomTxt(String contenu, int taille, boolean centrer, int arrondi) {
 		super();
 		this.arrondi = arrondi;
@@ -62,6 +96,8 @@ public class CustomTxt extends JTextPane {
 			e.printStackTrace();
 		}
 	}
+	
+	// Redéfinition
 	
 	@Override
 	public void paintComponent(Graphics graphParam) {

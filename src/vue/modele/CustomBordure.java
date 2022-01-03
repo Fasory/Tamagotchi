@@ -7,13 +7,32 @@ import java.awt.Insets;
 
 import javax.swing.border.Border;
 
+
+/**
+ * La classe CustomBordure implémente un style de bordure personnalisé
+ * 
+ * @author BIDAULT, BOUQUET, HAGUET, CASANOVA, BRZUSTOWSKI
+ *
+ */
+
 public class CustomBordure implements Border {
 	
+	// Attributs
 	private final int ARRONDI;
 	private final Color couleur;
 	private final int epaisseur;
 	private final Insets marges;
 	
+	// Constructeurs
+	
+	/**
+	 * Constructeur de la classe CustomBordure avec 4 paramètres
+	 * 
+	 * @param couleur - Color définit la couleur de la bordure
+	 * @param epaisseur - int définit l'épaisseur de la bordure
+	 * @param marges - Insets espacement autour de l'objet
+	 * @param arrondi - int définit l'arrondi des coins de la bordure
+	 */
 	public CustomBordure(Color couleur, int epaisseur, Insets marges, int arrondi) {
 		ARRONDI = arrondi;
 		this.couleur = couleur;
@@ -21,7 +40,15 @@ public class CustomBordure implements Border {
 		this.marges = marges;
 	}
 	
+	/**
+	 * Constructeur de la classe CustomBordure avec 3 paramètres
+	 * 
+	 * @param couleur - Color définit la couleur de la bordure
+	 * @param epaisseur - int définit l'épaisseur de la bordure
+	 * @param marges - Insets espacement autour de l'objet
+	 */
 	public CustomBordure(Color couleur, int epaisseur, Insets marges) {
+		// Affectation de -1 par défaut à l'épaisseur
 		this(couleur, epaisseur, marges, -1);
 	}
 
