@@ -60,7 +60,7 @@ public class MenuDeJeu extends Menu {
 		gbc.gridy = 0;
 		gbc.weighty = 1;								// Espace qu'occupe l'objet dans l'axe y entre 0 et 1 de la cellule (1 -> 100%, 0 -> 0%)
 		gbc.insets = new Insets(20, 20, 20, 10);		// Espacement autour du panel en px, respectivement : top, left, bottom, right
-		gbc.fill = GridBagConstraints.BOTH;			// Prend toute la place dispo
+		gbc.fill = GridBagConstraints.BOTH;				// Prend toute la place dispo
 		add(buildPanelGauche(tamagotchi.getNom(), tamagotchi.getType(), "Humeur", tamagotchi.getLocalisation()), gbc);
 		
 		
@@ -97,7 +97,7 @@ public class MenuDeJeu extends Menu {
 		gbc.gridy = 0;
 		gbc.weighty = 1;								// Espace qu'occupe l'objet dans l'axe y entre 0 et 1 de la cellule (1 -> 100%, 0 -> 0%)
 		gbc.weightx = 1;								// Même chose mais sur l'axe x
-		gbc.insets = new Insets(0, 0, 0, 0);		// Espacement autour du panel en px, respectivement : top, left, bottom, right
+		gbc.insets = new Insets(0, 0, 0, 0);			// Espacement autour du panel en px, respectivement : top, left, bottom, right
 		gbc.fill = GridBagConstraints.HORIZONTAL;		// Prend toute la place dispo
 		gbc.anchor = GridBagConstraints.NORTH;
 		panelGauche.add(buildPanelCara1(nom, type, humeur), gbc);
@@ -112,7 +112,7 @@ public class MenuDeJeu extends Menu {
 		gbc.gridy = 2;
 		gbc.weighty = 1;								// Espace qu'occupe l'objet dans l'axe y entre 0 et 1 de la cellule (1 -> 100%, 0 -> 0%)
 		gbc.weightx = 1;								// Même chose mais sur l'axe x
-		gbc.insets = new Insets(0, 0, 0, 0);		// Espacement autour du panel en px, respectivement : top, left, bottom, right
+		gbc.insets = new Insets(0, 0, 0, 0);			// Espacement autour du panel en px, respectivement : top, left, bottom, right
 		gbc.fill = GridBagConstraints.HORIZONTAL; 		// Prend toute la place dispo
 		gbc.anchor = GridBagConstraints.SOUTH;
 		panelGauche.add(buildPanelLieu(lieu), gbc);
@@ -137,7 +137,7 @@ public class MenuDeJeu extends Menu {
 		gbc.gridy = 0;
 		gbc.weighty = 1;								// Espace qu'occupe l'objet dans l'axe y entre 0 et 1 de la cellule (1 -> 100%, 0 -> 0%)
 		gbc.weightx = 1;								// Même chose mais sur l'axe x
-		gbc.insets = new Insets(0, 0, 0, 0);		// Espacement autour du panel en px, respectivement : top, left, bottom, right
+		gbc.insets = new Insets(0, 0, 0, 0);			// Espacement autour du panel en px, respectivement : top, left, bottom, right
 		gbc.anchor = GridBagConstraints.NORTH;
 		panelDroite.add(buildPanelCara2((int) tamagotchi.getVie().getValeur(), (int) tamagotchi.getAge().getValeur()), gbc);
 		
@@ -145,7 +145,7 @@ public class MenuDeJeu extends Menu {
 		gbc.gridy = 1;
 		gbc.weighty = 1;								// Espace qu'occupe l'objet dans l'axe y entre 0 et 1 de la cellule (1 -> 100%, 0 -> 0%)
 		gbc.weightx = 1;								// Même chose mais sur l'axe x
-		gbc.insets = new Insets(0, 0, 0, 0);		// Espacement autour du panel en px, respectivement : top, left, bottom, right
+		gbc.insets = new Insets(0, 0, 0, 0);			// Espacement autour du panel en px, respectivement : top, left, bottom, right
 		gbc.anchor = GridBagConstraints.SOUTH;
 		panelDroite.add(buildPanelCara3(tamagotchi.getCaracteristiques()), gbc);
 		
@@ -455,6 +455,16 @@ public class MenuDeJeu extends Menu {
 		return panelCaracteristique;
 	}
 	
+	/**
+	 * Méthode permettant de modifier les Caractéristiques
+	 * d'un Personnage.
+	 * 
+	 * @param caracteristiques - Ensemble des caractéristiques
+	 * @param vie - Caracteristique qui attribut le poucentage 
+	 * de vie à un Personnage, elle évolue
+	 * @param age - Caractéristique qui attribut un age au 
+	 * Personnage, elle évolue
+	 */
 	public void setAll(Vector<Caracteristique> caracteristiques, Caracteristique vie, Caracteristique age) {
 		for (Caracteristique caracteristique: caracteristiques) {
 			barres.get(caracteristique.getNom()).setValue((int) caracteristique.getValeur());
@@ -472,12 +482,25 @@ public class MenuDeJeu extends Menu {
 	//             AUX BOUTTONS           //        
 	////////////////////////////////////////
 	
-
+	
+	/**
+	 * Fonction permettant le changement de lieu
+	 * 
+	 * @param direction - int attribué à la décision d'aller 
+	 * dans la pièce de gauche ou la pièce de droite de la pièce courante
+	 * 
+	 */
 	private void cmdLieu(int direction) {
 		ControleurGeneral.ctrlJeu.rqtChangeLieu(direction);
 	}
 	
 	
+	/**
+	 * Fonction appelée lors d'une action sur le Personnage
+	 * exemple : prendre une douche, manger etc...
+	 * 
+	 * @param caracteristique - Caracteristique affectée par l'action
+	 */
 	private void cmdAction(String caracteristique) {
 		ControleurGeneral.ctrlJeu.rqtAction(caracteristique);
 		String action = "Restaure : "+caracteristique;

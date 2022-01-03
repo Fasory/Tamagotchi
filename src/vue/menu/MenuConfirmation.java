@@ -21,6 +21,7 @@ import vue.modele.CustomTxtField;
 /**
  * MenuConfirmation met à disposition un choix binaire		<br/>
  * retournant vrai ou faux au contrôleur					<br/>
+ * 
  * @author BIDAULT, BOUQUET, HAGUET, CASANOVA, BRZUSTOWSKI	<br/>
  */
 public abstract class MenuConfirmation extends Menu {
@@ -108,10 +109,10 @@ public abstract class MenuConfirmation extends Menu {
 		});
 		gbc.gridx = 0;
 		gbc.gridy = 0;
-		gbc.weightx = 1;
+		gbc.weightx = 1;										// Espace qu'occupe l'objet dans l'axe x entre 0 et 1 de la cellule (1 -> 100%, 0 -> 0%)
 		gbc.gridwidth = 1;
 		gbc.anchor = GridBagConstraints.BASELINE_TRAILING;
-		gbc.insets = new Insets(0, 0, 0, 5);
+		gbc.insets = new Insets(0, 0, 0, 5);					// Espacement autour du panel en px, respectivement : top, left, bottom, right
 		panelBtn.add(btnVrai, gbc);
 		
 		
@@ -123,10 +124,10 @@ public abstract class MenuConfirmation extends Menu {
 			}
 		});
 		gbc.gridx = 1;
-		gbc.weightx = 1;
+		gbc.weightx = 1;										// Espace qu'occupe l'objet dans l'axe x entre 0 et 1 de la cellule (1 -> 100%, 0 -> 0%)
 		gbc.gridwidth = 1;
 		gbc.anchor = GridBagConstraints.BASELINE_LEADING;
-		gbc.insets = new Insets(0, 5, 0, 0);
+		gbc.insets = new Insets(0, 5, 0, 0);					// Espacement autour du panel en px, respectivement : top, left, bottom, right
 		panelBtn.add(btnFaux, gbc);
 		
 		// Construction du menu

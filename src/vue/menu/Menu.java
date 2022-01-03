@@ -54,8 +54,15 @@ public abstract class Menu extends JPanel {
 		}
 	}
 	
-	
+	/**
+	 * Contructeur de la Menu avec paramètres
+	 * 
+	 * @param couleur - Color qui permet de 
+	 * changer la couleur.
+	 * 
+	 */
 	protected Menu(Color couleur) {
+		// Appel au constructeur de la super classe JPanel
 		super();
 
 		lsCustomBtn = new HashSet<CustomBtn>();
@@ -63,7 +70,9 @@ public abstract class Menu extends JPanel {
 		setBackground(couleur);
 	}
 	
-	
+	/**
+	 * Méthode appelée losque java Swing dessine la fenêtre
+	 */
 	protected void paintComponent(Graphics graph) {
 		super.paintComponent(graph);
 		if (fondImage != null) graph.drawImage(fondImage, 0, 0, null);

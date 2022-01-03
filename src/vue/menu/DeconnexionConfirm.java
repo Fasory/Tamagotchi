@@ -16,8 +16,7 @@ public class DeconnexionConfirm extends MenuConfirmation {
 	
 	/**
 	 * Contructeur de la classe DeconnexionConfirm sans paramètre
-	 * 
-	 * @param controleur - Contoleur de l'application	<br/>
+	 *
 	 */
 	public DeconnexionConfirm() {
 		this("Êtes-vous sûr de vouloir vous déconnecter ?");

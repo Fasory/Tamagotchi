@@ -48,9 +48,10 @@ public class CreerPartie extends Menu {
 	
 	
 	/**
-	 * Constructeur
+	 * Constructeur de la classe CreerPartie
 	 */
 	public CreerPartie() {
+		// Appel au constructeur de la super classe Menu
 		super();
 		// partie affichage
 		setLayout(new GridBagLayout()); // nouvelle grille
