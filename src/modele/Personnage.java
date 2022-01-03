@@ -151,4 +151,8 @@ public abstract class Personnage implements Serializable {
 	public void changerDeLocalisation(int direction) {
 		localisation = localisation.voirPiece(direction);
 	}
+	
+	public void cycleAge() {
+		age.add(1);
+	}
 }

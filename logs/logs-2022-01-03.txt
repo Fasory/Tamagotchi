@@ -1,4 +1,188 @@
 ****************************************
+<<<<<<< HEAD
+		-	13:31:30 - 03/01/2022
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+Erreur - échec de la mise en pause du Thread majCaracteristiques
+java.lang.InterruptedException: sleep interrupted
+****************************************
+		-	13:32:22 - 03/01/2022
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+Erreur - échec de la mise en pause du Thread majCaracteristiques
+java.lang.InterruptedException: sleep interrupted
+****************************************
+		-	13:35:14 - 03/01/2022
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+Erreur - échec de la mise en pause du Thread majCaracteristiques
+java.lang.InterruptedException: sleep interrupted
+****************************************
+		-	13:38:07 - 03/01/2022
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+Erreur - échec de la mise en pause du Thread majCaracteristiques
+java.lang.InterruptedException: sleep interrupted
+Erreur - échec de la mise en pause du Thread majCaracteristiques
+java.lang.InterruptedException: sleep interrupted
+Erreur - échec de la mise en pause du Thread majCaracteristiques
+java.lang.InterruptedException: sleep interrupted
+Erreur - échec de la mise en pause du Thread majCaracteristiques
+java.lang.InterruptedException: sleep interrupted
+Erreur - échec de la mise en pause du Thread majCaracteristiques
+java.lang.InterruptedException: sleep interrupted
+Erreur - échec de la mise en pause du Thread majCaracteristiques
+java.lang.InterruptedException: sleep interrupted
+Erreur - échec de la mise en pause du Thread majCaracteristiques
+java.lang.InterruptedException: sleep interrupted
+Erreur - échec de la mise en pause du Thread majCaracteristiques
+java.lang.InterruptedException: sleep interrupted
+Erreur - échec de la mise en pause du Thread majCaracteristiques
+java.lang.InterruptedException: sleep interrupted
+Erreur - échec de la mise en pause du Thread majCaracteristiques
+java.lang.InterruptedException: sleep interrupted
+****************************************
+		-	13:43:23 - 03/01/2022
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+Erreur - échec de la mise en pause du Thread majCaracteristiques
+java.lang.InterruptedException: sleep interrupted
+Erreur - échec de la mise en pause du Thread majCaracteristiques
+java.lang.InterruptedException: sleep interrupted
+Erreur - échec de la mise en pause du Thread majCaracteristiques
+java.lang.InterruptedException: sleep interrupted
+Erreur - échec de la mise en pause du Thread majCaracteristiques
+java.lang.InterruptedException: sleep interrupted
+Erreur - échec de la mise en pause du Thread majCaracteristiques
+java.lang.InterruptedException: sleep interrupted
+****************************************
+		-	13:44:26 - 03/01/2022
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+Erreur - échec de la mise en pause du Thread majCaracteristiques
+java.lang.InterruptedException: sleep interrupted
+Erreur - échec de la mise en pause du Thread majCaracteristiques
+java.lang.InterruptedException: sleep interrupted
+Erreur - échec de la mise en pause du Thread majCaracteristiques
+java.lang.InterruptedException: sleep interrupted
+Erreur - échec de la mise en pause du Thread majCaracteristiques
+java.lang.InterruptedException: sleep interrupted
+Erreur - échec de la mise en pause du Thread majCaracteristiques
+java.lang.InterruptedException: sleep interrupted
+****************************************
+		-	13:45:10 - 03/01/2022
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+Erreur - échec de la mise en pause du Thread majCaracteristiques
+java.lang.InterruptedException: sleep interrupted
+Erreur - échec de la mise en pause du Thread majCaracteristiques
+java.lang.InterruptedException: sleep interrupted
+Erreur - échec de la mise en pause du Thread majCaracteristiques
+java.lang.InterruptedException: sleep interrupted
+****************************************
+		-	13:46:26 - 03/01/2022
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+Erreur - échec de la mise en pause du Thread majCaracteristiques
+java.lang.InterruptedException: sleep interrupted
+Erreur - échec de la mise en pause du Thread majCaracteristiques
+java.lang.InterruptedException: sleep interrupted
+Erreur - échec de la mise en pause du Thread majCaracteristiques
+java.lang.InterruptedException: sleep interrupted
+Erreur - échec de la mise en pause du Thread majCaracteristiques
+java.lang.InterruptedException: sleep interrupted
+Erreur - échec de la mise en pause du Thread majCaracteristiques
+java.lang.InterruptedException: sleep interrupted
+Erreur - échec de la mise en pause du Thread majCaracteristiques
+java.lang.InterruptedException: sleep interrupted
+Erreur - échec de la mise en pause du Thread majCaracteristiques
+java.lang.InterruptedException: sleep interrupted
+Erreur - échec de la mise en pause du Thread majCaracteristiques
+java.lang.InterruptedException: sleep interrupted
+Erreur - échec de la mise en pause du Thread majCaracteristiques
+java.lang.InterruptedException: sleep interrupted
+Erreur - échec de la mise en pause du Thread majCaracteristiques
+java.lang.InterruptedException: sleep interrupted
+****************************************
+		-	13:48:58 - 03/01/2022
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+Erreur - échec de la mise en pause du Thread majCaracteristiques
+java.lang.InterruptedException: sleep interrupted
+****************************************
+		-	13:49:26 - 03/01/2022
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+Erreur - échec de la mise en pause du Thread majCaracteristiques
+java.lang.InterruptedException: sleep interrupted
+****************************************
+		-	13:49:59 - 03/01/2022
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	13:50:41 - 03/01/2022
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	13:56:37 - 03/01/2022
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	13:57:58 - 03/01/2022
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	14:02:05 - 03/01/2022
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	14:14:17 - 03/01/2022
+=======
 		-	12:02:14 - 03/01/2022
 Satut	-	Lancement de l'application
 		-	Récupération des données de connexion
@@ -49,6 +233,7 @@ Satut	-	Lancement de l'application
 Satut	-	Application opérationnelle
 ****************************************
 		-	12:53:38 - 03/01/2022
+>>>>>>> branch 'master' of git@github.com:Fasory/Tamagotchi.git
 Satut	-	Lancement de l'application
 		-	Récupération des données de connexion
 		-	Création des fenêtres
