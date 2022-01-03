@@ -555,7 +555,7 @@ public class MenuDeJeu extends Menu {
 		});
 		// Réactivation des btns avec un timer
 		Menu menu = this;
-		ControleurGeneral.ctrlTemps.addThreadJeu(5000, new Runnable(){
+		ControleurGeneral.ctrlTemps.addThreadJeu(ControleurGeneral.TEMPS_LOCK, new Runnable(){
 			  @Override
 			  public void run() {
 					btns.forEach((k, v) -> {
@@ -563,7 +563,7 @@ public class MenuDeJeu extends Menu {
 					});
 			  }
 		});
-		ControleurGeneral.ctrlTemps.addThreadJeu(5000, new Runnable(){
+		ControleurGeneral.ctrlTemps.addThreadJeu(ControleurGeneral.TEMPS_LOCK, new Runnable(){
 			  @Override
 			  public void run() {
 				  	String action = "Aucune action en cours";
