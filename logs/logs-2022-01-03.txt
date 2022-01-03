@@ -239,3 +239,26 @@ Satut	-	Lancement de l'application
 		-	Création des fenêtres
 		-	Initialisation des contrôleurs complémentaires
 Satut	-	Application opérationnelle
+****************************************
+		-	14:43:40 - 03/01/2022
+Satut	-	Lancement de l'application
+Erreur	-	échec de chargment du compte : data/user/00000000-0000-0000-0000-000000000000.usr
+java.io.EOFException
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	14:44:28 - 03/01/2022
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+****************************************
+		-	14:45:22 - 03/01/2022
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
