@@ -112,7 +112,7 @@ public class MenuDeJeu extends Menu {
 		// dimensions : 245*245
 		// avantages : evite le décalage des boutons de changement de lieu et la superposition de l'image avec les barres de caractéristiques
 		// inconvénients : le Tamagotchi "vole" sur le décor ou le masque
-		JLabel imageTama = new JLabel(new ImageIcon(new ImageIcon((new File(ControleurFichier.REP_IMG, ControleurGeneral.TYPE.get(type))).getPath()).getImage().getScaledInstance(245, 245, Image.SCALE_DEFAULT)));
+		JLabel imageTama = new JLabel(new ImageIcon(new ImageIcon((new File(ControleurFichier.REP_IMG, ControleurGeneral.TYPE.get(type))).getPath()).getImage().getScaledInstance(230, 230, Image.SCALE_DEFAULT)));
 		gbc.gridx = 0;
 		gbc.gridy = 1;
 		gbc.weighty = 1;
