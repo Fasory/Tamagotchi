@@ -20,11 +20,21 @@ import vue.modele.CustomLb;
 import vue.modele.CustomRadioPanel;
 import vue.modele.CustomStyle;
 
+/**
+ * La classe SelecPartie gère le menu "Selectionner une partie", 
+ * menu accessible après le menu "Menu Principal",
+ * lorsqu'on clique sur le bouton "Selectionner une partie"
+ * 
+ * @author BIDAULT, BOUQUET, HAGUET, CASANOVA, BRZUSTOWSKI
+ *
+ */
+
 public class SelecPartie extends Menu {
 	
 	private ButtonGroup grpPanel;
 	
 	public SelecPartie(HashSet<UUID> ids) {
+		// Appel au constructeur de la super classe Menu
 		super();
 		// TODO Auto-generated constructor stub
 		
@@ -162,19 +172,34 @@ public class SelecPartie extends Menu {
 	//           COMMANDES LIEES          //
 	//             AUX BOUTTONS           //        
 	////////////////////////////////////////
-
+	
+	/**
+	 * Demande de retour au menu précédent le menu courant 
+	 */
 	public void cmdRetour() {
 		ControleurGeneral.ctrlBouton.rqtRetour();	
 	}
 	
+	/**
+	 * Demande de lancement de la partie sélectionnée
+	 */
 	public void cmdJouer() {
 		ControleurGeneral.ctrlJeu.lancePartie(grpPanel.getSelection().getActionCommand());
 	}
 	
+	/**
+	 * Demande de supression de la partie sélectionnée
+	 */
 	public void cmdSupprimer() {
 		ControleurGeneral.ctrlJeu.rqtSupprimerPartie(grpPanel.getSelection().getActionCommand());
 	}
 	
+	/**
+	 * Demande d'activation ou de désactivation d'un bouton
+	 * 
+	 * @param btn - CustomBtn désigne le bouton
+	 * @param activite - boolean définit l'activation ou la désactivation
+	 */
 	public void cmdActive(CustomBtn btn, boolean activite) {
 		ControleurGeneral.ctrlAffichage.rqtComposantActif(this, btn, activite);
 	}

@@ -2,6 +2,15 @@ package vue.menu;
 
 import controleur.ControleurGeneral;
 
+/**
+ * La classe ReinitialiserMdpConfirm gère le menu 
+ * "Confimation de réinitialisation du mot de passe", 
+ * menu accessible après le menu "Réinitialiser mot de passe"
+ * 
+ * @author BIDAULT, BOUQUET, HAGUET, CASANOVA, BRZUSTOWSKI
+ *
+ */
+
 public class ReinitialiserMdpConfirm extends MenuConfirmation {
 	
 	/**

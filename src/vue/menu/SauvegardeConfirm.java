@@ -2,6 +2,15 @@ package vue.menu;
 
 import controleur.ControleurGeneral;
 
+/**
+ * La classe SauvegardeConfirm gère le menu "Confirmation de sauvegarde", 
+ * menu accessible après le menu "Pause",
+ * lorsqu'on clique sur le bouton "Sauvegarde"
+ * 
+ * @author BIDAULT, BOUQUET, HAGUET, CASANOVA, BRZUSTOWSKI
+ *
+ */
+
 public class SauvegardeConfirm extends MenuConfirmation {
 	
 	/**
@@ -21,6 +30,7 @@ public class SauvegardeConfirm extends MenuConfirmation {
 	 * confirmation de sauvegarde						<br/>
 	 */
 	public SauvegardeConfirm(String msg) {
+		// Appel au constructeur de la super classe MenuConfirmation
 		super(msg, "Oui", "Annuler", false, true);
 	}
 	

@@ -19,9 +19,9 @@ import vue.modele.CustomBtn;
 import vue.modele.CustomStyle;
 
 /**
- * La classe Pause gère le menu "Pause", 
- * menu accessible après le menu "Menu de Jeu",
- * lorsqu'on clique sur le bouton "Pause"
+ * La classe Politique gère le menu "Politique", 
+ * menu accessible après le menu "Inscription",
+ * lorsqu'on clique sur "Politique de confidentialité"
  * 
  * @author BIDAULT, BOUQUET, HAGUET, CASANOVA, BRZUSTOWSKI
  *
