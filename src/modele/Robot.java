@@ -8,7 +8,8 @@ public class Robot extends Personnage{
 	
 	
 	public Robot(String nom, int entretien, int hygiene, int energie, Piece localisation) {
-		super(nom, "Robot", localisation); 
+		super(nom, "Robot", localisation);
+		// Caractéristiques
 		this.entretien = new Caracteristique(entretien, "Entretien", "Reparer", 0, 100);
 		caracteristiques.put(this.entretien.getNom(), this.entretien);	
 		this.hygiene.setModifieur("Nettoyer");
