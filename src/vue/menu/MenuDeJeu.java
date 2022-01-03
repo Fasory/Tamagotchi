@@ -583,7 +583,7 @@ public class MenuDeJeu extends Menu {
 	
 	@Override
 	public void reinitialiser() {
-		Piece localisation = ControleurGeneral.ctrlJeu.rqtGetLieu();
+		Piece localisation = ControleurGeneral.ctrlJeu.getLieu();
 		labelLieu.setText(localisation.getNom());
 		int[] lsDirection = {Piece.HAUT, Piece.GAUCHE, Piece.BAS, Piece.DROITE};
 		for (int direction : lsDirection) {

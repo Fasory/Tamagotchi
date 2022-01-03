@@ -174,7 +174,7 @@ public class ControleurJeu extends Controleur{
 		ControleurGeneral.ctrlAffichage.renitialiserMenu();
 	}
 	
-	public Piece rqtGetLieu() {
+	public Piece getLieu() {
 		return partie.getTamagotchi().getLocalisation();
 	}
 }
