@@ -191,6 +191,6 @@ class TestCompte {
 		testCompte.addPartie(id3); 
 		
 		testCompte.supprPartieId(id2);
-		assertEquals(expected_partiesId,testCompte.getPartiesId());  
+		assertEquals(expected_partiesId,testCompte.getPartiesId());   
 	}
 }
