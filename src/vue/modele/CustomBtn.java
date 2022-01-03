@@ -94,6 +94,7 @@ public class CustomBtn extends JButton {
 				err.printStackTrace();
 			}
 		}
+		setOpaque(false);
 		setFont(police);
 		UIManager.getDefaults().put("Button.disabledText", DESACTIVE_FOREGROUND);		// Change la couleur du texte d'un bouton désactivé (insensible au setForeground(...))
 		couleur_foreground = DEFAUT_FOREGROUND;

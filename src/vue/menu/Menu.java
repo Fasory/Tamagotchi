@@ -10,6 +10,7 @@ import vue.modele.CustomBtn;
 import vue.modele.CustomStyle;
 
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.awt.Graphics;
 import java.awt.Color;
@@ -46,12 +47,22 @@ public abstract class Menu extends JPanel {
 		
 		lsAlerte = new HashMap<String, JLabel>();
 		lsCustomBtn = new HashSet<CustomBtn>();
+		setFond(ControleurFichier.FOND_MENU);
+	}
+	
+	/**
+	 * Fixe l'image de fond du menu
+	 * 
+	 * @param image - File de l'image à mettre en fond
+	 */
+	public void setFond(File image) {
 		try {
-			fondImage = ImageIO.read(ControleurFichier.FOND_MENU);
+			fondImage = ImageIO.read(image);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		repaint();
 	}
 	
 	/**

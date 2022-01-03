@@ -6,13 +6,13 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.util.Hashtable;
 import java.util.Vector;
 
 import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.JLabel;
 
+import controleur.ControleurFichier;
 import controleur.ControleurGeneral;
 import modele.Caracteristique;
 import modele.Personnage;
@@ -28,15 +28,15 @@ public class MenuDeJeu extends Menu {
 	protected ControleurGeneral controleurG;
 	
 	//on initialise certains attributs (qui pourront être modifiés plus tard) hors du constructeur :
-	private JLabel labelAge;
-	private JLabel labelHumeur;
-	private JLabel labelType;
-	private JLabel labelNom;
-	private JLabel labelAction;
-	private JLabel labelLieu;
+	private CustomLb labelAge;
+	private CustomLb labelHumeur;
+	private CustomLb labelType;
+	private CustomLb labelNom;
+	private CustomLb labelAction;
+	private CustomLb labelLieu;
 	private Hashtable<String, CustomProgressBar> barres;
-	private Hashtable<String, JButton> btns;
-	private JButton[] btnLieu = new JButton[4];
+	private Hashtable<String, CustomBtn> btns;
+	private CustomBtn[] btnLieu = new CustomBtn[4];
 	private CustomProgressBar barreVie;
 	
 	
@@ -50,7 +50,7 @@ public class MenuDeJeu extends Menu {
 		super();
 		
 		barres = new Hashtable<String, CustomProgressBar>();
-		btns = new Hashtable<String, JButton>();
+		btns = new Hashtable<String, CustomBtn>();
 		
 		setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
@@ -342,6 +342,7 @@ public class MenuDeJeu extends Menu {
 	 */
 	private CustomPanel buildPanelCara2(int ptsVie, int age) {
 		CustomPanel panelCara2 = new CustomPanel(new GridBagLayout());
+		panelCara2.setOpaque(false);
 		GridBagConstraints gbc = new GridBagConstraints();
 		
 		
@@ -546,5 +547,6 @@ public class MenuDeJeu extends Menu {
 				btnLieu[direction].setEnabled(false);
 			}
 		}
+		setFond(new File(ControleurFichier.REP_IMG, ControleurGeneral.PIECE.get(localisation.getNom())));
 	}
 }
