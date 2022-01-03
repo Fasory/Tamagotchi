@@ -14,11 +14,22 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.Color;
 
+/**
+ * La classe CustomTxt implémente un style de champ d'entrée de texte
+ * 
+ * @author BIDAULT, BOUQUET, HAGUET, CASANOVA, BRZUSTOWSKI
+ *
+ */
+
 public class CustomTxtField extends JTextField {
-	
+	// Attribut
 	private static Font police = null;
 	
+	/**
+	 * Constructeur de la classe CustomTxtField
+	 */
 	public CustomTxtField() {
+		// Appel au constructeur de la super classe JtextField
 		super();
 		if (police == null) {
 			try {
@@ -34,6 +45,8 @@ public class CustomTxtField extends JTextField {
 		setBorder(null);
 		setBorder(BorderFactory.createCompoundBorder(this.getBorder(), BorderFactory.createEmptyBorder(2, 10, 0, 10))); // Padding interne du Field
 	}
+	
+	// Redéfinition
 	
 	@Override
 	public void paintComponent(Graphics graphParam) {

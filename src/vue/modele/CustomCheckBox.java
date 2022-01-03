@@ -8,16 +8,33 @@ import java.awt.Dimension;
 
 import javax.swing.JCheckBox;
 
+/**
+ * La classe CustomCheckBox implémente un style de checkbox
+ * 
+ * @author BIDAULT, BOUQUET, HAGUET, CASANOVA, BRZUSTOWSKI
+ *
+ */
+
 public class CustomCheckBox extends JCheckBox {
-	
+	// Attributs
 	private final int taille;
 	private final int EPAISSEUR = 3;
 	private final int MARGE = 3;
 	
+	// Constructeurs 
+	
+	/**
+	 * Constructeur de la classe CustomCheckBox
+	 */
 	public CustomCheckBox() {
 		this(20);
 	}
 	
+	/**
+	 * Constructeur de la classe CustomCheckBox
+	 * 
+	 * @param taille - int définissant la taille de la checkbox
+	 */
 	public CustomCheckBox(int taille) {
 		super();
 		if (taille < 20) taille = 20;
@@ -26,6 +43,7 @@ public class CustomCheckBox extends JCheckBox {
 		setOpaque(false);
 	}
 	
+	// Redéfinition
 	@Override
 	public void paintComponent(Graphics graphParam) {
 		Graphics2D graph = (Graphics2D) graphParam;
@@ -40,7 +58,3 @@ public class CustomCheckBox extends JCheckBox {
 		}
 	}
 }
-/*
-
-		
-*/

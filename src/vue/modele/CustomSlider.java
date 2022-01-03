@@ -9,13 +9,28 @@ import java.awt.RenderingHints;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseAdapter;
 
+/**
+ * La classe CustomSlider implémente un style de glissière
+ * (exemple : barre de volume)
+ * 
+ * @author BIDAULT, BOUQUET, HAGUET, CASANOVA, BRZUSTOWSKI
+ *
+ */
+
 public class CustomSlider extends JSlider {
-	
+	// Attributs
 	private final int EPAISSEUR;
 	private final int EPAISSEUR_POINTEUR;
 	private final int EPAISSEUR_POINTEUR_INTERNE;
 	private final int MARGE;
 	
+	/**
+	 * Constructeur de la classe CustomSlider
+	 * 
+	 * @param min - int minimum de la glissière
+	 * @param max - int maximum de la glissière
+	 * @param valeur - int valeur par défaut de la glissière
+	 */
 	public CustomSlider(int min, int max, int valeur) {
 		super(min, max, valeur);
 		EPAISSEUR = 10;
@@ -50,6 +65,8 @@ public class CustomSlider extends JSlider {
 			}
 		});
 	}
+	
+	// Redéfinition
 	
 	@Override
 	public void paintComponent(Graphics graphParam) {

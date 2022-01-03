@@ -18,8 +18,16 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Insets;
 
+/**
+ * La classe CustomBtn implémente un style de bouton personnalisé
+ * 
+ * @author BIDAULT, BOUQUET, HAGUET, CASANOVA, BRZUSTOWSKI
+ *
+ */
+
 public class CustomBtn extends JButton {
 	
+	// Attributs
 	private final static Color DEFAUT_FOREGROUND = new Color(255, 110, 160);
 	private final static Color DEFAUT_BACKGROUND = Color.WHITE;
 	private final static Color SURVOLE_FOREGROUND = DEFAUT_FOREGROUND;
@@ -35,19 +43,44 @@ public class CustomBtn extends JButton {
 	private Color couleur_background;
 	private boolean focus;
 	
+	// Constructeurs
 	
+	/**
+	 * Constructeur de la classe CustomBtn
+	 * 
+	 * @param texte - String affichage texte à l'intérieur du bouton
+	 */
 	public CustomBtn(String texte) {
 		this(texte, 15f, new Insets(12, 35, 10, 35));
 	}
 	
+	/**
+	 * Constructeur de la classe CustomBtn
+	 * 
+	 * @param texte - String affichage texte à l'intérieur du bouton
+	 * @param taille - float paramétrant la taille de la police
+	 */
 	public CustomBtn(String texte, float taille) {
 		this(texte, taille, new Insets(12, 35, 10, 35));
 	}
 	
+	/**
+	 * Constructeur de la classe CustomBtn
+	 * 
+	 * @param texte - String affichage texte à l'intérieur du bouton
+	 * @param marges - Insets définit l'espacement autour du bouton
+	 */
 	public CustomBtn(String texte, Insets marges) {
 		this(texte, 15f, marges);
 	}
 	
+	/**
+	 * Constructeur de la classe CustomBtn
+	 * 
+	 * @param texte - String affichage texte à l'intérieur du bouton
+	 * @param taille - float paramétrant la taille de la police
+	 * @param marges - Insets définit l'espacement autour du bouton
+	 */
 	public CustomBtn(String texte, float taille, Insets marges) {
 		super(texte);
 		focus = false;
@@ -68,6 +101,8 @@ public class CustomBtn extends JButton {
 		setContentAreaFilled(false);
 		setFocusable(false); 
 		addMouseListener(new MouseListener() {
+			
+			// Rédéfinition de méthodes héritées de JButton
 			
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -135,6 +170,9 @@ public class CustomBtn extends JButton {
 		super.paintComponent(graphParam);
 	}
 	
+	/**
+	 * Permet le retour du type de bouton par défaut
+	 */
 	public void reset() {
 		if (isEnabled()) {
 			focus = false;

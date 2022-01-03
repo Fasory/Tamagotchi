@@ -23,9 +23,15 @@ import javax.swing.border.TitledBorder;
 import controleur.ControleurFichier;
 import controleur.ControleurGeneral;
 
+/**
+ * La classe CustomRadioPanel implémente un style de radio panel
+ * 
+ * @author BIDAULT, BOUQUET, HAGUET, CASANOVA, BRZUSTOWSKI
+ *
+ */
+
 public class CustomRadioPanel extends JRadioButton {
-	
-	
+	// Attributs
 	private final int ARRONDI = 30;
 	private final int WIDTH = 350;
 	private final int HEIGHT = 150;
@@ -38,8 +44,17 @@ public class CustomRadioPanel extends JRadioButton {
 	private CustomLb lbInfo;
 	private static Dimension sizeRef = (new CustomRadioPanel(" ", "Robot", 0, 0, false)).panel.getPreferredSize();	// Taille référent pour les RadioPanel vide
 	
-	
+	/**
+	 * Constructeur de la classe CustomRadioPanel
+	 * 
+	 * @param nom - String définit le radio panel du nom du personnage
+	 * @param type - String définit le radio panel du type du personnage
+	 * @param age - int définit le radio panel de l'age du personnage
+	 * @param vie - int définit le radio panel de la vie du personnage
+	 * @param triche - boolean  définit le radio panel de la vie du personnage
+	 */
 	public CustomRadioPanel(String nom, String type, int age, int vie, boolean triche) {
+		// Appel au constructeur de la super classe JRadioButton
 		super();
 		
 		couleur_foreground = CustomStyle.ROSE_DEFAUT;
@@ -143,7 +158,12 @@ public class CustomRadioPanel extends JRadioButton {
 		});
 	}
 	
-	
+	/**
+	 * Constructeur de la classe CustomRadioPanel
+	 * 
+	 * @param message - String texte sur lequel appliquer
+	 * @param active - boolean active ou désactive la modification
+	 */
 	public CustomRadioPanel(String message, boolean active) {
 		super();
 		
@@ -193,6 +213,7 @@ public class CustomRadioPanel extends JRadioButton {
 		}
 	}
 	
+	// Redéfinition
 	
 	@Override
 	public void paintComponent(Graphics graphParam) {

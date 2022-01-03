@@ -10,20 +10,50 @@ import java.awt.LayoutManager;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
+/**
+ * La classe CustomPanel implémente un style de panel
+ * 
+ * @author BIDAULT, BOUQUET, HAGUET, CASANOVA, BRZUSTOWSKI
+ *
+ */
+
 public class CustomPanel extends JPanel {
-	
+	// Attributs
 	private final int MARGE;
 	private final int ARRONDI;
 	private Color couleur_background;
+	
+	// Constructeurs
+	
+	/**
+	 * Constructeur de la classe CustomPanel
+	 * 
+	 * @param gbl - LayoutManager définit un gestionnaire d'affichage
+	 */
 	
 	public CustomPanel(LayoutManager gbl) {
 		this(gbl, -1, 0, CustomStyle.ALPHA);
 	}
 	
+	/**
+	 * Constructeur de la classe CustomPanel
+	 * 
+	 * @param gbl - LayoutManager définit un gestionnaire d'affichage
+	 * @param arrondi - int définit l'arrondi du panel
+	 * @param marge - Insets définit l'espacement autour du panel
+	 */
 	public CustomPanel(LayoutManager gbl, int arrondi, int marge) {
 		this(gbl, arrondi, marge, CustomStyle.BLANC_ALPHA);
 	}
 	
+	/**
+	 * Constructeur de la classe CustomPanel
+	 * 
+	 * @param gbl - LayoutManager définit un gestionnaire d'affichage
+	 * @param arrondi - int définit l'arrondi du panel
+	 * @param marge - Insets définit l'espacement autour du panel
+	 * @param background - Color définit une couleur d'arrière-plan
+	 */
 	public CustomPanel(LayoutManager gbl, int arrondi, int marge, Color background) {
 		super(gbl);
 		setOpaque(false);
@@ -32,6 +62,8 @@ public class CustomPanel extends JPanel {
 		setBorder(BorderFactory.createEmptyBorder(MARGE, MARGE, MARGE, MARGE));
 		couleur_background = background;
 	}
+	
+	// Redéfinition
 	
 	@Override
 	public void paintComponent(Graphics graphParam) {

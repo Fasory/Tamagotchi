@@ -16,8 +16,15 @@ import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.awt.Color;
 
+/**
+ * La classe CustomRadioBtn implémente un style de bouton radio
+ * 
+ * @author BIDAULT, BOUQUET, HAGUET, CASANOVA, BRZUSTOWSKI
+ *
+ */
+
 public class CustomRadioBtn extends JRadioButton {
-	
+	// Attributs
 	private final float TAILLE;
 	private final int TAILLE_BTN;
 	private final int TAILLE_BTN_INTERNE;
@@ -27,6 +34,11 @@ public class CustomRadioBtn extends JRadioButton {
 	private Color couleur_background;
 	private Font police;
 	
+	/**
+	 * Constructeur de la classe CustomRadioBtn
+	 * 
+	 * @param elt - String chaine de caractère placé à la suite du bouton radio
+	 */
 	public CustomRadioBtn(String elt) {
 		super(elt);
 		TAILLE = 12f;
@@ -57,6 +69,8 @@ public class CustomRadioBtn extends JRadioButton {
 			}
 		});
 	}
+	
+	// Redéfinition
 	
 	@Override
 	public void paintComponent(Graphics graphParam) {
