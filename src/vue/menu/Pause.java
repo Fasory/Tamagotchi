@@ -73,7 +73,7 @@ public class Pause extends Menu {
 		btnOptions.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent evt) {
-				cmdOptions();
+				cmdOptions(true);
 			}
 		});
 		gbc.fill = GridBagConstraints.HORIZONTAL;
@@ -110,8 +110,8 @@ public class Pause extends Menu {
 	/**
 	* Demande de changement de menu : Menu des options
 	*/
-	private void cmdOptions() {
-		ControleurGeneral.ctrlBouton.rqtMenuOption();
+	private void cmdOptions(boolean pause) {
+		ControleurGeneral.ctrlBouton.rqtMenuOption(pause);
 	}
 	
 	/**
@@ -132,7 +132,7 @@ public class Pause extends Menu {
 	* Demande de changement de menu. Retour au menu principale
 	*/
 	private void cmdQuitter() {
-		ControleurGeneral.ctrlBouton.rqtRevenirMenuPrincipal();
+		ControleurGeneral.ctrlBouton.rqtDemandeQuitterPartie();
 	}
 
 }

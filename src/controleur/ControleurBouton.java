@@ -13,6 +13,7 @@ import vue.menu.Option;
 import vue.menu.OubliMdp;
 import vue.menu.Politique;
 import vue.menu.QuitterConfirm;
+import vue.menu.QuitterPartieConfirm;
 import vue.menu.SauvegardeConfirm;
 import vue.menu.Score;
 import vue.menu.SelecPartie;
@@ -81,6 +82,14 @@ public class ControleurBouton extends Controleur {
 	}
 	
 	/**
+	* Demande de changement de menu : MenuOption			<br/>
+	*/
+	public void rqtMenuOption(boolean pause) {
+		ControleurGeneral.ctrlAffichage.ouvrirMenu(new Option(ControleurGeneral.ctrlConnexion.isAnonyme(),pause));
+		
+	}
+	
+	/**
 	* Demande de changement de menu : MenuScore				<br/>
 	*/
 	public void rqtMenuScore() {
@@ -93,6 +102,11 @@ public class ControleurBouton extends Controleur {
 	public void rqtDemandeQuitter() {
 		if (ControleurGeneral.BY_PASS) rqtQuitter();
 		else ControleurGeneral.ctrlAffichage.ouvrirMenuConfirmation(new QuitterConfirm());
+	}
+	
+	public void rqtDemandeQuitterPartie() {
+		if (ControleurGeneral.BY_PASS) rqtRevenirMenuPrincipal();
+		else ControleurGeneral.ctrlAffichage.ouvrirMenuConfirmation(new QuitterPartieConfirm());
 	}
 	
 	/**

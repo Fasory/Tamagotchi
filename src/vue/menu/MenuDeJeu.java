@@ -485,6 +485,11 @@ public class MenuDeJeu extends Menu {
 			barres.get(caracteristique.getNom()).setValue((int) caracteristique.getValeur());
 		}
 		barreVie.setValue((int) vie.getValeur());
+		if (vie.getValeur()>50) {
+			ControleurGeneral.ctrlAffichage.modifLabel(labelHumeur, "Heureux");
+		}else {
+			ControleurGeneral.ctrlAffichage.modifLabel(labelHumeur, "Triste");
+		}
 		labelAge.setText("Age : " + ((int) age.getValeur()));
 	}
 	

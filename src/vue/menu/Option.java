@@ -33,15 +33,25 @@ public class Option extends Menu {
 	 * Constructeur par défaut de la classe Option
 	 */
 	public Option() {
-		this(false);
+		this(false, false);
 	}
 	
 	/**
 	 * Constructeur avec paramètre (vraie si connexion en anonyme, faux sinon)
 	 * @param anonyme
 	 */
-
 	public Option(boolean anonyme) {
+		this(anonyme,false);
+	}
+	
+	/**
+	 * Constructeur avec paramètre anonyme (vraie si connexion en anonyme, faux sinon)
+	 * 					 parametre pause (vraie si ouvert depuis le menu pause, faux sinon)
+	 * @param anonyme
+	 * @param pause
+	 */
+
+	public Option(boolean anonyme,boolean pause) {
 		
 		// Appel au constructeur de la super classe Menu
 		super();
@@ -139,6 +149,7 @@ public class Option extends Menu {
 			}
 		});
 		if (anonyme) btnSupprimerCompte.setEnabled(false);
+		if (pause) btnSupprimerCompte.setEnabled(false);
 		gbc.fill = GridBagConstraints.HORIZONTAL;
 		gbc.gridx = 0;
 		gbc.gridy = 1;
