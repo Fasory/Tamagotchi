@@ -16,6 +16,15 @@ import vue.modele.CustomLb;
 import vue.modele.CustomPwdField;
 import vue.modele.CustomStyle;
 
+/**
+ * La classe ReinitialiserMdp gère le menu "Réinitialiser mot de passe", 
+ * menu accessible après le menu "Oubli de mot de passe",
+ * lorsqu'on clique sur le bouton "Réinitialiser"
+ * 
+ * @author BIDAULT, BOUQUET, HAGUET, CASANOVA, BRZUSTOWSKI
+ *
+ */
+
 public class ReinitialiserMdp extends Menu {
 	
 	private CustomPwdField txtMdp;
