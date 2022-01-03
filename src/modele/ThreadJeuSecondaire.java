@@ -28,7 +28,7 @@ public class ThreadJeuSecondaire extends Thread {
 	
 	@Override
 	public void run() {
-		while(repeat && !interuption) {
+		do {
 			try {
 				for (int i = 0; i < pause; i += PRECISION) {
 					Thread.sleep(PRECISION);
@@ -42,7 +42,7 @@ public class ThreadJeuSecondaire extends Thread {
 				ControleurGeneral.ctrlFichier.addLogs(err.toString(), true);
 			}
 			if (!interuption) action.run();
-		}
+		} while(repeat && !interuption);
     }
 	
 	

@@ -194,20 +194,22 @@ public class MenuDeJeu extends Menu {
 		gbc.fill = GridBagConstraints.HORIZONTAL;
 		gbc.gridx = 0;
 		gbc.gridy = 0;
-		gbc.gridwidth = 3;
-		gbc.gridheight = 1;
-		gbc.insets = new Insets(0, 0, 0, 0);
-		panelLieu.add(panelPosition, gbc);
-		
-		// Choix
-		gbc.fill = GridBagConstraints.HORIZONTAL;
 		gbc.gridwidth = 1;
 		gbc.gridheight = 1;
-		gbc.insets = new Insets(5, 0, 0, 0);	// Espacement autour du panel en px, respectivement : top, left, bottom, right
+		gbc.insets = new Insets(0, 0, 5, 0);
+		panelLieu.add(panelPosition, gbc);
+		
+		CustomPanel panelBtn = new CustomPanel(new GridBagLayout());
+		
+		// Choix
+		gbc.fill = GridBagConstraints.NONE;
+		gbc.gridwidth = 1;
+		gbc.gridheight = 1;
+		gbc.insets = new Insets(0, 0, 0, 0);	// Espacement autour du panel en px, respectivement : top, left, bottom, right
 		int[][] position = {{1, 1}, {0, 2}, {1, 3}, {2, 2}};
 		String[] nom = {"H", "G", "B", "D"};
 		for (int i = 0; i < btnLieu.length; i++) {
-			CustomBtn btnLieuX = new CustomBtn(nom[i], 8);
+			CustomBtn btnLieuX = new CustomBtn(nom[i], 8, new Insets(12,15,10,15));
 			int n = i;
 			btnLieuX.setPreferredSize(dimPanel);
 			btnLieuX.addActionListener(new ActionListener() {
@@ -217,10 +219,20 @@ public class MenuDeJeu extends Menu {
 			});
 			gbc.gridx = position[i][0];
 			gbc.gridy = position[i][1];
-			panelLieu.add(btnLieuX, gbc);
+			panelBtn.add(btnLieuX, gbc);
 			btnLieu[i] = btnLieuX;
 			gbc.gridy++;
 		}
+		
+		
+		gbc.fill = GridBagConstraints.HORIZONTAL;
+		gbc.gridx = 0;
+		gbc.gridy = 1;
+		gbc.gridwidth = 1;
+		gbc.gridheight = 1;
+		gbc.anchor = GridBagConstraints.CENTER;
+		gbc.insets = new Insets(0, 0, 0, 0);
+		panelLieu.add(panelBtn, gbc);
 		
 		
 		reinitialiser();

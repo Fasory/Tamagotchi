@@ -1,0 +1,17 @@
+****************************************
+		-	19:20:41 - 02/01/2022
+Satut	-	Lancement de l'application
+		-	Récupération des données de connexion
+		-	Création des fenêtres
+		-	Initialisation des contrôleurs complémentaires
+Satut	-	Application opérationnelle
+Erreur - échec de lecture du fcihier 53c7469d-a10d-440a-8082-57bb13e9d7b5.save
+java.io.InvalidClassException: modele.Partie; local class incompatible: stream classdesc serialVersionUID = -4170876897034932387, local class serialVersionUID = -2977428535514042964
+Erreur - échec de lecture du fcihier 89636db1-0dfa-4af3-bb7a-7b121caaf2b3.save
+java.io.InvalidClassException: modele.Partie; local class incompatible: stream classdesc serialVersionUID = -4170876897034932387, local class serialVersionUID = -2977428535514042964
+Erreur	-	échec de suppression du fichier 53c7469d-a10d-440a-8082-57bb13e9d7b5.save
+java.lang.Exception: Le fichier n'a pas pu être supprimé
+Erreur - échec de lecture du fcihier 89636db1-0dfa-4af3-bb7a-7b121caaf2b3.save
+java.io.InvalidClassException: modele.Partie; local class incompatible: stream classdesc serialVersionUID = -4170876897034932387, local class serialVersionUID = -2977428535514042964
+Erreur	-	échec de suppression du fichier 89636db1-0dfa-4af3-bb7a-7b121caaf2b3.save
+java.lang.Exception: Le fichier n'a pas pu être supprimé

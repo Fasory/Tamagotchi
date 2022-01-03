@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.UUID;
 
 
-public class Partie extends ObjectId implements Serializable {
+public class Partie extends ObjectId {
 	
 	private Personnage tamagotchi;
 	private final boolean triche;
@@ -20,6 +20,6 @@ public class Partie extends ObjectId implements Serializable {
 	}
 	
 	public boolean getTriche() {
-		return triche;
+		return triche; 
 	}
 }
