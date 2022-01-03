@@ -90,7 +90,7 @@ public class MenuFin extends Menu {
 	 * @param retour - int permettant de 
 	 * quitter la partie
 	 */
-	public void cmdQuitter(int retour) {
+	private void cmdQuitter(int retour) {
 		// Sauvegarde de la partie en cours
 		ControleurGeneral.ctrlBouton.rqtSauvegarde();
 		// Retour au menu principal

@@ -575,7 +575,7 @@ public class MenuDeJeu extends Menu {
 	/**
 	 * Demande de changement de menu : Menu pause
 	 */
-	public void cmdPause() {
+	private void cmdPause() {
 		ControleurGeneral.ctrlBouton.rqtPause();
 	}
 	
