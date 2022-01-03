@@ -82,15 +82,6 @@ public abstract class Personnage implements Serializable {
 	}
 	
 	/**
-	 * Retourne l'age du Personnage
-	 * 
-	 * @return age - Caracteristique
-	 */
-	public Caracteristique getAgeabstract() {
-		return age;
-	}
-	
-	/**
 	 * Retourne la vie du Personnage
 	 * 
 	 * @return vie - Caracteristique
