@@ -9,7 +9,14 @@ import java.awt.event.ActionListener;
 import controleur.ControleurGeneral;
 import vue.modele.CustomBtn;
 
-
+/**
+ * La classe Pause gère le menu "Pause", 
+ * menu accessible après le menu "Menu de Jeu",
+ * lorsqu'on clique sur le bouton "Pause"
+ * 
+ * @author BIDAULT, BOUQUET, HAGUET, CASANOVA, BRZUSTOWSKI
+ *
+ */
 
 public class Pause extends Menu {
 	

@@ -15,11 +15,21 @@ import vue.modele.CustomBtn;
 import vue.modele.CustomLb;
 import vue.modele.CustomStyle;
 
+/**
+ * La classe DeconnexionConfirm gÃ¨re le menu 
+ * "MenuFin", ce menu se lance Ã  chaque demande 
+ * de fin de partie.
+ * 
+ * @author BIDAULT, BOUQUET, HAGUET, CASANOVA, BRZUSTOWSKI
+ *
+ */
+
 public class MenuFin extends Menu {
 	/**
-	 * Constructeur
+	 * Constructeur de la classe MenuFin
 	 */
 	public MenuFin(String type, String nom, int age) {
+		// Appel au constructeur de la super classe Menu
 		super();
 		// partie affichage
 		setLayout(new GridBagLayout()); // nouvelle grille
@@ -29,7 +39,7 @@ public class MenuFin extends Menu {
 		//		PANEL FIN DE PARTIE			//
 		//////////////////////////////////////
 		
-		CustomLb lbTitre = new CustomLb ("La partie est terminée",25,new Color(255, 110, 160, 200), CustomStyle.BLANC_DEFAUT);
+		CustomLb lbTitre = new CustomLb ("La partie est terminï¿½e",25,new Color(255, 110, 160, 200), CustomStyle.BLANC_DEFAUT);
 		gbc.gridx = 0;
 		gbc.gridy = 0;
 		gbc.anchor = GridBagConstraints.BASELINE;
@@ -37,7 +47,7 @@ public class MenuFin extends Menu {
 		add(lbTitre,gbc);
 		
 		
-		CustomLb lbRes = new CustomLb ("Voici tes résultats :",15,new Color(255, 110, 160, 200), CustomStyle.BLANC_DEFAUT);
+		CustomLb lbRes = new CustomLb ("Voici tes rï¿½sultats :",15,new Color(255, 110, 160, 200), CustomStyle.BLANC_DEFAUT);
 		gbc.gridx = 0;
 		gbc.gridy ++;
 		gbc.anchor = GridBagConstraints.BASELINE;
@@ -45,7 +55,7 @@ public class MenuFin extends Menu {
 		add(lbRes,gbc);
 		
 		
-		CustomLb lbNom = new CustomLb ("Le " + type + " " + nom + " a vécu " + age + " années. Bravo !" ,15,new Color(255, 110, 160, 200), CustomStyle.BLANC_DEFAUT);
+		CustomLb lbNom = new CustomLb ("Le " + type + " " + nom + " a vï¿½cu " + age + " annï¿½es. Bravo !" ,15,new Color(255, 110, 160, 200), CustomStyle.BLANC_DEFAUT);
 		gbc.gridx = 0;
 		gbc.gridy ++;
 		gbc.anchor = GridBagConstraints.BASELINE;
@@ -74,8 +84,16 @@ public class MenuFin extends Menu {
 	//             AUX BOUTTONS           //        
 	////////////////////////////////////////
 	
+	/**
+	 * Demande de quitter la partie en cours
+	 * 
+	 * @param retour - int permettant de 
+	 * quitter la partie
+	 */
 	public void cmdQuitter(int retour) {
+		// Sauvegarde de la partie en cours
 		ControleurGeneral.ctrlBouton.rqtSauvegarde();
+		// Retour au menu principal
 		ControleurGeneral.ctrlBouton.rqtMenuPrincipal(retour);
 	}
 }

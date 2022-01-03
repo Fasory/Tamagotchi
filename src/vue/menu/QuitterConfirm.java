@@ -2,6 +2,15 @@ package vue.menu;
 
 import controleur.ControleurGeneral;
 
+/**
+ * La classe Quitter gère le menu "Quitter", 
+ * menu accessible après tous les menus,
+ * lorsqu'on clique sur le bouton "X" (croix)
+ * 
+ * @author BIDAULT, BOUQUET, HAGUET, CASANOVA, BRZUSTOWSKI
+ *
+ */
+
 public class QuitterConfirm extends MenuConfirmation {
 	
 	/**

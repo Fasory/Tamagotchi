@@ -18,6 +18,15 @@ import controleur.ControleurGeneral;
 import vue.modele.CustomBtn;
 import vue.modele.CustomStyle;
 
+/**
+ * La classe Pause gère le menu "Pause", 
+ * menu accessible après le menu "Menu de Jeu",
+ * lorsqu'on clique sur le bouton "Pause"
+ * 
+ * @author BIDAULT, BOUQUET, HAGUET, CASANOVA, BRZUSTOWSKI
+ *
+ */
+
 public class Politique extends Menu {
 	
 	/**

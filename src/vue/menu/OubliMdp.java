@@ -18,6 +18,15 @@ import vue.modele.CustomStyle;
 import vue.modele.CustomTxt;
 import vue.modele.CustomTxtField;
 
+/**
+ * La classe OubliMdp gère le menu "Oubli du mot de passe", 
+ * menu accessible après le menu "Menu Principal",
+ * lorsqu'on clique sur le bouton "Oubli mot de passe"
+ * 
+ * @author BIDAULT, BOUQUET, HAGUET, CASANOVA, BRZUSTOWSKI
+ *
+ */
+
 public class OubliMdp extends Menu {
 	
 	private CustomTxtField txtId;
@@ -29,6 +38,7 @@ public class OubliMdp extends Menu {
 	 * @param controleur- Controleur de l'application	<br/>	
 	 */
 	public OubliMdp() {
+		// Appel au constructeur de la super classe Menu
 		super();
 		
 		// Partie Affichage
