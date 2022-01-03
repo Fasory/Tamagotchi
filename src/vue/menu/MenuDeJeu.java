@@ -469,11 +469,8 @@ public class MenuDeJeu extends Menu {
 		for (Caracteristique caracteristique: caracteristiques) {
 			barres.get(caracteristique.getNom()).setValue((int) caracteristique.getValeur());
 		}
-		if (vie.getValeur()>0) {
-			barreVie.setValue((int) vie.getValeur());
-		}else {
-			ControleurGeneral.ctrlJeu.rqtFin(labelType.getText(),labelNom.getText(),(int)age.getValeur());
-		} 
+		barreVie.setValue((int) vie.getValeur());
+		labelAge.setText("Age : " + ((int) age.getValeur()));
 	}
 	
 	

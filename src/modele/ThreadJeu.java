@@ -5,6 +5,7 @@ import controleur.ControleurGeneral;
 public class ThreadJeu extends Thread {
 	
 	private boolean threadSuspendre = false;
+	private boolean interuption = false;
 	
 	private final Runnable action;
 	private int pause;
@@ -19,7 +20,7 @@ public class ThreadJeu extends Thread {
 	
 	@Override
 	public void run() {
-		while (!interrupted()) {
+		while (!interuption) {
 			try {
 				Thread.sleep(pause);
 				if (threadSuspendre) synchronized(this) {while (threadSuspendre) wait();}
@@ -27,7 +28,7 @@ public class ThreadJeu extends Thread {
 				ControleurGeneral.ctrlFichier.addLogs("Erreur - échec de la mise en pause du Thread majCaracteristiques", true);
 				ControleurGeneral.ctrlFichier.addLogs(err.toString(), true);
 			}
-			action.run();
+			if (!interuption) action.run();
 		}
     }
 	
@@ -35,7 +36,7 @@ public class ThreadJeu extends Thread {
 	@Override
 	public void interrupt() {
 		reprendre();
-		super.interrupt();
+		interuption = true;
 	}
 	
 	

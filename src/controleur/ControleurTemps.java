@@ -40,7 +40,7 @@ public class ControleurTemps extends Controleur {
 		threadJeu.start();
 	}
 	
-	public void addThreadJeu(int pause, Runnable action) {
+	public void addThreadJeu(int pause, Runnable action, boolean repeat) {
 		Vector<ThreadJeuSecondaire> deleteThread = new Vector<ThreadJeuSecondaire>();
 		for (ThreadJeuSecondaire thread : threadJeuSecondaire) {
 			if (thread.getState() == Thread.State.TERMINATED) deleteThread.add(thread);
@@ -48,8 +48,12 @@ public class ControleurTemps extends Controleur {
 		for (ThreadJeuSecondaire thread : deleteThread) {
 			if (thread.getState() == Thread.State.TERMINATED) threadJeuSecondaire.remove(thread);
 		}
-		threadJeuSecondaire.add(new ThreadJeuSecondaire(pause, action));
+		threadJeuSecondaire.add(new ThreadJeuSecondaire(pause, action, repeat));
 		threadJeuSecondaire.lastElement().start();
+	}
+	
+	public void addThreadJeu(int pause, Runnable action) {
+		addThreadJeu(pause, action, false);
 	}
 	
 	public void threadJeuPause(boolean pause) {
@@ -75,7 +79,5 @@ public class ControleurTemps extends Controleur {
 	public void threadJeuKill() {
 		threadJeu.interrupt();
 		for (ThreadJeuSecondaire thread : threadJeuSecondaire) thread.interrupt();
-		threadJeu = null;
-		threadJeuSecondaire = new Vector<ThreadJeuSecondaire>();
 	}
 }

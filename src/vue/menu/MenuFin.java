@@ -39,7 +39,7 @@ public class MenuFin extends Menu {
 		//		PANEL FIN DE PARTIE			//
 		//////////////////////////////////////
 		
-		CustomLb lbTitre = new CustomLb ("La partie est termin�e",25,new Color(255, 110, 160, 200), CustomStyle.BLANC_DEFAUT);
+		CustomLb lbTitre = new CustomLb ("La partie est terminée",25,new Color(255, 110, 160, 200), CustomStyle.BLANC_DEFAUT);
 		gbc.gridx = 0;
 		gbc.gridy = 0;
 		gbc.anchor = GridBagConstraints.BASELINE;
@@ -47,7 +47,7 @@ public class MenuFin extends Menu {
 		add(lbTitre,gbc);
 		
 		
-		CustomLb lbRes = new CustomLb ("Voici tes r�sultats :",15,new Color(255, 110, 160, 200), CustomStyle.BLANC_DEFAUT);
+		CustomLb lbRes = new CustomLb ("Voici tes résultats :",15,new Color(255, 110, 160, 200), CustomStyle.BLANC_DEFAUT);
 		gbc.gridx = 0;
 		gbc.gridy ++;
 		gbc.anchor = GridBagConstraints.BASELINE;
@@ -55,7 +55,7 @@ public class MenuFin extends Menu {
 		add(lbRes,gbc);
 		
 		
-		CustomLb lbNom = new CustomLb ("Le " + type + " " + nom + " a v�cu " + age + " ann�es. Bravo !" ,15,new Color(255, 110, 160, 200), CustomStyle.BLANC_DEFAUT);
+		CustomLb lbNom = new CustomLb ("Le " + type + " " + nom + " a vécu " + age + " années. Bravo !" ,15,new Color(255, 110, 160, 200), CustomStyle.BLANC_DEFAUT);
 		gbc.gridx = 0;
 		gbc.gridy ++;
 		gbc.anchor = GridBagConstraints.BASELINE;
@@ -94,6 +94,6 @@ public class MenuFin extends Menu {
 		// Sauvegarde de la partie en cours
 		ControleurGeneral.ctrlBouton.rqtSauvegarde();
 		// Retour au menu principal
-		ControleurGeneral.ctrlBouton.rqtMenuPrincipal(retour);
+		ControleurGeneral.ctrlBouton.rqtRevenirMenuPrincipal();
 	}
 }

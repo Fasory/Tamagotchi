@@ -67,9 +67,28 @@ public class ControleurJeu extends Controleur{
 		ControleurGeneral.ctrlTemps.threadMajCaracteristiques(ControleurGeneral.TEMPS_MAJ, new Runnable() {
 			@Override
 			public void run() {
-				majCaracteristiques();
+				// Check en vie
+				if (partie.getTamagotchi().getVie().getValeur() == 0) finPartie();
+				else {
+					// Update Caracteristiques
+					partie.getTamagotchi().cycleVie(partie.getTamagotchi().reglesVie());
+					// Update Affichage
+					majAffichage();
+				}
 			}
 		});
+		ControleurGeneral.ctrlTemps.addThreadJeu(ControleurGeneral.TEMPS_VIEILLIR, new Runnable() {
+			@Override
+			public void run() {
+				// Check en vie
+				if (partie.getTamagotchi().getVie().getValeur() != 0) {
+					// Update Caracteristiques
+					partie.getTamagotchi().cycleAge();
+					// Update Affichage
+					majAffichage();
+				}
+			}
+		}, true);
 	}
 	
 	
@@ -95,14 +114,6 @@ public class ControleurJeu extends Controleur{
 		majAffichage();
 	}
 	
-	
-	public void majCaracteristiques() {
-		// Update Caracteristiques
-		partie.getTamagotchi().cycleVie(partie.getTamagotchi().reglesVie());
-		// Update Affichage
-		majAffichage();
-	}
-	
 	public void majAffichage() {
 		getMenu().setAll(partie.getTamagotchi().getCaracteristiques(), partie.getTamagotchi().getVie(), partie.getTamagotchi().getAge());
 	}
@@ -111,9 +122,9 @@ public class ControleurJeu extends Controleur{
 	/**
 	 * Demande de changement de menu : Menu Fin
 	 */
-	public void rqtFin(String type, String nom, int age) {
-		ControleurGeneral.ctrlTemps.threadJeuPause(true);
-		ControleurGeneral.ctrlAffichage.ouvrirMenu(new MenuFin(type, nom , age));
+	public void finPartie() {
+		ControleurGeneral.ctrlTemps.threadJeuKill();
+		ControleurGeneral.ctrlAffichage.ouvrirMenu(new MenuFin(partie.getTamagotchi().getType(), partie.getTamagotchi().getNom(), (int) partie.getTamagotchi().getAge().getValeur()));
 	} 
 	
 	

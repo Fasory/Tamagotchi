@@ -149,8 +149,8 @@ public class ControleurBouton extends Controleur {
 	/**
 	 * Redirige l'utilisateur vers le menu Principal					<br/>
 	 */
-	public void rqtMenuPrincipal(int retour) {
-		ControleurGeneral.ctrlAffichage.ouvrirMenu(new MenuPrincipal(ControleurGeneral.ctrlConnexion.isAnonyme()),retour);
+	public void rqtRevenirMenuPrincipal() {
+		ControleurGeneral.ctrlAffichage.menuPrecedent(2);
 	}
 	
 	

@@ -21,6 +21,7 @@ public class ControleurGeneral extends Controleur {
 	
 	// Constantes
 	public final static int TEMPS_MAJ = 500;			// Temps (en millisecondes) de pause entre chaque mise à jour du Tamagotchi
+	public final static int TEMPS_VIEILLIR = 500;
 	public final static int NB_MAX_PARTIE = 4;
 	private final static String[][] REF_TYPE = {		// Sous forme : {Nom du type, nom du fichier associer (img)} -> String[]
 			{"Robot", "robot.png"},
