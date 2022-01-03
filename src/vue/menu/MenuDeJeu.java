@@ -28,8 +28,6 @@ import vue.modele.CustomStyle;
 
 
 public class MenuDeJeu extends Menu {
-	protected ControleurGeneral controleurG;
-	
 	//on initialise certains attributs (qui pourront être modifiés plus tard) hors du constructeur :
 	private CustomLb labelAge;
 	private CustomLb labelHumeur;
