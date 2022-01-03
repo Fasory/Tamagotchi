@@ -188,9 +188,9 @@ class TestCompte {
 		Compte testCompte = new Compte("user1", "mdp1", "user1@mail", idTest, partiesIdTest);
 		testCompte.addPartie(id1);
 		testCompte.addPartie(id2);
-		testCompte.addPartie(id3);
+		testCompte.addPartie(id3); 
 		
 		testCompte.supprPartieId(id2);
-		assertEquals(expected_partiesId,testCompte.getPartiesId());
+		assertEquals(expected_partiesId,testCompte.getPartiesId());  
 	}
 }
