@@ -2,6 +2,7 @@ package vue.menu;
 
 import java.awt.Dimension;
 import java.awt.GridBagLayout;
+import java.awt.Image;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
@@ -11,6 +12,8 @@ import java.util.Hashtable;
 import java.util.Vector;
 
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
 import controleur.ControleurFichier;
 import controleur.ControleurGeneral;
@@ -83,7 +86,7 @@ public class MenuDeJeu extends Menu {
 	/**
 	 * Construit le JPanel gauche contenant :
 	 * 		- JPanel panelCara1
-	 * 		- Image Tamagotchi
+	 * 		- JLabel (contenant une Image) imageTama
 	 * 		- JPanel panelLieu
 	 * 
 	 * @return JPanel - contenant tout le panel gauche
@@ -93,19 +96,30 @@ public class MenuDeJeu extends Menu {
 		GridBagConstraints gbc = new GridBagConstraints();
 		
 		
-		gbc.gridx = 0;
-		gbc.gridy = 0;
+		gbc.gridx = 0;									// Emplacement que va occuper l'objet sur l'axe x
+		gbc.gridy = 0;									
 		gbc.weighty = 1;								// Espace qu'occupe l'objet dans l'axe y entre 0 et 1 de la cellule (1 -> 100%, 0 -> 0%)
 		gbc.weightx = 1;								// Même chose mais sur l'axe x
 		gbc.insets = new Insets(0, 0, 0, 0);			// Espacement autour du panel en px, respectivement : top, left, bottom, right
 		gbc.fill = GridBagConstraints.HORIZONTAL;		// Prend toute la place dispo
-		gbc.anchor = GridBagConstraints.NORTH;
-		panelGauche.add(buildPanelCara1(nom, type, humeur), gbc);
+		gbc.anchor = GridBagConstraints.NORTH;			// Définit la direction de l'alignement
+		panelGauche.add(buildPanelCara1(nom, type, humeur), gbc);	// Ajoute le JPanel buildPanelCara1 au JPanel panelGauche, en appliquant la contriante gbc
 		
 		
 		/**
 		 * Ajouter l'Image
 		 */
+		// dimensions : 245*245
+		// avantages : evite le décalage des boutons de changement de lieu et la superposition de l'image avec les barres de caractéristiques
+		// inconvénients : le Tamagotchi "vole" sur le décor ou le masque
+		JLabel imageTama = new JLabel(new ImageIcon(new ImageIcon((new File(ControleurFichier.REP_IMG, ControleurGeneral.TYPE.get(type))).getPath()).getImage().getScaledInstance(245, 245, Image.SCALE_DEFAULT)));
+		gbc.gridx = 0;
+		gbc.gridy = 1;
+		gbc.weighty = 1;
+		gbc.weightx = 1;
+		gbc.insets = new Insets(0, 0, 0, 0);
+		gbc.anchor = GridBagConstraints.SOUTH;
+		panelGauche.add(imageTama, gbc);
 		
 		
 		gbc.gridx = 0;
@@ -155,9 +169,11 @@ public class MenuDeJeu extends Menu {
 	
 	/**
 	 * Construit le JPanel lieu contenant :
+	 * 		- JPanel position
+	 * 		- JLabel info
 	 * 		- JLabel lieu
-	 * 		- JButton aGauche
-	 * 		- JButton aDroite
+	 * 		- JPanel panelBtn
+	 * 		- JButton H(haut), G(gauche), B(bas), D(droite)
 	 * 
 	 * @return JPanel - contenant tout le panel lieu
 	 */
@@ -243,6 +259,10 @@ public class MenuDeJeu extends Menu {
 	
 	/**
 	 * Construit le JPanel cara1 contenant :
+	 * 		- JPanel Lbnom
+	 * 		- JPanel Lbtype
+	 * 		- JPanel Lbhumeur
+	 * 		- JLabel info
 	 * 		- JLabel nom
 	 * 		- JLabel type
 	 * 		- JLabel humeur
@@ -344,11 +364,11 @@ public class MenuDeJeu extends Menu {
 	
 	/**
 	 * Construit le JPanel cara2 contenant :
-	 * 		- JPanel panelEnergie
-	 * 		- JPanel panelHygiene
-	 *  	- JPanel panelMoral
-	 * 		- JPanel panelNourriture
-	 * 		- JPanel panelToilettes
+	 * 		- JLabel vie
+	 * 		- JButton pause
+	 *  	- JProgressBar barreVie
+	 * 		- JLabel age
+	 * 		- JLabel action
 	 * 
 	 * @return JPanel - contenant tout le panel cara2
 	 */
@@ -422,7 +442,14 @@ public class MenuDeJeu extends Menu {
 		return panelCara3;
 	}
 	
-	
+	/**
+	 * Construit le JPanel caracteristique contenant :
+	 * 		- JLabel caracteristique
+	 * 		- JProgressBar caracteristique
+	 *  	- JButton caracteristique
+	 * 
+	 * @return JPanel - contenant tout le panel cara2
+	 */
 	private CustomPanel buildPanelCaracteristique(Caracteristique caracteristique) {
 		CustomPanel panelCaracteristique = new CustomPanel(new GridBagLayout(), 60, 0, CustomStyle.GRIS_ALPHA);
 		GridBagConstraints gbc = new GridBagConstraints();
@@ -522,11 +549,11 @@ public class MenuDeJeu extends Menu {
 		ControleurGeneral.ctrlJeu.rqtAction(caracteristique);
 		String action = "Restaure : "+caracteristique;
 		ControleurGeneral.ctrlAffichage.modifLabel(labelAction, action);
-		// d�sactive les btn apr�s le lancement d'une premi�re action
+		// désactive les btn après le lancement d'une première action
 		btns.forEach((k, v) -> {
 			ControleurGeneral.ctrlAffichage.rqtComposantActif(this,v, false);
 		});
-		// R�activation des btns avec un timer
+		// Réactivation des btns avec un timer
 		Menu menu = this;
 		ControleurGeneral.ctrlTemps.addThreadJeu(5000, new Runnable(){
 			  @Override
