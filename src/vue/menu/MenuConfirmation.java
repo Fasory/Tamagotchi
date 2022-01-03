@@ -26,7 +26,7 @@ import vue.modele.CustomTxtField;
  */
 public abstract class MenuConfirmation extends Menu {
 	
-	protected JTextField txtSaisie;
+	protected CustomTxtField txtSaisie;
 	
 	/**
 	 * Constructeur																					<br/>
