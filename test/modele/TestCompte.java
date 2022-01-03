@@ -184,7 +184,7 @@ class TestCompte {
 		expected_partiesId.add(id3);
 
 		UUID idTest = new UUID(100000,000001);
-		HashSet<UUID> partiesIdTest = new HashSet<UUID>();
+		HashSet<UUID> partiesIdTest = new HashSet<UUID>(); 
 		Compte testCompte = new Compte("user1", "mdp1", "user1@mail", idTest, partiesIdTest);
 		testCompte.addPartie(id1);
 		testCompte.addPartie(id2);
