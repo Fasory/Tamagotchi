@@ -10,20 +10,26 @@ public class Piece implements Serializable {
 	public static final int  DROITE = 3;
 	
 	private final String nom;
-	private final Piece[] liens;	// Connections avec les autres pièces, respectivement : haut, gauche, bas, droite
+	private final Piece[] liens;	// Connexions avec les autres pièces, respectivement : haut, gauche, bas, droite
 	
+	// Constructeur de la classe (correspond au 2ème constructeur avec le deuxième paramètre nul)
 	public Piece(String nom) {
 		this(nom, null);
 	}
 	
-	
+	// Constructeur
 	public Piece(String nom, Piece[] mitoyen) {
 		this.nom = nom;
 		if (mitoyen == null) this.liens = new Piece[4];
 		else this.liens = mitoyen;
 	}
 	
-	
+	// Ajoute un lien entre deux pièces mitoyennes
+	/**
+	 * 
+	 * @param pos : position à laquelle on ajoute une pièce o dans l'objet courant
+	 * @param posO : position à laquelle on ajoute la pièce o dans le lien
+	 */
 	public void addLiens(int pos, Piece o, int posO) {
 		if (pos < 4 && posO < 4 && !existePiece(pos) && !o.existePiece(posO)) {
 			liens[pos] = o;

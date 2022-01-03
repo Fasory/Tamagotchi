@@ -399,6 +399,7 @@ public class MenuDeJeu extends Menu {
 		
 		barreVie = new CustomProgressBar(0, 100,true);
 		barreVie.setPreferredSize(new Dimension(400, 30));
+		barreVie.setMinimumSize(barreVie.getPreferredSize());
 		barreVie.setValue(ptsVie);
 		gbc.gridx = 0;
 		gbc.gridy = 1;
@@ -467,6 +468,7 @@ public class MenuDeJeu extends Menu {
 		
 		CustomProgressBar barreCaracteristique = new CustomProgressBar((int) caracteristique.getMin(), (int) caracteristique.getMax());
 		barreCaracteristique.setPreferredSize(new Dimension(400, 30));
+		barreCaracteristique.setMinimumSize(barreCaracteristique.getPreferredSize());
 		barreCaracteristique.setValue((int) caracteristique.getValeur());
 		gbc.gridx = 0;
 		gbc.gridy = 1;
