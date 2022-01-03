@@ -15,5 +15,5 @@ class TestControleurFichier {
 	@AfterEach
 	void apresTest() throws Exception {
 		ctrlFichier.delControleur();
-	}
+	} 
 }
