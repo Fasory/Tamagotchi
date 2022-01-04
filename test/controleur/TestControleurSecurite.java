@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 
 class TestControleurSecurite {
 	
-	ControleurSecurite ctrlSecurite;
+	private ControleurSecurite ctrlSecurite;
 	
 	@BeforeEach
 	void preTest() throws Exception {
