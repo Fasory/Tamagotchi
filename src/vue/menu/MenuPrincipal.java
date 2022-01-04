@@ -85,6 +85,7 @@ public class MenuPrincipal extends Menu {
 		
 		
 		CustomBtn btnScore = new CustomBtn("Voir les scores", marges);
+		btnScore.setEnabled(false);
 		lsCustomBtn.add(btnScore);
 		btnScore.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
