@@ -20,8 +20,9 @@ public class ControleurGeneral extends Controleur {
 	private static boolean estCree = false;							// Repère de création d'une unique instance par type de controleur
 	
 	// Constantes
-	public final static int TEMPS_MAJ = 500;			// Temps (en millisecondes) de pause entre chaque mise à jour du Tamagotchi
-	public final static int TEMPS_VIEILLIR = 500;
+	public final static int TEMPS_MAJ = 7000;			// Temps (en millisecondes) de pause entre chaque mise à jour du Tamagotchi
+	public final static int TEMPS_VIEILLIR = 180000;
+	public final static int TEMPS_LOCK = 3500;
 	public final static int NB_MAX_PARTIE = 4;
 	private final static String[][] REF_TYPE = {		// Sous forme : {Nom du type, nom du fichier associer (img)} -> String[]
 			{"Robot", "robot.png"},
@@ -47,8 +48,8 @@ public class ControleurGeneral extends Controleur {
 	public final static LinkedHashMap<String, String> TYPE = get_TYPE();
 	public final static String NOM_ANONYME = "Anonyme";					  
 	public final static String STR_UUID_ANONYME = "00000000-0000-0000-0000-000000000000";
-	public final static boolean BY_PASS = true;			// Valable que pour la version de développement, il permet de passé oûtre les confirmations
-	public final static boolean DEBUG = true;			// Valable que pour la version de développement, permet d'afficher dans la console les actions effectuées
+	public final static boolean BY_PASS = false;			// Valable que pour la version de développement, il permet de passé oûtre les confirmations
+	public final static boolean DEBUG = false;			// Valable que pour la version de développement, permet d'afficher dans la console les actions effectuées
 	
 	public static ControleurFichier ctrlFichier;			// Controleur assistant pour la gestion de fichiers
 	public static ControleurTemps ctrlTemps;				// Controleur assistant pour la gestion du temps
