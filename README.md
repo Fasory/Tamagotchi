@@ -5,4 +5,5 @@
 * Création : 29/09/2021
 * Version : 2.0.0
 * Description : Projet Tamagotchi pour l'UE Génie Logiciel
+* Lien du projet : https://github.com/Fasory/Tamagotchi
 ---
