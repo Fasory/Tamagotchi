@@ -29,7 +29,7 @@ class TestThreadJeuSecondaire {
 		Thread.sleep(PAUSE);
 		assertEquals(Thread.State.TERMINATED, test.getState());
 	}
-
+  
 	@Test
 	void testThreadJeuSecondaire() throws InterruptedException {
 		ThreadJeuSecondaire test = new ThreadJeuSecondaire(PAUSE_THREAD, new Runnable() {
